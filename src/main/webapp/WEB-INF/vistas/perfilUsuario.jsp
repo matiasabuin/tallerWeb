@@ -1,12 +1,16 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Perfil</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<title>Sitio | AgustinNava</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/perfilUsuario.css">
 </head>
@@ -14,11 +18,11 @@
 <body>
 	<header>
 		<div class="flexbox-topnav">
-			<a href="home">Home</a> 
-			<a href="perfil">Perfil</a> 
+			<a href="home">INICIO</a> 
+			<a href="perfil">PERFIL</a> 
 			<a href="">VISTA3</a> 
 			<a href="">VISTA4</a> 
-			<a class="logo" href="home">Logo </a>
+			<a class="logo" href="home">LOGO </a>
 		</div>
 	</header>
 

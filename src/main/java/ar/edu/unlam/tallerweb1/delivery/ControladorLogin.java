@@ -81,11 +81,20 @@ public class ControladorLogin {
 		return new ModelAndView("registro-usuario", modelo);
 	}
 	
-
+	@RequestMapping("/menu")
+	public ModelAndView irAMenu() {
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView("menu", modelo);
+	}
+	
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil() {
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView("perfilUsuario", modelo);
+	}
+	@RequestMapping(path = "/perfil-fvs")
+	public ModelAndView VerPerfilPeli() {
+		return new ModelAndView("perfil-fvs");
 	}
 	
 }

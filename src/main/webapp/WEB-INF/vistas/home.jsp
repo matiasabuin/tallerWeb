@@ -3,10 +3,11 @@
 <head>
 
 <!-- Bootstrap core CSS -->
-<title>Home</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
 <link href="css/styles.css" rel="stylesheet">
 
 </head>
@@ -16,11 +17,11 @@
 	<header>
 		<div class="flexbox-topnav">
 		
-			<a href="home">Home</a> 
-			<a href="perfil">Perfil</a> 
+			<a href="home">INICIO</a> 
+			<a href="perfil">PERFIL</a> 
 			<a href="">VISTA3</a> 
 			<a href="">VISTA4</a> 
-			<a class="logo" href="home">Logo </a>
+			<a class="logo" href="home">LOGO </a>
 			
 		</div>
 	
@@ -32,7 +33,7 @@
 
 	<div class="recomendaciones-container">
 
-		<h1>Recomendaciones</h1>
+		<h1>RECOMENDACIONES</h1>
 
 		<div class="flex-container">
 
@@ -48,7 +49,7 @@
 
 	<div class="recomendaciones-container">
 			
-		<h1>Peliculas</h1>
+		<h1>PELICULAS</h1>
 			
 		<div class="flex-container">
 	
@@ -64,13 +65,16 @@
 
 
 	<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-	</script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
 </html>
