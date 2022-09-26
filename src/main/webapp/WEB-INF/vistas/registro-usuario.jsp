@@ -3,23 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Bootstrap core CSS -->
- <link rel="stylesheet"
+<title>Registrarse</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet" href="css/estilos.css" />
+
+<link href="css/styles.css" rel="stylesheet">
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
 <body>
 <div class = "container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mx-auto my-auto">
         <form:form action="registrarme" method="POST" modelAttribute="usuario">
-            <h3 class="form-signin-heading">Nuevo Usuario</h3>
+            <h3 class="form-signin-heading">Registro de usuario</h3>
             <hr class="colorgraph"><br>
-
-            <form:input path="email" id="email" class="form-control" />
-            <form:input path="password" type="password" id="password" class="form-control"/>
-
+            
+			<div class = "form-group">
+            <form:input path="email" id="email" class="form-control" placeholder = "Correo"/>
+            </div>
+            <div class = "form-group">
+            <form:input path="password" type="password" id="password" class="form-control" placeholder = "Contraseña"/>
+			</div>
             <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
         </form:form>
 
