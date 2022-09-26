@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.domain.usuarios.servicioRegistro;
+import ar.edu.unlam.tallerweb1.domain.usuarios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,11 +76,21 @@ public class ControladorLogin {
 		return new ModelAndView("redirect:/home");
 	}
 	
+	
+	@RequestMapping(path = "/registrarme", method = RequestMethod.POST)
+	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+
+		Usuario usuario = servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword());
+		
+		return irALogin();
+	}
+	
 	@RequestMapping("/registro-usuario")
 	public ModelAndView registrarUsuario() {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("datosLogin", new DatosLogin());
+		modelo.put("usuario", new Usuario());
 		return new ModelAndView("registro-usuario", modelo);
 	}
 	

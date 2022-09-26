@@ -11,132 +11,15 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
+	
+<link rel="stylesheet"
+	href="css/estilos.css" />
+	
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-<style>
-:root { 
-	--primary-color: #263441;
-	--light-color: #86939f; 
-	--color-footer: #576777; 
-	--onMouseover: #fff
-}
-
-.bg-primary {
-	background-color: var(--primary-color) !important;
-}
-
-body {
-	background-color: #17181c;
-	font-size: 12pt !important;
-	color: #c7c7c7;
-}
+	
 
 
-.navbar {
-	min-height: 60px;
-}
-
-.nav-link {
-	color: var(--light-color);
-	font-weight: bold;
-}
-
-.nav-link:hover {
-	color: var(--onMouseover) !important;
-}
-
-.navbar-brand {
-	color: var(--light-color) !important;
-}
-
-.dropdown-menu {
-	background-color: var(--light-color) !important;
-}
-
-.poster-secction .col-2 img{
- height:350px;
-/*  margin-right:50px;
- */}
-.poster-secction .col {
-	font-weight: bold;
-	font-size:40px;
-}
-.poster-secction .col img {
-height:60px;
-}
-
-.tags-secction .col-2 {
-	background-color: #17181c;
-	font-size: 15px;
-}
-
-.tags-secction .col-2 border {
-	background-color: #17181c;
-	color: var(--onMouseover);
-}
-.tags-secction a{
-	text-decoration: none;
-		color: #c7c7c7;
-
-}
-
-.reviews .col-12 {
-	background-color: var(--primary-color);
-	padding: 150px;
-}
-
-.reviews .col-12 p {
-	font-size: 25px;
-}
-.footer {
-	grid-area: footer;
-	background-color: var(--color-footer);
-	margin-top: 50px;
-}
-
-.column1 h4 {
-	font-size: 12pt;
-	color: #B0BFCB;
-}
-
-.column1 .social {
-	color: #c7c7c7;
-	text-decoration: none;
-	list-style: none;
-	margin-top: 10px;
-	display: flex;
-}
-
-.item i {
-	width: 50px;
-	height: 30px;
-	font-size: 40px;
-}
-
-.footer a:hover {
-	color: var(--onMouseover);
-}
-
-.footer a {
-	text-decoration: none;
-	color: #c7c7c7;
-}
-
-.footer-copyright {
-	background-color: #576777;
-	color: var(--primary-color);
-}
-
-.enlaceDeCopy {
-	color: var(--primary-color);
-}
-
-.enlaceDeCopy:hover {
-	color: var(--onMouseover);
-}
-</style>
 </head>
 <body>
 <header>
@@ -151,10 +34,10 @@ height:60px;
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2"><a class="nav-link" href="#">Inicio
+					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="#">Planes</a></li>
+					<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
 					<li class="nav-item mx-2 dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
