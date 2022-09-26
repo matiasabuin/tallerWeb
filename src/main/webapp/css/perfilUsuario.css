@@ -1,0 +1,91 @@
+@charset "ISO-8859-1";
+
+body{
+	background-color: #16181c;
+	box-sizing: border-box;
+}
+main{
+	margin: 0em 20em;
+}
+h2{
+	font-size: 3em;
+	color: #9ab;
+}
+h3{
+	display: block;
+	font-size: 25px;
+	color: #9ab;
+	font-weight: 900;
+	margin: 0px;
+}
+h4, p{
+	color: #BADEFC;
+}
+.perfil{
+	margin-top: 3em;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.usuario{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+.usuario img{
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.cards{
+	display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.favoritos{
+	margin-top: 2em;
+	height: 270px;
+	padding: 1em 2em;
+	background: #263341;
+	text-align: center;
+	border-radius: 20px;
+	margin-left: 3em;
+}
+.favoritos a{
+	text-align: center
+}
+.favoritos img{
+	margin: 1em;
+	width: 75%;
+	border-radius: 20px;
+}
+.reciente {
+	margin-top: 2em;
+	height: 400px;
+	padding: 1em 2em;
+	background: #263341;
+	text-align: center;
+	border-radius: 20px;
+}
+.reciente img{
+	margin: 2em 1em;
+	width: 90%;
+	border-radius: 20px;
+}
+.comentario{
+	margin: 4em 0em;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.texto{
+	margin-left: 2em;
+	font-size: 15px;
+}
+.portada{
+	height: 150px;
+}
+.portada img{
+    width: 100%;
+}
