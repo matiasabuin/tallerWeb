@@ -2,22 +2,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet"
+<head>
+<title>Login</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	
-	</head>
+
+<link rel="stylesheet" href="css/estilos.css" />
+
+<link href="css/styles.css" rel="stylesheet">
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
 	<body>
+	
 		<div class = "container">
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
 				<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
-			    	<h3 class="form-signin-heading">Taller Web I</h3>
+			    	<h3 class="form-signin-heading">Recomendaciones juegos y series</h3>
 					<hr class="colorgraph"><br>
 
 					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
@@ -26,7 +37,7 @@
 					
 					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Login</button>
 				</form:form>
-				<a href="registro-usuario"	>Registrarme</a>
+				<a href="registro-usuario">Registrarme</a>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
 				<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
