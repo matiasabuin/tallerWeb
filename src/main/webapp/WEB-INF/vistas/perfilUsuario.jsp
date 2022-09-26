@@ -6,25 +6,56 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Perfil</title>
+<!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/estilos.css" />
+
+<link href="css/styles.css" rel="stylesheet">
+
 <link rel="stylesheet" href="css/perfilUsuario.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
 
 <body>
-	<header>
-		<div class="flexbox-topnav">
-			<a href="home">INICIO</a> 
-			<a href="perfil">PERFIL</a> 
-			<a href="">VISTA3</a> 
-			<a href="">VISTA4</a> 
-			<a class="logo" href="home">LOGO </a>
+
+<header>
+	<nav class="navbar navbar-expand-lg bg-primary">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+					<li class="nav-item mx-2 dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> MiPerfil </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Pelis</a> <a
+								class="dropdown-item" href="#">Series</a> <a
+								class="dropdown-item" href="#">VideoJuegos</a>
+						</div></li>
+				</ul>
+				<a class="navbar-brand" href="#">Logo</a>
+			</div>
 		</div>
-	</header>
+	</nav>
+</header>
 
 	<main>
 		<section class="perfil">
