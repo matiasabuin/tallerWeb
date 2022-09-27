@@ -1,7 +1,6 @@
-package ar.edu.unlam.tallerweb1.delivery;
+package ar.edu.unlam.tallerweb1.domain.pedidos;
 
-public class DatosRegistro {
-
+public class DatosLogin {
     private String email;
     private String password;
 
