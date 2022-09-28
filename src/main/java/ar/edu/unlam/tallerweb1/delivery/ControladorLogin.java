@@ -114,5 +114,8 @@ public class ControladorLogin {
 	public ModelAndView VerPerfilPeli() {
 		return new ModelAndView("perfil-fvs");
 	}
-	
+	@RequestMapping(path = "/registro-peli-serie")
+	public ModelAndView RegistroPeliSerie() {
+		return new ModelAndView("registro-peli-serie");
+	}
 }
