@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Perfil</title>
+<title>Registrar-peli-serie</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -22,7 +22,6 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 </head>
-
 <body>
 
 <header>
@@ -46,9 +45,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> MiPerfil </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Pelis</a> <a
-								class="dropdown-item" href="#">Series</a> <a
-								class="dropdown-item" href="#">VideoJuegos</a>
+						<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
+								class="dropdown-item" href="perfil-fvs">Series</a> <a
+								class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
 						</div></li>
 				</ul>
 				<a class="navbar-brand" href="#">Logo</a>

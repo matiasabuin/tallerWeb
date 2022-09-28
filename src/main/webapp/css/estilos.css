@@ -27,6 +27,7 @@ body {
 
 .nav-link:hover {
 	color: var(--onMouseover) !important;
+	
 }
 
 .navbar-brand {
@@ -36,7 +37,11 @@ body {
 .dropdown-menu {
 	background-color: var(--light-color) !important;
 }
+.dropdown-item:hover{
+background-color: var(--primary-color);
+color:var(--onMouseover);
 
+}
 .poster-secction .col-2 img{
  height:350px;
 /*  margin-right:50px;
@@ -72,6 +77,38 @@ height:60px;
 .reviews .col-12 p {
 	font-size: 25px;
 }
+.formulario-registro{
+	margin-top:50px;
+	padding: 50px;
+	background-color: var(--primary-color);
+	}
+	
+.formulario-registro p{	
+	font-size:30px;
+	color: #9ab;
+	font-weight: bold;
+    text-align:left	
+}
+.form-group{
+		font-size:15px;
+}
+.tipo{
+margin-top:4px;
+	}
+	
+.marco-poster-registro{
+	margin-top:3px;
+	display:flex;
+	width:375px;
+    align-content:center;
+	height:450px;
+	border:5px solid #121212;
+	background-position:center;
+	background-size:cover; 
+	background-color:#E1DEDE;
+	
+}
+
 .footer {
 	grid-area: footer;
 	background-color: var(--color-footer);

@@ -42,9 +42,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> MiPerfil </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Pelis</a> <a
-								class="dropdown-item" href="#">Series</a> <a
-								class="dropdown-item" href="#">VideoJuegos</a>
+						<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
+								class="dropdown-item" href="perfil-fvs">Series</a> <a
+								class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
 						</div></li>
 				</ul>
 				<a class="navbar-brand" href="#">Logo</a>
@@ -54,7 +54,7 @@
 </header>
 
 	<div class="boton-container">
-		<a class="boton" href=""> </a>
+		<a class="boton mx-3" href=""> </a>
 	</div>
 
 	<div class="recomendaciones-container">

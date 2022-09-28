@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Perfil-Fvs</title>
+<title>RegistroDePelisYSeries</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -16,10 +16,8 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
 </head>
+
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg bg-primary">
@@ -53,63 +51,69 @@
 		</nav>
 	</header>
 
-	<div class="fsv-page-wrapper">
-		<hr>
-		<hr>
-		<div class=container>
-			<section class="poster-secction mx-3">
-				<div class="row">
-					<div class="col-2">
-						<img
-							src="https://i.pinimg.com/originals/39/43/0d/39430d3398d67493bddc0a549b673502.jpg"
-							class="rounded" alt="perfil">
-					</div>
-					<div class="col align-self-start text-center ml-5">
-						PSYCHO<br> <img
-							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
-							alt="estrellitas">
-
-					</div>
-					<div class="col-5 align-self-center mx-2">¡UNA NUEVA Y
-						DIFERENTE EMOCIÓN EN LA PANTALLA! Cuando Marion Crane, una
-						empleada de una inmobiliaria, se da a la fuga con un fajo de
-						billetes y la esperanza de empezar una nueva vida, acaba en el
-						famoso Motel Bates, donde el gerente Norman Bates cuida de su
-						madre confinada en casa. El lugar parece estrafalario, pero está
-						bien... hasta que Marion decide darse una ducha.</div>
+	<div class="container">
+		<form class="formulario-registro rounded">
+			<div class="form-group row">
+				<p class="col-md-6">REGISTRO</p>
+				<label for="exampleFormControlSelect1"
+					class="col-md-1 col-form-label tipo">TIPO</label>
+				<div class="col-sm-auto">
+					<select class="form-control" id="exampleFormControlSelect1">
+						<option>PELICULA</option>
+						<option>SERIE</option>
+					</select>
 				</div>
-			</section>
-			<hr>
-			<section class="tags-secction mx-3">
-				<div class="row">
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="inputNombre">NOMBRE</label> <input type="text"
+						class="form-control" id="inputNombre" placeholder="Nombre">
+					<br> <label for="inputDuracion">DURACION</label> <input
+						type="number" class="form-control" id="inputDuracion"
+						placeholder="128, 90"> <br> <label
+						for="inputDirector">DIRECTOR</label> <input type="text"
+						class="form-control" id="inputDirector"
+						placeholder="Martin scorsese, John Carpenter"> <br> <label
+						for="inputGenero">GENERO</label> <input type="text"
+						class="form-control" id="inputGenero"
+						placeholder="Terror, thiller, drama"> <br> <label
+						for="inputPlataforma">PLATAFORMA</label> <input type="text"
+						class="form-control" id="inputPlataforma" placeholder="Netflix, Disney+, HBO+"> <br> <label
+						for="inputDate">FECHA DE ESTRENO</label> <input type="date"
+						class="form-control" id="inputPlataforma" value="2022-09-29"
+						min="1895-03-22"> <br>
 
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Drama</a>
-					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Thriller</a>
-					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Horror</a>
-					</div>
-					<div class="col-4 mx-5 text-center border rounded">149 mins
-						More at IMDB TMDB</div>
-				</div>
-				<hr>
-			</section>
-
-			<section class="reviews mx-3">
-				<div class="row">
-					<div class="col-12 gutter-right-1 mx-2 rounded">
-						<p class="text-center font-weight-bold">REVIEWS</p>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridCheck">
+						<label class="form-check-label" for="gridCheck"> Acepto
+							terminos y Condiciones </label>
 					</div>
 				</div>
-			</section>
-		</div>
+				<div class="col-md-6 text-center">
+					<label for="registro-poster">SUBIR EL POSTER</label> <br>
+					<input type="file" id="registro-poster"
+						accept="image/png, image/jpeg"> <br> <br>
+					<div class="marco-poster-registro mx-auto"></div>
+
+				</div>
+
+			</div>
+			<div class="row justify-content-center">
+				<div class="form-group col-md-10">
+					<label for="">SINOPSIS</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						rows="3"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col text-center mt-2">
+					<button type="submit" class="btn btn-primary">REGISTRAR</button>
+				</div>
+			</div>
+		</form>
+
+
 	</div>
-
-
-
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
@@ -143,6 +147,7 @@
 	</footer>
 
 
+	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -155,5 +160,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>
