@@ -36,7 +36,7 @@
 					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+					<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
 					<li class="nav-item mx-2 dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -47,8 +47,13 @@
 								class="dropdown-item" href="#">VideoJuegos</a>
 						</div></li>
 				</ul>
-				<a class="navbar-brand" href="#">Logo</a>
+
+					<a class="navbar-brand" href="#">Logo</a>
+					
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+					
 			</div>
+			
 		</div>
 	</nav>
 </header>

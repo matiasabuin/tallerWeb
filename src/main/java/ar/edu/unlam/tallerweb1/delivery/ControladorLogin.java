@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
+import ar.edu.unlam.tallerweb1.domain.pedidos.DatosPelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
@@ -58,6 +59,11 @@ public class ControladorLogin {
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			request.getSession().setAttribute("usuarioActual", usuarioBuscado.getNombre());
+			request.getSession().getAttribute("usuarioActual");
+			
+			// request.getSession().setAttribute("usuarios", servicioLogin.obtenerTodosLosUsarios());
+			
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -79,11 +85,11 @@ public class ControladorLogin {
 	}
 	
 	
-	@RequestMapping(path = "/registrarme", method = RequestMethod.POST)
-	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro) {
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro, HttpServletRequest request) {
 
-		Usuario usuario = servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword());
-		
+		servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword(), datosRegistro.getNombre());
+
 		return irALogin();
 	}
 	
@@ -95,16 +101,13 @@ public class ControladorLogin {
 		return new ModelAndView("registro-usuario", modelo);
 	}
 	
-	@RequestMapping("/menu")
-	public ModelAndView irAMenu() {
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView("menu", modelo);
-	}
-	
 	@RequestMapping("/perfil")
-	public ModelAndView irAPerfil() {
+	public ModelAndView irAPerfil(HttpServletRequest request) {
+		
 		ModelMap modelo = new ModelMap();
+		
 		return new ModelAndView("perfilUsuario", modelo);
+		
 	}
 	
 	@RequestMapping(path = "/perfil-fvs")

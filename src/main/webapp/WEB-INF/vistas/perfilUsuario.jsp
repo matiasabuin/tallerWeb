@@ -40,7 +40,7 @@
 					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+					<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
 					<li class="nav-item mx-2 dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -52,6 +52,7 @@
 						</div></li>
 				</ul>
 				<a class="navbar-brand" href="#">Logo</a>
+				
 			</div>
 		</div>
 	</nav>
@@ -63,7 +64,7 @@
 				<img
 					src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg"
 					alt="favorito1" alt="foto-usuario" class="foto-usuario">
-				<h2>Agustin Nava</h2>
+				<h2><%=session.getAttribute("usuarioActual")%></h2>
 			</article>
 			<article class="favoritos">
 			<h3>FAVORITOS</h3>
