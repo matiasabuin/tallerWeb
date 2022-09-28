@@ -42,7 +42,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     public List<Usuario> obtenerTodosLosUsarios() {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Usuario.class)
-                .list();    
+                .list();
     }
 	
 	@Override

@@ -52,6 +52,8 @@
 					
 					<%-- <%=session.getAttribute("usuarios")%> --%>
 					
+					 <%=session.getAttribute("peliculas")%>
+					
 			</div>
 			
 		</div>

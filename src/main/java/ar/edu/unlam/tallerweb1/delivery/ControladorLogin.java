@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
+import ar.edu.unlam.tallerweb1.domain.pedidos.DatosPelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +29,15 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
+	private ServicioPelicula servicioPelicula;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPelicula servicioPelicula){
 		this.servicioLogin = servicioLogin;
+		this.servicioPelicula = servicioPelicula;
 	}
-
 	
+
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
@@ -58,10 +63,13 @@ public class ControladorLogin {
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado.getNombre());
+			
 			request.getSession().getAttribute("usuarioActual");
 			
 			// request.getSession().setAttribute("usuarios", servicioLogin.obtenerTodosLosUsarios());
+			
 			
 			return new ModelAndView("redirect:/home");
 		} else {
@@ -113,8 +121,23 @@ public class ControladorLogin {
 	public ModelAndView VerPerfilPeli() {
 		return new ModelAndView("perfil-fvs");
 	}
+	
 	@RequestMapping(path = "/registro-peli-serie")
 	public ModelAndView RegistroPeliSerie() {
-		return new ModelAndView("registro-peli-serie");
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("pelicula", new Pelicula());
+		return new ModelAndView("registro-peli-serie", modelo);
 	}
+	
+	@RequestMapping(path = "/perfilUsuario", method = RequestMethod.POST)
+	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") DatosPelicula datosPelicula, HttpServletRequest request) {
+		
+		this.servicioPelicula.registrarPelicula(datosPelicula.getNombre());
+		
+		request.getSession().setAttribute("peliculas", servicioPelicula.obtenerTodasLasPeliculas());
+		return irAHome();
+	}
+	
+	
 }

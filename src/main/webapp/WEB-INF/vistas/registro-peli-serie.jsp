@@ -34,7 +34,7 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -52,65 +52,18 @@
 	</header>
 
 	<div class="container">
-		<form class="formulario-registro rounded">
-			<div class="form-group row">
-				<p class="col-md-6">REGISTRO</p>
-				<label for="exampleFormControlSelect1"
-					class="col-md-1 col-form-label tipo">TIPO</label>
-				<div class="col-sm-auto">
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>PELICULA</option>
-						<option>SERIE</option>
-					</select>
+		<form:form action="perfilUsuario" method="POST" modelAttribute="pelicula" class="formulario-registro rounded">
+		
+				<div class="form-group">
+					<form:input path="nombre" id="nombre" class="form-control"
+						placeholder="Nombre de pelicula" />
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="inputNombre">NOMBRE</label> <input type="text"
-						class="form-control" id="inputNombre" placeholder="Nombre">
-					<br> <label for="inputDuracion">DURACION</label> <input
-						type="number" class="form-control" id="inputDuracion"
-						placeholder="128, 90"> <br> <label
-						for="inputDirector">DIRECTOR</label> <input type="text"
-						class="form-control" id="inputDirector"
-						placeholder="Martin scorsese, John Carpenter"> <br> <label
-						for="inputGenero">GENERO</label> <input type="text"
-						class="form-control" id="inputGenero"
-						placeholder="Terror, thiller, drama"> <br> <label
-						for="inputPlataforma">PLATAFORMA</label> <input type="text"
-						class="form-control" id="inputPlataforma" placeholder="Netflix, Disney+, HBO+"> <br> <label
-						for="inputDate">FECHA DE ESTRENO</label> <input type="date"
-						class="form-control" id="inputPlataforma" value="2022-09-29"
-						min="1895-03-22"> <br>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" id="gridCheck">
-						<label class="form-check-label" for="gridCheck"> Acepto
-							terminos y Condiciones </label>
-					</div>
-				</div>
-				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br>
-					<input type="file" id="registro-poster"
-						accept="image/png, image/jpeg"> <br> <br>
-					<div class="marco-poster-registro mx-auto"></div>
-
-				</div>
-
-			</div>
-			<div class="row justify-content-center">
-				<div class="form-group col-md-10">
-					<label for="">SINOPSIS</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="3"></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col text-center mt-2">
-					<button type="submit" class="btn btn-primary">REGISTRAR</button>
-				</div>
-			</div>
-		</form>
+					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>
+						Registrarme
+					</button>
+					
+					
+		</form:form>
 
 
 	</div>

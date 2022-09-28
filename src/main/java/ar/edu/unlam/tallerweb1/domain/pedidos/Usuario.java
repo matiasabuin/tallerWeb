@@ -23,6 +23,7 @@ public class Usuario {
 	private Boolean activo = false;
 	private String nombre;
 	
+	
 	public Long getId() {
 		return id;
 	}
