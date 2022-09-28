@@ -44,7 +44,7 @@ public class ControladorVideojuego {
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego) {
 		
-		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
+		Videojuego videojuego = this.servicioVideojuego.registrarVideojuego(datosVideojuego);
 		
 		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
 	}

@@ -49,7 +49,7 @@
 			<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/ss_8db3de5b5d611e50945268848de2889e1ed4ba84.600x338.jpg?t=1650554420">
 		</section>
 		<section>
-		<h2>God of War</h2>
+		<h2>${datosVideojuego.nombre}</h2>
 		</section>
 		<section class="container">
 			<article class="galeria">
@@ -57,11 +57,10 @@
 			</article>
 			<article>
 				<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420">
-				<p class="sinopsis">Habiendo consumado su venganza contra los dioses el Olimpo años atrás, Kratos ahora vive como un hombre en el reino 
-				de los dioses y los monstruos nórdicos. En este hostil e inhóspito mundo, debe pelear por sobrevivir... y enseñarle a su hijo a hacer lo mismo.</p>
-				<strong>Fecha de lanzamiento</strong><p>14 ene 2022</p>
-				<strong>Desarrollador</strong><p>Santa Monica Studio</p>
-				<strong>Genero</strong><p>Accion, Aventura</p>asdasdasdasasdasd
+				<p class="sinopsis">{datosVideojuego.sinopsis}</p>
+				<strong>Fecha de lanzamiento</strong><p>${datosVideojuego.fechaEstreno}</p>
+				<strong>Desarrollador</strong><p>${datosVideojuego.desarrollador}</p>
+				<strong>Genero</strong><p>${datosVideojuego.genero}</p>
 			</article>
 		</section>
 	</main>
