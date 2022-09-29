@@ -1,13 +1,13 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -17,8 +17,9 @@ public class Videojuego {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
-	private Integer duracion;
 	private String desarrollador;
+	
+	private Integer duracion;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
