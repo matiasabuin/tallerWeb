@@ -5,8 +5,10 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.DatosPelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,11 +34,13 @@ public class ControladorLogin {
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
 	private ServicioPelicula servicioPelicula;
+	private ServicioVideojuego servicioVideojuego;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPelicula servicioPelicula){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPelicula servicioPelicula, ServicioVideojuego servicioVideojuego){
 		this.servicioLogin = servicioLogin;
 		this.servicioPelicula = servicioPelicula;
+		this.servicioVideojuego = servicioVideojuego;
 	}
 	
 
@@ -82,7 +88,14 @@ public class ControladorLogin {
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
-		return new ModelAndView("home");
+		
+		ModelMap model = new ModelMap();
+		
+		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
+		
+		model.addAttribute("videojuegos", videojuegosRegistrados);
+		
+		return new ModelAndView("home", model);
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
@@ -130,14 +143,16 @@ public class ControladorLogin {
 		return new ModelAndView("registro-peli-serie", modelo);
 	}
 	
-	@RequestMapping(path = "/perfilUsuario", method = RequestMethod.POST)
+	@RequestMapping(path = "/home", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") DatosPelicula datosPelicula, HttpServletRequest request) {
 		
-		this.servicioPelicula.registrarPelicula(datosPelicula.getNombre());
+		servicioPelicula.registrarPelicula(datosPelicula.getNombre());
 		
-		request.getSession().setAttribute("peliculas", servicioPelicula.obtenerTodasLasPeliculas());
+		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
+		
+		request.getSession().setAttribute("peliculas", peliculasRegistradas);
+		
 		return irAHome();
 	}
-	
-	
+
 }

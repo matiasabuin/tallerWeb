@@ -32,19 +32,24 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
 						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							class="nav-link dropdown-toggle" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> MiPerfil </a>
+							aria-expanded="false"> Registrar</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Pelis</a> <a
-									class="dropdown-item" href="#">Series</a> <a
-									class="dropdown-item" href="#">VideoJuegos</a>
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
+
 					<a class="navbar-brand" href="#">Logo</a>
+
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+
 				</div>
+
 			</div>
 		</nav>
 	</header>
@@ -66,10 +71,10 @@
 							<form:input path="" type="file" />
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
-							<form:input path="fechaEstreno" type="date" id="fechaEstreno" required/>
+							<form:input path="fechaEstreno" type="date" id="fechaEstreno"/>
 
 							<form:label path="duracion">Duracion</form:label>
-							<form:input path="duracion" type="time" id="duracion" required/>
+							<form:input path="duracion" type="time" id="duracion"/>
 
 						</div>
 					</div>
@@ -79,21 +84,21 @@
 							<div class="separacion">
 								<div>
 									<form:label path="nombre">Nombre</form:label>
-									<form:input path="nombre" type="text" id="nombre" required/>
+									<form:input path="nombre" type="text" id="nombre"/>
 
 									<form:label path="desarrollador">Desarrollador</form:label>
-									<form:input path="desarrollador" type="text" id="desarrollador" required/>
+									<form:input path="desarrollador" type="text" id="desarrollador"/>
 
 									<form:label path="cantidadJugadores">Cantidad de jugadores</form:label>
 									<form:input path="cantidadJugadores" type="number"
-										id="cantidadJugadores" required/>
+										id="cantidadJugadores"/>
 								</div>
 								<div style="margin-left: 4em;">
 									<form:label path="genero">Genero</form:label>
-									<form:input path="genero" type="text" id="genero" required/>
+									<form:input path="genero" type="text" id="genero"/>
 
 									<form:label path="plataforma">Plataforma</form:label>
-									<form:input path="plataforma" type="text" id="plataforma" required/>
+									<form:input path="plataforma" type="text" id="plataforma"/>
 								</div>
 							</div>
 						</div>
@@ -101,7 +106,7 @@
 							<h3>Historia</h3>
 							<form:label path="sinopsis">Sinopsis</form:label>
 							<form:textarea path="sinopsis" id="sinopsis" style="width: 100%;"
-								placeholder="Escribe algo aqui" required/>
+								placeholder="Escribe algo aqui"/>
 						</div>
 
 						<div class="campos ">
@@ -110,12 +115,12 @@
 								<div>
 									<form:label path="requisitosMinimos">Mínimo</form:label>
 									<form:textarea path="requisitosMinimos" id="requisitosMinimos"
-										placeholder="Escribe algo aqui" required/>
+										placeholder="Escribe algo aqui"/>
 								</div>
 								<div>
 									<form:label path="requisitosRecomendados">Recomendado</form:label>
 									<form:textarea path="requisitosRecomendados"
-										id="requisitosRecomendados" placeholder="Escribe algo aqui" required/>
+										id="requisitosRecomendados" placeholder="Escribe algo aqui"/>
 								</div>
 							</div>
 						</div>

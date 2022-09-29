@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Home</title>
@@ -21,44 +22,44 @@
 
 <body>
 
-<header>
-	<nav class="navbar navbar-expand-lg bg-primary">
-		<div class="container">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<header>
+		<nav class="navbar navbar-expand-lg bg-primary">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
-					<li class="nav-item mx-2 dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> MiPerfil </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
-								class="dropdown-item" href="perfil-fvs">Series</a> <a
-								class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
-						</div></li>
-				</ul>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Registrar </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+							</div></li>
+					</ul>
 
 					<a class="navbar-brand" href="#">Logo</a>
-					
+
 					<%-- <%=session.getAttribute("usuarios")%> --%>
-					
-					 <%=session.getAttribute("peliculas")%>
-					
+
+				</div>
+
 			</div>
-			
-		</div>
-	</nav>
-</header>
+		</nav>
+	</header>
+
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<div class="boton-container">
 		<a class="boton mx-3" href=""> </a>
@@ -66,47 +67,53 @@
 
 	<div class="recomendaciones-container">
 
-		<h1>RECOMENDACIONES</h1>
+		<h1>Videojuegos</h1>
 
 		<div class="flex-container">
-
-			<a href="perfil-fvs"> <img
-				src="https://m.media-amazon.com/images/I/81EBp0vOZZL._AC_SL1329_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/71X6YzwV0gL._AC_SY679_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/61HzLWoh2iL._AC_SY741_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/61n3qIANJ5L._AC_SY741_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/7145Wo9GjlL._AC_SY679_.jpg">
-			</a>
-
+			<table class="table">
+				<tbody>
+					<c:forEach items="${videojuegos}" var="videojuego">
+						<td>${videojuego.nombre}</td>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
+
 	</div>
 
 
 	<div class="recomendaciones-container">
 
-		<h1>PELICULAS</h1>
+		<h1>Peliculas</h1>
 
 		<div class="flex-container">
-
-			<a href=""> <img
-				src="https://i.ebayimg.com/images/g/jdUAAOSwfHphFo0h/s-l500.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/71G7AybM3qL._SY679_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/51ZEoxtXybL._AC_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/51pYKKx0tnL._AC_SY450_.jpg">
-			</a> <a href=""> <img
-				src="https://m.media-amazon.com/images/I/71bFo5PDpSL._AC_SL1500_.jpg">
-			</a>
-
+			<table class="table">
+				<tbody>
+					<c:forEach items="${peliculas}" var="pelicula">
+						<td>${pelicula.nombre}</td>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
+
 	</div>
 	
+		<div class="recomendaciones-container">
+
+		<h1>Series</h1>
+
+		<div class="flex-container">
+			<table class="table">
+				<tbody>
+					<c:forEach items="${series}" var="serie">
+						<td>${serie.nombre}</td>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">

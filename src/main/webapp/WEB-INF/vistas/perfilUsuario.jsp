@@ -24,38 +24,42 @@
 </head>
 <body>
 
-<header>
-	<nav class="navbar navbar-expand-lg bg-primary">
-		<div class="container">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<header>
+		<nav class="navbar navbar-expand-lg bg-primary">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
-					<li class="nav-item mx-2 dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> MiPerfil </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
-								class="dropdown-item" href="perfil-fvs">Series</a> <a
-								class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
-						</div></li>
-				</ul>
-				<a class="navbar-brand" href="#">Logo</a>
-				
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Registrar</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+							</div></li>
+					</ul>
+
+					<a class="navbar-brand" href="#">Logo</a>
+
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+
+				</div>
+
 			</div>
-		</div>
-	</nav>
-</header>
+		</nav>
+	</header>
 
 	<main>
 		<section class="perfil">

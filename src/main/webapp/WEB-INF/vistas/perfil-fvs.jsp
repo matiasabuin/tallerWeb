@@ -40,15 +40,20 @@
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> MiPerfil </a>
+							aria-expanded="false"> Registrar </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
-									class="dropdown-item" href="perfil-fvs">Series</a> <a
-									class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
+
 					<a class="navbar-brand" href="#">Logo</a>
+
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+
 				</div>
+
 			</div>
 		</nav>
 	</header>

@@ -57,7 +57,7 @@
 			</article>
 			<article>
 				<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420">
-				<p class="sinopsis">{datosVideojuego.sinopsis}</p>
+				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong><p>${datosVideojuego.fechaEstreno}</p>
 				<strong>Desarrollador</strong><p>${datosVideojuego.desarrollador}</p>
 				<strong>Genero</strong><p>${datosVideojuego.genero}</p>

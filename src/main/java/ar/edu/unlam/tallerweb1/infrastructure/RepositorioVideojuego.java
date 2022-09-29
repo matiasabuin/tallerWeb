@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
+import java.util.List;
+
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 public interface RepositorioVideojuego {
@@ -7,4 +10,5 @@ public interface RepositorioVideojuego {
 	void guardar(Videojuego videojuego);
     Videojuego buscar(Integer id);
 	void modificar(Videojuego videojuego);
+	List<Videojuego> obtenerTodosLosVideojuegos();
 }

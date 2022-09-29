@@ -52,7 +52,7 @@
 	</header>
 
 	<div class="container">
-		<form:form action="perfilUsuario" method="POST" modelAttribute="pelicula" class="formulario-registro rounded">
+		<form:form action="home" method="POST" modelAttribute="pelicula" class="formulario-registro rounded">
 		
 				<div class="form-group">
 					<form:input path="nombre" id="nombre" class="form-control"
