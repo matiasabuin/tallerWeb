@@ -34,7 +34,7 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -52,17 +52,64 @@
 	</header>
 
 	<div class="container">
-		<form:form action="perfilUsuario" method="POST" modelAttribute="pelicula" class="formulario-registro rounded">
-		
-				<div class="form-group">
-					<form:input path="nombre" id="nombre" class="form-control"
-						placeholder="Nombre de pelicula" />
+		<form:form action="registrar-pelicula" method="POST"
+			class="formulario-registro rounded" modelAttribute="datosPelicula">
+			<div class="form-group row">
+				<p class="col-md-6">REGISTRO</p>
+				<label for="exampleFormControlSelect1"
+					class="col-md-1 col-form-label tipo">TIPO</label>
+				<div class="col-sm-auto">
+					<select class="form-control" id="exampleFormControlSelect1">
+						<option>PELICULA</option>
+						<option>SERIE</option>
+					</select>
 				</div>
-					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>
-						Registrarme
-					</button>
-					
-					
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="inputNombre">NOMBRE</label>
+					<form:input path="nombre" type="text" class="form-control"
+						id="inputNombre" placeholder="Nombre" />
+					<br> <label for="inputDuracion">DURACION</label>
+					<form:input path="duracion" type="number" class="form-control"
+						id="inputDuracion" placeholder="128, 90" />
+					<br> <label for="inputDirector">DIRECTOR</label>
+					<form:input path="director" type="text" class="form-control"
+						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
+					<br> <label for="inputGenero">GENERO</label>
+					<form:input path="genero" type="text" class="form-control"
+						id="inputGenero" placeholder="Terror, thiller, drama" />
+					<br> <label for="inputPlataforma">PLATAFORMA</label>
+					<form:input path="plataforma" type="text" class="form-control"
+						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
+					<br> <label for="inputDate">FECHA DE ESTRENO</label>
+					<form:input path="fechaEstreno" type="date" class="form-control"
+						id="inputPlataforma"/>
+					<br>
+
+				
+				</div>
+				<div class="col-md-6 text-center">
+					<label for="registro-poster">SUBIR EL POSTER</label> <br> <input
+						type="file" id="registro-poster" accept="image/png, image/jpeg">
+					<br> <br>
+					<div class="marco-poster-registro mx-auto"></div>
+
+				</div>
+
+			</div>
+			<div class="form-group col-md-10 mx-auto">
+				<label for="exampleFormSinopsis">SINOPSIS</label>
+				<form:textarea path="sinopsis" class="form-control"
+					id="exampleFormControlTextarea1" rows="3" />
+				</textarea>
+			</div>
+
+			<div class="col text-center mt-2">
+				<button type="submit" class="btn btn-primary" />
+				REGISTRAR
+				</button>
+			</div>
 		</form:form>
 
 
@@ -93,7 +140,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
+			Â© 2022 Copyright: <a class="enlaceDeCopy" href="/">
 				PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->

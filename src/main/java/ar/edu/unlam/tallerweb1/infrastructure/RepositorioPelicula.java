@@ -8,6 +8,6 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 public interface RepositorioPelicula {
 	
 	void guardar(Pelicula pelicula);
-    Pelicula buscar(String nombre);
+    Pelicula buscar(Integer id);
 	List<Pelicula> obtenerTodasLasPeliculas();
 }

@@ -65,18 +65,12 @@
 							class="rounded" alt="perfil">
 					</div>
 					<div class="col align-self-start text-center ml-5">
-						PSYCHO<br> <img
+						${datosPelicula.nombre}<br> <img
 							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
 							alt="estrellitas">
 
 					</div>
-					<div class="col-5 align-self-center mx-2">¡UNA NUEVA Y
-						DIFERENTE EMOCIÓN EN LA PANTALLA! Cuando Marion Crane, una
-						empleada de una inmobiliaria, se da a la fuga con un fajo de
-						billetes y la esperanza de empezar una nueva vida, acaba en el
-						famoso Motel Bates, donde el gerente Norman Bates cuida de su
-						madre confinada en casa. El lugar parece estrafalario, pero está
-						bien... hasta que Marion decide darse una ducha.</div>
+					<div class="col-5 align-self-center mx-2">${datosPelicula.sinopsis}</div>
 				</div>
 			</section>
 			<hr>
@@ -84,15 +78,15 @@
 				<div class="row">
 
 					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Drama</a>
+						<a href="!">${datosPelicula.genero}</a>
 					</div>
 					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Thriller</a>
+						<a href="!">${datosPelicula.genero}</a>
 					</div>
 					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">Horror</a>
+						<a href="!">${datosPelicula.genero}</a>
 					</div>
-					<div class="col-4 mx-5 text-center border rounded">149 mins
+					<div class="col-4 mx-5 text-center border rounded">${datosPelicula.duracion} mins
 						More at IMDB TMDB</div>
 				</div>
 				<hr>

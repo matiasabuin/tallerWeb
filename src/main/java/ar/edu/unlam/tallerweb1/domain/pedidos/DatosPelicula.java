@@ -10,8 +10,15 @@ public class DatosPelicula {
 	private String genero;
 	private String plataforma;
 	private Date fechaEstreno;
+	private String sinopsis;
 	public String getNombre() {
 		return nombre;
+	}
+	public String getSinopsis() {
+		return sinopsis;
+	}
+	public void setSinopsis(String sinopsis) {
+		this.sinopsis = sinopsis;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

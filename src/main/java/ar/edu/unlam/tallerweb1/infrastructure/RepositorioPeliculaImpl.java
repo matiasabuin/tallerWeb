@@ -28,9 +28,9 @@ public class RepositorioPeliculaImpl implements RepositorioPelicula {
 	}
 
 	@Override
-	public Pelicula buscar(String nombre) {
+	public Pelicula buscar(Integer id) {
 		return (Pelicula) sessionFactory.getCurrentSession().createCriteria(Pelicula.class)
-				.add(Restrictions.eq("nombre", nombre))
+				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 

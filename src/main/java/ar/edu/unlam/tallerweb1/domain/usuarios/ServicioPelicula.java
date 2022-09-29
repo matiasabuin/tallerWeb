@@ -7,8 +7,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 public interface ServicioPelicula {
 	
 	
-
-	Pelicula registrarPelicula(String nombre);
-	
+	Pelicula consultarPelicula(Integer id);
+	Pelicula registrarPelicula(Pelicula datosPelicula);
 	List<Pelicula> obtenerTodasLasPeliculas();
 }

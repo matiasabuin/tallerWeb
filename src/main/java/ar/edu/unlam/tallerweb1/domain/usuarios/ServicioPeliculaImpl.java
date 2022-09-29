@@ -20,13 +20,9 @@ public class ServicioPeliculaImpl implements ServicioPelicula {
 		this.servicioPeliculaDao = servicioPeliculaDao;
 	}
 	@Override
-	public Pelicula registrarPelicula(String nombre) {
+	public Pelicula registrarPelicula(Pelicula pelicula) {
 		
-		Pelicula pelicula = new Pelicula();
-
-		pelicula.setNombre(nombre);
 		servicioPeliculaDao.guardar(pelicula);
-		
 		return pelicula;
 	}
 
@@ -34,6 +30,10 @@ public class ServicioPeliculaImpl implements ServicioPelicula {
 	public List<Pelicula> obtenerTodasLasPeliculas() {
 		
 		return servicioPeliculaDao.obtenerTodasLasPeliculas();
+	}
+	@Override
+	public Pelicula consultarPelicula(Integer id) {
+		return this.servicioPeliculaDao.buscar(id);
 	}
 
 

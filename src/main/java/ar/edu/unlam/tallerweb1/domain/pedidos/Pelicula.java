@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,25 +8,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Pelicula {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
 	private String nombre;
 	private Integer duracion;
 	private String director;
 	private String genero;
 	private String plataforma;
-	private Date fechaEstreno;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private LocalDate fechaEstreno;
+	private String sinopsis;
 	
-	public Long getId() {
+	public String getSinopsis() {
+		return sinopsis;
+	}
+	public void setSinopsis(String sinopsis) {
+		this.sinopsis = sinopsis;
+	}
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -58,10 +69,10 @@ public class Pelicula {
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
-	public Date getFechaEstreno() {
+	public LocalDate getFechaEstreno() {
 		return fechaEstreno;
 	}
-	public void setFechaEstreno(Date fechaEstreno) {
+	public void setFechaEstreno(LocalDate fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
 	}
 	
