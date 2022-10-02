@@ -60,6 +60,7 @@
 				<h2>${datosVideojuego.nombre}</h2>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
+				<p>${datosVideojuego.imagen}</p>
 				<p>${datosVideojuego.fechaEstreno}</p>
 				<strong>Duración</strong>
 				<p>${datosVideojuego.duracion}</p>
@@ -68,9 +69,13 @@
 			</div>
 			<div>
 				<strong>Genero</strong>
-				<p>${datosVideojuego.genero}</p>
+				<c:forEach var="genero" items="${datosVideojuego.generos}">
+				<p>${genero.descripcion}</p>
+				</c:forEach>
 				<strong>Plataforma</strong>
-				<p>${datosVideojuego.plataforma}</p>
+				<!--<c:forEach var="plataforma" items="${datosVideojuego.plataformas}">
+				<p>${plataforma.descripcion}</p>
+				</c:forEach>-->
 				<strong>Modalidad</strong>
 				<p>${datosVideojuego.cantidadJugadores}</p>
 
@@ -79,11 +84,11 @@
 		<div class="contenedor-requisitos">
 			<h3>Requisitos del sistema</h3>
 			<div class="requisitos">
-				<div>
+				<div class="requisito">
 					<h4>Mínimos</h4>
 					<p>${datosVideojuego.requisitosMinimos}</p>
 				</div>
-				<div>
+				<div class="requisito">
 					<h4>Recomendados</h4>
 					<p>${datosVideojuego.requisitosRecomendados}</p>
 				</div>

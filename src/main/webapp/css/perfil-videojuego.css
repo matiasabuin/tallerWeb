@@ -40,7 +40,8 @@ h3{
 	background-color: #263441;
 	height: 300px;
 	margin: 0px 362px;
-	padding: 0px 15px;
+	padding: 1px 15px;
+	border-radius: 10px;
 }
 
 .requisitos{
@@ -49,6 +50,10 @@ h3{
 	justify-content: center;
 }
 
+.requisito{
+	padding: 1em;
+}
+ 
 .requisitos div{
 	width: 45%;
 } 
