@@ -1,10 +1,10 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
+import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 
@@ -33,6 +33,13 @@ public class RepositorioVideojuegoImpl implements RepositorioVideojuego {
 	@Override
 	public void modificar(Videojuego videojuego) {
 		sessionFactory.getCurrentSession().update(videojuego);
+	}
+
+	@Override
+	public List<Videojuego> obtenerTodosLosVideojuegos() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Videojuego.class)
+                .list();
 	}
 
 }

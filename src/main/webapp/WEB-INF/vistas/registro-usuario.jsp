@@ -1,5 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,30 +21,44 @@
 
 </head>
 <body>
-<div class = "container">
-    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mx-auto my-auto">
-        <form:form action="registrarme" method="POST" modelAttribute="usuario">
-            <h3 class="form-signin-heading">Registro de usuario</h3>
-            <hr class="colorgraph"><br>
-            
-			<div class = "form-group">
-            <form:input path="email" id="email" class="form-control" placeholder = "Correo"/>
-            </div>
-            <div class = "form-group">
-            <form:input path="password" type="password" id="password" class="form-control" placeholder = "Contraseña"/>
-			</div>
-            <button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarme</button>
-        </form:form>
+	<div class="container">
+		<div id="loginbox"
+			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mx-auto my-auto">
+			<form:form action="login" method="POST" modelAttribute="usuario">
+				<h3 class="form-signin-heading">Registro de usuario</h3>
+				<hr class="colorgraph">
+				<br>
 
-        <c:if test="${not empty error}">
-            <h4><span>${error}</span></h4>
-            <br>
-        </c:if>
-    </div>
-</div>
+				<div class="form-group">
+					<form:input path="nombre" id="nombre" class="form-control"
+						placeholder="Nombre de usuario" />
+				</div>
 
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+				<div class="form-group">
+					<form:input path="email" id="email" class="form-control"
+						placeholder="Correo" />
+				</div>
+
+				<div class="form-group">
+					<form:input path="password" type="password" id="password"
+						class="form-control" placeholder="Contraseña" />
+				</div>
+					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>
+						Registrarme
+					</button>
+			</form:form>
+
+			<c:if test="${not empty error}">
+				<h4>
+					<span>${error}</span>
+				</h4>
+				<br>
+			</c:if>
+		</div>
+	</div>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script

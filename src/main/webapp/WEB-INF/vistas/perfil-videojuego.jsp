@@ -73,9 +73,6 @@
 				<p>${genero.descripcion}</p>
 				</c:forEach>
 				<strong>Plataforma</strong>
-				<!--<c:forEach var="plataforma" items="${datosVideojuego.plataformas}">
-				<p>${plataforma.descripcion}</p>
-				</c:forEach>-->
 				<strong>Modalidad</strong>
 				<p>${datosVideojuego.cantidadJugadores}</p>
 

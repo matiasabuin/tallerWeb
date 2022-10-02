@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -37,6 +39,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	}
 
 	@Override
+    public List<Usuario> obtenerTodosLosUsarios() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Usuario.class)
+                .list();
+    }
+	
+	@Override
 	public void guardar(Usuario usuario) {
 		sessionFactory.getCurrentSession().save(usuario);
 	}
@@ -53,4 +62,5 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		sessionFactory.getCurrentSession().update(usuario);
 	}
 
+	
 }

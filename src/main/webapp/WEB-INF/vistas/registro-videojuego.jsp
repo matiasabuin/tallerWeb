@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="css/registro-videojuego.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 </head>
 <body>
 	<header>
@@ -33,19 +34,24 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
 						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							class="nav-link dropdown-toggle" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> MiPerfil </a>
+							aria-expanded="false"> Registrar</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Pelis</a> <a
-									class="dropdown-item" href="#">Series</a> <a
-									class="dropdown-item" href="#">VideoJuegos</a>
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
+
 					<a class="navbar-brand" href="#">Logo</a>
+
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+
 				</div>
+
 			</div>
 		</nav>
 	</header>
@@ -56,11 +62,10 @@
 				modelAttribute="datosVideojuego">
 				<div class="container">
 					<div class="left">
-
 						<div class="detalle">
 							<h3>Detalle</h3>
 							<form:label path="imagen">Portada</form:label>
-							<form:input path="imagen" type="file" name="file"/>
+							<form:input path="imagen" type="file" name="file" />
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
@@ -68,7 +73,6 @@
 							<form:label path="duracion">Duracion</form:label>
 							<form:input path="duracion" type="number" id="duracion" min="1" style="width: 30%;" />
 							<span style="display: inline; margin-left: 1em;">Horas</span>
-
 						</div>
 					</div>
 					<div class="right">
@@ -77,16 +81,16 @@
 							<div class="separacion">
 								<div>
 									<form:label path="nombre">Nombre</form:label>
-									<form:input path="nombre" type="text" id="nombre"/>
+									<form:input path="nombre" type="text" id="nombre" />
 
 									<form:label path="desarrollador">Desarrollador</form:label>
-									<form:input path="desarrollador" type="text" id="desarrollador"/>
+									<form:input path="desarrollador" type="text" id="desarrollador" />
 
 									<form:label path="cantidadJugadores">Cantidad de jugadores</form:label>
-									<form:input path="cantidadJugadores" type="number"
-										id="cantidadJugadores" min="1" />
+									<form:input path="cantidadJugadores" type="number" id="cantidadJugadores" min="1" />
+
 								</div>
-								
+
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
 									<form:select path="generos" id="generos" name="generos" multiple="multiple">
@@ -96,7 +100,8 @@
 									</form:select>
 
 									<form:label path="plataformas">Plataforma</form:label>
-									<form:select path="plataformas" id ="plataformas" name="plataformas" multiple="multiple">
+									<form:select path="plataformas" id="plataformas"
+										name="plataformas" multiple="multiple">
 										<c:forEach var="plataforma" items="${listaPlataformas}">
 											<form:option value="${plataforma.id}" style="color: black;">${plataforma.descripcion}</form:option>
 										</c:forEach>
@@ -108,7 +113,7 @@
 							<h3>Historia</h3>
 							<form:label path="sinopsis">Sinopsis</form:label>
 							<form:textarea path="sinopsis" id="sinopsis" style="width: 100%;"
-								placeholder="Escribe algo aqui" maxlength="1000"/>
+								placeholder="Escribe algo aqui" maxlength="1000" />
 						</div>
 
 						<div class="campos ">
@@ -126,7 +131,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div>
 							<form:button type="submit">Registrar</form:button>
 						</div>
@@ -166,12 +170,13 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
-	<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 	<script>
-    new MultiSelectTag('generos')
+		new MultiSelectTag('generos')
 	</script>
 	<script>
-    new MultiSelectTag('plataformas')
+		new MultiSelectTag('plataformas')
 	</script>
 </body>
 </html>

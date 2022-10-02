@@ -11,47 +11,51 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-	
-<link rel="stylesheet"
-	href="css/estilos.css" />
-	
+
+<link rel="stylesheet" href="css/estilos.css" />
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	
+
 
 
 </head>
 <body>
-<header>
-	<nav class="navbar navbar-expand-lg bg-primary">
-		<div class="container">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<header>
+		<nav class="navbar navbar-expand-lg bg-primary">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
-					<li class="nav-item mx-2 dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> MiPerfil </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Pelis</a> <a
-								class="dropdown-item" href="#">Series</a> <a
-								class="dropdown-item" href="#">VideoJuegos</a>
-						</div></li>
-				</ul>
-				<a class="navbar-brand" href="#">Logo</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Registrar </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+							</div></li>
+					</ul>
+
+					<a class="navbar-brand" href="#">Logo</a>
+
+					<%-- <%=session.getAttribute("usuarios")%> --%>
+
+				</div>
+
 			</div>
-		</div>
-	</nav>
+		</nav>
 	</header>
 
 	<div class="fsv-page-wrapper">
@@ -61,29 +65,34 @@
 			<section class="poster-secction mx-3">
 				<div class="row">
 					<div class="col-2">
-					<img
-						src="https://i.pinimg.com/originals/39/43/0d/39430d3398d67493bddc0a549b673502.jpg" class="rounded"
-						alt="perfil">
+						<img
+							src="https://i.pinimg.com/originals/39/43/0d/39430d3398d67493bddc0a549b673502.jpg"
+							class="rounded" alt="perfil">
 					</div>
-					<div class="col align-self-start text-center ml-5">PSYCHO<br>
-					
-					<img
-						src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg" 
-						alt="estrellitas">
-					
+					<div class="col align-self-start text-center ml-5">
+						${datosPelicula.nombre}<br> <img
+							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
+							alt="estrellitas">
+
 					</div>
-					<div class="col-5 align-self-center mx-2">¡UNA NUEVA Y DIFERENTE EMOCIÓN EN LA PANTALLA!
-Cuando Marion Crane, una empleada de una inmobiliaria, se da a la fuga con un fajo de billetes y la esperanza de empezar una nueva vida, acaba en el famoso Motel Bates, donde el gerente Norman Bates cuida de su madre confinada en casa. El lugar parece estrafalario, pero está bien... hasta que Marion decide darse una ducha.</div>
+					<div class="col-5 align-self-center mx-2">${datosPelicula.sinopsis}</div>
 				</div>
 			</section>
 			<hr>
 			<section class="tags-secction mx-3">
 				<div class="row">
-			
-					<div class="col-2 mx-2 text-center border rounded">	<a href="!">Drama</a></div>
-					<div class="col-2 mx-2 text-center border rounded"><a href="!">Thriller</a></div>
-					<div class="col-2 mx-2 text-center border rounded"><a href="!">Horror</a></div>
-					<div class="col-4 mx-5 text-center border rounded">149 mins   More at IMDB TMDB</div>
+
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">${datosPelicula.genero}</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">${datosPelicula.genero}</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">${datosPelicula.genero}</a>
+					</div>
+					<div class="col-4 mx-5 text-center border rounded">${datosPelicula.duracion} mins
+						More at IMDB TMDB</div>
 				</div>
 				<hr>
 			</section>

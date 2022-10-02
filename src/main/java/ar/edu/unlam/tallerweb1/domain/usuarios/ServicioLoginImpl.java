@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,15 +33,22 @@ public class ServicioLoginImpl implements ServicioLogin {
 	
 
 	@Override
-	public Usuario registrarUsuario(String email, String password) {
+	public Usuario registrarUsuario(String email, String password, String nombre) {
 		
 		Usuario usuario = new Usuario();
 		
 		usuario.setEmail(email);
 		usuario.setPassword(password);
+		usuario.setNombre(nombre);
 		servicioLoginDao.guardar(usuario);
 		
 		return usuario;
+	}
+
+	@Override
+	public List<Usuario> obtenerTodosLosUsarios() {
+		
+		return servicioLoginDao.obtenerTodosLosUsarios();
 	}
 
 }
