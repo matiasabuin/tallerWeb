@@ -1,7 +1,7 @@
-:root { 
+:root {
 	--primary-color: #263441;
-	--light-color: #86939f; 
-	--color-footer: #576777; 
+	--light-color: #86939f;
+	--color-footer: #576777;
 	--onMouseover: #fff
 }
 
@@ -27,31 +27,32 @@ body {
 
 .nav-link:hover {
 	color: var(--onMouseover) !important;
-	
+
 }
 
 .navbar-brand {
 	color: var(--light-color) !important;
+	
 }
 
 .dropdown-menu {
 	background-color: var(--light-color) !important;
 }
 .dropdown-item:hover{
-background-color: var(--primary-color);
-color:var(--onMouseover);
+	background-color: var(--primary-color);
+	color:var(--onMouseover);
 
 }
 .poster-secction .col-2 img{
- height:350px;
-/*  margin-right:50px;
- */}
+	height:350px;
+	/*  margin-right:50px;
+     */}
 .poster-secction .col {
 	font-weight: bold;
 	font-size:40px;
 }
 .poster-secction .col img {
-height:60px;
+	height:60px;
 }
 
 .tags-secction .col-2 {
@@ -65,7 +66,7 @@ height:60px;
 }
 .tags-secction a{
 	text-decoration: none;
-		color: #c7c7c7;
+	color: #c7c7c7;
 
 }
 
@@ -81,32 +82,32 @@ height:60px;
 	margin-top:50px;
 	padding: 50px;
 	background-color: var(--primary-color);
-	}
-	
-.formulario-registro p{	
+}
+
+.formulario-registro p{
 	font-size:30px;
 	color: #9ab;
 	font-weight: bold;
-    text-align:left	
+	text-align:left
 }
 .form-group{
-		font-size:15px;
+	font-size:15px;
 }
 .tipo{
-margin-top:4px;
-	}
-	
+	margin-top:4px;
+}
+
 .marco-poster-registro{
 	margin-top:3px;
 	display:flex;
 	width:375px;
-    align-content:center;
+	align-content:center;
 	height:450px;
 	border:5px solid #121212;
 	background-position:center;
-	background-size:cover; 
+	background-size:cover;
 	background-color:#E1DEDE;
-	
+
 }
 
 .footer {
