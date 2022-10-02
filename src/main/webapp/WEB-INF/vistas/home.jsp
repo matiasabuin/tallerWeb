@@ -35,9 +35,17 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
+		
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${usuarioActual.nombre} </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="perfil">Perfil</a> <a
+									class="dropdown-item" href="login">Log Out</a>
+							</div></li>
+							
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -73,7 +81,7 @@
 			<c:forEach items="${videojuegos}" var="videojuego">
 					<td>
 						<a href="videojuego?id=${videojuego.id}">
-							<img src="../../images/${videojuego.poster}"><br>
+							<img src="<c:url value='src/main/webapp/images/${videojuego.poster}'/>"><br>
 								${videojuego.nombre}
 						</a>
 					</td>
