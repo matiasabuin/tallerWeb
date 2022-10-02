@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Registrar-peli-serie</title>
+<title>${usuarioActual.nombre}</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -14,9 +14,7 @@
 
 <link rel="stylesheet" href="css/estilos.css" />
 
-<link href="css/styles.css" rel="stylesheet">
-
-<link rel="stylesheet" href="css/perfilUsuario.css">
+<link rel="stylesheet" href="css/styles.css">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -39,21 +37,19 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
 						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdown"
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar</a>
+							aria-expanded="false"> Registrar </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
-									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
 									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
 
 					<a class="navbar-brand" href="#">Logo</a>
-
-					<%-- <%=session.getAttribute("usuarios")%> --%>
 
 				</div>
 
@@ -61,55 +57,63 @@
 		</nav>
 	</header>
 
-	<main>
-		<section class="perfil">
-			<article class="usuario">
-				<img
-					src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg"
-					alt="favorito1" alt="foto-usuario" class="foto-usuario">
-				<h2><%=session.getAttribute("usuarioActual")%></h2>
-			</article>
-			<article class="favoritos">
-			<h3>FAVORITOS</h3>
-				<div class="cards">
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg" alt="favorito1"><img></a>
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg" alt="favorito2"><img></a>
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg" alt="favorito3"><img></a>
-			    <a><img	src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg" alt="favorito4"><img></a>
-				<a><img	src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4z2i.jpg" alt="favorito5"><img></a>
-				</div>
-			</article>
-		</section>
+	<div class="container">
+		<div class="usuario-container">
 
-		<section class="reciente">
-			<h3>VISTO RECIENTEMENTE</h3>
-			<article class="cards">
-			
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg" alt="favorito1"><img></a>
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbu.jpg" alt="favorito2"><img></a>
-				<a><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg" alt="favorito3"><img></a>
-			    <a><img	src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg" alt="favorito4"><img></a>
-				<a><img	src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4z2i.jpg" alt="favorito5"><img></a>
+			<div class="flex-container">
+
+				<img src="../../images/${usuarioActual.foto}">
 				
-			</article>
-		</section>
+				<div>
+					<h4>${usuarioActual.nombre}</h4>
+					<p>${usuarioActual.biografia}</p>
+				</div>
 
-		<section class="comentario">
-				<article class="portada">
-					<img
-						src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg"
-						alt="favorito1">
-				</article>
-				<article class="texto">
-                    <h4>Stray</h4>
-					<p>Stray ha llamado la atención por mostrarnos a un gato de protagonista, pero, más allá de su ternura, 
-					es una historia convincente de cómo puede ser una sociedad sin humanos en el futuro. El pasado 19 de julio 
-					llegó a mis manos uno de los juegos más esperados, por lo menos para mí, de este 2022.</p>
-				</article>
-		</section>
-	</main>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="recomendaciones-container">
 
-		<footer class="footer">
+			<h1>Actividad reciente</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${videojuegos}" var="videojuego">
+					<td><a href="videojuego?id=${videojuego.id}"> <img
+							src="../../images/${videojuego.poster}"><br>
+							${videojuego.nombre}
+					</a></td>
+				</c:forEach>
+			</table>
+
+		</div>
+	</div>
+
+
+	<div class="container">
+
+		<div class="usuario-container">
+
+			<h3>Reviews recientes</h3>
+			<div class="flex-container">
+
+				<img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
+
+				<div>
+					<h4>Stray</h4>
+					<br>
+					<p>Stray ha llamado la atención por mostrarnos a un gato de
+						protagonista, pero, más allá de su ternura, es una historia
+						convincente de cómo puede ser una sociedad sin humanos en el
+						futuro. El pasado 19 de julio llegó a mis manos uno de los juegos
+						más esperados, por lo menos para mí, de este 2022.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer">
 		<div class="container">
 			<div class="column1">
 				<h4 class="mx-2">Redes Sociales</h4>

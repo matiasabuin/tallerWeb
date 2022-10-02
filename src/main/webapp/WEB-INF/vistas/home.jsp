@@ -10,9 +10,9 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/estilos.css" />
+<link rel="stylesheet" href="css/estilos.css"/>
 
-<link href="css/styles.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 
 
 <link rel="stylesheet"
@@ -37,7 +37,7 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -51,8 +51,6 @@
 
 					<a class="navbar-brand" href="#">Logo</a>
 
-					<%-- <%=session.getAttribute("usuarios")%> --%>
-
 				</div>
 
 			</div>
@@ -65,45 +63,50 @@
 		<a class="boton mx-3" href=""> </a>
 	</div>
 
+
+<div class="container">
 	<div class="recomendaciones-container">
 
 		<h1>Videojuegos</h1>
 
-		<div class="flex-container">
-			<table class="table">
-				<tbody>
-					<c:forEach items="${videojuegos}" var="videojuego">
-						<td>${videojuego.nombre}</td>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+		<table class="table-responsive table-borderless">
+			<c:forEach items="${videojuegos}" var="videojuego">
+					<td>
+						<a href="videojuego?id=${videojuego.id}">
+							<img src="../../images/${videojuego.poster}"><br>
+								${videojuego.nombre}
+						</a>
+					</td>
+			</c:forEach>
+		</table>
 
 	</div>
+</div>
 
-
-	<div class="recomendaciones-container">
+<div class="container">
+		<div class="recomendaciones-container">
 
 		<h1>Peliculas</h1>
 
-		<div class="flex-container">
-			<table class="table">
-				<tbody>
-					<c:forEach items="${peliculas}" var="pelicula">
-						<td>${pelicula.nombre}</td>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+		<table class="table-responsive table-borderless">
+			<c:forEach items="${peliculas}" var="pelicula">
+					<td>
+						<a href="perfil-fvs?id=${pelicula.id}">
+							<img src="../../images/${pelicula.poster}"><br>
+								${pelicula.nombre}
+						</a>
+					</td>
+			</c:forEach>
+		</table>
 
 	</div>
-	
-		<div class="recomendaciones-container">
+</div>	
+<%-- 		<div class="recomendaciones-container">
 
 		<h1>Series</h1>
 
-		<div class="flex-container">
-			<table class="table">
+		<div class="table-responsive">
+			<table>
 				<tbody>
 					<c:forEach items="${series}" var="serie">
 						<td>${serie.nombre}</td>
@@ -112,7 +115,7 @@
 			</table>
 		</div>
 
-	</div>
+	</div> --%>
 
 	<footer class="footer">
 		<div class="container">

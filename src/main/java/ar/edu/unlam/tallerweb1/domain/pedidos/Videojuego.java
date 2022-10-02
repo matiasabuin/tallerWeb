@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +29,8 @@ public class Videojuego {
 	
 	private String genero;
 	private String plataforma;
+	
+	private String poster;
 	
 	public String getRequisitosMinimos() {
 		return requisitosMinimos;
@@ -98,6 +98,12 @@ public class Videojuego {
 	public void setCantidadJugadores(String cantidadJugadores) {
 		this.cantidadJugadores = cantidadJugadores;
 	}
-	
+
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
 }

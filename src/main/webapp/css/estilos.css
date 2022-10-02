@@ -112,17 +112,18 @@ body {
 
 .footer {
 	grid-area: footer;
-	background-color: var(--color-footer);
+	background-color:  #2c3440; 
 	margin-top: 50px;
+	padding-top: 10px;
 }
 
 .column1 h4 {
 	font-size: 12pt;
-	color: #B0BFCB;
+	background-color:  #2c3440; 
 }
 
 .column1 .social {
-	color: #c7c7c7;
+	background-color:  #2c3440; 
 	text-decoration: none;
 	list-style: none;
 	margin-top: 10px;
@@ -145,7 +146,7 @@ body {
 }
 
 .footer-copyright {
-	background-color: #576777;
+	background-color:  #2c3440; 
 	color: var(--primary-color);
 }
 
@@ -156,3 +157,27 @@ body {
 .enlaceDeCopy:hover {
 	color: var(--onMouseover);
 }
+
+.table-borderless a{
+	color: #9ab;
+	width: 100px;
+}
+
+.table-borderless img{
+	width: 250px;
+	height: 350px;
+	
+}
+
+.table-borderless td{
+	vertical-align: middle;
+	text-align: center;
+	padding: 0px 10px;
+	
+}
+
+.login{
+	
+	width:400px;
+}
+

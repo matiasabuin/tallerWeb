@@ -32,11 +32,11 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
 						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdown"
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar</a>
+							aria-expanded="false"> Registrar </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
 									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
@@ -45,8 +45,6 @@
 					</ul>
 
 					<a class="navbar-brand" href="#">Logo</a>
-
-					<%-- <%=session.getAttribute("usuarios")%> --%>
 
 				</div>
 
@@ -67,8 +65,8 @@
 						</div>
 						<div class="detalle">
 							<h3>Detalle</h3>
-							<form:label path="">Portada</form:label>
-							<form:input path="" type="file" />
+							<form:label path="poster">Portada</form:label>
+							<form:input path="poster" type="file" id="poster"/>
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno"/>

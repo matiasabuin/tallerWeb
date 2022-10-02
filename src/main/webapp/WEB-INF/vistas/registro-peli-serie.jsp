@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>RegistroDePelisYSeries</title>
+<title>Registrar contenido</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -34,19 +34,22 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> MiPerfil </a>
+							aria-expanded="false"> Registrar </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil-fvs">Pelis</a> <a
-									class="dropdown-item" href="perfil-fvs">Series</a> <a
-									class="dropdown-item" href="perfil-fvs">VideoJuegos</a>
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
+									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
+
 					<a class="navbar-brand" href="#">Logo</a>
+
 				</div>
+
 			</div>
 		</nav>
 	</header>

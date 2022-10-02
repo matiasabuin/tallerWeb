@@ -2,9 +2,11 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +37,13 @@ public class ControladorLogin {
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
 	private ServicioVideojuego servicioVideojuego;
+	private ServicioPelicula servicioPelicula;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
 		this.servicioLogin = servicioLogin;
 		this.servicioVideojuego = servicioVideojuego;
+		this.servicioPelicula = servicioPelicula;
 
 	}
 
@@ -71,13 +75,16 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL
 		// /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a traves de la URL correspondiente a esta
+		
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+	
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-
-			request.getSession().setAttribute("usuarioActual", usuarioBuscado.getNombre());
+			
+			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 
 			request.getSession().getAttribute("usuarioActual");
+			
+//			model.addAttribute("usuarioActual", usuarioBuscado);
 
 			// request.getSession().setAttribute("usuarios",
 			// servicioLogin.obtenerTodosLosUsarios());
@@ -95,10 +102,13 @@ public class ControladorLogin {
 	public ModelAndView irAHome() {
 		
 		ModelMap model = new ModelMap();
-		
-		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
-		
-		model.addAttribute("videojuegos", videojuegosRegistrados);
+
+//		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
+//		
+//		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
+//		
+//		model.addAttribute("peliculas", peliculasRegistradas);
+//		model.addAttribute("videojuegos", videojuegosRegistrados);
 		
 		return new ModelAndView("home", model);
 	}
@@ -120,20 +130,6 @@ public class ControladorLogin {
 		return irALogin();
 	}
 
-//	@RequestMapping("/registro-videojuego")
-//	public ModelAndView iraRegistrarVideojuego() {
-//		ModelMap modelo = new ModelMap();
-//		Videojuego videojuego = new Videojuego();
-//		modelo.addAttribute("datosVideojuego", videojuego);
-//		return new ModelAndView("registro-videojuego", modelo);
-
-//	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
-//	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego) {
-//		
-//		Videojuego videojuego = this.servicioVideojuego.registrarVideojuego(datosVideojuego);
-//		
-//		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
-
 	@RequestMapping("/registro-usuario")
 	public ModelAndView registrarUsuario() {
 
@@ -150,14 +146,5 @@ public class ControladorLogin {
 		return new ModelAndView("perfilUsuario", modelo);
 
 	}
-
-//	@RequestMapping("/videojuego")
-//	public ModelAndView iraVideojuego(@RequestParam("id") Integer id) {
-//		ModelMap modelo = new ModelMap();
-//		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
-//		modelo.addAttribute("datosVideojuego", videojuego);
-//		return new ModelAndView("perfil-videojuego", modelo);
-//	}
-
 
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Perfil-Fvs</title>
+<title>${datosPelicula.nombre}</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -36,7 +36,7 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="perfil">${usuarioActual.nombre}</a></li>
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -49,8 +49,6 @@
 					</ul>
 
 					<a class="navbar-brand" href="#">Logo</a>
-
-					<%-- <%=session.getAttribute("usuarios")%> --%>
 
 				</div>
 
@@ -65,9 +63,7 @@
 			<section class="poster-secction mx-3">
 				<div class="row">
 					<div class="col-2">
-						<img
-							src="https://i.pinimg.com/originals/39/43/0d/39430d3398d67493bddc0a549b673502.jpg"
-							class="rounded" alt="perfil">
+							<img src="../../images/${datosPelicula.poster}">
 					</div>
 					<div class="col align-self-start text-center ml-5">
 						${datosPelicula.nombre}<br> <img

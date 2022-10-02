@@ -21,9 +21,11 @@ public class Usuario {
 	private String password;
 	private String rol;
 	private Boolean activo = false;
+	
 	private String nombre;
-	
-	
+	private String biografia;
+	private String foto;
+
 	public Long getId() {
 		return id;
 	}
@@ -67,5 +69,17 @@ public class Usuario {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	public String getBiografia() {
+		return biografia;
+	}
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
 	}
 }

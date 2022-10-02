@@ -23,9 +23,9 @@
 <body>
 	<div class="container">
 		<div id="loginbox"
-			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mx-auto my-auto">
+			class="formulario-registro rounded login mx-auto">
 			<form:form action="login" method="POST" modelAttribute="usuario">
-				<h3 class="form-signin-heading">Registro de usuario</h3>
+				<h3 class="form-signin-heading text-center">Registrarse</h3>
 				<hr class="colorgraph">
 				<br>
 
