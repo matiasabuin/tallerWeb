@@ -1,16 +1,12 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
-import ar.edu.unlam.tallerweb1.domain.pedidos.DatosPelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,13 +29,11 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
-	private ServicioPelicula servicioPelicula;
 	private ServicioVideojuego servicioVideojuego;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPelicula servicioPelicula, ServicioVideojuego servicioVideojuego){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego){
 		this.servicioLogin = servicioLogin;
-		this.servicioPelicula = servicioPelicula;
 		this.servicioVideojuego = servicioVideojuego;
 	}
 	
@@ -133,26 +127,6 @@ public class ControladorLogin {
 	@RequestMapping(path = "/perfil-fvs")
 	public ModelAndView VerPerfilPeli() {
 		return new ModelAndView("perfil-fvs");
-	}
-	
-	@RequestMapping(path = "/registro-peli-serie")
-	public ModelAndView RegistroPeliSerie() {
-		
-		ModelMap modelo = new ModelMap();
-		modelo.put("pelicula", new Pelicula());
-		return new ModelAndView("registro-peli-serie", modelo);
-	}
-	
-	@RequestMapping(path = "/home", method = RequestMethod.POST)
-	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") DatosPelicula datosPelicula, HttpServletRequest request) {
-		
-		servicioPelicula.registrarPelicula(datosPelicula.getNombre());
-		
-		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-		
-		request.getSession().setAttribute("peliculas", peliculasRegistradas);
-		
-		return irAHome();
 	}
 
 }

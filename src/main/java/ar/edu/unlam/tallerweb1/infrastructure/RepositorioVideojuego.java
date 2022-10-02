@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
-
-import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 public interface RepositorioVideojuego {
