@@ -27,18 +27,7 @@ h4, p{
     flex-wrap: nowrap;
     justify-content: space-around;
 }
-.usuario{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-}
-.usuario img{
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-}
+
 .cards{
 	display: flex;
     flex-wrap: nowrap;

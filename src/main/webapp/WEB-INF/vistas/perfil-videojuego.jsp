@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title></title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>${datosVideojuego.nombre}</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -30,20 +34,30 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil">Perfil</a></li>
+
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> MiPerfil </a>
+							aria-expanded="false"> ${usuarioActual.nombre} </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Pelis</a> <a
-									class="dropdown-item" href="#">Series</a> <a
-									class="dropdown-item" href="#">VideoJuegos</a>
+								<a class="dropdown-item" href="perfil">Perfil</a> <a
+									class="dropdown-item" href="login">Log Out</a>
+							</div></li>
+
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Registrar </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div></li>
 					</ul>
+
 					<a class="navbar-brand" href="#">Logo</a>
+
 				</div>
 			</div>
 		</nav>
@@ -72,7 +86,8 @@
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong> <strong>Modalidad</strong>
+				<strong>Plataforma</strong> 
+				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
 					<p>${datosVideojuego.cantidadJugadores}jugadores</p>

@@ -27,6 +27,8 @@ public class Pelicula {
 	private LocalDate fechaEstreno;
 	private String sinopsis;
 	
+	private String poster;
+	
 	public String getSinopsis() {
 		return sinopsis;
 	}
@@ -74,6 +76,12 @@ public class Pelicula {
 	}
 	public void setFechaEstreno(LocalDate fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 	
 	

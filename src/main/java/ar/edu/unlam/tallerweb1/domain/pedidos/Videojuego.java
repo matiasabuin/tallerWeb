@@ -1,12 +1,7 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -64,6 +58,7 @@ public class Videojuego {
 	public void setPlataformas(List<Plataforma> plataformas) {
 		this.plataformas = plataformas;
 	}
+	
 	public String getRequisitosMinimos() {
 		return requisitosMinimos;
 	}
@@ -124,6 +119,5 @@ public class Videojuego {
 	public void setCantidadJugadores(Integer cantidadJugadores) {
 		this.cantidadJugadores = cantidadJugadores;
 	}
-	
 
 }

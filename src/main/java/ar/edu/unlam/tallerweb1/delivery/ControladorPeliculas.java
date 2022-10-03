@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 
 @Controller
@@ -33,9 +35,15 @@ public class ControladorPeliculas {
 	}
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
-	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula) {
+	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
 
 		Pelicula pelicula = this.servicioPelicula.registrarPelicula(datosPelicula);
+		
+		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
+
+		request.getSession().setAttribute("peliculas", peliculasRegistradas);
+
+		request.getSession().getAttribute("videojuegos");
 
 		return new ModelAndView("redirect:/perfil-fvs?id=" + pelicula.getId());
 	}

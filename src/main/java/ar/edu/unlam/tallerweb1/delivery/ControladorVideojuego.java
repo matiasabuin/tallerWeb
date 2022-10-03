@@ -1,6 +1,10 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+
+import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
+
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 
 @Controller
@@ -52,10 +60,10 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
-	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego
-			/*@RequestParam("file") MultipartFile file, MultipartHttpServletRequest request*/) {
+	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego) {
 
-		Videojuego videojuego = this.servicioVideojuego.registrarVideojuego(datosVideojuego);
+		/*@RequestParam("file") MultipartFile file, MultipartHttpServletRequest request*/
+		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 
 		/*Path directorioImagenes = Paths.get("src//main//webapp//images");
 		String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();

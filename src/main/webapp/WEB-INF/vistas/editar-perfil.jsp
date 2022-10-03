@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Registrar contenido</title>
 
+<head>
+<meta charset="ISO-8859-1">
+<title>Editar Perfil</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -14,11 +14,14 @@
 
 <link rel="stylesheet" href="css/estilos.css" />
 
+<link rel="stylesheet" href="css/styles.css">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
 
+</head>
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
@@ -61,71 +64,33 @@
 			</div>
 		</nav>
 	</header>
-
+	
 	<div class="container">
-		<form:form action="registrar-pelicula" method="POST"
-			class="formulario-registro rounded" modelAttribute="datosPelicula">
-			<div class="form-group row">
-				<p class="col-md-6">REGISTRO</p>
-				<label for="exampleFormControlSelect1"
-					class="col-md-1 col-form-label tipo">TIPO</label>
-				<div class="col-sm-auto">
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>PELICULA</option>
-						<option>SERIE</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="inputNombre">NOMBRE</label>
-					<form:input path="nombre" type="text" class="form-control"
-						id="inputNombre" placeholder="Nombre" />
-					<br> <label for="inputDuracion">DURACION</label>
-					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" placeholder="128, 90" />
-					<br> <label for="inputDirector">DIRECTOR</label>
-					<form:input path="director" type="text" class="form-control"
-						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
-					<br> <label for="inputGenero">GENERO</label>
-					<form:input path="genero" type="text" class="form-control"
-						id="inputGenero" placeholder="Terror, thiller, drama" />
-					<br> <label for="inputPlataforma">PLATAFORMA</label>
-					<form:input path="plataforma" type="text" class="form-control"
-						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
-					<br> <label for="inputDate">FECHA DE ESTRENO</label>
-					<form:input path="fechaEstreno" type="date" class="form-control"
-						id="inputPlataforma"/>
-					<br>
+		<div id="loginbox"
+			class="formulario-registro rounded login mx-auto">
+			<form:form action="perfil-usuario" method="POST" modelAttribute="datosPerfil">
+				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+				<hr class="colorgraph">
+				<br>
 
+				<div class="form-group">
+					<form:input path="nombre" id="nombre" class="form-control"
+						placeholder="Nombre de usuario" />
+				</div>
 				
-				</div>
-				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br> <input
-						type="file" id="registro-poster" accept="image/png, image/jpeg">
-					<br> <br>
-					<div class="marco-poster-registro mx-auto"></div>
-
+				<div class="form-group">
+					<form:input path="biografia" id="biografia" class="form-control"
+						placeholder="Biografia" />
 				</div>
 
-			</div>
-			<div class="form-group col-md-10 mx-auto">
-				<label for="exampleFormSinopsis">SINOPSIS</label>
-				<form:textarea path="sinopsis" class="form-control"
-					id="exampleFormControlTextarea1" rows="3" />
-				</textarea>
-			</div>
-
-			<div class="col text-center mt-2">
-				<button type="submit" class="btn btn-primary">
-				REGISTRAR
-				</button>
-			</div>
-		</form:form>
-
-
-	</div>
-	<footer class="footer">
+					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">
+						Editar
+					</button>
+					
+			</form:form>
+		</div>
+</div>
+		<footer class="footer">
 		<div class="container">
 			<div class="column1">
 				<h4 class="mx-2">Redes Sociales</h4>
@@ -156,7 +121,6 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
-
 
 	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->

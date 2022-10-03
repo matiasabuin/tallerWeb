@@ -32,13 +32,21 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="perfil"><%=session.getAttribute("usuarioActual")%></a></li>
+		
 						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdown"
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar</a>
+							aria-expanded="false"> ${usuarioActual.nombre} </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="perfil">Perfil</a> <a
+									class="dropdown-item" href="login">Log Out</a>
+							</div></li>
+							
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Registrar </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
 								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
@@ -47,8 +55,6 @@
 					</ul>
 
 					<a class="navbar-brand" href="#">Logo</a>
-
-					<%-- <%=session.getAttribute("usuarios")%> --%>
 
 				</div>
 
@@ -64,8 +70,9 @@
 					<div class="left">
 						<div class="detalle">
 							<h3>Detalle</h3>
+
 							<form:label path="imagen">Portada</form:label>
-							<form:input path="imagen" type="file" name="file" />
+							<form:input path="imagen" type="file" name="file"/>
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
@@ -98,7 +105,6 @@
 											<form:option value="${genero.id}" style="color: black;">${genero.descripcion}</form:option>
 										</c:forEach>
 									</form:select>
-
 									<form:label path="plataformas">Plataforma</form:label>
 									<form:select path="plataformas" id="plataformas"
 										name="plataformas" multiple="multiple">
