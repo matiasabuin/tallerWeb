@@ -101,8 +101,8 @@
 				
 				</div>
 				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br> <input
-						type="file" id="registro-poster" accept="image/png, image/jpeg">
+					<label for="registro-poster">SUBIR EL POSTER</label> <br>
+						<form:input path="poster" type="file" id="foto"/>
 					<br> <br>
 					<div class="marco-poster-registro mx-auto"></div>
 

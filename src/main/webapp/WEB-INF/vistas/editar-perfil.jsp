@@ -65,31 +65,41 @@
 		</nav>
 	</header>
 	
-	<div class="container">
-		<div id="loginbox"
-			class="formulario-registro rounded login mx-auto">
-			<form:form action="perfil-usuario" method="POST" modelAttribute="datosPerfil">
-				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
-				<hr class="colorgraph">
-				<br>
+		<div class="usuario-container">
 
-				<div class="form-group">
-					<form:input path="nombre" id="nombre" class="form-control"
-						placeholder="Nombre de usuario" />
-				</div>
+			<div class="formulario-registro rounded login mx-auto">
+				<form:form action="perfil-usuario" method="POST" modelAttribute="datosPerfil">
 				
-				<div class="form-group">
-					<form:input path="biografia" id="biografia" class="form-control"
+				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+				
+				
+				
+					<div class="form-group foto-perfil">
+						<img src="images/${usuarioActual.foto}">
+					</div>
+					
+					<div class="form-group">
+					<form:input path="foto" type="file" id="foto"/>
+					</div>
+					
+					<div class="form-group">
+						<form:input path="nombre" id="nombre" class="form-control"
+						placeholder="Nombre de usuario" />
+					</div>
+					<div class="form-group">
+						<form:input path="biografia" id="biografia" class="form-control"
 						placeholder="Biografia" />
-				</div>
-
+					</div>
+					
 					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">
-						Editar
+						Guardar
 					</button>
 					
-			</form:form>
+					
+				</form:form>
+			</div>
 		</div>
-</div>
+		
 		<footer class="footer">
 		<div class="container">
 			<div class="column1">

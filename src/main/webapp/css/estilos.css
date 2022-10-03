@@ -164,7 +164,7 @@ body {
 }
 
 .table-borderless img{
-	width: 250px;
+	width: 225px;
 	height: 350px;
 	
 }
@@ -181,3 +181,17 @@ body {
 	width:400px;
 }
 
+.foto-perfil img{
+	display: block;
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+.biografia {
+	
+	padding-left: 10px;
+}
+.portada img{
+	 width: 200px;
+    height: 300px;
+}

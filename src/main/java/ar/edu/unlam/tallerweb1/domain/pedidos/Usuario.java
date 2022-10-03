@@ -24,7 +24,7 @@ public class Usuario {
 	
 	private String nombre;
 	private String biografia;
-	private String foto;
+	private String foto = "perfil.jpg";
 
 	public Long getId() {
 		return id;

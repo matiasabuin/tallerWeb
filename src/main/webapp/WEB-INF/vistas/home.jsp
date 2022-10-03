@@ -81,7 +81,7 @@
 			<c:forEach items="${videojuegos}" var="videojuego">
 					<td>
 						<a href="videojuego?id=${videojuego.id}">
-							<img src='src/main/webapp/images/${videojuego.poster}'><br>
+							<img src="images/${videojuego.poster}"><br>
 								${videojuego.nombre}
 						</a>
 					</td>
@@ -99,7 +99,7 @@
 			<c:forEach items="${peliculas}" var="pelicula">
 					<td>
 						<a href="perfil-fvs?id=${pelicula.id}">
-							<img src="../../images/${pelicula.poster}"><br>
+							<img src="images/${pelicula.poster}"><br>
 								${pelicula.nombre}
 						</a>
 					</td>
