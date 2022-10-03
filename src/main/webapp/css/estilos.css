@@ -17,12 +17,14 @@ body {
 
 
 .navbar {
-	min-height: 60px;
+	min-height: 70px;
 }
 
 .nav-link {
+	font-size: 20px;
 	color: var(--light-color);
 	font-weight: bold;
+	padding: 0px 8px;
 }
 
 .nav-link:hover {
@@ -123,6 +125,7 @@ body {
 }
 
 .column1 .social {
+	justify-content: center;
 	background-color:  #2c3440; 
 	text-decoration: none;
 	list-style: none;
@@ -181,3 +184,14 @@ body {
 	width:400px;
 }
 
+.boton-nav{
+	font-size: 20px;
+	color: var(--light-color);
+	margin: 0em 1em;
+}
+
+.search{
+	padding: 0px 20px;
+	font-size: 18px;
+	border-radius: 20px;
+}

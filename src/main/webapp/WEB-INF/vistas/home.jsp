@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
 <html>
 <head>
-<title>Home</title>
+<title>Inicio</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -10,7 +12,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/estilos.css"/>
+<link rel="stylesheet" href="css/estilos.css" />
 
 <link rel="stylesheet" href="css/styles.css">
 
@@ -23,6 +25,7 @@
 <body>
 
 	<header>
+
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,84 +34,89 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
-		
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> <a
-									class="dropdown-item" href="login">Log Out</a>
-							</div></li>
-							
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
-									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
-									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div></li>
+
+						<c:if test="${usuarioActual.nombre != null}">
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> ${usuarioActual.nombre} </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="perfil">Perfil</a> <a
+										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+								</div></li>
+								
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> Registrar </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								</div></li>
+						</c:if>
 					</ul>
 
-					<a class="navbar-brand" href="#">Logo</a>
-
+					<form action="buscar" method="GET">
+						<input type="text" placeholder="Buscar contenido" class="search">
+					</form>
+					
+					<c:if test="${usuarioActual.nombre == null}">
+						<a href="registro-usuario" class="nav-link">Sign up</a>
+						<a href="login" class="nav-link">Sign in</a>
+					</c:if>
 				</div>
-
 			</div>
 		</nav>
 	</header>
 
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 	<div class="boton-container">
-		<a class="boton mx-3" href=""> </a>
+		<div class="boton mx-3">
+			<form action="tiempo-usuario" method="GET">
+				<label for="time">¿Cuanto tiempo tenes?</label> <input type="time"
+					name="time">
+			</form>
+		</div>
 	</div>
 
-
-<div class="container">
-	<div class="recomendaciones-container">
-
-		<h1>Videojuegos</h1>
-
-		<table class="table-responsive table-borderless">
-			<c:forEach items="${videojuegos}" var="videojuego">
-					<td>
-						<a href="videojuego?id=${videojuego.id}">
-							<img src='src/main/webapp/images/${videojuego.poster}'><br>
-								${videojuego.nombre}
-						</a>
-					</td>
-			</c:forEach>
-		</table>
-	</div>
-</div>
-
-<div class="container">
+	<div class="container">
 		<div class="recomendaciones-container">
 
-		<h1>Peliculas</h1>
+			<h1>Videojuegos</h1>
 
-		<table class="table-responsive table-borderless">
-			<c:forEach items="${peliculas}" var="pelicula">
-					<td>
-						<a href="perfil-fvs?id=${pelicula.id}">
-							<img src="../../images/${pelicula.poster}"><br>
-								${pelicula.nombre}
-						</a>
-					</td>
-			</c:forEach>
-		</table>
-
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${videojuegos}" var="videojuego">
+					<td><a href="videojuego?id=${videojuego.id}"> <img
+							src='src/main/webapp/images/${videojuego.poster}'><br>
+							${videojuego.nombre}
+					</a></td>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
-</div>	
-<%-- 		<div class="recomendaciones-container">
+
+	<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Peliculas</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${peliculas}" var="pelicula">
+					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
+							src="../../images/${pelicula.poster}"><br>
+							${pelicula.nombre}
+					</a></td>
+				</c:forEach>
+			</table>
+
+		</div>
+	</div>
+	<%-- 		<div class="recomendaciones-container">
 
 		<h1>Series</h1>
 
@@ -127,7 +135,7 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
-				<h4 class="mx-2">Redes Sociales</h4>
+				<h4 class="mx-2" style="text-align: center;">Redes Sociales</h4>
 				<div class="social">
 					<div class="item mx-2">
 						<a href="https://www.facebook.com/" target="_blank"> <i
@@ -150,8 +158,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
-				PaginaGenericaDeTaller.com</a>
+			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->
 	</footer>

@@ -36,10 +36,14 @@ public class ControladorLogin {
 	// paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
+	private ServicioVideojuego servicioVideojuego;
+	private ServicioPelicula servicioPelicula;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
 		this.servicioLogin = servicioLogin;
+		this.servicioVideojuego = servicioVideojuego;
+		this.servicioPelicula = servicioPelicula;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -90,6 +94,12 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("login", model);
 	}
+	
+	@RequestMapping(path= "/cerrar-sesion")
+	public ModelAndView cerrarSesion(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return new ModelAndView("redirect:/home");
+	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
@@ -97,12 +107,11 @@ public class ControladorLogin {
 		
 		ModelMap model = new ModelMap();
 
-//		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
-//		
-//		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-//		
-//		model.addAttribute("peliculas", peliculasRegistradas);
-//		model.addAttribute("videojuegos", videojuegosRegistrados);
+		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
+		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
+		
+		model.addAttribute("peliculas", peliculasRegistradas);
+		model.addAttribute("videojuegos", videojuegosRegistrados);
 		
 		return new ModelAndView("home", model);
 	}
@@ -134,15 +143,12 @@ public class ControladorLogin {
 
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil() {
-
 		ModelMap modelo = new ModelMap();
-
 		return new ModelAndView("perfil-usuario", modelo);
 	}
 	
 	@RequestMapping("/editar-perfil")
 	public ModelAndView editarPerfil(HttpServletRequest request) {
-
 		ModelMap modelo = new ModelMap();
 		modelo.put("datosPerfil", request.getSession().getAttribute("usuarioActual"));
 		return new ModelAndView("editar-perfil", modelo);
