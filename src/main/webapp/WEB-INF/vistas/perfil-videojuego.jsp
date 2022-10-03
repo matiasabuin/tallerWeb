@@ -56,7 +56,7 @@
 						src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4ocq.jpg">
 				</div>
 			</div>
-			<div class="centro">
+			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
@@ -67,15 +67,19 @@
 				<strong>Desarrollador</strong>
 				<p>${datosVideojuego.desarrollador}</p>
 			</div>
-			<div>
+			<div style="width: 25%;">
 				<strong>Genero</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
-				<p>${genero.descripcion}</p>
+					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong>
-				<strong>Modalidad</strong>
-				<p>${datosVideojuego.cantidadJugadores}</p>
-
+				<strong>Plataforma</strong> <strong>Modalidad</strong>
+				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
+					<span>Multijugador</span>
+					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
+				</c:if>
+				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
+					<span>Un jugador</span>
+				</c:if>
 			</div>
 		</div>
 		<div class="contenedor-requisitos">

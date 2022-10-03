@@ -17,6 +17,10 @@ h3{
 	margin: 1em 0em;
 }
 
+strong{
+	display: block;	
+} 
+
 .container{
 	width: 100%;
 	display: flex;
