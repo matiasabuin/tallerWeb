@@ -72,15 +72,13 @@
 		<div class="container">
 			<div class="portada">
 				<div style="text-align: center;">
-					<img
-						src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4ocq.jpg">
+					<img src="images/${datosVideojuego.poster}"><br>
 				</div>
 			</div>
 			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
-				<p>${datosVideojuego.poster}</p>
 				<p>${datosVideojuego.fechaEstreno}</p>
 				<strong>Duración</strong>
 				<p>${datosVideojuego.duracion}</p>

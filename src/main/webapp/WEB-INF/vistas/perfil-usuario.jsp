@@ -70,9 +70,9 @@
 
 			<div class="flex-container">
 
-				<img src="../../images/${usuarioActual.foto}">
+				<img src="images/${usuarioActual.foto}">
 		
-				<div>
+				<div class="biografia">
 					<h4>${usuarioActual.nombre}</h4>
 					<p>${usuarioActual.biografia}</p>
 				</div>
@@ -95,7 +95,7 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src="../../images/${videojuego.poster}"><br>
+							src="images/${videojuego.poster}"><br>
 							${videojuego.nombre}
 					</a></td>
 				</c:forEach>
@@ -114,7 +114,7 @@
 
 				<img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
 
-				<div>
+				<div class="biografia">
 					<h4>Stray</h4>
 					<br>
 					<p>Stray ha llamado la atención por mostrarnos a un gato de

@@ -71,7 +71,7 @@
 			<section class="poster-secction mx-3">
 				<div class="row">
 					<div class="col-2">
-							<img src="../../images/${datosPelicula.poster}">
+							<img src="images/${datosPelicula.poster}">
 					</div>
 					<div class="col align-self-start text-center ml-5">
 						${datosPelicula.nombre}<br> <img

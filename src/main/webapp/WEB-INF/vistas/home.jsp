@@ -49,7 +49,7 @@
 									<a class="dropdown-item" href="perfil">Perfil</a> <a
 										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
 								</div></li>
-								
+
 							<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -65,7 +65,7 @@
 					<form action="buscar" method="GET">
 						<input type="text" placeholder="Buscar contenido" class="search">
 					</form>
-					
+
 					<c:if test="${usuarioActual.nombre == null}">
 						<a href="registro-usuario" class="nav-link">Sign up</a>
 						<a href="login" class="nav-link">Sign in</a>
@@ -78,12 +78,12 @@
 	<div class="boton-container">
 		<div class="boton mx-3">
 			<form action="tiempo-usuario" method="GET" class="time-form">
-				<label for="time" class="time">¿Cuanto tiempo tenes?</label> 
-				<input type="time" name="time">
+				<label for="time" class="time">¿Cuanto tiempo tenes?</label> <input
+					type="time" name="time">
 			</form>
 		</div>
 	</div>
-				
+
 	<div class="container">
 		<div class="recomendaciones-container">
 
@@ -92,7 +92,7 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src='src/main/webapp/images/${videojuego.poster}'><br>
+							src="images/${videojuego.poster}"><br>
 							${videojuego.nombre}
 					</a></td>
 				</c:forEach>
@@ -108,7 +108,7 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculas}" var="pelicula">
 					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
-							src="../../images/${pelicula.poster}"><br>
+							src="images/${pelicula.poster}"><br>
 							${pelicula.nombre}
 					</a></td>
 				</c:forEach>
