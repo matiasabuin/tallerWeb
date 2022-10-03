@@ -31,7 +31,7 @@ public class ControladorVideojuego {
 
 	@Autowired
 	public ControladorVideojuego(ServicioVideojuego servicioVideojuego,
-			ServicioGeneroPlataforma servicioGeneroPlataforma) {
+		ServicioGeneroPlataforma servicioGeneroPlataforma) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 	}
@@ -62,7 +62,8 @@ public class ControladorVideojuego {
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego) {
 
-		/*@RequestParam("file") MultipartFile file, MultipartHttpServletRequest request*/
+		//@RequestParam("file") MultipartFile file
+		
 		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 
 		/*Path directorioImagenes = Paths.get("src//main//webapp//images");
