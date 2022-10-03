@@ -51,4 +51,11 @@ public class ServicioLoginImpl implements ServicioLogin {
 		return servicioLoginDao.obtenerTodosLosUsarios();
 	}
 
+	@Override
+	public void editarPerfil(Usuario datosPerfil) {
+		
+		servicioLoginDao.modificar(datosPerfil);
+	
+	}
+
 }

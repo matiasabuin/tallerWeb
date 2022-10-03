@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>${usuarioActual.nombre}</title>
+<title>Editar Perfil</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -64,64 +64,33 @@
 			</div>
 		</nav>
 	</header>
-
-	<div class="container">
-		<div class="usuario-container">
-
-			<div class="flex-container">
-
-				<img src="../../images/${usuarioActual.foto}">
-				
-				<div>
-					<h4>${usuarioActual.nombre}</h4>
-					<p>${usuarioActual.biografia}</p>
-				</div>
-
-			</div>
-		</div>
-	</div>
 	
 	<div class="container">
-		<div class="recomendaciones-container">
+		<div id="loginbox"
+			class="formulario-registro rounded login mx-auto">
+			<form:form action="perfil-usuario" method="POST" modelAttribute="datosPerfil">
+				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+				<hr class="colorgraph">
+				<br>
 
-			<h1>Actividad reciente</h1>
-
-			<table class="table-responsive table-borderless">
-				<c:forEach items="${videojuegos}" var="videojuego">
-					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src="../../images/${videojuego.poster}"><br>
-							${videojuego.nombre}
-					</a></td>
-				</c:forEach>
-			</table>
-
-		</div>
-	</div>
-
-
-	<div class="container">
-
-		<div class="usuario-container">
-
-			<h3>Reviews recientes</h3>
-			<div class="flex-container">
-
-				<img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
-
-				<div>
-					<h4>Stray</h4>
-					<br>
-					<p>Stray ha llamado la atención por mostrarnos a un gato de
-						protagonista, pero, más allá de su ternura, es una historia
-						convincente de cómo puede ser una sociedad sin humanos en el
-						futuro. El pasado 19 de julio llegó a mis manos uno de los juegos
-						más esperados, por lo menos para mí, de este 2022.</p>
+				<div class="form-group">
+					<form:input path="nombre" id="nombre" class="form-control"
+						placeholder="Nombre de usuario" />
 				</div>
-			</div>
-		</div>
-	</div>
+				
+				<div class="form-group">
+					<form:input path="biografia" id="biografia" class="form-control"
+						placeholder="Biografia" />
+				</div>
 
-	<footer class="footer">
+					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">
+						Editar
+					</button>
+					
+			</form:form>
+		</div>
+</div>
+		<footer class="footer">
 		<div class="container">
 			<div class="column1">
 				<h4 class="mx-2">Redes Sociales</h4>
@@ -147,10 +116,25 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
+			Â© 2022 Copyright: <a class="enlaceDeCopy" href="/">
 				PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->
 	</footer>
+
+	<script src="js/script.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
 </body>
 </html>

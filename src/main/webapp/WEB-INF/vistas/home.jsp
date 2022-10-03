@@ -81,13 +81,12 @@
 			<c:forEach items="${videojuegos}" var="videojuego">
 					<td>
 						<a href="videojuego?id=${videojuego.id}">
-							<img src="<c:url value='src/main/webapp/images/${videojuego.poster}'/>"><br>
+							<img src='src/main/webapp/images/${videojuego.poster}'><br>
 								${videojuego.nombre}
 						</a>
 					</td>
 			</c:forEach>
 		</table>
-
 	</div>
 </div>
 

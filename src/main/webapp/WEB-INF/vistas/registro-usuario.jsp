@@ -42,11 +42,13 @@
 				<div class="form-group">
 					<form:input path="password" type="password" id="password"
 						class="form-control" placeholder="Contraseña" />
+
 				</div>
-					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit"/>
+					<button id="btn-registrarme" class="btn btn-lg btn-primary btn-block" Type="Submit">
 						Registrarme
 					</button>
 			</form:form>
+		</div>
 
 			<c:if test="${not empty error}">
 				<h4>
@@ -55,7 +57,7 @@
 				<br>
 			</c:if>
 		</div>
-	</div>
+
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
