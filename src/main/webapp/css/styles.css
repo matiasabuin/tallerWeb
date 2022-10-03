@@ -33,7 +33,7 @@ body {
 .boton{
 	width: 250px;
 	height: 250px;
-	background-color: grey;
+	background-color: #263341;
 	align-items: center;
 	justify-content: center;
 	border-radius: 120px;
@@ -93,4 +93,12 @@ body {
     margin-right: 20px;
 }
 
+.time{
+	text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
 
+.time-form{
+	text-align: center;
+}

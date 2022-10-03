@@ -7,3 +7,5 @@ insert into plataforma (id, descripcion) values('2', 'Playstation');
 insert into plataforma (id, descripcion) values('3', 'Nintendo');
 
 insert into usuario (email, password, nombre) values ('admin@gmail.com','123','admin');
+
+insert into videojuego (poster, nombre) values ('imagen.jpg', 'Xenoblade 3');

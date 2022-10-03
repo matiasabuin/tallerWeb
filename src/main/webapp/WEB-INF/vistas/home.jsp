@@ -77,13 +77,13 @@
 
 	<div class="boton-container">
 		<div class="boton mx-3">
-			<form action="tiempo-usuario" method="GET">
-				<label for="time">¿Cuanto tiempo tenes?</label> <input type="time"
-					name="time">
+			<form action="tiempo-usuario" method="GET" class="time-form">
+				<label for="time" class="time">¿Cuanto tiempo tenes?</label> 
+				<input type="time" name="time">
 			</form>
 		</div>
 	</div>
-
+				
 	<div class="container">
 		<div class="recomendaciones-container">
 
