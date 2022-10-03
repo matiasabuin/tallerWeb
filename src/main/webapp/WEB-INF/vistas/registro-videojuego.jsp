@@ -70,9 +70,9 @@
 					<div class="left">
 						<div class="detalle">
 							<h3>Detalle</h3>
-
-							<form:label path="imagen">Portada</form:label>
-							<form:input path="imagen" type="file" name="file"/>
+							
+							<form:label path="poster">Portada</form:label>
+							<form:input path="poster" type="file" id="poster"/>
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
@@ -186,14 +186,3 @@
 	</script>
 </body>
 </html>
-
-<!-- Nombre: Texto de 50 caracteres máximo.
-Duración en minutos: Número entero.
-Desarrollador: Texto de 50 caracteres máximo.
-Género:  Texto de 50 caracteres máximo.
-Plataforma en la que se encuentra disponible:  Texto de 20 caracteres máximo.
-Fecha de estreno: Fecha.
-Sinopsis: Texto libre de máximo 240 caracteres.
-Requisitos mínimos: Texto libre de máximo 240 caracteres.
-Requisitos recomendados: Texto libre de máximo 240 caracteres.
-Cantidad de jugadores: Número entero.-->

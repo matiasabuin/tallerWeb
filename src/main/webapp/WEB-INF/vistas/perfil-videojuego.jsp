@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -15,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
 <link rel="stylesheet"
@@ -59,6 +61,10 @@
 					<a class="navbar-brand" href="#">Logo</a>
 
 				</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d61ba655f863646e2b56c194cddaf765019e97c
 			</div>
 		</nav>
 	</header>
@@ -74,7 +80,7 @@
 				<h2>${datosVideojuego.nombre}</h2>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
-				<p>${datosVideojuego.imagen}</p>
+				<p>${datosVideojuego.poster}</p>
 				<p>${datosVideojuego.fechaEstreno}</p>
 				<strong>Duración</strong>
 				<p>${datosVideojuego.duracion}</p>

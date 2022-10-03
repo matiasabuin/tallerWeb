@@ -1,7 +1,11 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +25,8 @@ public class Videojuego {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String imagen;
+	private String poster;
+	
 	private String nombre;
 	private String desarrollador;
 	private Integer duracion;
@@ -107,17 +112,18 @@ public class Videojuego {
 	public void setSinopsis(String sinopsis) {
 		this.sinopsis = sinopsis;
 	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+	
 	public Integer getCantidadJugadores() {
 		return cantidadJugadores;
 	}
 	public void setCantidadJugadores(Integer cantidadJugadores) {
 		this.cantidadJugadores = cantidadJugadores;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 
 }
