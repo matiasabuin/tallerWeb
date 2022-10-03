@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
 <title>${datosVideojuego.nombre}</title>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 	<header>
@@ -56,24 +59,55 @@
 		</nav>
 	</header>
 	<main>
-		<section class="portada">
-			<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/ss_8db3de5b5d611e50945268848de2889e1ed4ba84.600x338.jpg?t=1650554420">
-		</section>
-		<section>
-		<h2>${datosVideojuego.nombre}</h2>
-		</section>
-		<section class="container">
-			<article class="galeria">
-				<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/ss_6eccc970b5de2943546d93d319be1b5c0618f21b.600x338.jpg?t=1650554420">
-			</article>
-			<article>
-				<img src="https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420">
+		<div class="container">
+			<div class="portada">
+				<div style="text-align: center;">
+					<img
+						src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4ocq.jpg">
+				</div>
+			</div>
+			<div class="centro" style="width: 50%;">
+				<h2>${datosVideojuego.nombre}</h2>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
-				<strong>Fecha de lanzamiento</strong><p>${datosVideojuego.fechaEstreno}</p>
-				<strong>Desarrollador</strong><p>${datosVideojuego.desarrollador}</p>
-				<strong>Genero</strong><p>${datosVideojuego.genero}</p>
-			</article>
-		</section>
+				<strong>Fecha de lanzamiento</strong>
+				<p>${datosVideojuego.poster}</p>
+				<p>${datosVideojuego.fechaEstreno}</p>
+				<strong>Duración</strong>
+				<p>${datosVideojuego.duracion}</p>
+				<strong>Desarrollador</strong>
+				<p>${datosVideojuego.desarrollador}</p>
+			</div>
+			<div style="width: 25%;">
+				<strong>Genero</strong>
+				<c:forEach var="genero" items="${datosVideojuego.generos}">
+					<p>${genero.descripcion}</p>
+				</c:forEach>
+				<strong>Plataforma</strong> <strong>Modalidad</strong>
+				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
+					<span>Multijugador</span>
+					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
+				</c:if>
+				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
+					<span>Un jugador</span>
+				</c:if>
+			</div>
+		</div>
+		<div class="contenedor-requisitos">
+			<h3>Requisitos del sistema</h3>
+			<div class="requisitos">
+				<div class="requisito">
+					<h4>Mínimos</h4>
+					<p>${datosVideojuego.requisitosMinimos}</p>
+				</div>
+				<div class="requisito">
+					<h4>Recomendados</h4>
+					<p>${datosVideojuego.requisitosRecomendados}</p>
+				</div>
+			</div>
+		</div>
+		<div class="reviews">
+			<h3>Reviews</h3>
+		</div>
 	</main>
 </body>
 </html>
