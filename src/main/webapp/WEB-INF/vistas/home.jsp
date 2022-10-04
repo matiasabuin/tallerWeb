@@ -95,8 +95,8 @@
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
 							src="images/${videojuego.poster}">
-					</a>
 						<p class="titulo">${videojuego.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>
@@ -106,13 +106,12 @@
 		<div class="recomendaciones-container">
 
 			<h1>Peliculas</h1>
-
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculas}" var="pelicula">
 					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
 							src="images/${pelicula.poster}">						
-					</a>
 					<p class="titulo">${pelicula.nombre}</p>
+					</a>
 					</td>
 				</c:forEach>
 			</table>
