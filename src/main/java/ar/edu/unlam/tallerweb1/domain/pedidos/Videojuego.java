@@ -23,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="videojuego")
-public class Videojuego {
+public class Videojuego{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -102,6 +102,24 @@
 		</div>
 		
 	</div>
+	
+	<c:if test="${recomendaciones != null}">
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Recomendaciones</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${recomendaciones}" var="recomendado">
+					<td><a href="videojuego?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
+					</a>
+						<p class="titulo">${recomendado.nombre}</p></td>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
 
 	<div class="container">
 		<div class="recomendaciones-container">
