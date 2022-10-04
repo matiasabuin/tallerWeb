@@ -20,6 +20,7 @@
 
 <body>
 	<header>
+
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -28,40 +29,47 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
-		
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> <a
-									class="dropdown-item" href="login">Log Out</a>
-							</div></li>
-							
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
-									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
-									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div></li>
+
+						<c:if test="${usuarioActual.nombre != null}">
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> ${usuarioActual.nombre} </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="perfil">Perfil</a> <a
+										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+								</div></li>
+
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> Registrar </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								</div></li>
+						</c:if>
 					</ul>
 
-					<a class="navbar-brand" href="#">Logo</a>
+					<form action="buscar" method="GET">
+						<input type="text" placeholder="Buscar contenido" class="search">
+					</form>
+
+					<c:if test="${usuarioActual.nombre == null}">
+						<a href="registro-usuario" class="nav-link">Register</a>
+						<a href="login" class="nav-link">Log In</a>
+					</c:if>
 
 				</div>
-
 			</div>
 		</nav>
 	</header>
-
 	<div class="container">
 		<form:form action="registrar-pelicula" method="POST"
 			class="formulario-registro rounded" modelAttribute="datosPelicula">
@@ -95,14 +103,14 @@
 						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
 					<br> <label for="inputDate">FECHA DE ESTRENO</label>
 					<form:input path="fechaEstreno" type="date" class="form-control"
-						id="inputPlataforma"/>
+						id="inputPlataforma" />
 					<br>
 
-				
+
 				</div>
 				<div class="col-md-6 text-center">
 					<label for="registro-poster">SUBIR EL POSTER</label> <br>
-						<form:input path="poster" type="file" id="foto"/>
+					<form:input path="poster" type="file" id="foto" />
 					<br> <br>
 					<div class="marco-poster-registro mx-auto"></div>
 
@@ -117,9 +125,7 @@
 			</div>
 
 			<div class="col text-center mt-2">
-				<button type="submit" class="btn btn-primary">
-				REGISTRAR
-				</button>
+				<button type="submit" class="btn btn-primary">REGISTRAR</button>
 			</div>
 		</form:form>
 
@@ -128,7 +134,8 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
-				<h4 class="mx-2">Redes Sociales</h4>
+				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
+					Sociales</h4>
 				<div class="social">
 					<div class="item mx-2">
 						<a href="https://www.facebook.com/" target="_blank"> <i
@@ -151,8 +158,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
-				PaginaGenericaDeTaller.com</a>
+			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->
 	</footer>

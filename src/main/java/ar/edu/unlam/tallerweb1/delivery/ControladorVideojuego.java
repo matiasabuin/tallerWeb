@@ -38,7 +38,12 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping("/registro-videojuego")
-	public ModelAndView iraRegistrarVideojuego() {
+	public ModelAndView iraRegistrarVideojuego(HttpServletRequest request) {
+		
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
+		
 		ModelMap modelo = new ModelMap();
 		Videojuego videojuego = new Videojuego();
 
@@ -54,11 +59,12 @@ public class ControladorVideojuego {
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, HttpServletRequest request) {
-		
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
 		//@RequestParam("file") MultipartFile file, MultipartHttpServletRequest request) {
 
-		Videojuego videojuego = this.servicioVideojuego.registrarVideojuego(datosVideojuego);
-		
+		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 		/*Path directorioImagenes = Paths.get("src//main//webapp//images");
 		String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 		try {

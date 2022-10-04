@@ -1,3 +1,5 @@
+<%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego"%>
+<%@page import="org.apache.taglibs.standard.tag.common.xml.IfTag"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -20,6 +22,7 @@
 </head>
 <body>
 	<header>
+
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -28,36 +31,44 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
-		
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> <a
-									class="dropdown-item" href="login">Log Out</a>
-							</div></li>
-							
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
-									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div></li>
+
+						<c:if test="${usuarioActual.nombre != null}">
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> ${usuarioActual.nombre} </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="perfil">Perfil</a> <a
+										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+								</div></li>
+
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> Registrar </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								</div></li>
+						</c:if>
 					</ul>
 
-					<a class="navbar-brand" href="#">Logo</a>
+					<form action="buscar" method="GET">
+						<input type="text" placeholder="Buscar contenido" class="search">
+					</form>
+
+					<c:if test="${usuarioActual.nombre == null}">
+						<a href="registro-usuario" class="nav-link">Register</a>
+						<a href="login" class="nav-link">Log In</a>
+					</c:if>
 
 				</div>
-
 			</div>
 		</nav>
 	</header>
@@ -70,15 +81,16 @@
 					<div class="left">
 						<div class="detalle">
 							<h3>Detalle</h3>
-							
+
 							<form:label path="poster">Portada</form:label>
-							<form:input path="poster" type="file" id="poster"/>
+							<form:input path="poster" type="file" id="poster" />
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
 
 							<form:label path="duracion">Duracion</form:label>
-							<form:input path="duracion" type="number" id="duracion" min="1" style="width: 30%;" />
+							<form:input path="duracion" type="number" id="duracion" min="1"
+								style="width: 30%;" />
 							<span style="display: inline; margin-left: 1em;">Horas</span>
 						</div>
 					</div>
@@ -94,13 +106,15 @@
 									<form:input path="desarrollador" type="text" id="desarrollador" />
 
 									<form:label path="cantidadJugadores">Cantidad de jugadores</form:label>
-									<form:input path="cantidadJugadores" type="number" id="cantidadJugadores" min="1" />
+									<form:input path="cantidadJugadores" type="number"
+										id="cantidadJugadores" min="1" />
 
 								</div>
 
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" id="generos" name="generos" multiple="multiple">
+									<form:select path="generos" id="generos" name="generos"
+										multiple="multiple">
 										<c:forEach var="genero" items="${listaGeneros}">
 											<form:option value="${genero.id}" style="color: black;">${genero.descripcion}</form:option>
 										</c:forEach>
@@ -148,7 +162,8 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
-				<h4 class="mx-2">Redes Sociales</h4>
+				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
+					Sociales</h4>
 				<div class="social">
 					<div class="item mx-2">
 						<a href="https://www.facebook.com/" target="_blank"> <i
@@ -171,8 +186,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
-				PaginaGenericaDeTaller.com</a>
+			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->
 	</footer>

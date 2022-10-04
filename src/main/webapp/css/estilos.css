@@ -6,12 +6,13 @@
 }
 
 .bg-primary {
-	background-color: var(--primary-color) !important;
+	background-color: #242832!important;
 }
 
 body {
 	background-color: #17181c;
 	font-size: 12pt !important;
+	font-family: Roboto,sans-serif;
 	color: #c7c7c7;
 }
 
@@ -82,8 +83,6 @@ body {
 }
 .formulario-registro{
 	margin-top:50px;
-	padding: 50px;
-	background-color: var(--primary-color);
 }
 
 .formulario-registro p{
@@ -180,7 +179,6 @@ body {
 }
 
 .login{
-	
 	width:400px;
 }
 
@@ -195,6 +193,7 @@ body {
 	padding: 4px 20px;
 	font-size: 18px;
 	border-radius: 20px;
+	margin-right: 10px;
 }
 
 .foto-perfil img{

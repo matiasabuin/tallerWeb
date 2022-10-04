@@ -18,12 +18,14 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/estilos.css" />
+<link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 	<header>
+
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -32,39 +34,44 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
 
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> <a
-									class="dropdown-item" href="login">Log Out</a>
-							</div></li>
+						<c:if test="${usuarioActual.nombre != null}">
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> ${usuarioActual.nombre} </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="perfil">Perfil</a> <a
+										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+								</div></li>
 
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-								<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
-									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div></li>
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> Registrar </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								</div></li>
+						</c:if>
 					</ul>
 
-					<a class="navbar-brand" href="#">Logo</a>
+					<form action="buscar" method="GET">
+						<input type="text" placeholder="Buscar contenido" class="search">
+					</form>
+
+					<c:if test="${usuarioActual.nombre == null}">
+						<a href="registro-usuario" class="nav-link">Register</a>
+						<a href="login" class="nav-link">Log In</a>
+					</c:if>
 
 				</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8d61ba655f863646e2b56c194cddaf765019e97c
 			</div>
 		</nav>
 	</header>
@@ -90,8 +97,7 @@
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong> 
-				<strong>Modalidad</strong>
+				<strong>Plataforma</strong> <strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
 					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
@@ -118,5 +124,36 @@
 			<h3>Reviews</h3>
 		</div>
 	</main>
+	<footer class="footer">
+		<div class="container">
+			<div class="column1">
+				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
+					Sociales</h4>
+				<div class="social">
+					<div class="item mx-2">
+						<a href="https://www.facebook.com/" target="_blank"> <i
+							class="fa fa-facebook-square" aria-hidden="true"></i>
+						</a>
+					</div>
+					<div class="item mx-2">
+						<a href="https://www.instagram.com/" target="_blank"> <i
+							class="fa fa-instagram" aria-hidden="true"></i>
+						</a>
+					</div>
+					<div class="item">
+						<a href="https://www.twitter.com/" target="_blank"> <i
+							class="fa fa-twitter-square" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">
+			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
 </body>
 </html>

@@ -23,6 +23,7 @@
 <body>
 
 	<header>
+
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,36 +32,44 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
-		
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> <a
-									class="dropdown-item" href="login">Log Out</a>
-							</div></li>
-							
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-peli-serie">Pelicula</a> <a
-									class="dropdown-item" href="registro-peli-serie">Serie</a> <a
-									class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div></li>
+
+						<c:if test="${usuarioActual.nombre != null}">
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> ${usuarioActual.nombre} </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="perfil">Perfil</a> <a
+										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+								</div></li>
+
+							<li class="nav-item mx-2 dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> Registrar </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								</div></li>
+						</c:if>
 					</ul>
 
-					<a class="navbar-brand" href="#">Logo</a>
+					<form action="buscar" method="GET">
+						<input type="text" placeholder="Buscar contenido" class="search">
+					</form>
+
+					<c:if test="${usuarioActual.nombre == null}">
+						<a href="registro-usuario" class="nav-link">Register</a>
+						<a href="login" class="nav-link">Log In</a>
+					</c:if>
 
 				</div>
-
 			</div>
 		</nav>
 	</header>
@@ -71,7 +80,7 @@
 			<div class="flex-container">
 
 				<img src="images/${usuarioActual.foto}">
-		
+
 				<div class="biografia">
 					<h4>${usuarioActual.nombre}</h4>
 					<p>${usuarioActual.biografia}</p>
@@ -80,13 +89,11 @@
 			</div>
 		</div>
 	</div>
-	
-		<div class="container">
-			<a href="editar-perfil" class="btn btn-primary">
-				Editar Perfil
-			</a>
-		</div>
-						
+
+	<div class="container">
+		<a href="editar-perfil" class="btn btn-primary"> Editar Perfil </a>
+	</div>
+
 	<div class="container">
 		<div class="recomendaciones-container">
 
@@ -112,7 +119,8 @@
 			<h3>Reviews recientes</h3>
 			<div class="flex-container">
 
-				<img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
+				<img
+					src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
 
 				<div class="biografia">
 					<h4>Stray</h4>
@@ -130,7 +138,8 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
-				<h4 class="mx-2">Redes Sociales</h4>
+				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
+					Sociales</h4>
 				<div class="social">
 					<div class="item mx-2">
 						<a href="https://www.facebook.com/" target="_blank"> <i
@@ -153,8 +162,7 @@
 		</div>
 		<!-- Copyright -->
 		<div class="footer-copyright text-center py-3">
-			© 2022 Copyright: <a class="enlaceDeCopy" href="/">
-				PaginaGenericaDeTaller.com</a>
+			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
 		</div>
 		<!-- Copyright -->
 	</footer>

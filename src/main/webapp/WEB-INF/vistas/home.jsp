@@ -67,9 +67,10 @@
 					</form>
 
 					<c:if test="${usuarioActual.nombre == null}">
-						<a href="registro-usuario" class="nav-link">Sign up</a>
-						<a href="login" class="nav-link">Sign in</a>
+						<a href="registro-usuario" class="nav-link">Register</a>
+						<a href="login" class="nav-link">Log In</a>
 					</c:if>
+
 				</div>
 			</div>
 		</nav>
@@ -80,6 +81,7 @@
 			<form action="tiempo-usuario" method="GET" class="time-form">
 				<label for="time" class="time">¿Cuanto tiempo tenes?</label> <input
 					type="time" name="time">
+				<button type="submit">Enviar</button>
 			</form>
 		</div>
 	</div>
@@ -92,9 +94,9 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src="images/${videojuego.poster}"><br>
-							${videojuego.nombre}
-					</a></td>
+							src="images/${videojuego.poster}">
+					</a>
+						<p class="titulo">${videojuego.nombre}</p></td>
 				</c:forEach>
 			</table>
 		</div>
@@ -108,9 +110,10 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculas}" var="pelicula">
 					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
-							src="images/${pelicula.poster}"><br>
-							${pelicula.nombre}
-					</a></td>
+							src="images/${pelicula.poster}">						
+					</a>
+					<p class="titulo">${pelicula.nombre}</p>
+					</td>
 				</c:forEach>
 			</table>
 
@@ -135,7 +138,8 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
-				<h4 class="mx-2" style="text-align: center;">Redes Sociales</h4>
+				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
+					Sociales</h4>
 				<div class="social">
 					<div class="item mx-2">
 						<a href="https://www.facebook.com/" target="_blank"> <i

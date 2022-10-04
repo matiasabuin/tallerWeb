@@ -26,8 +26,10 @@ public class ControladorPeliculas {
 	}
 
 	@RequestMapping(path = "/registro-peli-serie")
-	public ModelAndView iraRegistroPeliSerie() {
-
+	public ModelAndView iraRegistroPeliSerie( HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
 		ModelMap modelo = new ModelMap();
 		Pelicula pelicula = new Pelicula();
 		modelo.put("datosPelicula", pelicula);
@@ -36,14 +38,12 @@ public class ControladorPeliculas {
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
+		
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
 
 		Pelicula pelicula = this.servicioPelicula.registrarPelicula(datosPelicula);
-		
-		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-
-		request.getSession().setAttribute("peliculas", peliculasRegistradas);
-
-		request.getSession().getAttribute("videojuegos");
 
 		return new ModelAndView("redirect:/perfil-fvs?id=" + pelicula.getId());
 	}

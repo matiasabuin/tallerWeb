@@ -25,7 +25,7 @@ strong{
 	width: 100%;
 	display: flex;
 	flex-wrap: nowrap;
-	justify-content: flex-start;
+	justify-content: center;
 }
 
 .sinopsis{

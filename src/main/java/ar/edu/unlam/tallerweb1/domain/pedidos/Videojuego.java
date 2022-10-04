@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Videojuego {
@@ -44,11 +46,11 @@ public class Videojuego {
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "videojuego_genero", joinColumns = {@JoinColumn(name="videojuego_id")}, inverseJoinColumns = {@JoinColumn(name="genero_id")})
-	private List<Genero> generos;
+	private List<Genero> generos = new ArrayList<Genero>();
 	
 	@ManyToMany()
 	@JoinTable(name = "videojuego_plataforma", joinColumns = {@JoinColumn(name="videojuego_id")}, inverseJoinColumns = {@JoinColumn(name="plataforma_id")})
-	private List<Plataforma> plataformas;
+	private List<Plataforma> plataformas = new ArrayList<Plataforma>();
 	
 	
 	public List<Genero> getGeneros() {

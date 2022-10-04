@@ -1,9 +1,15 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Plataforma {
@@ -13,6 +19,10 @@ public class Plataforma {
 	private Integer id;
 	
 	private String descripcion;
+	
+    @JsonBackReference
+    @ManyToMany(mappedBy="plataformas")
+    private List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 
 	public Integer getId() {
 		return id;
