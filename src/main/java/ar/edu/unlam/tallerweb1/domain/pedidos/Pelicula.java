@@ -23,6 +23,7 @@ public class Pelicula {
 	private String director;
 	private String genero;
 	private String plataforma;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
 	private String sinopsis;

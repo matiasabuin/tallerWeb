@@ -16,11 +16,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
+@Table(name="videojuego")
 public class Videojuego {
 	
 	@Id
@@ -37,15 +39,15 @@ public class Videojuego {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
 	
-	@Column(length = 5000)
+	@Column(length = 9000)
 	private String sinopsis;
-	@Column(length = 1000)
+	@Column(length = 5000)
 	private String requisitosMinimos;
-	@Column(length = 1000)
+	@Column(length = 5000)
 	private String requisitosRecomendados;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "videojuego_genero", joinColumns = {@JoinColumn(name="videojuego_id")}, inverseJoinColumns = {@JoinColumn(name="genero_id")})
+	@JoinTable(name = "videojuego_genero", joinColumns = @JoinColumn(name = "videojuego_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "genero_id", referencedColumnName = "id"))
 	private List<Genero> generos = new ArrayList<Genero>();
 	
 	@ManyToMany()
@@ -127,5 +129,6 @@ public class Videojuego {
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
+
 
 }
