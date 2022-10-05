@@ -97,7 +97,7 @@
 				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
-					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
+					<p>${datosVideojuego.cantidadJugadores} jugadores</p>
 				</c:if>
 				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
 					<span>Un jugador</span>

@@ -36,17 +36,22 @@ public class ControladorHome {
 			HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
+		
 		switch (tipo) {
 		case "pelicula":
+			
 			break;
 
 		case "videojuego":
 			List<Videojuego> recomendaciones = new ArrayList<>();
+			
 			List<Videojuego> videojuegos = servicioVideojuego.obtenerTodosLosVideojuegos();
+			
 			for (Videojuego videojuego : videojuegos) {
-				if (videojuego.getDuracion() <= horas.intValue())
+				if (videojuego.getDuracion() <= horas)
 					recomendaciones.add(videojuego);
 			}
+			
 			modelo.addAttribute("recomendaciones", recomendaciones);
 			return new ModelAndView("redirect:/home", modelo);
 		default:

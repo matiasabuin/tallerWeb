@@ -1,3 +1,4 @@
+<%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Genero"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -111,12 +112,13 @@
 
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" id="generos" name="generos"
+									<form:select path="generos" id="generos" 
 										multiple="multiple">
 										<c:forEach var="genero" items="${listaGeneros}">
 											<form:option value="${genero.id}" style="color: black;">${genero.descripcion}</form:option>
-										</c:forEach>
+										</c:forEach>	
 									</form:select>
+									
 									<form:label path="plataformas">Plataforma</form:label>
 									<form:select path="plataformas" id="plataformas"
 										name="plataformas" multiple="multiple">

@@ -77,7 +77,7 @@
 	<div class="boton-container">
 	<div class="boton mx-3">
 		<h2>Disfruta de tu tiempo libre</h2>
-		<p> Encuentra el contenido que mejor se adapte a tus tiempos</p>
+		<p> Encontra el contenido que mejor se adapte a tus tiempos</p>
 		</div>
 		
 		<div class="boton mx-3 form-tiempo">
