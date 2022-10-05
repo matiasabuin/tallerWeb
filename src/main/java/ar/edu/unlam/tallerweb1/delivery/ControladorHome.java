@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 
 @Controller
@@ -18,11 +19,14 @@ public class ControladorHome {
 
 	private ServicioVideojuego servicioVideojuego;
 	private ServicioPelicula servicioPelicula;
+	private ServicioSerie servicioSerie;
+
 
 	@Autowired
-	public ControladorHome(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula) {
+	public ControladorHome(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula,ServicioSerie servicioSerie) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioPelicula = servicioPelicula;
+		this.servicioSerie=servicioSerie;
 	}
 	
 	// Escucha la URL /home por GET, y redirige a una vista.

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Registrar contenido</title>
+<title>Registrar Serie</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -20,8 +20,7 @@
 
 <body>
 	<header>
-
-		<nav class="navbar navbar-expand-lg bg-primary">
+	<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -51,7 +50,7 @@
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>
@@ -70,48 +69,40 @@
 			</div>
 		</nav>
 	</header>
+
 	<div class="container">
-		<form:form action="registrar-pelicula" method="POST"
-			class="formulario-registro rounded" modelAttribute="datosPelicula">
+		<form:form action="registrar-serie" method="POST"
+			class="formulario-registro rounded" modelAttribute="datosSerie">
 			<div class="form-group row">
-				<p class="col-md-6">REGISTRO</p>
-				<label for="exampleFormControlSelect1"
-					class="col-md-1 col-form-label tipo">TIPO</label>
-				<div class="col-sm-auto">
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>PELICULA</option>
-						<option>SERIE</option>
-					</select>
-				</div>
+				<p class="col-md-6">REGISTRO DE SERIE</p>
+				
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
-					<label for="inputNombre">NOMBRE</label>
-					<form:input path="nombre" type="text" class="form-control"
-						id="inputNombre" placeholder="Nombre" />
-					<br> <label for="inputDuracion">DURACION</label>
-					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" placeholder="128, 90" />
-					<br> <label for="inputDirector">DIRECTOR</label>
-					<form:input path="director" type="text" class="form-control"
-						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
-					<br> <label for="inputGenero">GENERO</label>
-					<form:input path="genero" type="text" class="form-control"
-						id="inputGenero" placeholder="Terror, thiller, drama" />
-					<br> <label for="inputPlataforma">PLATAFORMA</label>
-					<form:input path="plataforma" type="text" class="form-control"
-						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
-					<br> <label for="inputDate">FECHA DE ESTRENO</label>
-					<form:input path="fechaEstreno" type="date" class="form-control"
-						id="inputPlataforma" />
-					<br>
-
-
+					<label for="inputNombre">NOMBRE</label> <form:input path="nombre" type="text"
+						class="form-control" id="inputNombre" placeholder="Nombre"/>
+					<br> <label for="inputDuracion">DURACION MINUTOS</label> <form:input
+						path="duracion" type="number" class="form-control" id="inputDuracion"
+						placeholder="576 min, 364 min"/> <br> <label
+						for="inputDuracion">DURACION POR CAPITULO</label> <form:input
+						path="duracionPorCaps" type="number" class="form-control" id="inputDuracion"
+						placeholder="60 min, 24 min"/> <br> <label for="inputGenero">GENERO</label>
+					<form:input path="genero" type="text" class="form-control" id="inputGenero"
+						placeholder="Terror, thiller, drama"/> <br> <label
+						for="inputPlataforma">PLATAFORMA</label> <form:input path="plataforma" type="text"
+						class="form-control" id="inputPlataforma"
+						placeholder="Netflix, Disney+, HBO+" /> <br> <label
+						for="inputDate">FECHA DE ESTRENO</label> <form:input path="fechaEstreno" type="date"
+						class="form-control" id="inputPlataforma"/> <br> <label
+						for="inputDuracion">CANTIDAD DE TEMPORADAS</label> <form:input
+						path="cantDeTemps" type="number" class="form-control" min="1" id="inputDuracion"
+						placeholder="2,6"/> <br> <label for="inputDuracion">CANTIDAD
+						DE CAPITULOS</label> <form:input path="cantDeCaps" type="number" class="form-control" min="1"
+						id="inputDuracion" placeholder="24, 12" />
 				</div>
 				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br>
-					<form:input path="poster" type="file" id="foto" />
-					<br> <br>
+					<label for="registro-poster">SUBIR EL POSTER</label> <br> <form:input
+						path="poster" type="file" id="foto"/> <br> <br>
 					<div class="marco-poster-registro mx-auto"></div>
 
 				</div>
@@ -119,12 +110,14 @@
 			</div>
 			<div class="form-group col-md-10 mx-auto">
 				<label for="exampleFormSinopsis">SINOPSIS</label>
-				<form:textarea path="sinopsis" class="form-control"
-					id="exampleFormControlTextarea1" rows="3" />
+				<form:textarea path="sinopsis" class="form-control" id="exampleFormControlTextarea1"
+					rows="3"/>
+				
 			</div>
 
 			<div class="col text-center mt-2">
-				<form:button type="submit" class="btn btn-primary">REGISTRAR</form:button>
+				<form:button type="submit" class="btn btn-primary"
+					id="botonDeregistroPeliSerie">REGISTRAR</form:button>
 			</div>
 		</form:form>
 
@@ -161,7 +154,6 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
-
 
 	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
