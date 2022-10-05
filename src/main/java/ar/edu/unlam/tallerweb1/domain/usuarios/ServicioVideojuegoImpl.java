@@ -34,5 +34,11 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 		return servicioVideojuegoDao.obtenerTodosLosVideojuegos();
 	}
 
+	@Override
+	public List<Videojuego> obtenerVideojuegoPorTiempo(Integer horas) {
+		
+		return servicioVideojuegoDao.obtenerLosVideojuegosPorTiempo(horas);
+	}
+
 
 }

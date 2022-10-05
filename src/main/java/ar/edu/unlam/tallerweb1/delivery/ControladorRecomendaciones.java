@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
@@ -14,20 +15,19 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 
 @Controller
-public class ControladorHome {
+public class ControladorRecomendaciones {
 
 	private ServicioVideojuego servicioVideojuego;
 	private ServicioPelicula servicioPelicula;
 
 	@Autowired
-	public ControladorHome(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula) {
+	public ControladorRecomendaciones(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioPelicula = servicioPelicula;
 	}
 	
-	// Escucha la URL /home por GET, y redirige a una vista.
-	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome(HttpServletRequest request) {
+	@RequestMapping(path = "/recomendaciones", method = RequestMethod.GET)
+	public ModelAndView irARecomendaciones(HttpServletRequest request) {
 		
 		ModelMap model = new ModelMap();
 
@@ -41,7 +41,26 @@ public class ControladorHome {
 		model.addAttribute("peliculas", peliculasRegistradas);
 		model.addAttribute("videojuegos", videojuegosRegistrados);
 		
-		return new ModelAndView("home", model);
+		model.addAttribute("videojuegosRecomendados", request.getSession().getAttribute("videojuegosRecomendados"));
+		model.addAttribute("peliculasRecomendadas", request.getSession().getAttribute("peliculasRecomendadas"));
+		
+		return new ModelAndView("recomendaciones", model);
+	}
+
+	@RequestMapping(path = "/buscar-recomendaciones", method = RequestMethod.GET)
+	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
+			HttpServletRequest request) {
+		
+		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorTiempo(horas);
+		
+		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(horas);
+		
+		request.getSession().setAttribute("peliculasRecomendadas", peliculasRecomendadas);
+			
+		request.getSession().setAttribute("videojuegosRecomendados", videojuegosRecomendados);
+
+		return irARecomendaciones(request);
+
 	}
 	
 }

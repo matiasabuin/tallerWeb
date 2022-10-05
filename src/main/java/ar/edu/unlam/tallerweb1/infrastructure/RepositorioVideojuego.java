@@ -9,4 +9,5 @@ public interface RepositorioVideojuego {
     Videojuego buscar(Integer id);
 	void modificar(Videojuego videojuego);
 	List<Videojuego> obtenerTodosLosVideojuegos();
+	List<Videojuego> obtenerLosVideojuegosPorTiempo(Integer horas);
 }

@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 import java.util.List;
 
@@ -39,6 +40,14 @@ public class RepositorioPeliculaImpl implements RepositorioPelicula {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Pelicula.class)
                 .list();
+	}
+
+	@Override
+	public List<Pelicula> obtenerLasPeliculasPorTiempo(Integer horas) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Pelicula.class)
+				.add(Restrictions.eq("duracion", horas))
+				.list();
 	}
 
 

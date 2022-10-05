@@ -58,7 +58,8 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
-	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego,/*@RequestParam("poster") MultipartFile poster,*/ HttpServletRequest request) {
+	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego,
+			/*@RequestParam("poster") MultipartFile poster,*/ HttpServletRequest request) {
 		
 		if(request.getSession().getAttribute("usuarioActual") != null){
 			

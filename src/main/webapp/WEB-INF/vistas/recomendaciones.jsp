@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Inicio</title>
+<title>Recomendaciones</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -73,58 +73,43 @@
 			</div>
 		</nav>
 	</header>
-
-	<div class="boton-container">
-	<div class="boton mx-3">
-		<h2>Disfruta de tu tiempo libre</h2>
-		<p> Encontra el contenido que mejor se adapte a tus tiempos</p>
-		</div>
-		
-		<div class="boton mx-3 form-tiempo">
-			<form action="buscar-recomendaciones" method="GET" class="time-form">
-				<div class="tipos">
-					<label for="horas" class="time">Cantidad de horas</label>
-					<input type="number" name="horas" class="horas">
-				</div>
-				<button type="submit" class="empezar">¡Empezar!</button>
-			</form>
-		</div>
-		
-	</div>
 	
-	<div class="container">
+		<c:if test="${videojuegosRecomendados != null}">
+		<div class="container">
 		<div class="recomendaciones-container">
 
-			<h1>Videojuegos</h1>
+			<h1>Videojuegos Recomendados</h1>
 
 			<table class="table-responsive table-borderless">
-				<c:forEach items="${videojuegos}" var="videojuego">
-					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src="images/${videojuego.poster}">
-						<p class="titulo">${videojuego.nombre}</p></td>
-						</a>
-				</c:forEach>
-			</table>
-		</div>
-	</div>
-
-	<div class="container">
-		<div class="recomendaciones-container">
-
-			<h1>Peliculas</h1>
-			<table class="table-responsive table-borderless">
-				<c:forEach items="${peliculas}" var="pelicula">
-					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
-							src="images/${pelicula.poster}">						
-					<p class="titulo">${pelicula.nombre}</p>
+				<c:forEach items="${videojuegosRecomendados}" var="recomendado">
+					<td><a href="videojuego?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
 					</a>
-					</td>
+						<p class="titulo">${recomendado.nombre}</p></td>
 				</c:forEach>
 			</table>
-
 		</div>
 	</div>
+	</c:if>
+	
+	<c:if test="${peliculasRecomendadas != null}">
+		<div class="container">
+		<div class="recomendaciones-container">
 
+			<h1>Peliculas Recomendadas</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
+					<td><a href="videojuego?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
+					</a>
+						<p class="titulo">${recomendado.nombre}</p></td>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
+	
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">

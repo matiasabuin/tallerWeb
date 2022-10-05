@@ -17,15 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorPerfil {
 
-
 	private ServicioLogin servicioLogin;
 
 	@Autowired
 	public ControladorPerfil(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
 		this.servicioLogin = servicioLogin;
 	}
-
-
 
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil() {

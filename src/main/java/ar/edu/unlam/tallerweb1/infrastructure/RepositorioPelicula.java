@@ -10,4 +10,5 @@ public interface RepositorioPelicula {
 	void guardar(Pelicula pelicula);
     Pelicula buscar(Integer id);
 	List<Pelicula> obtenerTodasLasPeliculas();
+	List<Pelicula> obtenerLasPeliculasPorTiempo(Integer horas);
 }

@@ -35,6 +35,10 @@ public class ServicioPeliculaImpl implements ServicioPelicula {
 	public Pelicula consultarPelicula(Integer id) {
 		return this.servicioPeliculaDao.buscar(id);
 	}
+	@Override
+	public List<Pelicula> obtenerPeliculaPorTiempo(Integer horas) {
+		return servicioPeliculaDao.obtenerLasPeliculasPorTiempo(horas);
+	}
 
 
 }

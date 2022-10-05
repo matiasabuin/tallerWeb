@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -40,6 +41,15 @@ public class RepositorioVideojuegoImpl implements RepositorioVideojuego {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Videojuego.class)
                 .list();
+	}
+
+	@Override
+	public List<Videojuego> obtenerLosVideojuegosPorTiempo(Integer horas) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Videojuego.class)
+				.add(Restrictions.eq("duracion", horas))
+				.list();
+		
 	}
 
 }
