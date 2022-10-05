@@ -30,6 +30,21 @@ public class ControladorHome {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioPelicula = servicioPelicula;
 	}
+	
+	// Escucha la URL /home por GET, y redirige a una vista.
+	@RequestMapping(path = "/home", method = RequestMethod.GET)
+	public ModelAndView irAHome() {
+		
+		ModelMap model = new ModelMap();
+
+		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
+		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
+		
+		model.addAttribute("peliculas", peliculasRegistradas);
+		model.addAttribute("videojuegos", videojuegosRegistrados);
+		
+		return new ModelAndView("home", model);
+	}
 
 	@RequestMapping(path = "/buscar-recomendaciones", method = RequestMethod.GET)
 	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas, @RequestParam("tipo") String tipo,
