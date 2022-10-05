@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Registrar contenido</title>
+<title>Perfil-serie</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -16,8 +16,10 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
 
+
+
+</head>
 <body>
 	<header>
 
@@ -51,7 +53,7 @@
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>
@@ -70,66 +72,79 @@
 			</div>
 		</nav>
 	</header>
-	<div class="container">
-		<form:form action="registrar-pelicula" method="POST"
-			class="formulario-registro rounded" modelAttribute="datosPelicula">
-			<div class="form-group row">
-				<p class="col-md-6">REGISTRO</p>
-				<label for="exampleFormControlSelect1"
-					class="col-md-1 col-form-label tipo">TIPO</label>
-				<div class="col-sm-auto">
-					<select class="form-control" id="exampleFormControlSelect1">
-						<option>PELICULA</option>
-						<option>SERIE</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="inputNombre">NOMBRE</label>
-					<form:input path="nombre" type="text" class="form-control"
-						id="inputNombre" placeholder="Nombre" />
-					<br> <label for="inputDuracion">DURACION</label>
-					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" placeholder="128, 90" />
-					<br> <label for="inputDirector">DIRECTOR</label>
-					<form:input path="director" type="text" class="form-control"
-						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
-					<br> <label for="inputGenero">GENERO</label>
-					<form:input path="genero" type="text" class="form-control"
-						id="inputGenero" placeholder="Terror, thiller, drama" />
-					<br> <label for="inputPlataforma">PLATAFORMA</label>
-					<form:input path="plataforma" type="text" class="form-control"
-						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
-					<br> <label for="inputDate">FECHA DE ESTRENO</label>
-					<form:input path="fechaEstreno" type="date" class="form-control"
-						id="inputPlataforma" />
-					<br>
 
+	<div class="fsv-page-wrapper">
+		<hr>
+		<hr>
+		<div class=container>
+			<section class="director-fechaEstreno mx-2">
 
-				</div>
-				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br>
-					<form:input path="poster" type="file" id="foto" />
-					<br> <br>
-					<div class="marco-poster-registro mx-auto"></div>
-
+				<div class="row">
+					<div class="col-4 mx-2">
+						<p>
+							FECHA DE ESTRENO: <em>22-09-1994</em>
+						</p>
+					</div>
+					<div class="col-2">
+						<p>
+							<strong>TEMPORADAS: <em>10</em></strong>
+						</p>
+					</div>
 				</div>
 
-			</div>
-			<div class="form-group col-md-10 mx-auto">
-				<label for="exampleFormSinopsis">SINOPSIS</label>
-				<form:textarea path="sinopsis" class="form-control"
-					id="exampleFormControlTextarea1" rows="3" />
-			</div>
+			</section>
+			<section class="poster-secction mx-3">
+				<div class="row">
+					<div class="col-6 poster-serie">
+						<img
+							src="https://d2r9epyceweg5n.cloudfront.net/stores/941/707/products/poster-11-dffa7f538e28d8f9f415975111508991-1024-1024.jpeg">
+					</div>
+					<!-- 	<div class="col align-self-center text-center">
+						FRIENDS<br> <img
+							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
+							alt="estrellitas">
 
-			<div class="col text-center mt-2">
-				<form:button type="submit" class="btn btn-primary">REGISTRAR</form:button>
-			</div>
-		</form:form>
+					</div> -->
+					<div class="col-1"></div>
+					<div class="col-4 align-self-start">Tres hombres y tres
+						mujeres j�venes son mejores amigos y viven en el mismo conjunto de
+						apartamentos. Ellos enfrentan la vida y el amor en la ciudad de
+						Nueva York y se involucran en los asuntos personales de los dem�s,
+						donde incluso a veces intercambian novios o novias, lo que algunas
+						veces genera situaciones que las personas comunes quiz�s nunca
+						experimentan, especialmente durante las rupturas.</div>
+				</div>
+			</section>
+			<hr>
+			<section class="tags-secction mx-3">
+				<div class="row">
 
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">COMEDIA</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">DRAMA</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">ROMANCE</a>
+					</div>
+					<div class="col-4 mx-5 text-center border rounded">180 mins</div>
+				</div>
+				<hr>
+			</section>
 
+			<section class="reviews mx-3">
+				<div class="row">
+					<div class="col-12 gutter-right-1 mx-2 rounded">
+						<p class="text-center font-weight-bold">REVIEWS</p>
+					</div>
+				</div>
+			</section>
+		</div>
 	</div>
+
+
+
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
@@ -163,7 +178,6 @@
 	</footer>
 
 
-	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -176,6 +190,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

@@ -3,10 +3,12 @@ package ar.edu.unlam.tallerweb1.delivery;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +40,15 @@ public class ControladorLogin {
 	private ServicioLogin servicioLogin;
 	private ServicioVideojuego servicioVideojuego;
 	private ServicioPelicula servicioPelicula;
+	private ServicioSerie servicioSerie;
+
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula,ServicioSerie servicioSerie){
 		this.servicioLogin = servicioLogin;
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioPelicula = servicioPelicula;
+		this.servicioSerie=servicioSerie;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -109,10 +114,11 @@ public class ControladorLogin {
 
 		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
 		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-		
+		List<Serie> seriesRegistradas = servicioSerie.obtenerTodasLasSeries();
+
 		model.addAttribute("peliculas", peliculasRegistradas);
 		model.addAttribute("videojuegos", videojuegosRegistrados);
-		
+		model.addAttribute("series", seriesRegistradas);
 		return new ModelAndView("home", model);
 	}
 
