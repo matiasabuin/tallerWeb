@@ -50,8 +50,8 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>

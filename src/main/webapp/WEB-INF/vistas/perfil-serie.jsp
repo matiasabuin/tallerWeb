@@ -1,23 +1,24 @@
-<%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Genero"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Registrar videojuego</title>
+<title>Perfil-serie</title>
+
+<!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/estilos.css" />
-<link rel="stylesheet" href="css/registro-videojuego.css" />
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<link rel="stylesheet" href="css/estilos.css" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+
 </head>
 <body>
 	<header>
@@ -71,95 +72,79 @@
 			</div>
 		</nav>
 	</header>
-	<main>
-		<h2>REGISTRO VIDEOJUEGO</h2>
-		<section class="formulario">
-			<form:form action="registrar-videojuego" method="POST"
-				modelAttribute="datosVideojuego">
-				<div class="container">
-					<div class="left">
-						<div class="detalle">
-							<h3>Detalle</h3>
 
-							<form:label path="poster">Portada</form:label>
-							<form:input path="poster" type="file" id="poster" name="poster" />
+	<div class="fsv-page-wrapper">
+		<hr>
+		<hr>
+		<div class=container>
+			<section class="director-fechaEstreno mx-2">
 
-							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
-							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
-
-							<form:label path="duracion">Duracion</form:label>
-							<form:input path="duracion" type="number" id="duracion" min="1"
-								style="width: 30%;" />
-							<span style="display: inline; margin-left: 1em;">Horas</span>
-						</div>
+				<div class="row">
+					<div class="col-4 mx-2">
+						<p>
+							FECHA DE ESTRENO: <em>22-09-1994</em>
+						</p>
 					</div>
-					<div class="right">
-						<div class="campos">
-							<h3>Caracteristicas</h3>
-							<div class="separacion">
-								<div>
-									<form:label path="nombre">Nombre</form:label>
-									<form:input path="nombre" type="text" id="nombre" />
-
-									<form:label path="desarrollador">Desarrollador</form:label>
-									<form:input path="desarrollador" type="text" id="desarrollador" />
-
-									<form:label path="cantidadJugadores">Cantidad de jugadores</form:label>
-									<form:input path="cantidadJugadores" type="number"
-										id="cantidadJugadores" min="1" />
-
-								</div>
-
-								<div style="margin-left: 4em;">
-									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" id="generos" name="generos"
-										multiple="multiple">
-										<c:forEach var="genero" items="${listaGeneros}">
-											<form:option value="${genero.id}" style="color: black;">${genero.descripcion}</form:option>
-										</c:forEach>	
-									</form:select>
-									
-									<form:label path="plataformas">Plataforma</form:label>
-									<form:select path="plataformas" id="plataformas"
-										name="plataformas" multiple="multiple">
-										<c:forEach var="plataforma" items="${listaPlataformas}">
-											<form:option value="${plataforma.id}" style="color: black;">${plataforma.descripcion}</form:option>
-										</c:forEach>
-									</form:select>
-								</div>
-							</div>
-						</div>
-						<div class="campos">
-							<h3>Historia</h3>
-							<form:label path="sinopsis">Sinopsis</form:label>
-							<form:textarea path="sinopsis" id="sinopsis" style="width: 100%;"
-								placeholder="Escribe algo aqui" maxlength="1000" />
-						</div>
-
-						<div class="campos ">
-							<h3>Requisitos del sistema</h3>
-							<div class="requisitos">
-								<div>
-									<form:label path="requisitosMinimos">Mínimo</form:label>
-									<form:textarea path="requisitosMinimos" id="requisitosMinimos"
-										placeholder="Escribe algo aqui (opcional)" />
-								</div>
-								<div>
-									<form:label path="requisitosRecomendados">Recomendado</form:label>
-									<form:textarea path="requisitosRecomendados"
-										id="requisitosRecomendados"
-										placeholder="Escribe algo aqui (opcional)" />
-								</div>
-							</div>
-						</div>
-						<div>
-							<form:button type="submit">Registrar</form:button>
-						</div>
+					<div class="col-2">
+						<p>
+							<strong>TEMPORADAS: <em>10</em></strong>
+						</p>
 					</div>
 				</div>
-			</form:form>
-		</section>
-	</main>
+
+			</section>
+			<section class="poster-secction mx-3">
+				<div class="row">
+					<div class="col-6 poster-serie">
+						<img
+							src="https://d2r9epyceweg5n.cloudfront.net/stores/941/707/products/poster-11-dffa7f538e28d8f9f415975111508991-1024-1024.jpeg">
+					</div>
+					<!-- 	<div class="col align-self-center text-center">
+						FRIENDS<br> <img
+							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
+							alt="estrellitas">
+
+					</div> -->
+					<div class="col-1"></div>
+					<div class="col-4 align-self-start">Tres hombres y tres
+						mujeres jï¿½venes son mejores amigos y viven en el mismo conjunto de
+						apartamentos. Ellos enfrentan la vida y el amor en la ciudad de
+						Nueva York y se involucran en los asuntos personales de los demï¿½s,
+						donde incluso a veces intercambian novios o novias, lo que algunas
+						veces genera situaciones que las personas comunes quizï¿½s nunca
+						experimentan, especialmente durante las rupturas.</div>
+				</div>
+			</section>
+			<hr>
+			<section class="tags-secction mx-3">
+				<div class="row">
+
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">COMEDIA</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">DRAMA</a>
+					</div>
+					<div class="col-2 mx-2 text-center border rounded">
+						<a href="!">ROMANCE</a>
+					</div>
+					<div class="col-4 mx-5 text-center border rounded">180 mins</div>
+				</div>
+				<hr>
+			</section>
+
+			<section class="reviews mx-3">
+				<div class="row">
+					<div class="col-12 gutter-right-1 mx-2 rounded">
+						<p class="text-center font-weight-bold">REVIEWS</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+
+
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">
@@ -191,15 +176,10 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
-	<script
-		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-	<script>
-		new MultiSelectTag('generos')
-	</script>
-	<script>
-		new MultiSelectTag('plataformas')
-	</script>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
