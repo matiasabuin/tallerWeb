@@ -45,7 +45,7 @@ public class ControladorVideojuego {
 		}
 		
 		ModelMap modelo = new ModelMap();
-		Videojuego videojuego = new Videojuego();
+		Videojuego videojuego = new Videojuego();;
 
 		List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
 		List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
@@ -58,13 +58,17 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
-	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
-			return new ModelAndView("redirect:/home");
+	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego,/*@RequestParam("poster") MultipartFile poster,*/ HttpServletRequest request) {
+		
+		if(request.getSession().getAttribute("usuarioActual") != null){
+			
+			Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
+				
+			return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
+				
 		}
-		//@RequestParam("file") MultipartFile file, MultipartHttpServletRequest request) {
+		//@RequestParam("file") MultipartFile file
 
-		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 		/*Path directorioImagenes = Paths.get("src//main//webapp//images");
 		String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 		try {
@@ -79,7 +83,7 @@ public class ControladorVideojuego {
 		
 		videojuego.setImagen(file.getOriginalFilename());*/
 		
-		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
+		return new ModelAndView("redirect:/home");
 
 	}
 

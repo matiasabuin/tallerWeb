@@ -67,6 +67,7 @@ input{
 label{
 	display: block;
 	font-size: 20px;
+	margin: 5px;
 }
 
 input, textarea{
@@ -76,7 +77,7 @@ input, textarea{
 button{
 	margin: 1em 0em;
 	display: block;
-	background-color: #5c7e10;
+	background-color: #ea377a;
 	font-size: 20px;
 	color: white;
 	padding: 10px;

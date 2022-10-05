@@ -4,19 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="ISO-8859-1">
 <title>Inicio</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/estilos.css" />
-
 <link rel="stylesheet" href="css/styles.css">
-
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
@@ -77,14 +75,51 @@
 	</header>
 
 	<div class="boton-container">
-		<div class="boton mx-3">
-			<form action="tiempo-usuario" method="GET" class="time-form">
-				<label for="time" class="time">¿Cuanto tiempo tenes?</label> <input
-					type="time" name="time">
-				<button type="submit">Enviar</button>
+	<div class="boton mx-3">
+		<h2>Disfruta de tu tiempo libre</h2>
+		<p> Encontra el contenido que mejor se adapte a tus tiempos</p>
+		</div>
+		
+		<div class="boton mx-3 form-tiempo">
+			<form action="buscar-recomendaciones" method="GET" class="time-form">
+				<div class="tipos">
+				<label for="horas" class="time">Cantidad de horas</label>
+				<input type="number" name="horas" class="horas">
+				</div>
+				<div class="tipos">
+				<label for="tipo" class="time">Tipo de contenido</label>
+				<input type="radio" name="tipo" value="pelicula">
+				<label for="pelicula">Peliculas</label><br>
+				<input type="radio" name="tipo" value="serie">
+				<label for="serie">Series</label><br>
+				<input type="radio" name="tipo" value="videojuego">
+				<label for="videojuego">Videojuegos</label><br>
+				<input type="radio" name="tipo" value="todos">
+				<label for="todos">Todos</label><br>
+				</div>
+				<button type="submit" class="empezar">¡Empezar!</button>
 			</form>
 		</div>
+		
 	</div>
+	
+	<c:if test="${recomendaciones != null}">
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Recomendaciones</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${recomendaciones}" var="recomendado">
+					<td><a href="videojuego?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
+					</a>
+						<p class="titulo">${recomendado.nombre}</p></td>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
 
 	<div class="container">
 		<div class="recomendaciones-container">
