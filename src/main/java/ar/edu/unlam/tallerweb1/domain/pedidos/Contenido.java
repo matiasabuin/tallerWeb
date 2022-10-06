@@ -24,7 +24,6 @@ public class Contenido {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
-	
 
 	public Integer getId() {
 		return id;

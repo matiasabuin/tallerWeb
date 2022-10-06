@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;

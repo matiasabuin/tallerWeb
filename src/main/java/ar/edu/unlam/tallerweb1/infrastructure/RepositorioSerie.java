@@ -1,12 +1,9 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 
-
 public interface RepositorioSerie {
-	
 	
 	void guardar(Serie serie);
     Serie buscar(Integer id);

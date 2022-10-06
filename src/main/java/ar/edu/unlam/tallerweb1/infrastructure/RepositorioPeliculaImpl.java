@@ -1,17 +1,11 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
-
 import java.util.List;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 
 @Repository("repositorioPelicula")
 public class RepositorioPeliculaImpl implements RepositorioPelicula {

@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
-
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
