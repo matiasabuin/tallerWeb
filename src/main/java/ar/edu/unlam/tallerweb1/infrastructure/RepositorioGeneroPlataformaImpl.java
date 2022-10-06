@@ -2,12 +2,15 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 
 @Repository("repositorioGeneroPlataforma")
 public class RepositorioGeneroPlataformaImpl implements RepositorioGeneroPlataforma {
@@ -49,6 +52,13 @@ public class RepositorioGeneroPlataformaImpl implements RepositorioGeneroPlatafo
 
 	public List<Plataforma> obtenerPlataformas() {
 		return (List<Plataforma>) sessionFactory.getCurrentSession().createCriteria(Plataforma.class).list();
+	}
+
+	public Genero getByDesc(String descripcion) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Genero) session.createCriteria(Genero.class)
+				.add(Restrictions.eq("descripcion", descripcion))
+				.uniqueResult();
 	}
 
 }

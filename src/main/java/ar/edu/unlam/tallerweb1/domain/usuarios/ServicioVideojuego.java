@@ -9,4 +9,5 @@ public interface ServicioVideojuego {
 	Videojuego registrarVideojuego(Videojuego datosVideojuego);
 	List<Videojuego> obtenerTodosLosVideojuegos();
 	List<Videojuego> obtenerVideojuegoPorTiempo(Integer horas);
+	void actualizarVideojuego(Videojuego datosVideojuego);
 }
