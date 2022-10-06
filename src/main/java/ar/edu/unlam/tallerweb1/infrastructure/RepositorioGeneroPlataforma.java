@@ -15,4 +15,6 @@ public interface RepositorioGeneroPlataforma {
     
 	List<Genero> obtenerGeneros();
 	List<Plataforma> obtenerPlataformas();
+	
+	Genero getByDesc(String descripcion);
 }

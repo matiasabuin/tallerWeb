@@ -51,8 +51,8 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>
@@ -112,13 +112,13 @@
 
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" id="generos" 
+									<form:select path="generos" id="generos" name="generos"
 										multiple="multiple">
 										<c:forEach var="genero" items="${listaGeneros}">
-											<form:option value="${genero.id}" style="color: black;">${genero.descripcion}</form:option>
-										</c:forEach>	
+											<form:option value="${genero.descripcion}" style="color: black;">${genero.descripcion}</form:option>
+										</c:forEach>
 									</form:select>
-									
+
 									<form:label path="plataformas">Plataforma</form:label>
 									<form:select path="plataformas" id="plataformas"
 										name="plataformas" multiple="multiple">
@@ -199,7 +199,7 @@
 	<script>
 		new MultiSelectTag('plataformas')
 	</script>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script

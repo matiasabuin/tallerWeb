@@ -52,6 +52,11 @@ body {
 	/*  margin-right:50px;
      */}
      
+.poster-serie img{
+height:350px;
+width: 100%;
+}
+
 .poster-secction .poster-peli img{
 	height:350px;
 	/*  margin-right:50px;
@@ -221,4 +226,9 @@ outline:none;
 .portada img{
 	 width: 200px;
     height: 300px;
+}
+
+.poster-pelicula img{
+    height: 300px;
+	
 }

@@ -52,7 +52,7 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
+									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
 									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
@@ -96,8 +96,7 @@
 			<section class="poster-secction mx-3">
 				<div class="row">
 					<div class="col-6 poster-serie">
-						<img
-							src="https://d2r9epyceweg5n.cloudfront.net/stores/941/707/products/poster-11-dffa7f538e28d8f9f415975111508991-1024-1024.jpeg">
+						<img src="images/${datosSerie.poster}">
 					</div>
 					<!-- 	<div class="col align-self-center text-center">
 						FRIENDS<br> <img

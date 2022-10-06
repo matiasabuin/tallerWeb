@@ -53,8 +53,8 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>
@@ -114,9 +114,26 @@
 			<h1>Peliculas</h1>
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculas}" var="pelicula">
-					<td><a href="perfil-fvs?id=${pelicula.id}"> <img
+					<td><a href="perfil-pelicula?id=${pelicula.id}"> <img
 							src="images/${pelicula.poster}">						
 					<p class="titulo">${pelicula.nombre}</p>
+					</a>
+					</td>
+				</c:forEach>
+			</table>
+
+		</div>
+	</div>
+	
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Series</h1>
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${series}" var="serie">
+					<td><a href="perfil-serie?id=${serie.id}"> <img
+							src="images/${serie.poster}">						
+					<p class="titulo">${serie.nombre}</p>
 					</a>
 					</td>
 				</c:forEach>

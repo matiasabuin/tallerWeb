@@ -1,9 +1,6 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,7 +22,7 @@ public class ControladorPeliculas {
 		this.servicioPelicula = servicioPelicula;
 	}
 
-	@RequestMapping(path = "/registro-peli-serie")
+	@RequestMapping(path = "/registro-pelicula")
 	public ModelAndView iraRegistroPeliSerie( HttpServletRequest request) {
 		if(request.getSession().getAttribute("usuarioActual") == null){
 			return new ModelAndView("redirect:/home");
@@ -33,7 +30,7 @@ public class ControladorPeliculas {
 		ModelMap modelo = new ModelMap();
 		Pelicula pelicula = new Pelicula();
 		modelo.put("datosPelicula", pelicula);
-		return new ModelAndView("registro-peli-serie", modelo);
+		return new ModelAndView("registro-pelicula", modelo);
 	}
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
@@ -45,15 +42,15 @@ public class ControladorPeliculas {
 
 		Pelicula pelicula = this.servicioPelicula.registrarPelicula(datosPelicula);
 
-		return new ModelAndView("redirect:/perfil-fvs?id=" + pelicula.getId());
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 	}
 
-	@RequestMapping("/perfil-fvs")
+	@RequestMapping("/perfil-pelicula")
 	public ModelAndView VerPerfilPeli(@RequestParam("id") Integer id) {
 
 		ModelMap modelo = new ModelMap();
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
 		modelo.addAttribute("datosPelicula", pelicula);
-		return new ModelAndView("perfil-fvs", modelo);
+		return new ModelAndView("perfil-pelicula", modelo);
 	}
 }

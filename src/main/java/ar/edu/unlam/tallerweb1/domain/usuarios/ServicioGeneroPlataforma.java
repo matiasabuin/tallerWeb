@@ -13,4 +13,6 @@ public interface ServicioGeneroPlataforma {
 	
 	List<Plataforma> obtenerPlataformas();
 
+	Genero getByDesc(String descripcion);
+
 }

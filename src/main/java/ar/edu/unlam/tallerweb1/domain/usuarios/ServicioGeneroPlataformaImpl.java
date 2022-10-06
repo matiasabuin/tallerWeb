@@ -36,4 +36,9 @@ public class ServicioGeneroPlataformaImpl implements ServicioGeneroPlataforma{
 		servicioGeneroPlataformaDao.guardarGenero(genero);
 	}
 
+	@Override
+	public Genero getByDesc(String descripcion) {
+		return servicioGeneroPlataformaDao.getByDesc(descripcion);
+	}
+
 }

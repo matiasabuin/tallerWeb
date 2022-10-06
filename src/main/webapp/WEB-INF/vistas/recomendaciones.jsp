@@ -53,8 +53,8 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-peli-serie">Pelicula</a>
-									<a class="dropdown-item" href="registro-peli-serie">Serie</a> <a
+									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
+									<a class="dropdown-item" href="registro-serie">Serie</a> <a
 										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 								</div></li>
 						</c:if>
@@ -100,7 +100,7 @@
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
-					<td><a href="videojuego?id=${recomendado.id}"> <img
+					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
 					</a>
 						<p class="titulo">${recomendado.nombre}</p></td>

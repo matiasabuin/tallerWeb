@@ -1,5 +1,4 @@
 package ar.edu.unlam.tallerweb1.delivery;
-
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +59,7 @@ public class ControladorVideojuego {
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego,
 			/*@RequestParam("poster") MultipartFile poster,*/ HttpServletRequest request) {
-		
+
 		if(request.getSession().getAttribute("usuarioActual") != null){
 			
 			Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
