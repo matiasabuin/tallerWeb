@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Editar Perfil</title>
+<title>Editar Plan</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -21,6 +21,7 @@
 </head>
 
 <body>
+
 <header>
 	<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
@@ -79,42 +80,34 @@
 	</nav>
 </header>
 
-	<div class="usuario-container">
 
-		<div class="formulario-registro rounded login mx-auto">
-			<form:form action="perfil-usuario" method="POST"
-				modelAttribute="datosPerfil">
+	<div class="container">
+		<div class="d-flex justify-content-around">
 
-				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+			<div class="usuario-container">
+			Plan Free
+			
+				<form action="adquirir-free" method="POST">
+					<button id="btn-registrarme"
+						class="btn btn-lg btn-primary btn-block" Type="Submit">
+						Adquirir</button>
+				</form>
+			</div>
 
+			<div class="usuario-container">
+			Plan Premium
+			
+				<form action="adquirir-premium" method="POST">
+					<button id="btn-registrarme"
+						class="btn btn-lg btn-primary btn-block" Type="Submit">
+						Adquirir</button>
+				</form>
+				
+			</div>
 
-
-				<div class="form-group foto-perfil">
-					<img src="images/${usuarioActual.foto}">
-				</div>
-
-				<div class="form-group">
-					<form:input path="foto" type="file" id="foto" />
-				</div>
-
-				<div class="form-group">
-					<form:input path="nombre" id="nombre" class="form-control"
-						placeholder="Nombre de usuario" />
-				</div>
-				<div class="form-group">
-					<form:input path="biografia" id="biografia" class="form-control"
-						placeholder="Biografia" />
-				</div>
-
-				<button id="btn-registrarme"
-					class="btn btn-lg btn-primary btn-block" Type="Submit">
-					Guardar</button>
-
-
-			</form:form>
 		</div>
 	</div>
-
+	
 	<footer class="footer">
 		<div class="container">
 			<div class="column1">

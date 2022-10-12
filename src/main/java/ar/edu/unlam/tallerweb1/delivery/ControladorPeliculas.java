@@ -23,8 +23,8 @@ public class ControladorPeliculas {
 	}
 
 	@RequestMapping(path = "/registro-pelicula")
-	public ModelAndView iraRegistroPeliSerie( HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
+		if(request.getSession().getAttribute("planActual") != "Premium"){
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();

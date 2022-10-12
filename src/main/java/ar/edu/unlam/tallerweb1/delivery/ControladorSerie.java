@@ -25,7 +25,7 @@ public class ControladorSerie{
 	}
 	@RequestMapping(path = "/registro-serie")
 	public ModelAndView iraRegistroSerie( HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if(request.getSession().getAttribute("planActual") != "Premium"){
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();

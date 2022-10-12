@@ -25,13 +25,19 @@ public class ControladorPerfil {
 	}
 
 	@RequestMapping("/perfil")
-	public ModelAndView irAPerfil() {
+	public ModelAndView irAPerfil(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView("perfil-usuario", modelo);
 	}
 	
 	@RequestMapping("/editar-perfil")
 	public ModelAndView editarPerfil(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
 		ModelMap modelo = new ModelMap();
 		modelo.put("datosPerfil", request.getSession().getAttribute("usuarioActual"));
 		return new ModelAndView("editar-perfil", modelo);
@@ -40,7 +46,7 @@ public class ControladorPerfil {
 	@RequestMapping(path = "/perfil-usuario", method = RequestMethod.POST)
 	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil,
 			HttpServletRequest request) {
-		
+
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
@@ -51,7 +57,38 @@ public class ControladorPerfil {
 		
 		servicioLogin.editarPerfil(datosPerfil);
 		
-		return irAPerfil();
+		return irAPerfil(request);
+	}
+	
+	@RequestMapping("/editar-plan")
+	public ModelAndView irAPlanes(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView("editar-plan", modelo);
+	}
+	
+	@RequestMapping(path = "/adquirir-premium", method = RequestMethod.POST)
+	public ModelAndView adquirirPremium(HttpServletRequest request) {
+		
+		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		usuarioBuscado.setPlan("Premium");
+		
+		return irAPerfil(request);
+		
+	}
+	
+	@RequestMapping(path = "/adquirir-free", method = RequestMethod.POST)
+	public ModelAndView adquirirFree(HttpServletRequest request) {
+		
+		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		usuarioBuscado.setPlan("Free");
+		
+		return irAPerfil(request);
+		
 	}
 	
 }

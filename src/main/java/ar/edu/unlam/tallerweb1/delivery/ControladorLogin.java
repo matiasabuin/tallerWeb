@@ -67,12 +67,7 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
-
-			request.getSession().getAttribute("usuarioActual");
-			
-			// model.addAttribute("usuarioActual", usuarioBuscado);
-
-			// request.getSession().setAttribute("usuarios", servicioLogin.obtenerTodosLosUsarios());
+			request.getSession().setAttribute("planActual", usuarioBuscado.getPlan());
 
 			return new ModelAndView("redirect:/home");
 		} else {

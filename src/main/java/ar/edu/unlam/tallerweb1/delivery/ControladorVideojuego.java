@@ -38,8 +38,7 @@ public class ControladorVideojuego {
 
 	@RequestMapping("/registro-videojuego")
 	public ModelAndView iraRegistrarVideojuego(HttpServletRequest request) {
-		
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if(request.getSession().getAttribute("planActual") != "Premium"){
 			return new ModelAndView("redirect:/home");
 		}
 		
