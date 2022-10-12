@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Registrar contenido</title>
+<title>Registrar pelicula</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"

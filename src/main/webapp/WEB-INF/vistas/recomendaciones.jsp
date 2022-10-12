@@ -79,7 +79,7 @@
 	</nav>
 </header>
 	
-		<c:if test="${videojuegosRecomendados != null}">
+	<c:if test="${videojuegosRecomendados != null}">
 		<div class="container">
 		<div class="recomendaciones-container">
 
@@ -105,6 +105,24 @@
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
+					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
+					</a>
+						<p class="titulo">${recomendado.nombre}</p></td>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
+	
+	<c:if test="${seriesRecomendadas != null}">
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Series Recomendadas</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${seriesRecomendadas}" var="recomendado">
 					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
 					</a>

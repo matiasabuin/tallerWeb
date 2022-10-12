@@ -25,7 +25,7 @@ public class ControladorSerie{
 	}
 	@RequestMapping(path = "/registro-serie")
 	public ModelAndView iraRegistroSerie( HttpServletRequest request) {
-		if(request.getSession().getAttribute("planActual") != "Premium"){
+		if(request.getSession().getAttribute("usuarioActual") == null){
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
@@ -35,11 +35,9 @@ public class ControladorSerie{
 	}
 	@RequestMapping(path = "/registrar-serie", method = RequestMethod.POST)
 	public ModelAndView registrarSerie(@ModelAttribute("datosSerie") Serie datosSerie, HttpServletRequest request) {
-		
 		if(request.getSession().getAttribute("usuarioActual") == null){
 			return new ModelAndView("redirect:/home");
 		}
-
 		Serie serie = this.servicioSerie.registrarSerie(datosSerie);
 
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
@@ -52,5 +50,7 @@ public class ControladorSerie{
 		modelo.addAttribute("datosSerie", serie);
 		return new ModelAndView("perfil-serie", modelo);
 	}
+	
+	
 	
 }

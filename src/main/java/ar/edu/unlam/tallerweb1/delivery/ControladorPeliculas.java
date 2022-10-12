@@ -24,7 +24,7 @@ public class ControladorPeliculas {
 
 	@RequestMapping(path = "/registro-pelicula")
 	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
-		if(request.getSession().getAttribute("planActual") != "Premium"){
+		if(request.getSession().getAttribute("usuarioActual") == null){
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
@@ -35,7 +35,6 @@ public class ControladorPeliculas {
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
-		
 		if(request.getSession().getAttribute("usuarioActual") == null){
 			return new ModelAndView("redirect:/home");
 		}

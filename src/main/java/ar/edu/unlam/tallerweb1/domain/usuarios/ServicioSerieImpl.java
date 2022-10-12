@@ -14,30 +14,35 @@ import ar.edu.unlam.tallerweb1.infrastructure.RepositorioSerie;
 @Transactional
 public class ServicioSerieImpl implements ServicioSerie {
 	
-	private RepositorioSerie repositorioSerieDao;
+	private RepositorioSerie servicioSerieDao;
 	
 	@Autowired
 	public ServicioSerieImpl(RepositorioSerie reposotorioSerieDao) {
-		this.repositorioSerieDao=reposotorioSerieDao;
+		this.servicioSerieDao=reposotorioSerieDao;
 		
 	}
 
 	@Override
 	public Serie consultarSerie(Integer id) {
 		
-	return	this.repositorioSerieDao.buscar(id);
+	return	this.servicioSerieDao.buscar(id);
 	
 	}
 
 	@Override
 	public Serie registrarSerie(Serie datosSerie) {
-		this.repositorioSerieDao.guardar(datosSerie);
+		this.servicioSerieDao.guardar(datosSerie);
 		return datosSerie;
 	}
 
 	@Override
 	public List<Serie> obtenerTodasLasSeries() {
-		return this.repositorioSerieDao.obtenerTodasLasSeries();
+		return this.servicioSerieDao.obtenerTodasLasSeries();
+	}
+
+	@Override
+	public List<Serie> obtenerSeriePorTiempo(Integer horas) {
+		return servicioSerieDao.obtenerLasSeriesPorTiempo(horas);
 	}
 	
 

@@ -9,4 +9,5 @@ public interface ServicioSerie {
 	Serie consultarSerie(Integer id);
 	Serie registrarSerie(Serie datosSerie);
 	List<Serie> obtenerTodasLasSeries();
+	List<Serie> obtenerSeriePorTiempo(Integer horas);
 }

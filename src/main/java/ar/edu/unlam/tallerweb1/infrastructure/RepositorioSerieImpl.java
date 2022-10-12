@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 
 @Repository("repositorioSerie")
@@ -38,6 +39,14 @@ public class RepositorioSerieImpl implements RepositorioSerie {
 	     return sessionFactory.getCurrentSession()
 	                .createCriteria(Serie.class)
 	                .list();
+	}
+
+	@Override
+	public List<Serie> obtenerLasSeriesPorTiempo(Integer horas) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Serie.class)
+				.add(Restrictions.eq("duracion", horas))
+				.list();
 	}
 	
 	
