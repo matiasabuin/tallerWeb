@@ -8,17 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 public class Genero {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String descripcion;
 	
-    @JsonBackReference
     @ManyToMany(mappedBy="generos")
     private List<Videojuego> videojuegos = new ArrayList<Videojuego>();
     

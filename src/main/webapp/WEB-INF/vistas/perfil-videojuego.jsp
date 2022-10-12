@@ -36,7 +36,7 @@
 						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
 						</a></li>
 
-						<c:if test="${usuarioActual.nombre != null}">
+						<c:if test="${usuarioActual != null}">
 							<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -62,7 +62,7 @@
 						<input type="text" placeholder="Buscar contenido" class="search">
 					</form>
 
-					<c:if test="${usuarioActual.nombre == null}">
+					<c:if test="${usuarioActual == null}">
 						<a href="registro-usuario" class="nav-link">Register</a>
 						<a href="login" class="nav-link">Log In</a>
 					</c:if>
@@ -83,25 +83,24 @@
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
 				<p>${datosVideojuego.fechaEstreno}</p>
-				<strong>Duración</strong>
-				<p>${datosVideojuego.duracion} Horas</p>
-				<strong>Desarrollador</strong>
-				<p>${datosVideojuego.desarrollador}</p>
 			</div>
-			<div style="width: 25%;">
+			<div>
 				<strong>Genero</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong> 
-				<strong>Modalidad</strong>
+				<strong>Plataforma</strong> <strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
-					<p>${datosVideojuego.cantidadJugadores} jugadores</p>
+					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
 				</c:if>
 				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
 					<span>Un jugador</span>
 				</c:if>
+				<strong>Desarrollador</strong>
+				<p>${datosVideojuego.desarrollador}</p>
+				<strong>Duración</strong>
+				<p>${datosVideojuego.duracion}Horas</p>
 			</div>
 		</div>
 		<c:if
@@ -122,6 +121,32 @@
 		</c:if>
 		<div class="reviews">
 			<h3>Reviews</h3>
+			<c:if test="${usuarioActual != null}">
+				<form:form action="registrarReviewVideojuego" method="POST"
+					modelAttribute="datosReview">
+					<form:textarea path="descripcion"
+						placeholder="Escribe tu reseña sobre el videojuego" />
+					<form:input path="videojuego.id" type="hidden"
+						value="${datosVideojuego.id}" />
+					<form:input path="usuario.id" type="hidden"
+						value="${usuarioActual.id}" />
+					<form:button type="submit">Enviar</form:button>
+				</form:form>
+			</c:if>
+
+			<c:if test="${listaReviews != null}">
+				<c:forEach var="review" items="${listaReviews}">
+					<div class="comentario">
+						<img src="images/${review.usuario.foto}">
+						<p>${review.descripcion}</p>
+					</div>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${listaReviews[0] == null}">
+				<h5>No hay reviews por ahora</h5>
+			</c:if>
+
 		</div>
 	</main>
 	<footer class="footer">
@@ -155,7 +180,7 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script

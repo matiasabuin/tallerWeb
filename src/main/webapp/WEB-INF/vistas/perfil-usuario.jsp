@@ -12,8 +12,8 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
+<link rel="stylesheet" href="css/perfilUsuario.css">
 <link rel="stylesheet" href="css/estilos.css" />
-
 <link rel="stylesheet" href="css/styles.css">
 
 <link rel="stylesheet"
@@ -82,7 +82,7 @@
 				<img src="images/${usuarioActual.foto}">
 
 				<div class="biografia">
-					<h4>${usuarioActual.nombre}</h4>
+					<h2>${usuarioActual.nombre}</h2>
 					<p>${usuarioActual.biografia}</p>
 				</div>
 
@@ -99,7 +99,7 @@
 
 			<h1>Actividad reciente</h1>
 
-<%-- 			<table class="table-responsive table-borderless">
+			<%-- 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
 							src="images/${videojuego.poster}"><br>
@@ -115,22 +115,31 @@
 	<div class="container">
 
 		<div class="usuario-container">
+			<h3 style="text-align: center;">Reviews recientes</h3>
+			<div>
+				<c:forEach var="review" items="${usuarioActual.reviews}">
+					<c:if test="${review.pelicula != null}">
+						<div class="comentario">
+							<img src="images/${review.pelicula.poster}">
 
-			<h3>Reviews recientes</h3>
-			<div class="flex-container">
+							<div class="descripcion">
+								<h4>${review.pelicula.nombre}</h4>
+								<p>${review.descripcion}</p>
+							</div>
+						</div>
+					</c:if>
+					
+					<c:if test="${review.videojuego != null}">
+						<div class="comentario">
+							<img src="images/${review.videojuego.poster}">
 
-				<img
-					src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4tt2.jpg">
-
-				<div class="biografia">
-					<h4>Stray</h4>
-					<br>
-					<p>Stray ha llamado la atención por mostrarnos a un gato de
-						protagonista, pero, más allá de su ternura, es una historia
-						convincente de cómo puede ser una sociedad sin humanos en el
-						futuro. El pasado 19 de julio llegó a mis manos uno de los juegos
-						más esperados, por lo menos para mí, de este 2022.</p>
-				</div>
+							<div class="descripcion">
+								<h4>${review.videojuego.nombre}</h4>
+								<p>${review.descripcion}</p>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

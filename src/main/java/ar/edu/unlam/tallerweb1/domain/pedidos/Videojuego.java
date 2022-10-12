@@ -1,12 +1,17 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Videojuego extends Contenido{
@@ -19,13 +24,18 @@ public class Videojuego extends Contenido{
 	@Column(length = 5000)
 	private String requisitosRecomendados;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "videojuego_genero", joinColumns = @JoinColumn(name = "videojuego_id"), inverseJoinColumns = @JoinColumn(name = "genero_id"))
-	private List<Genero> generos;
+	private List<Genero> generos = new ArrayList<>();
 	
 	@ManyToMany()
-	@JoinTable(name = "videojuego_plataforma", joinColumns = {@JoinColumn(name="videojuego_id")}, inverseJoinColumns = {@JoinColumn(name="plataforma_id")})
+	@JoinTable(name = "videojuego_plataforma", joinColumns = @JoinColumn(name="videojuego_id"), inverseJoinColumns = @JoinColumn(name="plataforma_id"))
 	private List<Plataforma> plataformas;
+	
+	@OneToMany(mappedBy = "videojuego")
+	private List<Review> reviews = new ArrayList<Review>();
+	
 	
 	public String getRequisitosMinimos() {
 		return requisitosMinimos;
@@ -63,6 +73,12 @@ public class Videojuego extends Contenido{
 	}
 	public void setPlataformas(List<Plataforma> plataformas) {
 		this.plataformas = plataformas;
+	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 }

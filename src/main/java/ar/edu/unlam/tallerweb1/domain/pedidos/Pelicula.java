@@ -1,6 +1,9 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pelicula extends Contenido {
@@ -9,6 +12,15 @@ public class Pelicula extends Contenido {
 	private String genero;
 	private String plataforma;
 	
+	@OneToMany(mappedBy = "pelicula")
+	private List<Review> reviews = new ArrayList<Review>();
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 	public String getDirector() {
 		return director;
 	}

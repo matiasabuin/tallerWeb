@@ -1,6 +1,6 @@
 <%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Genero"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,6 @@
 </head>
 <body>
 	<header>
-
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -112,20 +111,10 @@
 
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" id="generos" name="generos"
-										multiple="multiple">
-										<c:forEach var="genero" items="${listaGeneros}">
-											<form:option value="${genero.descripcion}" style="color: black;">${genero.descripcion}</form:option>
-										</c:forEach>
-									</form:select>
+									<form:select path="generos" multiple="multiple" items="${listaGeneros}" itemLabel="descripcion" itemValue="id"/>
 
 									<form:label path="plataformas">Plataforma</form:label>
-									<form:select path="plataformas" id="plataformas"
-										name="plataformas" multiple="multiple">
-										<c:forEach var="plataforma" items="${listaPlataformas}">
-											<form:option value="${plataforma.id}" style="color: black;">${plataforma.descripcion}</form:option>
-										</c:forEach>
-									</form:select>
+									<form:select path="plataformas"  multiple="multiple" items="${listaPlataformas}" itemLabel="descripcion" itemValue="id"/>
 								</div>
 							</div>
 						</div>

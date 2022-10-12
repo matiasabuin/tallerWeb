@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
+import javax.persistence.OneToMany;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
@@ -24,6 +27,7 @@ public class Contenido {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
+
 
 	public Integer getId() {
 		return id;
@@ -61,5 +65,4 @@ public class Contenido {
 	public void setFechaEstreno(LocalDate fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
 	}
-
 }
