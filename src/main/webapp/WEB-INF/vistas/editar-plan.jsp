@@ -82,29 +82,47 @@
 
 
 	<div class="container">
-		<div class="d-flex justify-content-around">
+		<div class="d-flex justify-content-between">
 
-			<div class="usuario-container">
-			Plan Free
+			<div class="recomendaciones-container">
+			<h1>Plan Free</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+			id est laborum.</p>
 			
-				<form action="adquirir-free" method="POST">
-					<button id="btn-registrarme"
-						class="btn btn-lg btn-primary btn-block" Type="Submit">
-						Adquirir</button>
-				</form>
+				<c:if test="${usuarioActual.plan == 'Premium'}">
+					<form action="adquirir-free" method="POST">
+						<button id="btn-registrarme"
+							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							Adquirir
+						</button>
+					</form>
+				</c:if>	
 			</div>
 
-			<div class="usuario-container">
-			Plan Premium
+			<div class="recomendaciones-container">
+			<h1>Plan Premium</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+			id est laborum.</p>
 			
-				<form action="adquirir-premium" method="POST">
-					<button id="btn-registrarme"
-						class="btn btn-lg btn-primary btn-block" Type="Submit">
-						Adquirir</button>
-				</form>
-				
+				<c:if test="${usuarioActual.plan == 'Free'}">
+					<form action="adquirir-premium" method="POST">
+						<button id="btn-registrarme"
+							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							Adquirir
+						</button>
+					</form>
+				</c:if>	
 			</div>
-
 		</div>
 	</div>
 	
