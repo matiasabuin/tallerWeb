@@ -21,7 +21,6 @@
 </head>
 <body>
 	<header>
-
 		<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -66,7 +65,6 @@
 						<a href="registro-usuario" class="nav-link">Register</a>
 						<a href="login" class="nav-link">Log In</a>
 					</c:if>
-
 				</div>
 			</div>
 		</nav>
@@ -125,11 +123,11 @@
 				<form:form action="registrarReviewVideojuego" method="POST"
 					modelAttribute="datosReview">
 					<form:textarea path="descripcion"
-						placeholder="Escribe tu reseña sobre el videojuego" />
+						placeholder="Escribe tu reseña sobre el videojuego"/>
 					<form:input path="videojuego.id" type="hidden"
-						value="${datosVideojuego.id}" />
+						value="${datosVideojuego.id}"/>
 					<form:input path="usuario.id" type="hidden"
-						value="${usuarioActual.id}" />
+						value="${usuarioActual.id}"/>
 					<form:button type="submit">Enviar</form:button>
 				</form:form>
 			</c:if>

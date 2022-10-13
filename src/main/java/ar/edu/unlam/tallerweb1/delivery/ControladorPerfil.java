@@ -20,7 +20,7 @@ public class ControladorPerfil {
 	private ServicioLogin servicioLogin;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
+	public ControladorPerfil(ServicioLogin servicioLogin){
 		this.servicioLogin = servicioLogin;
 	}
 
@@ -51,7 +51,7 @@ public class ControladorPerfil {
 		
 		servicioLogin.editarPerfil(datosPerfil);
 		
-		return irAPerfil();
+		return new ModelAndView("redirect:/perfil");
 	}
 	
 }

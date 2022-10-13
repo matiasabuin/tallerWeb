@@ -82,8 +82,6 @@
 
 				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
 
-
-
 				<div class="form-group foto-perfil">
 					<img src="images/${usuarioActual.foto}">
 				</div>
@@ -104,7 +102,6 @@
 				<button id="btn-registrarme"
 					class="btn btn-lg btn-primary btn-block" Type="Submit">
 					Guardar</button>
-
 
 			</form:form>
 		</div>

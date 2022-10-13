@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
@@ -35,7 +36,12 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping("/videojuego")
-	public ModelAndView iraVideojuego(@RequestParam("id") Integer id) {
+	public ModelAndView iraVideojuego(@RequestParam("id") Integer id, HttpServletRequest request) {
+		
+//		if (request.getSession().getAttribute("usuarioActual") != null) {
+//			Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+//			usuarioBuscado.getHistorial().add(servicioVideojuego.consultarVideojuego(id));
+//		}
 		
 		ModelMap modelo = new ModelMap();
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
