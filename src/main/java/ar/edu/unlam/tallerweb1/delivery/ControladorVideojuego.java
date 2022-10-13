@@ -29,7 +29,8 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping("/videojuego")
-	public ModelAndView iraVideojuego(@RequestParam("id") Integer id) {
+	public ModelAndView iraVideojuego(@RequestParam("id") Integer id, HttpServletRequest request) {
+		
 		ModelMap modelo = new ModelMap();
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
 		modelo.addAttribute("datosVideojuego", videojuego);

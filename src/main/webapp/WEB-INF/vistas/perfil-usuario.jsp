@@ -109,14 +109,14 @@
 
 			<h1>Actividad reciente</h1>
 
-<%-- 			<table class="table-responsive table-borderless">
-				<c:forEach items="${videojuegos}" var="videojuego">
+ 			<table class="table-responsive table-borderless">
+				<c:forEach items="${historial}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
 							src="images/${videojuego.poster}"><br>
 							${videojuego.nombre}
 					</a></td>
 				</c:forEach>
-			</table> --%>
+			</table>
 
 		</div>
 	</div>
