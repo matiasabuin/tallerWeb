@@ -16,70 +16,14 @@
 
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/planes.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
 
-<header>
-	<nav class="navbar navbar-expand-lg bg-primary">
-			<div class="container">
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-
-					<li class="nav-item mx-2">
-						<a class="nav-link" href="home">Inicio</a>
-					</li>
-
-					<c:if test="${usuarioActual.nombre != null}">
-						<li class="nav-item mx-2 dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> 
-								<a class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
-							</div>
-						</li>
-					</c:if>
-								
-					<c:if test="${usuarioActual.plan == 'Premium'}">
-						<li class="nav-item mx-2 dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> Registrar </a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
-								<a class="dropdown-item" href="registro-serie">Serie</a> 
-								<a class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-							</div>
-						</li>
-					</c:if>		
-						
-				</ul>
-
-				<form action="buscar" method="GET">
-					<input type="text" placeholder="Buscar contenido" class="search">
-				</form>
-
-				<c:if test="${usuarioActual.nombre == null}">
-					<a href="registro-usuario" class="nav-link">Register</a>
-					<a href="login" class="nav-link">Log In</a>
-				</c:if>
-
-			</div>
-		</div>
-	</nav>
-</header>
-
+<jsp:include page="header.jsp" />
 
 	<div class="container">
 		<div class="d-flex justify-content-between">
@@ -94,15 +38,26 @@
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
 			
-				<c:if test="${usuarioActual.plan == 'Premium'}">
-					<form action="adquirir-free" method="POST">
+			<c:choose>
+    			<c:when test="${usuarioActual.plan == 'Premium'}">
+		        	<form action="adquirir-free" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block" Type="Submit">
 							Adquirir
 						</button>
 					</form>
-				</c:if>	
+    			</c:when> 	   
+    			<c:otherwise>
+			         <button 
+						class="btn-lg btn-secondary btn-block">
+						Plan Actual
+					</button>
+			    </c:otherwise>
+			</c:choose>
+			
 			</div>
+			
+
 
 			<div class="recomendaciones-container">
 			<h1>Plan Premium</h1>
@@ -114,49 +69,29 @@
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
 			
-				<c:if test="${usuarioActual.plan == 'Free'}">
+			
+			<c:choose>
+    			<c:when test="${usuarioActual.plan == 'Free'}">
 					<form action="adquirir-premium" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block" Type="Submit">
 							Adquirir
 						</button>
 					</form>
-				</c:if>	
+    			</c:when> 	   
+    			<c:otherwise>
+    				<button 
+						class="btn-lg btn-secondary btn-block">
+						Plan Actual
+					</button>
+			    </c:otherwise>
+			</c:choose>
+				
 			</div>
 		</div>
 	</div>
 	
-	<footer class="footer">
-		<div class="container">
-			<div class="column1">
-				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
-					Sociales</h4>
-				<div class="social">
-					<div class="item mx-2">
-						<a href="https://www.facebook.com/" target="_blank"> <i
-							class="fa fa-facebook-square" aria-hidden="true"></i>
-						</a>
-					</div>
-					<div class="item mx-2">
-						<a href="https://www.instagram.com/" target="_blank"> <i
-							class="fa fa-instagram" aria-hidden="true"></i>
-						</a>
-					</div>
-					<div class="item">
-						<a href="https://www.twitter.com/" target="_blank"> <i
-							class="fa fa-twitter-square" aria-hidden="true"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!-- Copyright -->
-		<div class="footer-copyright text-center py-3">
-			<a class="enlaceDeCopy" href="/">PaginaGenericaDeTaller.com</a>
-		</div>
-		<!-- Copyright -->
-	</footer>
+<jsp:include page="footer.jsp" />
 
 	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->

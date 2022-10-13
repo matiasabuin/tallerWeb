@@ -57,35 +57,4 @@ public class ControladorPerfil {
 		return irAPerfil(request);
 	}
 	
-	@RequestMapping("/editar-plan")
-	public ModelAndView irAPlanes(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
-			return new ModelAndView("redirect:/home");
-		}
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView("editar-plan", modelo);
-	}
-	
-	@RequestMapping(path = "/adquirir-premium", method = RequestMethod.POST)
-	public ModelAndView adquirirPremium(HttpServletRequest request) {
-		
-		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
-		usuarioBuscado.setPlan("Premium");
-		
-		return irAPerfil(request);
-		
-	}
-	
-	@RequestMapping(path = "/adquirir-free", method = RequestMethod.POST)
-	public ModelAndView adquirirFree(HttpServletRequest request) {
-		
-		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
-		usuarioBuscado.setPlan("Free");
-		
-		return irAPerfil(request);
-		
-	}
-	
 }
