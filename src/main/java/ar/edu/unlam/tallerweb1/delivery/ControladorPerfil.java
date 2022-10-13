@@ -2,8 +2,6 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,7 +17,7 @@ public class ControladorPerfil {
 	private ServicioLogin servicioLogin;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula){
+	public ControladorPerfil(ServicioLogin servicioLogin){
 		this.servicioLogin = servicioLogin;
 	}
 

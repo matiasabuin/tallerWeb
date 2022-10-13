@@ -1,5 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +13,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
 <link rel="stylesheet" href="css/estilos.css" />
-
+<link rel="stylesheet" href="css/perfil-pelicula.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-
-
 </head>
 <body>
 
@@ -117,12 +115,35 @@
 				<hr>
 			</section>
 
-			<section class="reviews mx-3">
-				<div class="row">
-					<div class="col-12 gutter-right-1 mx-2 rounded">
-						<p class="text-center font-weight-bold">REVIEWS</p>
-					</div>
-				</div>
+			<section>
+						<div class="reviews">
+							<h3>Reviews</h3>
+							<c:if test="${usuarioActual != null}">
+								<form:form action="registrarReviewPelicula" method="POST"
+									modelAttribute="datosReview">
+									<form:textarea path="descripcion"
+										placeholder="Escribe tu reseña sobre el videojuego" />
+									<form:input path="pelicula.id" type="hidden"
+										value="${datosPelicula.id}" />
+									<form:input path="usuario.id" type="hidden"
+										value="${usuarioActual.id}" />
+									<form:button type="submit">Enviar</form:button>
+								</form:form>
+							</c:if>
+
+							<c:if test="${listaReviews != null}">
+								<c:forEach var="review" items="${listaReviews}">
+									<div class="comentario">
+										<img src="images/${review.usuario.foto}">
+										<p>${review.descripcion}</p>
+									</div>
+								</c:forEach>
+							</c:if>
+
+							<c:if test="${listaReviews[0] == null}">
+								<h5>No hay reviews por ahora</h5>
+							</c:if>
+						</div>
 			</section>
 		</div>
 	</div>

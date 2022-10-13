@@ -1,15 +1,4 @@
 @charset "ISO-8859-1";
-main{
-	margin: 4em 0em;
-}
-
-h2{
-	font-size: 40px;
-	font-weight: 700;
-	color: #fff;
-	font-family: Roboto,sans-serif!important;
-	text-align: left;	
-}
 h3{
 	text-align: center;
 	margin: 20px;
@@ -20,54 +9,6 @@ h5{
     text-align: center;
     font-size: 1.25rem;
     text-transform: uppercase;
-}
-strong{
-	display: block;	
-} 
-
-.container{
-	width: 100%;
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-}
-
-.sinopsis{
-	margin-right: 2em;
-    margin-top: 1em;
-  	font-family: Open Sans,sans-serif;
-    color: #badefc;
-    line-height: 1.5
-}
-
-.centro{
-	padding: 0em 2em;
-}
-
-.reviews{
-	background-color: #242832!important;
-	margin: 50px 462px;
-	padding: 10px 0px;
-	border-radius: 10px;
-}
-
-.requisitos{
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-}
-
-.requisito{
-	padding: 1em;
-}
- 
-.requisitos div{
-	width: 45%;
-} 
-
-.contenedor-requisitos{
-	margin: 0px 362px;
-	padding: 0px 15px;
 }
 form{
 	text-align: center;
@@ -90,6 +31,11 @@ button{
 	padding: 5px;
 	border-radius: 30px;
 	border: none;
+}
+.reviews{
+	background-color: #242832!important;
+	padding: 10px 0px;
+	border-radius: 10px;
 }
 .comentario{
 	display: flex;

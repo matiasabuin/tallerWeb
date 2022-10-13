@@ -9,7 +9,7 @@ insert into plataforma (id, descripcion) values('4', 'Xbox');
 insert into plataforma (id, descripcion) values('5', 'Windows');
 insert into plataforma (id, descripcion) values('6', 'Mac OS');
 
-insert into usuario (email, password, nombre, foto, biografia,plan) values ('admin@gmail.com','123','admin','perfil.jpg', 'soy admin','Premium');
+insert into usuario (id, email, password, nombre, foto, biografia,plan) values ('1','admin@gmail.com','123','admin','perfil.jpg', 'soy admin','Premium');
 
 insert into videojuego (poster, nombre, desarrollador, duracion, cantidadJugadores, sinopsis) values ('zeldabotw.jpg', 'The Legend Of Zelda', 'Nintendo', '55', '1','In this 3D open-world entry in the Zelda series, Link is awakened from a deep slumber without his past memories in the post-apocalyptic Kingdom of Hyrule, and sets off on a journey to defeat the ancient evil Calamity Ganon. Link treks, climbs and glides through fields, forests and mountain ranges while meeting and helping friendly folk and defeating enemies in order to gather up the strength to face Ganon.')
 insert into videojuego_genero(videojuego_id, genero_id) values ('1','2')

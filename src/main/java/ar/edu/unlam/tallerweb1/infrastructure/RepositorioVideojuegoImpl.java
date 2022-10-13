@@ -47,7 +47,6 @@ public class RepositorioVideojuegoImpl implements RepositorioVideojuego {
 				.createCriteria(Videojuego.class)
 				.add(Restrictions.eq("duracion", horas))
 				.list();
-		
 	}
 
 }

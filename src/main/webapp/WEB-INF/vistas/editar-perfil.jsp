@@ -87,8 +87,6 @@
 
 				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
 
-
-
 				<div class="form-group foto-perfil">
 					<img src="images/${usuarioActual.foto}">
 				</div>
