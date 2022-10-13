@@ -79,16 +79,20 @@
 			</div>
 			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
-				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
 				<p>${datosVideojuego.fechaEstreno}</p>
+				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 			</div>
 			<div>
 				<strong>Genero</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong> <strong>Modalidad</strong>
+				<strong>Plataforma</strong>
+				<c:forEach var="plataforma" items="${datosVideojuego.plataformas}">
+					<p>${plataforma.descripcion}</p>
+				</c:forEach>
+				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
 					<p>${datosVideojuego.cantidadJugadores}jugadores</p>

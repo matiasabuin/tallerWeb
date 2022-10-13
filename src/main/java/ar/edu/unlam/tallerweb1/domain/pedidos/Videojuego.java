@@ -33,7 +33,7 @@ public class Videojuego extends Contenido{
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "videojuego_plataforma", joinColumns = @JoinColumn(name="videojuego_id"), inverseJoinColumns = @JoinColumn(name="plataforma_id"))
 	private List<Plataforma> plataformas;
-	
+
 	@OneToMany(mappedBy = "videojuego")
 	private List<Review> reviews = new ArrayList<Review>();
 	
