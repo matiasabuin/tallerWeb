@@ -49,14 +49,14 @@
 
 			<h1>Actividad reciente</h1>
 
- 			<table class="table-responsive table-borderless">
-				<c:forEach items="${historial}" var="videojuego">
-					<td><a href="videojuego?id=${videojuego.id}"> <img
-							src="images/${videojuego.poster}"><br>
-							${videojuego.nombre}
+<%-- 			<table class="table-responsive table-borderless">
+				<c:forEach items="${usuarioActual.historial}" var="contenido">
+					<td><a href="videojuego?id=${contenido.id}"> <img
+							src="images/${contenido.poster}"><br>
+							${contenido.nombre}
 					</a></td>
 				</c:forEach>
-			</table>
+			</table>  --%>
 
 		</div>
 	</div>
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 					</c:if>
-					
+
 					<c:if test="${review.videojuego != null}">
 						<div class="comentario">
 							<img src="images/${review.videojuego.poster}">

@@ -53,7 +53,6 @@
 					class="btn btn-lg btn-primary btn-block" Type="Submit">
 					Guardar</button>
 
-
 			</form:form>
 		</div>
 	</div>

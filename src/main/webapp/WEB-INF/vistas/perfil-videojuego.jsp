@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <title>${datosVideojuego.nombre}</title>
-
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
@@ -32,16 +30,20 @@
 			</div>
 			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
-				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 				<strong>Fecha de lanzamiento</strong>
 				<p>${datosVideojuego.fechaEstreno}</p>
+				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 			</div>
 			<div>
 				<strong>Genero</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p>${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong> <strong>Modalidad</strong>
+				<strong>Plataforma</strong>
+				<c:forEach var="plataforma" items="${datosVideojuego.plataformas}">
+					<p>${plataforma.descripcion}</p>
+				</c:forEach>
+				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
 					<p>${datosVideojuego.cantidadJugadores}jugadores</p>

@@ -54,7 +54,8 @@ public class ControladorPerfil {
 		
 		servicioLogin.editarPerfil(datosPerfil);
 		
-		return irAPerfil(request);
+		return new ModelAndView("redirect:/perfil");
+
 	}
 	
 }

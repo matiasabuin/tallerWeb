@@ -19,7 +19,6 @@ public class Plataforma {
 	private Integer id;
 	private String descripcion;
 	
-    @JsonBackReference
     @ManyToMany(mappedBy="plataformas")
     private List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 
