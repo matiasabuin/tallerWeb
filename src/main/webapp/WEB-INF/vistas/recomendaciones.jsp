@@ -21,10 +21,8 @@
 </head>
 
 <body>
-
-	<header>
-
-		<nav class="navbar navbar-expand-lg bg-primary">
+<header>
+	<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -32,49 +30,56 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 
-						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-						</a></li>
+					<li class="nav-item mx-2">
+						<a class="nav-link" href="home">Inicio</a>
+					</li>
 
-						<c:if test="${usuarioActual.nombre != null}">
-							<li class="nav-item mx-2 dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> ${usuarioActual.nombre} </a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="perfil">Perfil</a> <a
-										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
-								</div></li>
-
-							<li class="nav-item mx-2 dropdown"><a
+					<c:if test="${usuarioActual.nombre != null}">
+						<li class="nav-item mx-2 dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${usuarioActual.nombre} </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="perfil">Perfil</a> 
+								<a class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
+							</div>
+						</li>
+					</c:if>
+								
+					<c:if test="${usuarioActual.plan == 'Premium'}">
+						<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> Registrar </a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
-									<a class="dropdown-item" href="registro-serie">Serie</a> <a
-										class="dropdown-item" href="registro-videojuego">VideoJuego</a>
-								</div></li>
-						</c:if>
-					</ul>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
+								<a class="dropdown-item" href="registro-serie">Serie</a> 
+								<a class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+							</div>
+						</li>
+					</c:if>		
+						
+				</ul>
 
-					<form action="buscar" method="GET">
-						<input type="text" placeholder="Buscar contenido" class="search">
-					</form>
+				<form action="buscar" method="GET">
+					<input type="text" placeholder="Buscar contenido" class="search">
+				</form>
 
-					<c:if test="${usuarioActual.nombre == null}">
-						<a href="registro-usuario" class="nav-link">Register</a>
-						<a href="login" class="nav-link">Log In</a>
-					</c:if>
+				<c:if test="${usuarioActual.nombre == null}">
+					<a href="registro-usuario" class="nav-link">Register</a>
+					<a href="login" class="nav-link">Log In</a>
+				</c:if>
 
-				</div>
 			</div>
-		</nav>
-	</header>
+		</div>
+	</nav>
+</header>
 	
-		<c:if test="${videojuegosRecomendados != null}">
+	<c:if test="${videojuegosRecomendados != null}">
 		<div class="container">
 		<div class="recomendaciones-container">
 
@@ -100,6 +105,24 @@
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
+					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
+							src="images/${recomendado.poster}">
+					</a>
+						<p class="titulo">${recomendado.nombre}</p></td>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
+	
+	<c:if test="${seriesRecomendadas != null}">
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Series Recomendadas</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${seriesRecomendadas}" var="recomendado">
 					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
 					</a>

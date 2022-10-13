@@ -33,6 +33,7 @@ public class Usuario {
 	private String nombre;
 	private String biografia;
 	private String foto = "perfil.jpg";
+	private String plan = "Free";
 	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
@@ -100,5 +101,11 @@ public class Usuario {
 	}
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
+	}
+	public String getPlan() {
+		return plan;
+	}
+	public void setPlan(String plan) {
+		this.plan = plan;
 	}
 }

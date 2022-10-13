@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<title>Login</title>
 
+<head>
+<meta charset="ISO-8859-1">
+<title>Editar Plan</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -12,15 +15,13 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/estilos.css" />
-
-<link href="css/styles.css" rel="stylesheet">
-
-
+<link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
 </head>
+
 <body>
+
 <header>
 	<nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container">
@@ -65,48 +66,67 @@
 						
 				</ul>
 
+				<form action="buscar" method="GET">
+					<input type="text" placeholder="Buscar contenido" class="search">
+				</form>
+
+				<c:if test="${usuarioActual.nombre == null}">
+					<a href="registro-usuario" class="nav-link">Register</a>
+					<a href="login" class="nav-link">Log In</a>
+				</c:if>
+
 			</div>
 		</div>
 	</nav>
 </header>
+
+
 	<div class="container">
+		<div class="d-flex justify-content-between">
 
-		<div id="loginbox" class="formulario-registro rounded login mx-auto">
-			<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
-			<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
-			<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-			<form:form action="validar-login" method="POST"
-				modelAttribute="datosLogin">
-				<h3 class="form-signin-heading text-center">Bienvenido</h3>
-				<hr class="colorgraph">
-				<br>
+			<div class="recomendaciones-container">
+			<h1>Plan Free</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+			id est laborum.</p>
+			
+				<c:if test="${usuarioActual.plan == 'Premium'}">
+					<form action="adquirir-free" method="POST">
+						<button id="btn-registrarme"
+							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							Adquirir
+						</button>
+					</form>
+				</c:if>	
+			</div>
 
-				<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-				<div class="form-group">
-					<form:input path="email" id="email" type="email"
-						class="form-control" placeholder="Correo" />
-				</div>
-				<div class="form-group">
-					<form:input path="password" type="password" id="password"
-						class="form-control" placeholder="Contraseña" />
-				</div>
-				<button class="btn btn-lg btn-primary btn-block" Type="Submit" />Ingresar</button>
-			</form:form>
-			<a href="registro-usuario" class="register">¿No tenes cuenta?
-				Registrate!</a>
-			<%--Bloque que es visible si el elemento error no esta vacio	--%>
-			<c:if test="${not empty error}">
-				<h4>
-					<span>${error}</span>
-				</h4>
-				<br>
-			</c:if>
-			${msg}
+			<div class="recomendaciones-container">
+			<h1>Plan Premium</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+			id est laborum.</p>
+			
+				<c:if test="${usuarioActual.plan == 'Free'}">
+					<form action="adquirir-premium" method="POST">
+						<button id="btn-registrarme"
+							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							Adquirir
+						</button>
+					</form>
+				</c:if>	
+			</div>
 		</div>
 	</div>
-
-	<footer class="footer"
-		style="position: absolute; bottom: 0; width: 100%;">
+	
+	<footer class="footer">
 		<div class="container">
 			<div class="column1">
 				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes
@@ -137,6 +157,8 @@
 		</div>
 		<!-- Copyright -->
 	</footer>
+
+	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -149,5 +171,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>

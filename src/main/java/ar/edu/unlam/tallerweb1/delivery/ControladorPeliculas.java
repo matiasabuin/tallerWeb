@@ -29,8 +29,8 @@ public class ControladorPeliculas {
 	}
 
 	@RequestMapping(path = "/registro-pelicula")
-	public ModelAndView iraRegistroPeliSerie( HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") != null){
 			ModelMap modelo = new ModelMap();
 			Pelicula pelicula = new Pelicula();
 			modelo.put("datosPelicula", pelicula);
@@ -42,8 +42,7 @@ public class ControladorPeliculas {
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
-		
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if(request.getSession().getAttribute("usuarioActual") != null){
 
 			Pelicula pelicula = this.servicioPelicula.registrarPelicula(datosPelicula);
 

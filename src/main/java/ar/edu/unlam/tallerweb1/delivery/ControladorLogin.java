@@ -36,8 +36,10 @@ public class ControladorLogin {
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
 	// invocada por metodo http GET
 	@RequestMapping("/login")
-	public ModelAndView irALogin() {
-
+	public ModelAndView irALogin(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") != null){
+			return new ModelAndView("redirect:/home");
+		}
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto con key 'datosLogin' para que el mismo sea
 		// asociado
@@ -67,13 +69,7 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
-
-			request.getSession().getAttribute("usuarioActual");
 			
-			// model.addAttribute("usuarioActual", usuarioBuscado);
-
-			// request.getSession().setAttribute("usuarios", servicioLogin.obtenerTodosLosUsarios());
-
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -102,12 +98,14 @@ public class ControladorLogin {
 		servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword(),
 				datosRegistro.getNombre());
 
-		return irALogin();
+		return irALogin(request);
 	}
 
 	@RequestMapping("/registro-usuario")
-	public ModelAndView registrarUsuario() {
-
+	public ModelAndView registrarUsuario(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") != null){
+			return new ModelAndView("redirect:/home");
+		}
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuario", new Usuario());
 		return new ModelAndView("registro-usuario", modelo);

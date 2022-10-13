@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <title>${datosVideojuego.nombre}</title>
-
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
@@ -29,13 +27,14 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 
-						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio
-						</a></li>
+						<li class="nav-item mx-2"><a class="nav-link" href="home">Inicio</a>
+						</li>
 
-						<c:if test="${usuarioActual != null}">
+						<c:if test="${usuarioActual.nombre != null}">
 							<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -44,7 +43,9 @@
 									<a class="dropdown-item" href="perfil">Perfil</a> <a
 										class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
 								</div></li>
+						</c:if>
 
+						<c:if test="${usuarioActual.plan == 'Premium'}">
 							<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -56,7 +57,6 @@
 								</div></li>
 						</c:if>
 					</ul>
-
 					<form action="buscar" method="GET">
 						<input type="text" placeholder="Buscar contenido" class="search">
 					</form>
@@ -66,6 +66,7 @@
 						<a href="login" class="nav-link">Log In</a>
 					</c:if>
 				</div>
+
 			</div>
 		</nav>
 	</header>
@@ -123,11 +124,11 @@
 				<form:form action="registrarReviewVideojuego" method="POST"
 					modelAttribute="datosReview">
 					<form:textarea path="descripcion"
-						placeholder="Escribe tu reseña sobre el videojuego"/>
+						placeholder="Escribe tu reseña sobre el videojuego" />
 					<form:input path="videojuego.id" type="hidden"
-						value="${datosVideojuego.id}"/>
+						value="${datosVideojuego.id}" />
 					<form:input path="usuario.id" type="hidden"
-						value="${usuarioActual.id}"/>
+						value="${usuarioActual.id}" />
 					<form:button type="submit">Enviar</form:button>
 				</form:form>
 			</c:if>
