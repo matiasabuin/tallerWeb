@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 
 	<main>
 		<h2>REGISTRO VIDEOJUEGO</h2>
