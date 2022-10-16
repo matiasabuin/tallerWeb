@@ -1,3 +1,5 @@
+<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
+<%@page import="java.io.File"%>
 <%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Genero"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -27,14 +29,14 @@
 		<h2>REGISTRO VIDEOJUEGO</h2>
 		<section class="formulario">
 			<form:form action="registrar-videojuego" method="POST"
-				modelAttribute="datosVideojuego">
+				modelAttribute="datosVideojuego" enctype="multipart/form-data">
 				<div class="container">
 					<div class="left">
 						<div class="detalle">
 							<h3>Detalle</h3>
 
 							<form:label path="poster">Portada</form:label>
-							<form:input path="poster" type="file" id="poster" name="poster" />
+							<form:input path="" type="file" id="poster" name="file"/>
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
@@ -67,7 +69,11 @@
 									<form:select path="generos" multiple="multiple" items="${listaGeneros}" itemLabel="descripcion" itemValue="id"/>
 
 									<form:label path="plataformas">Plataforma</form:label>
-									<form:select path="plataformas"  multiple="multiple" items="${listaPlataformas}" itemLabel="descripcion" itemValue="id"/>
+									<form:select path="plataformas"  multiple="multiple" name="plataformasElegidas">
+									<c:forEach items="${listaPlataformas}" var="plataforma">
+										<option value="${plataforma.id}">${plataforma.descripcion}</option>
+									</c:forEach>
+									</form:select>
 								</div>
 							</div>
 						</div>

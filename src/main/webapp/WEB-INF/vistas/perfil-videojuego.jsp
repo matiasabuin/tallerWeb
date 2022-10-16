@@ -49,12 +49,12 @@
 					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
 				</c:if>
 				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
-					<span>Un jugador</span>
+					<p>Un jugador</p>
 				</c:if>
 				<strong>Desarrollador</strong>
 				<p>${datosVideojuego.desarrollador}</p>
 				<strong>Duración</strong>
-				<p>${datosVideojuego.duracion}Horas</p>
+				<p>${datosVideojuego.duracion}&nbsp;Horas</p>
 			</div>
 		</div>
 		<c:if

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @MappedSuperclass
 public class Contenido {
@@ -19,6 +20,7 @@ public class Contenido {
 	private Integer id;
 	
 	private String poster;
+	
 	private String nombre;
 	private Integer duracion;
 	

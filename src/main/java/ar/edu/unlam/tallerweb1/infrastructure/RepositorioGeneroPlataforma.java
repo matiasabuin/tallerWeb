@@ -17,4 +17,7 @@ public interface RepositorioGeneroPlataforma {
 	List<Plataforma> obtenerPlataformas();
 	
 	Genero getByDesc(String descripcion);
+	
+	Genero getGeneroById(Integer id);
+	Plataforma getPlataformaById(Integer id);
 }

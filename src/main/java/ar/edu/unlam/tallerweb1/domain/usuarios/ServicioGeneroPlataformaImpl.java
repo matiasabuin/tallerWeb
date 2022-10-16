@@ -41,4 +41,14 @@ public class ServicioGeneroPlataformaImpl implements ServicioGeneroPlataforma{
 		return servicioGeneroPlataformaDao.getByDesc(descripcion);
 	}
 
+	@Override
+	public Genero getGeneroById(Integer id) {
+		return  servicioGeneroPlataformaDao.getGeneroById(id);
+	}
+
+	@Override
+	public Plataforma getPlataformaById(Integer id) {
+		return  servicioGeneroPlataformaDao.getPlataformaById(id);
+	}
+
 }

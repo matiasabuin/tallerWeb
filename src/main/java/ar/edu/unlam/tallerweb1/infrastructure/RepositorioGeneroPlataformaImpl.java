@@ -58,4 +58,20 @@ public class RepositorioGeneroPlataformaImpl implements RepositorioGeneroPlatafo
 				.uniqueResult();
 	}
 
+
+	public Genero getGeneroById(Integer id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Genero) session.createCriteria(Genero.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+
+
+	public Plataforma getPlataformaById(Integer id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Plataforma) session.createCriteria(Plataforma.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+
 }
