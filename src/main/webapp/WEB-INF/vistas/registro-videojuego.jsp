@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
+	<jsp:include page="header.jsp" />
 
 	<main>
 		<h2>REGISTRO VIDEOJUEGO</h2>
@@ -36,7 +36,7 @@
 							<h3>Detalle</h3>
 
 							<form:label path="poster">Portada</form:label>
-							<form:input path="" type="file" id="poster" name="file"/>
+							<form:input path="" type="file" id="poster" name="file" />
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
 							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
@@ -66,14 +66,12 @@
 
 								<div style="margin-left: 4em;">
 									<form:label path="generos">Genero</form:label>
-									<form:select path="generos" multiple="multiple" items="${listaGeneros}" itemLabel="descripcion" itemValue="id"/>
+									<form:select path="generos" multiple="multiple"
+										items="${listaGeneros}" itemLabel="descripcion" itemValue="id" />
 
 									<form:label path="plataformas">Plataforma</form:label>
-									<form:select path="plataformas"  multiple="multiple" name="plataformasElegidas">
-									<c:forEach items="${listaPlataformas}" var="plataforma">
-										<option value="${plataforma.id}">${plataforma.descripcion}</option>
-									</c:forEach>
-									</form:select>
+									<form:select path="plataformas" multiple="multiple"
+										items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
 								</div>
 							</div>
 						</div>
@@ -94,12 +92,12 @@
 								</div>
 								<div>
 									<form:label path="requisitosRecomendados">Recomendado</form:label>
-									<form:textarea path="requisitosRecomendados"
-										id="requisitosRecomendados"
+									<form:textarea path="requisitosRecomendados" id="requisitosRecomendados"
 										placeholder="Escribe algo aqui (opcional)" />
 								</div>
 							</div>
 						</div>
+						
 						<div>
 							<form:button type="submit">Registrar</form:button>
 						</div>
@@ -108,8 +106,8 @@
 			</form:form>
 		</section>
 	</main>
-	
-<jsp:include page="footer.jsp" />
+
+	<jsp:include page="footer.jsp" />
 
 	<script
 		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>

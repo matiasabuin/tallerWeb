@@ -4,13 +4,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +47,7 @@ public class ControladorVideojuego {
 		this.servicioReview = servicioReview;
 		this.servletContext = servletContext;
 	}
-
+	
 	@RequestMapping("/videojuego")
 	public ModelAndView iraVideojuego(@RequestParam("id") Integer id, HttpServletRequest request) {
 		
@@ -73,7 +79,7 @@ public class ControladorVideojuego {
 
 			List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
 			List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
-			
+
 			modelo.addAttribute("datosVideojuego", videojuego);
 			modelo.addAttribute("listaGeneros", generos);
 			modelo.addAttribute("listaPlataformas", plataformas);
@@ -83,6 +89,34 @@ public class ControladorVideojuego {
 
 		return new ModelAndView("redirect:/home");
 	}
+	
+	@InitBinder
+    protected void initBinderGenero(WebDataBinder binder) throws Exception{
+		List<Genero> generosCache = servicioGeneroPlataforma.obtenerGeneros();
+        binder.registerCustomEditor(List.class,"generos", new CustomCollectionEditor(List.class){
+            protected Object convertElement(Object element){
+                if (element instanceof String) {
+                    Genero generos = servicioGeneroPlataforma.getGeneroById(Integer.parseInt(element.toString()));
+                    return generos;
+                }
+                return null;
+            }
+        });
+    }
+	
+	@InitBinder
+    protected void initBinderPlataforma(WebDataBinder binder) throws Exception{
+		List<Plataforma> plataformasCache = servicioGeneroPlataforma.obtenerPlataformas();
+        binder.registerCustomEditor(List.class,"plataformas", new CustomCollectionEditor(List.class){
+            protected Object convertElement(Object element){
+                if (element instanceof String) {
+                    Plataforma plataformas = servicioGeneroPlataforma.getPlataformaById(Integer.parseInt(element.toString()));
+                    return plataformas;
+                }
+                return null;
+            }
+        });
+    }
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, @RequestParam("file") MultipartFile file, 
@@ -95,7 +129,7 @@ public class ControladorVideojuego {
 	        byte[] data = file.getBytes();
 	        Path path = Paths.get( uploadPath + file.getOriginalFilename());
 	        Files.write(path, data);
-	     
+	        
 	        datosVideojuego.setPoster(file.getOriginalFilename());
 			
 			Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);

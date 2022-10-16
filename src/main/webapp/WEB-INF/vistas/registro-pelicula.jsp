@@ -5,7 +5,6 @@
 <head>
 <meta charset="utf-8">
 <title>Registrar pelicula</title>
-
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -17,11 +16,14 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 </head>
 
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="container">
 		<form:form action="registrar-pelicula" method="POST"
@@ -40,12 +42,15 @@
 					<br> <label for="inputDirector">DIRECTOR</label>
 					<form:input path="director" type="text" class="form-control"
 						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
-					<br> <label for="inputGenero">GENERO</label>
-					<form:input path="genero" type="text" class="form-control"
-						id="inputGenero" placeholder="Terror, thiller, drama" />
-					<br> <label for="inputPlataforma">PLATAFORMA</label>
-					<form:input path="plataforma" type="text" class="form-control"
-						id="inputPlataforma" placeholder="Netflix, Disney+, HBO+" />
+					<br>
+					<form:label path="generos">Genero</form:label>
+					<form:select path="generos" multiple="multiple"
+						items="${listaGeneros}" itemLabel="descripcion" itemValue="id" />
+					<br>
+					<form:label path="plataformas">Plataforma</form:label>
+					<form:select path="plataformas" multiple="multiple"
+						items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
+						
 					<br> <label for="inputDate">FECHA DE ESTRENO</label>
 					<form:input path="fechaEstreno" type="date" class="form-control"
 						id="inputPlataforma" />
@@ -75,9 +80,17 @@
 
 
 	</div>
-	
-<jsp:include page="footer.jsp" />
 
+	<jsp:include page="footer.jsp" />
+	
+	<script
+		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+	<script>
+		new MultiSelectTag('generos')
+	</script>
+	<script>
+		new MultiSelectTag('plataformas')
+	</script>
 	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -2,8 +2,17 @@ package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Pelicula extends Contenido {
@@ -12,9 +21,32 @@ public class Pelicula extends Contenido {
 	private String genero;
 	private String plataforma;
 	
+	@Fetch(FetchMode.SELECT)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "pelicula_genero", joinColumns = @JoinColumn(name = "pelicula_id"), inverseJoinColumns = @JoinColumn(name = "genero_id"))
+	private List<Genero> generos = new ArrayList<Genero>();
+	
+	@Fetch(FetchMode.SELECT)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "pelicula_plataforma", joinColumns = @JoinColumn(name="pelicula_id"), inverseJoinColumns = @JoinColumn(name="plataforma_id"))
+	private List<Plataforma> plataformas= new ArrayList<Plataforma>();
+	
 	@OneToMany(mappedBy = "pelicula")
 	private List<Review> reviews = new ArrayList<Review>();
 	
+	
+	public List<Genero> getGeneros() {
+		return generos;
+	}
+	public void setGeneros(List<Genero> generos) {
+		this.generos = generos;
+	}
+	public List<Plataforma> getPlataformas() {
+		return plataformas;
+	}
+	public void setPlataformas(List<Plataforma> plataformas) {
+		this.plataformas = plataformas;
+	}
 	public List<Review> getReviews() {
 		return reviews;
 	}

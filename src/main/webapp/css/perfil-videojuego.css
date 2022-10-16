@@ -21,10 +21,12 @@ h5{
     font-size: 1.25rem;
     text-transform: uppercase;
 }
+p{
+	margin: 0;
+}
 strong{
 	display: block;	
 } 
-
 .container{
 	width: 100%;
 	display: flex;
@@ -108,4 +110,12 @@ button{
 	padding: 10px 20px;
 	margin-bottom: 0;
 	color: #badefc;
+}
+.genero, .plataforma{
+	font-size: 13px;
+    display: inline;
+    padding: 2px;
+    border: 1px solid #ea377a;
+    margin: 5px;    
+    border-radius: 5px;
 }

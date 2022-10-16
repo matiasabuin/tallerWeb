@@ -30,7 +30,8 @@ body {
 
 .nav-link:hover {
 	color: var(--onMouseover) !important;
-
+	border: 1px solid white;
+    border-radius: 5px;
 }
 
 .navbar-brand {

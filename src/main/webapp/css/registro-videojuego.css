@@ -4,11 +4,14 @@
 }
 
 h2{
-	margin: 1em 0em;
-	text-align: center;
+ 	font-size: 30px;
+    color: #9ab;
+    font-weight: bold;
+    text-align: center;
+    margin: 1em 0em;
 }
 
-h2, h3{
+h3{
 	color: #fff;
 }
 
@@ -47,6 +50,7 @@ input{
 }
 
 .detalle{
+	border: 2px solid;
 	border-radius: 10px;
 	width: 100%;
     margin: 1em 0em;

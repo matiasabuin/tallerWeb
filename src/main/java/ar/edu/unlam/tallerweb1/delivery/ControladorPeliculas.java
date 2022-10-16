@@ -4,15 +4,22 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -21,30 +28,70 @@ public class ControladorPeliculas {
 
 	private ServicioPelicula servicioPelicula;
 	private ServicioReview servicioReview;
+	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 
 	@Autowired
-	public ControladorPeliculas(ServicioPelicula servicioPelicula, ServicioReview servicioReview) {
+	public ControladorPeliculas(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma) {
 		this.servicioPelicula = servicioPelicula;
 		this.servicioReview = servicioReview;
+		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 	}
 
 	@RequestMapping(path = "/registro-pelicula")
 	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
+		
 		if(request.getSession().getAttribute("usuarioActual") != null){
+			
 			ModelMap modelo = new ModelMap();
 			Pelicula pelicula = new Pelicula();
+			
+			List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
+			List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
+
+			modelo.addAttribute("listaGeneros", generos);
+			modelo.addAttribute("listaPlataformas", plataformas);
 			modelo.put("datosPelicula", pelicula);
 			
 			return new ModelAndView("registro-pelicula", modelo);		
 		}
+		
 		return new ModelAndView("redirect:/home");
 	}
+	
+	@InitBinder
+    protected void initBinderGenero(WebDataBinder binder) throws Exception{
+		List<Genero> generosCache = servicioGeneroPlataforma.obtenerGeneros();
+        binder.registerCustomEditor(List.class,"generos", new CustomCollectionEditor(List.class){
+            protected Object convertElement(Object element){
+                if (element instanceof String) {
+                    Genero generos = servicioGeneroPlataforma.getGeneroById(Integer.parseInt(element.toString()));
+                    return generos;
+                }
+                return null;
+            }
+        });
+    }
+	
+	@InitBinder
+    protected void initBinderPlataforma(WebDataBinder binder) throws Exception{
+		List<Plataforma> plataformasCache = servicioGeneroPlataforma.obtenerPlataformas();
+        binder.registerCustomEditor(List.class,"plataformas", new CustomCollectionEditor(List.class){
+            protected Object convertElement(Object element){
+                if (element instanceof String) {
+                    Plataforma plataformas = servicioGeneroPlataforma.getPlataformaById(Integer.parseInt(element.toString()));
+                    return plataformas;
+                }
+                return null;
+            }
+        });
+    }
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
+		
 		if(request.getSession().getAttribute("usuarioActual") != null){
 
-			Pelicula pelicula = this.servicioPelicula.registrarPelicula(datosPelicula);
+			Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
 
 			return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 		}

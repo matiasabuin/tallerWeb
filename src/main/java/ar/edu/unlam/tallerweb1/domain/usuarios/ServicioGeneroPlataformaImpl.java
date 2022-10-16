@@ -1,11 +1,9 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioGeneroPlataforma;
