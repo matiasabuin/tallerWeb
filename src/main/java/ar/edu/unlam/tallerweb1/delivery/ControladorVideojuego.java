@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -84,8 +85,8 @@ public class ControladorVideojuego {
 	}
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
-	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, @RequestParam("file") MultipartFile file,
-			HttpServletRequest request) throws IOException {
+	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, @RequestParam("file") MultipartFile file, 
+			HttpServletResponse response, HttpServletRequest request) throws IOException {
 
 		if (request.getSession().getAttribute("usuarioActual") != null) {
 	        
@@ -102,7 +103,6 @@ public class ControladorVideojuego {
 			return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
 
 		}
-
 		return new ModelAndView("redirect:/home");
 
 	}
