@@ -36,10 +36,10 @@
 							<h3>Detalle</h3>
 
 							<form:label path="poster">Portada</form:label>
-							<form:input path="" type="file" id="poster" name="file" />
+							<form:input path="" type="file" id="poster" name="file"/>
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
-							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
+							<form:input path="fechaEstreno" type="date" id="fechaEstreno"/>
 
 							<form:label path="duracion">Duracion</form:label>
 							<form:input path="duracion" type="number" id="duracion" min="1"

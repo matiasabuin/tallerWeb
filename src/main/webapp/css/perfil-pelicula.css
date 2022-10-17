@@ -73,7 +73,6 @@ button{
 .datos{
 	display: flex;
 	flex-wrap: nowrap;
-	justify-content: center;
 	margin: 3em 0em;
 }
 .datos img{

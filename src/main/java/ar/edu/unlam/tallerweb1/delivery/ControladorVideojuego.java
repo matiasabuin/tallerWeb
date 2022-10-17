@@ -1,16 +1,11 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -26,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
@@ -37,15 +33,15 @@ public class ControladorVideojuego {
 	private ServicioVideojuego servicioVideojuego;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 	private ServicioReview servicioReview;
-	private ServletContext servletContext;
+	private ServicioFiles servicioFiles;
 
 	@Autowired
 	public ControladorVideojuego(ServicioVideojuego servicioVideojuego,
-			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServletContext servletContext) {
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 		this.servicioReview = servicioReview;
-		this.servletContext = servletContext;
+		this.servicioFiles = servicioFiles;
 	}
 	
 	@RequestMapping("/videojuego")
@@ -120,23 +116,37 @@ public class ControladorVideojuego {
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, @RequestParam("file") MultipartFile file, 
-			HttpServletResponse response, HttpServletRequest request) throws IOException {
+			HttpSession session, HttpServletRequest request) throws IOException {
 
 		if (request.getSession().getAttribute("usuarioActual") != null) {
-	        
-			String uploadPath = "C:\\Program Files\\Java\\proyectoWeb\\tallerWeb\\src\\main\\webapp\\images\\";
 			
-	        byte[] data = file.getBytes();
-	        Path path = Paths.get( uploadPath + file.getOriginalFilename());
-	        Files.write(path, data);
+			servicioFiles.uploadImage(file);
+			
+//	        String path = session.getServletContext().getRealPath("/images");
+//	        String filename = file.getOriginalFilename();
+//	        
+//	        byte[] data = file.getBytes();
+//	        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(path+"/"+filename));
+//	     	bufferedOutputStream.write(data);
+//	     	bufferedOutputStream.flush();
+//	     	bufferedOutputStream.close();
 	        
+//	        String uploadPath = "C:\\Program Files\\Java\\proyectoWeb\\tallerWeb\\src\\main\\webapp\\images\\";
+//			
+//	        byte[] data = file.getBytes();
+//	        Path path = Paths.get( uploadPath + file.getOriginalFilename());
+//	        Files.write(path, data);
+//	        
+//	        datosVideojuego.setPoster(file.getOriginalFilename());
+			
 	        datosVideojuego.setPoster(file.getOriginalFilename());
-			
+	        
 			Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 			
 			return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
 
 		}
+		
 		return new ModelAndView("redirect:/home");
 
 	}
@@ -146,21 +156,6 @@ public class ControladorVideojuego {
 //File directory = new File(path);
 //String fileName = file.getOriginalFilename();
 //File f = new File(directory, fileName);
-//BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(f));
-//byte[] data = file.getBytes();
-//bufferedOutputStream.write(data);
-//bufferedOutputStream.close();
 
-// @RequestParam("file") MultipartFile file
-
-/*
- * Path directorioImagenes = Paths.get("src//main//webapp//images"); String
- * rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath(); try {
- * 
- * byte[] bytesImg = file.getBytes(); Path rutaCompleta = Paths.get(rutaAbsoluta
- * + "//" + file.getOriginalFilename()); Files.write(rutaCompleta, bytesImg);
- * 
- * } catch (IOException e) { e.printStackTrace(); }
- * 
- * videojuego.setImagen(file.getOriginalFilename());
- */
+// Path directorioImagenes = Paths.get("src//main//webapp//images"); String
+// rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath(); try 
