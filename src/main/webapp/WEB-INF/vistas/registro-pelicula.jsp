@@ -6,73 +6,61 @@
 <meta charset="utf-8">
 <title>Registrar pelicula</title>
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/registro-pelicula.css"/>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 </head>
 
 <body>
 
 	<jsp:include page="header.jsp" />
 
+	<h2>REGISTRO PELICULA</h2>
 	<div class="container">
 		<form:form action="registrar-pelicula" method="POST"
 			class="formulario-registro rounded" modelAttribute="datosPelicula">
-			<div class="form-group row">
-				<p class="col-md-6">REGRISTRO DE PELICULA</p>
-			</div>
+				
 			<div class="row">
 				<div class="form-group col-md-6">
-					<label for="inputNombre">NOMBRE</label>
+				
+					<form:label path="poster">Poster</form:label>
+					<form:input path="poster" type="file" id="foto" name="file"/>
+				
+					<form:label path="nombre">Nombre</form:label>
 					<form:input path="nombre" type="text" class="form-control"
-						id="inputNombre" placeholder="Nombre" />
-					<br> <label for="inputDuracion">DURACION</label>
-					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" placeholder="128, 90" />
-					<br> <label for="inputDirector">DIRECTOR</label>
+						id="nombre"/>
+					
+					<form:label path="director">Director</form:label>
 					<form:input path="director" type="text" class="form-control"
-						id="inputDirector" placeholder="Martin scorsese, John Carpenter" />
-					<br>
+						id="director"/>
+					
 					<form:label path="generos">Genero</form:label>
 					<form:select path="generos" multiple="multiple"
 						items="${listaGeneros}" itemLabel="descripcion" itemValue="id" />
-					<br>
+					
 					<form:label path="plataformas">Plataforma</form:label>
 					<form:select path="plataformas" multiple="multiple"
 						items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
 						
-					<br> <label for="inputDate">FECHA DE ESTRENO</label>
+					<form:label path="fechaEstreno">Fecha de estreno</form:label>
 					<form:input path="fechaEstreno" type="date" class="form-control"
-						id="inputPlataforma" />
-					<br>
-
+						id="fechaEstreno" />
+						
+					<form:label path="duracion">Duracion</form:label>
+					<form:input path="duracion" type="number" class="form-control"
+						id="duracion"/>
+			
+					<form:label path="sinopsis">Sinopsis</form:label>
+					<form:textarea path="sinopsis" class="form-control"
+					    id="sinopsis" rows="3" />
 
 				</div>
-				<div class="col-md-6 text-center">
-					<label for="registro-poster">SUBIR EL POSTER</label> <br>
-					<form:input path="poster" type="file" id="foto" />
-					<br> <br>
-					<div class="marco-poster-registro mx-auto"></div>
-
-				</div>
-
 			</div>
-			<div class="form-group col-md-10 mx-auto">
-				<label for="exampleFormSinopsis">SINOPSIS</label>
-				<form:textarea path="sinopsis" class="form-control"
-					id="exampleFormControlTextarea1" rows="3" />
-			</div>
-
 			<div class="col text-center mt-2">
 				<form:button type="submit" class="btn btn-primary">REGISTRAR</form:button>
 			</div>

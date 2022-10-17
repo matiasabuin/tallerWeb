@@ -35,11 +35,11 @@
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 			</div>
 			<div>
-				<strong>Genero</strong>
+				<strong>Generos</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
 					<p class="genero">${genero.descripcion}</p>
 				</c:forEach>
-				<strong>Plataforma</strong>
+				<strong>Plataformas</strong>
 				<c:forEach var="plataforma" items="${datosVideojuego.plataformas}">
 					<p class="plataforma">${plataforma.descripcion}</p>
 				</c:forEach>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		
-		<c:if test="${datosVideojuego.requisitosMinimos != null && datosVideojuego.requisitosRecomendados != null}">
+		<!--<c:if test="${datosVideojuego.requisitosMinimos != null && datosVideojuego.requisitosRecomendados != null}">
 			<div class="contenedor-requisitos">
 				<h3>Requisitos del sistema</h3>
 				<div class="requisitos">
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</div>
-		</c:if>
+		</c:if>-->
 		
 		<div class="reviews">
 			<h3>Reviews</h3>

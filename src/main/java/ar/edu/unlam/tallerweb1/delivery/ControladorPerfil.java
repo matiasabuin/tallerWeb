@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -56,6 +60,20 @@ public class ControladorPerfil {
 		
 		return new ModelAndView("redirect:/perfil");
 
+	}
+	
+	@RequestMapping("/reviews")
+	public ModelAndView verReviews(HttpServletRequest request) {
+		if(request.getSession().getAttribute("usuarioActual") == null){
+			return new ModelAndView("redirect:/home");
+		}
+		
+		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		List<Review> reviews = usuarioEncontrado.getReviews();
+		
+		modelo.addAttribute("listaReviews", reviews);
+		return new ModelAndView("usuario-reviews", modelo);
 	}
 	
 }

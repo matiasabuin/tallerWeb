@@ -20,79 +20,72 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="fsv-page-wrapper">
-		<hr>
-		<hr>
-		<div class=container>
-			<section class="poster-secction mx-3">
-				<div class="row">
-					<div class="col-2 poster-pelicula">
-						<img src="images/${datosPelicula.poster}">
-					</div>
-					<div class="col align-self-start text-center ml-5">
-						${datosPelicula.nombre}<br> <img
-							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
-							alt="estrellitas">
-
-					</div>
-					<div class="col-5 align-self-center mx-2">${datosPelicula.sinopsis}</div>
+		<div class="container contenedor">
+			<section class="datos">
+				<div>
+					<img src="images/${datosPelicula.poster}">
 				</div>
-			</section>
-			<hr>
-			<section class="tags-secction mx-3">
-				<div class="row">
-
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">${datosPelicula.genero}</a>
+				<div style="margin-left: 2em;">
+					<h2>${datosPelicula.nombre}</h2>
+					<p>Dirigida por&nbsp;${datosPelicula.director}</p>
+					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
+					<p class="align-self-center mx-2 sinopsis">${datosPelicula.sinopsis}</p>
+					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
+					
+					<strong class="items">Generos</strong>
+					<div style="margin: 5px 0em;">
+					<c:forEach var="genero" items="${datosPelicula.generos}">
+						<p class="genero">${genero.descripcion}</p>
+					</c:forEach>
 					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">${datosPelicula.genero}</a>
+					
+					<strong class="items">Plataformas</strong>
+					<div style="margin: 5px 0em;">
+					<c:forEach var="plataforma" items="${datosPelicula.plataformas}">
+						<p class="plataforma">${plataforma.descripcion}</p>
+					</c:forEach>
 					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">${datosPelicula.genero}</a>
-					</div>
-					<div class="col-4 mx-5 text-center border rounded">${datosPelicula.duracion}
-						mins More at IMDB TMDB</div>
+					
 				</div>
-				<hr>
 			</section>
 
 			<section>
-						<div class="reviews">
-							<h3>Reviews</h3>
-							<c:if test="${usuarioActual != null}">
-								<form:form action="registrarReviewPelicula" method="POST"
-									modelAttribute="datosReview">
-									<form:textarea path="descripcion"
-										placeholder="Escribe tu reseña sobre el videojuego" />
-									<form:input path="pelicula.id" type="hidden"
-										value="${datosPelicula.id}" />
-									<form:input path="usuario.id" type="hidden"
-										value="${usuarioActual.id}" />
-									<form:button type="submit">Enviar</form:button>
-								</form:form>
-							</c:if>
+				<div class="reviews">
+					<h3>Reviews</h3>
+					<c:if test="${usuarioActual != null}">
+						<form:form action="registrarReviewPelicula" method="POST"
+							modelAttribute="datosReview">
+							<form:textarea path="descripcion"
+								placeholder="Escribe tu reseña sobre el videojuego" />
+							<form:input path="pelicula.id" type="hidden"
+								value="${datosPelicula.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit">Enviar</form:button>
+						</form:form>
+					</c:if>
 
-							<c:if test="${listaReviews != null}">
-								<c:forEach var="review" items="${listaReviews}">
-									<div class="comentario">
-										<img src="images/${review.usuario.foto}">
-										<p>${review.descripcion}</p>
-									</div>
-								</c:forEach>
-							</c:if>
+					<c:if test="${listaReviews != null}">
+						<c:forEach var="review" items="${listaReviews}">
+							<div class="comentario">
+								<img src="images/${review.usuario.foto}">
+								<p>${review.descripcion}</p>
+							</div>
+						</c:forEach>
+					</c:if>
 
-							<c:if test="${listaReviews[0] == null}">
-								<h5>No hay reviews por ahora</h5>
-							</c:if>
-						</div>
+					<c:if test="${listaReviews[0] == null}">
+						<h5>No hay reviews por ahora</h5>
+					</c:if>
+				</div>
 			</section>
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
