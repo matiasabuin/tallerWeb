@@ -46,7 +46,7 @@
 				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
-					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
+					<p>${datosVideojuego.cantidadJugadores}&nbsp;jugadores</p>
 				</c:if>
 				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
 					<p>Un jugador</p>

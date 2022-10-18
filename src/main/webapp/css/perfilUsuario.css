@@ -1,38 +1,47 @@
 @charset "ISO-8859-1";
-h3{
+
+h3 {
 	margin-bottom: 1em;
 }
-h4{
+
+h4 {
 	margin: 0em 1em;
 }
-.comentario{
+
+.comentario {
 	display: flex;
 	flex-wrap: nowrap;
 	width: 70%;
 	margin: 1em auto;
 	justify-content: flex-start;
 	padding-bottom: 10px;
-    border-bottom: 1px solid #badefc;
+	border-bottom: 1px solid #badefc;
 }
-.comentario img{
+
+.comentario img {
 	width: 15%;
 }
-.comentario p{
+
+.comentario p {
 	width: 100%;
 	padding: 10px 30px;
 	margin-bottom: 0;
 	color: #badefc;
 }
-.texto{
+
+.texto {
 	margin-left: 2em;
 	font-size: 15px;
 }
-.portada{
+
+.portada {
 	height: 150px;
 }
-.portada img{
-    width: 100%;
+
+.portada img {
+	width: 100%;
 }
-.descripcion{
+
+.descripcion {
 	width: 100%;
 }

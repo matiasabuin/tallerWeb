@@ -185,7 +185,12 @@ width: 100%;
 .table-borderless img{
 	width: 225px;
 	height: 350px;
-	
+	border-radius: 5px;
+	transition: 1s;
+}
+
+.table-borderless img:hover{
+	transform: scale(0.9);
 }
 
 .table-borderless td{
@@ -227,6 +232,8 @@ outline:none;
 .portada img{
 	 width: 200px;
     height: 300px;
+    border: 1px solid #badefc;
+    border-radius: 5px;
 }
 
 .poster-pelicula img{

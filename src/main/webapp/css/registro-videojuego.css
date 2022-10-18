@@ -1,84 +1,85 @@
 @charset "ISO-8859-1";
-.rounded, .drawer{
-	color: black;	
+
+.rounded, .drawer {
+	color: black;
 }
 
-h2{
- 	font-size: 30px;
-    color: #9ab;
-    font-weight: bold;
-    text-align: center;
-    margin: 1em 0em;
+h2 {
+	font-size: 30px;
+	color: #9ab;
+	font-weight: bold;
+	text-align: center;
+	margin: 1em 0em;
 }
 
-h3{
+h3 {
 	color: #fff;
 }
 
-input{
+input {
 	padding: 5px;
 }
 
-.container{
+.container {
 	display: flex;
-	flex-wrap: nowrap;	
+	flex-wrap: nowrap;
 	justify-content: center;
 }
 
-.left{
+.left {
 	width: 40%;
 }
 
-.right{
+.right {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.formulario form{
+.formulario form {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.campos{
+.campos {
 	border-radius: 10px;
 	width: 90%;
-    margin: 1em 0em;
-    padding: 2em 2em;
-	background-color: #242832!important;
+	margin: 1em 0em;
+	padding: 2em 2em;
+	background-color: #242832 !important;
 }
 
-.detalle{
+.detalle {
 	border: 2px solid;
 	border-radius: 10px;
 	width: 100%;
-    margin: 1em 0em;
-    padding: 2em 2em;
-	background-color: #242832!important;
+	margin: 1em 0em;
+	padding: 2em 2em;
+	background-color: #242832 !important;
 }
 
-.requisitos, .separacion{
+.requisitos, .separacion {
 	display: flex;
 	flex-wrap: nowrap;
 }
 
-.requisitos div{
+.requisitos div {
 	text-align: center;
 	width: 50%;
 }
 
-label{
+label {
 	display: block;
 	font-size: 20px;
 	margin: 5px;
 }
 
-input, textarea{
+input, textarea {
 	border-radius: 5px;
 }
 
-button{
+button {
 	margin: 1em 0em;
 	display: block;
 	background-color: #ea377a;
@@ -89,9 +90,8 @@ button{
 	border: none;
 }
 
-textarea{
+textarea {
 	padding: 10px;
 	height: 150px;
 	width: 90%;
 }
-
