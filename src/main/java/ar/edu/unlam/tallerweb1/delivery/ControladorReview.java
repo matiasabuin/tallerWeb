@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -40,6 +41,15 @@ public class ControladorReview {
 		servicioReview.registrar(datosReview);
 
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
+	}
+	@RequestMapping(path = "/registrarReviewSerie", method = RequestMethod.POST)
+	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) {
+		
+		Serie serie = datosReview.getSerie();
+		
+		servicioReview.registrar(datosReview);
+
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + serie.getId());
 	}
 	
 }

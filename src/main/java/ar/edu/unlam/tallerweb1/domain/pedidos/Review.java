@@ -24,6 +24,10 @@ public class Review {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="pelicula_id")
 	private Pelicula pelicula;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="serie_id")
+	private Serie serie;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="usuario_id")
@@ -59,5 +63,11 @@ public class Review {
 	}
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
+	}
+	public Serie getSerie() {
+		return serie;
+	}
+	public void setSerie(Serie serie) {
+		this.serie = serie;
 	}
 }

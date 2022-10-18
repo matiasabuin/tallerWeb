@@ -1,0 +1,102 @@
+@charset "ISO-8859-1";
+h2{
+	font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    font-family: Roboto,sans-serif!important;
+    text-align: left;
+}
+h3{
+	text-align: center;
+	margin: 20px;
+}
+h4{
+	display: block;
+}
+h5{
+	margin: 1em;
+	color: #badefc;
+    text-align: center;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+form{
+	text-align: center;
+}
+textarea{
+	padding: 20px;
+	width: 70%;
+	border-radius: 10px;
+	background-color: #16181c;
+    color: #badefc;
+    margin-bottom: 1em;
+}
+.button-reviews{
+	width: 15%;
+	margin: auto;
+	display: block;
+	background-color: #ea377a;
+	font-size: 20px;
+	color: white;
+	padding: 5px;
+	border-radius: 30px;
+	border: none;
+}
+.reviews{
+	background-color: #242832!important;
+	padding: 10px 0px;
+	border-radius: 10px;
+}
+.comentario{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 70%;
+	margin: 1em auto;
+	justify-content: flex-start;
+	padding-bottom: 10px;
+    border-bottom: 1px solid #badefc;
+}
+.comentario img{
+	width: 15%;
+}
+.comentario p{
+	width: 100%;
+	padding: 10px 20px;
+	margin-bottom: 0;
+	color: #badefc;
+}
+.genero, .plataforma{
+	font-size: 16px;
+    display: inline;
+    padding: 5px;
+    border: 1px solid #badefc;
+    margin: 5px;    
+    border-radius: 5px;
+}
+.datos{
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 3em 0em;
+}
+.datos img{
+	width: 300px;
+	height: 450px;
+}
+.contenedor{
+	margin: 3em auto;
+}
+.sinopsis{
+    margin-top: 1em;
+    font-family: Open Sans,sans-serif;
+    color: #badefc;
+    line-height: 1.5;
+}
+.items{
+	font-size: 20px;
+}
+.button-agregarfavs{
+    background-color: #ea377a !important;
+	border: none;
+	justify-content:center;
+		
+}
