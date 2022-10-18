@@ -34,6 +34,16 @@ public class Pelicula extends Contenido {
 	@OneToMany(mappedBy = "pelicula")
 	private List<Review> reviews = new ArrayList<Review>();
 	
+	@OneToMany(mappedBy = "pelicula")
+	private List<Listas> favoritos = new ArrayList<Listas>();
+	
+	public List<Listas> getFavoritos() {
+		return favoritos;
+	}
+	public void setFavoritos(List<Listas> favoritos) {
+		this.favoritos = favoritos;
+	}
+	
 	
 	public List<Genero> getGeneros() {
 		return generos;

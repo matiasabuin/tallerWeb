@@ -1,6 +1,10 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Serie extends Contenido{
@@ -12,6 +16,15 @@ public class Serie extends Contenido{
 	private Integer cantDeCaps;
 	private Integer duracionPorCaps;
 
+	@OneToMany(mappedBy = "serie")
+	private List<Listas> favoritos = new ArrayList<Listas>();	
+	
+	public List<Listas> getFavoritos() {
+		return favoritos;
+	}
+	public void setFavoritos(List<Listas> favoritos) {
+		this.favoritos = favoritos;
+	}
 	
 	public Integer getDuracionPorCaps() {
 		return duracionPorCaps;

@@ -10,17 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 
 @Controller
 public class ControladorSerie{
 	
+	private ServicioListas servicioFav;
 	private ServicioSerie servicioSerie;
 	
 	@Autowired
-	public ControladorSerie(ServicioSerie servicioSerie) {
+	public ControladorSerie(ServicioSerie servicioSerie,ServicioListas servicioFa) {
 		this.servicioSerie=servicioSerie;
+		this.servicioFav=servicioFa;
 		
 	}
 	@RequestMapping(path = "/registro-serie")
@@ -46,8 +50,12 @@ public class ControladorSerie{
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id) {
 
 		ModelMap modelo = new ModelMap();
+		Listas fav=new Listas();
+
 		Serie serie = servicioSerie.consultarSerie(id);
 		modelo.addAttribute("datosSerie", serie);
+		modelo.addAttribute("datosLista",fav);
+
 		return new ModelAndView("perfil-serie", modelo);
 	}
 	

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,13 +14,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -29,12 +34,19 @@ public class ControladorPeliculas {
 	private ServicioPelicula servicioPelicula;
 	private ServicioReview servicioReview;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
+	private ServicioListas servicioFav;
+	private ServicioFiles servicioFiles;
+
+
 
 	@Autowired
-	public ControladorPeliculas(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma) {
+	public ControladorPeliculas(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
 		this.servicioReview = servicioReview;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
+		this.servicioFav= servicioFav;
+		this.servicioFiles=servicioFiles;
+
 	}
 
 	@RequestMapping(path = "/registro-pelicula")
@@ -87,9 +99,13 @@ public class ControladorPeliculas {
     }
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
-	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, HttpServletRequest request) {
-		
+	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+	
 		if(request.getSession().getAttribute("usuarioActual") != null){
+			
+			servicioFiles.uploadImage(file);
+				
+		    datosPelicula.setPoster(file.getOriginalFilename());
 
 			Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
 
@@ -105,12 +121,15 @@ public class ControladorPeliculas {
 		ModelMap modelo = new ModelMap();
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
 		Review review = new Review();
+		Listas fav=new Listas();
+
 		
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosReview", review);
 		modelo.addAttribute("datosPelicula", pelicula);
+		modelo.addAttribute("datosLista",fav);
 		
 		return new ModelAndView("perfil-pelicula", modelo);
 	}

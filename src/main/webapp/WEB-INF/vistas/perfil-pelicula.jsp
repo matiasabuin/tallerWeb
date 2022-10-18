@@ -26,7 +26,20 @@
 		<div class="container contenedor">
 			<section class="datos">
 				<div>
-					<img src="images/${datosPelicula.poster}">
+					<img src="images/${datosPelicula.poster}"><br> <br>
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavPelicula" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="pelicula.id" type="hidden"
+								value="${datosPelicula.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit" class="btn btn-primary button-agregarfavs">
+								Favoritos <i class="fa fa-plus" aria-hidden="true"></i>
+							</form:button>
+						</form:form>
+					</c:if>
+
 				</div>
 				<div style="margin-left: 2em;">
 					<h2>${datosPelicula.nombre}</h2>
@@ -34,21 +47,21 @@
 					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
 					<p class="align-self-center mx-2 sinopsis">${datosPelicula.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
-					
+
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
-					<c:forEach var="genero" items="${datosPelicula.generos}">
-						<p class="genero">${genero.descripcion}</p>
-					</c:forEach>
+						<c:forEach var="genero" items="${datosPelicula.generos}">
+							<p class="genero">${genero.descripcion}</p>
+						</c:forEach>
 					</div>
-					
+
 					<strong class="items">Plataformas</strong>
 					<div style="margin: 5px 0em;">
-					<c:forEach var="plataforma" items="${datosPelicula.plataformas}">
-						<p class="plataforma">${plataforma.descripcion}</p>
-					</c:forEach>
+						<c:forEach var="plataforma" items="${datosPelicula.plataformas}">
+							<p class="plataforma">${plataforma.descripcion}</p>
+						</c:forEach>
 					</div>
-					
+
 				</div>
 			</section>
 
@@ -64,7 +77,7 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit">Enviar</form:button>
+							<form:button type="submit" class="button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 
@@ -72,7 +85,10 @@
 						<c:forEach var="review" items="${listaReviews}">
 							<div class="comentario">
 								<img src="images/${review.usuario.foto}">
-								<p>${review.descripcion}</p>
+								<div>
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
+								</div>
 							</div>
 						</c:forEach>
 					</c:if>

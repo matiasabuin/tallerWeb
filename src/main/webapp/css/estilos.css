@@ -222,7 +222,6 @@ outline:none;
 }
 
 .biografia {
-	
 	padding-left: 10px;
 }
 .portada img{
@@ -233,4 +232,9 @@ outline:none;
 .poster-pelicula img{
     height: 300px;
 	
+}
+.button-agregarfavs{
+	background-color: #ea377a !important;
+	border: none;
+		
 }

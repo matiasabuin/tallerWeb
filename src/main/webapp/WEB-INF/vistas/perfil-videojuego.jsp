@@ -19,13 +19,26 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<main>
 		<div class="container">
 			<div class="portada">
 				<div style="text-align: center;">
 					<img src="images/${datosVideojuego.poster}"><br>
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavVideojuego" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="videojuego.id" type="hidden"
+								value="${datosVideojuego.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit" class="btn btn-primary button-agregarfavs mt-4">
+									Favoritos <i class="fa fa-plus"
+										aria-hidden="true"></i>
+								</form:button>
+						</form:form>
+					</c:if>
 				</div>
 			</div>
 			<div class="centro" style="width: 50%;">
@@ -57,7 +70,7 @@
 				<p>${datosVideojuego.duracion}&nbsp;Horas</p>
 			</div>
 		</div>
-		
+
 		<!--<c:if test="${datosVideojuego.requisitosMinimos != null && datosVideojuego.requisitosRecomendados != null}">
 			<div class="contenedor-requisitos">
 				<h3>Requisitos del sistema</h3>
@@ -73,7 +86,7 @@
 				</div>
 			</div>
 		</c:if>-->
-		
+
 		<div class="reviews">
 			<h3>Reviews</h3>
 			<c:if test="${usuarioActual != null}">
@@ -85,7 +98,7 @@
 						value="${datosVideojuego.id}" />
 					<form:input path="usuario.id" type="hidden"
 						value="${usuarioActual.id}" />
-					<form:button type="submit">Enviar</form:button>
+					<form:button type="submit" class="button-reviews">Enviar</form:button>
 				</form:form>
 			</c:if>
 
@@ -93,7 +106,10 @@
 				<c:forEach var="review" items="${listaReviews}">
 					<div class="comentario">
 						<img src="images/${review.usuario.foto}">
-						<p>${review.descripcion}</p>
+						<div>
+							<h4>${review.usuario.nombre}</h4>
+							<p>${review.descripcion}</p>
+						</div>
 					</div>
 				</c:forEach>
 			</c:if>
@@ -104,8 +120,7 @@
 
 		</div>
 	</main>
-	
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

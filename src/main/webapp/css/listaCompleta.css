@@ -1,0 +1,37 @@
+@charset "ISO-8859-1";
+
+.list-group img{
+	vertical-align: middle;
+    width: 75%;
+    border-radius: 8px;
+    margin-left:10%;
+    
+}
+.nameList{
+    font-weight: bold;
+    color: #9ab;
+}
+
+.listaCompletaBody{
+	padding:25px 30px;
+	background-color:#242832!important;
+	border-radius: 8px;
+}
+.titulo{
+	color:#F5F5F5;
+	text-transform: uppercase;
+	
+}
+.verPefil{
+    font-size: initial;
+    color:#ea377a;
+}
+.verPefil:hover{
+    color:#8F214A;
+}
+.fotoDeUsuarioDeLista{
+	 width: 30%;
+}
+.descripcion{
+	color:#badefc
+}
