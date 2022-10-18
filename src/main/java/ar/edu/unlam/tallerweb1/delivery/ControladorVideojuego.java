@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -116,7 +114,7 @@ public class ControladorVideojuego {
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego, @RequestParam("file") MultipartFile file, 
-			HttpSession session, HttpServletRequest request) throws IOException {
+			HttpServletRequest request) throws IOException {
 
 		if (request.getSession().getAttribute("usuarioActual") != null) {
 			

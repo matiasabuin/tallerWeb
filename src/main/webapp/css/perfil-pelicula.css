@@ -10,6 +10,9 @@ h3{
 	text-align: center;
 	margin: 20px;
 }
+h4{
+	display: block;
+}
 h5{
 	margin: 1em;
 	color: #badefc;

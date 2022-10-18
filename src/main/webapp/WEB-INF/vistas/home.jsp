@@ -25,7 +25,7 @@
 <jsp:include page="header.jsp" />
 
 	<div class="boton-container">
-	<div class="boton mx-3">
+	<div class="boton mx-3"  style="width: 350px;">
 		<h2>Disfruta de tu tiempo libre</h2>
 		<p> Encontra el contenido que mejor se adapte a tus tiempos</p>
 		</div>

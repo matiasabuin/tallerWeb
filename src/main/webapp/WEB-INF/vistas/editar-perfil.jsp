@@ -24,20 +24,20 @@
 
 <jsp:include page="header.jsp" />
 
-	<div class="usuario-container">
+	<div>
 
 		<div class="formulario-registro rounded login mx-auto">
-			<form:form action="perfil-usuario" method="POST"
-				modelAttribute="datosPerfil">
+			<form:form action="editar-usuario" method="POST"
+				modelAttribute="datosPerfil" enctype="multipart/form-data">
 
 				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
 
 				<div class="form-group foto-perfil">
-					<img src="images/${usuarioActual.foto}">
+					<img src="images/${usuarioActual.foto}" style="width: 100%;">
 				</div>
 
 				<div class="form-group">
-					<form:input path="foto" type="file" id="foto" />
+					<form:input path="" type="file" id="foto" name="file"/>
 				</div>
 
 				<div class="form-group">

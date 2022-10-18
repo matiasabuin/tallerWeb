@@ -23,13 +23,13 @@
 	<h2>REGISTRO PELICULA</h2>
 	<div class="container">
 		<form:form action="registrar-pelicula" method="POST"
-			class="formulario-registro rounded" modelAttribute="datosPelicula">
+			class="formulario-registro rounded" modelAttribute="datosPelicula" enctype="multipart/form-data">
 				
 			<div class="row">
 				<div class="form-group col-md-6">
 				
 					<form:label path="poster">Poster</form:label>
-					<form:input path="poster" type="file" id="foto" name="file"/>
+					<form:input path="" type="file" id="foto" name="file"/>
 				
 					<form:label path="nombre">Nombre</form:label>
 					<form:input path="nombre" type="text" class="form-control"

@@ -34,21 +34,21 @@
 					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
 					<p class="align-self-center mx-2 sinopsis">${datosPelicula.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
-					
+
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
-					<c:forEach var="genero" items="${datosPelicula.generos}">
-						<p class="genero">${genero.descripcion}</p>
-					</c:forEach>
+						<c:forEach var="genero" items="${datosPelicula.generos}">
+							<p class="genero">${genero.descripcion}</p>
+						</c:forEach>
 					</div>
-					
+
 					<strong class="items">Plataformas</strong>
 					<div style="margin: 5px 0em;">
-					<c:forEach var="plataforma" items="${datosPelicula.plataformas}">
-						<p class="plataforma">${plataforma.descripcion}</p>
-					</c:forEach>
+						<c:forEach var="plataforma" items="${datosPelicula.plataformas}">
+							<p class="plataforma">${plataforma.descripcion}</p>
+						</c:forEach>
 					</div>
-					
+
 				</div>
 			</section>
 
@@ -72,7 +72,10 @@
 						<c:forEach var="review" items="${listaReviews}">
 							<div class="comentario">
 								<img src="images/${review.usuario.foto}">
-								<p>${review.descripcion}</p>
+								<div>
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
+								</div>
 							</div>
 						</c:forEach>
 					</c:if>

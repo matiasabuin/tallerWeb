@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ControladorPerfil {
 
 	private ServicioLogin servicioLogin;
-
+	private ServicioFiles servicioFiles;
+	
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin){
+	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles){
 		this.servicioLogin = servicioLogin;
+		this.servicioFiles = servicioFiles;
 	}
 
 	@RequestMapping("/perfil")
@@ -44,19 +50,21 @@ public class ControladorPerfil {
 		return new ModelAndView("editar-perfil", modelo);
 	}
 	
-	@RequestMapping(path = "/perfil-usuario", method = RequestMethod.POST)
-	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil,
-			HttpServletRequest request) {
+	@RequestMapping(path = "/editar-usuario", method = RequestMethod.POST)
+	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil, @RequestParam("file") MultipartFile foto,
+			HttpServletRequest request) throws IOException {
 
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		servicioFiles.uploadImage(foto);
 		
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
 		
-		usuarioBuscado.setFoto(datosPerfil.getFoto());
+		usuarioBuscado.setFoto(foto.getOriginalFilename());
 		
-		servicioLogin.editarPerfil(datosPerfil);
+		servicioLogin.editarPerfil(usuarioBuscado);
 		
 		return new ModelAndView("redirect:/perfil");
 
