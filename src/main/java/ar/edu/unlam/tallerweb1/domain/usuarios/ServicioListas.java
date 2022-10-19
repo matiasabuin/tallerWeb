@@ -5,13 +5,15 @@ import java.util.Set;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 public interface ServicioListas {
 	
-	void guardar(Listas review);
-	
+	void guardar(Listas lista);
+	void eliminar(Listas lista);
+
 	Listas getById(Integer id);
 	
 	List<Listas> getAll();

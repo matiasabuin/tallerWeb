@@ -52,8 +52,7 @@
 						</c:if>
 						<table class="table-responsive table-borderless">
 							<c:if test="${usuarioActual.favoritos[0] == null}">
-								<p class="noHayFav"> AGREGA TU CONTENIDO FAVORITO Y 
-									ACA</p>
+								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFRUTALO ACA!</p>
 							</c:if>
 
 							<c:if test="${usuarioActual.favoritos[0].pelicula != null}">

@@ -68,4 +68,11 @@ public class RepositorioListasImpl implements RepositorioListas {
 				.add(Restrictions.eq("videojuego.id", id)).uniqueResult();
 	}
 
+	@Override
+	public void eliminar(Listas lista) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(lista);
+
+	}
+
 }

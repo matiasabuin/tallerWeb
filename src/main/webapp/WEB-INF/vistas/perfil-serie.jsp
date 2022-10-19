@@ -35,7 +35,7 @@
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
 							<form:button type="submit" class="btn btn-primary button-agregarfavs">
-								Favoritos <i class="fa fa-plus" aria-hidden="true"></i>
+								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
 							</form:button>
 						</form:form>
 					</c:if>

@@ -10,6 +10,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 public interface RepositorioListas {
 
 	void guardar(Listas fav);
+	void eliminar(Listas lista);
 
 	Listas buscar(Integer id);
 

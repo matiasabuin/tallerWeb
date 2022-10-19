@@ -96,6 +96,8 @@ textarea{
 .button-agregarfavs{
     background-color: #ea377a !important;
 	border: none;
-	justify-content:center;
-		
+	justify-content:center;		
+}
+.button-agregarfavs:hover{
+    background-color: #b02a5c !important;
 }

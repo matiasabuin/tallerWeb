@@ -62,5 +62,11 @@ public class ServicioListasImpl implements ServicioListas {
 		// TODO Auto-generated method stub
 		return servicioFavoritosDao.buscarSerieId(id);
 	}
+
+
+	@Override
+	public void eliminar(Listas lista) {
+		this.servicioFavoritosDao.eliminar(lista);
+	}
 	
 }

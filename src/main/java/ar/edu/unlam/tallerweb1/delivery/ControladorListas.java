@@ -44,6 +44,15 @@ public class ControladorListas {
 		// }
 		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
 	}
+	@RequestMapping(path = "/eliminarFavVideojuego", method = RequestMethod.POST)
+	public ModelAndView eliminarFavVideojuego(@ModelAttribute("datosFav") Listas datosFavoritos) {
+
+		Videojuego videojuego = datosFavoritos.getVideojuego();
+
+		servicioFav.eliminar(datosFavoritos);
+		
+		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
+	}
 
 	@RequestMapping(path = "/guardarFavPelicula", method = RequestMethod.POST)
 	public ModelAndView guardarFavPelicula(@ModelAttribute("datosFav") Listas datosFavoritos) {
@@ -63,6 +72,15 @@ public class ControladorListas {
 
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 	}
+	@RequestMapping(path = "/eliminarFavPelicula", method = RequestMethod.POST)
+	public ModelAndView eliminarFavPelicula(@ModelAttribute("datosFav") Listas datosFavoritos) {
+
+		Pelicula pelicula = datosFavoritos.getPelicula();
+
+		servicioFav.eliminar(datosFavoritos);
+		
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
+	}
 
 	@RequestMapping(path = "/guardarFavSerie", method = RequestMethod.POST)
 	public ModelAndView guardarFavSerie(@ModelAttribute("datosFav") Listas datosFavoritos) {
@@ -77,6 +95,22 @@ public class ControladorListas {
 //		}
 //		else {
 		servicioFav.guardar(datosFavoritos);
+		// }
+
+		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
+	}
+	@RequestMapping(path = "/eliminarFavSerie", method = RequestMethod.POST)
+	public ModelAndView eliminarFavSerie(@ModelAttribute("datosFav") Listas datosFavoritos) {
+		Serie serie = datosFavoritos.getSerie();
+
+//		Serie seriebuscada = servicioFav.consultarSerieId(datosFavoritos.getId());
+//
+//		if (seriebuscada != null) {
+//			
+//			return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
+//		}
+//		else {
+		servicioFav.eliminar(datosFavoritos);
 		// }
 
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());

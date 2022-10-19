@@ -123,3 +123,6 @@ textarea{
     margin: 5px;    
     border-radius: 5px;
 }
+.button-agregarfavs:hover{
+    background-color: #b02a5c !important;
+}
