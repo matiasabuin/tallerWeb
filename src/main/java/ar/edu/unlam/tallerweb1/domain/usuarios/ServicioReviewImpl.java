@@ -53,4 +53,9 @@ public class ServicioReviewImpl implements ServicioReview {
 		return servicioReviewDao.obtenerReviewsDePeliculaPorId(id);
 	}
 
+	@Override
+	public List<Review> getAllBySerieId(Integer id) {
+		return servicioReviewDao.obtenerReviewsDeSeriePorId(id);
+	}
+
 }

@@ -64,6 +64,7 @@ public class ControladorSerie{
 		modelo.put("datosSerie", serie);
 		return new ModelAndView("registro-serie", modelo);
 	}
+	
 	@InitBinder
     protected void initBinderGenero(WebDataBinder binder) throws Exception{
 		List<Genero> generosCache = servicioGeneroPlataforma.obtenerGeneros();
@@ -105,6 +106,7 @@ public class ControladorSerie{
 
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
+	
 	@RequestMapping("/perfil-serie")
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id) {
 
@@ -112,10 +114,9 @@ public class ControladorSerie{
 		Listas fav=new Listas();		
 		Review review = new Review();
 
-
 		Serie serie = servicioSerie.consultarSerie(id);
 		
-		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
+		List<Review> reviews = servicioReview.getAllBySerieId(id);
 		
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosReview", review);

@@ -27,14 +27,13 @@ public class Genero {
     @ManyToMany(mappedBy="generos")
     private List<Serie> series = new ArrayList<Serie>();
     
+    
     public List<Serie> getSerie() {
 		return series;
 	}
 	public void setSeries(List<Serie> series) {
 		this.series = series;
 	}
-    
-    
     public List<Pelicula> getPeliculas() {
 		return peliculas;
 	}

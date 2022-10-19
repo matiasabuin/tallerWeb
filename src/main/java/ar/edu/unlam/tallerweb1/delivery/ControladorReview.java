@@ -42,6 +42,7 @@ public class ControladorReview {
 
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 	}
+	
 	@RequestMapping(path = "/registrarReviewSerie", method = RequestMethod.POST)
 	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) {
 		
@@ -49,7 +50,7 @@ public class ControladorReview {
 		
 		servicioReview.registrar(datosReview);
 
-		return new ModelAndView("redirect:/perfil-pelicula?id=" + serie.getId());
+		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
 	
 }

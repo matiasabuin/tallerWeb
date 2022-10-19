@@ -1,8 +1,8 @@
-:root { -
-	-primary-color: #263441; -
-	-light-color: #86939f; -
-	-color-footer: #576777; -
-	-onMouseover: #fff
+:root {
+	--primary-color: #263441;
+	--light-color: #86939f;
+	--color-footer: #576777;
+	--onMouseover: #fff
 }
 
 .bg-primary {
@@ -22,28 +22,28 @@ body {
 
 .nav-link {
 	font-size: 20px;
-	color: var(- -light-color);
+	color: var(--light-color);
 	font-weight: bold;
 	padding: 0px 8px;
 }
 
 .nav-link:hover {
-	color: var(- -onMouseover) !important;
+	color: var(--onMouseover) !important;
 	border: 1px solid white;
 	border-radius: 5px;
 }
 
 .navbar-brand {
-	color: var(- -light-color) !important;
+	color: var(--light-color) !important;
 }
 
 .dropdown-menu {
-	background-color: var(- -light-color) !important;
+	background-color: var(--light-color) !important;
 }
 
 .dropdown-item:hover {
-	background-color: var(- -primary-color);
-	color: var(- -onMouseover);
+	background-color: var(--primary-color);
+	color: var(--onMouseover);
 }
 
 .poster-secction .poster-serie img {
@@ -80,7 +80,7 @@ body {
 
 .tags-secction .col-2 border {
 	background-color: #17181c;
-	color: var(- -onMouseover);
+	color: var(--onMouseover);
 }
 
 .tags-secction a {
@@ -89,7 +89,7 @@ body {
 }
 
 .reviews .col-12 {
-	background-color: var(- -primary-color);
+	background-color: var(--primary-color);
 	padding: 150px;
 }
 
@@ -162,7 +162,7 @@ body {
 }
 
 .footer a:hover {
-	color: var(- -onMouseover);
+	color: var(--onMouseover);
 }
 
 .footer a {
@@ -172,15 +172,15 @@ body {
 
 .footer-copyright {
 	background-color: #2c3440;
-	color: var(- -primary-color);
+	color: var(--primary-color);
 }
 
 .enlaceDeCopy {
-	color: var(- -primary-color);
+	color: var(--primary-color);
 }
 
 .enlaceDeCopy:hover {
-	color: var(- -onMouseover);
+	color: var(--onMouseover);
 }
 
 .table-borderless a {
@@ -211,7 +211,7 @@ body {
 
 .boton-nav {
 	font-size: 20px;
-	color: var(- -light-color);
+	color: var(--light-color);
 	margin: 0em 1em;
 }
 
@@ -247,7 +247,8 @@ body {
 .poster-pelicula img {
 	height: 300px;
 }
-/* .button-agregarfavs{
+
+.button-agregarfavs{
 	background-color: #ea377a !important;
 	border: none;	
-} */
+}

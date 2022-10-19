@@ -13,4 +13,5 @@ public interface ServicioReview {
 	List<Review> getAll();
 	List<Review> getAllByVideojuegoId(Integer id);
 	List<Review> getAllByPeliculaId(Integer id);
+	List<Review> getAllBySerieId(Integer id);
 }

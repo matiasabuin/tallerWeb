@@ -142,7 +142,7 @@ body {
 .btn {
 	background-color: #ea377a !important;
 	border-color: #ea377a;
-	margin-right: 1em;
+	margin: auto;
 }
 
 .btn:hover {

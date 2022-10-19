@@ -55,5 +55,12 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 
+	public List<Review> obtenerReviewsDeSeriePorId(Integer id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("serie.id", id))
+				.list();
+	}
+
 
 }

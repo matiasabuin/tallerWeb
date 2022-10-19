@@ -10,5 +10,6 @@ public interface RepositorioReview {
 	List<Review> obtenerReviews();
 	List<Review> obtenerReviewsDeVideojuegoPorId(Integer id);
 	List<Review> obtenerReviewsDePeliculaPorId(Integer id);
+	List<Review> obtenerReviewsDeSeriePorId(Integer id);
 
 }

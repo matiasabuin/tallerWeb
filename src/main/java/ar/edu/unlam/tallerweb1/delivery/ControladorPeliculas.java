@@ -120,7 +120,6 @@ public class ControladorPeliculas {
 		Review review = new Review();
 		Listas fav=new Listas();
 
-		
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
 		modelo.addAttribute("listaReviews", reviews);
