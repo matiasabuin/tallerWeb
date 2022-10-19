@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 <title>${usuarioActual.nombre}</title>
@@ -22,48 +21,132 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="container">
 		<div class="usuario-container">
 
-			<div class="flex-container">
+			<div class="container">
 
-				<img src="images/${usuarioActual.foto}">
+				<div class="row">
 
-				<div class="biografia">
-					<h2>${usuarioActual.nombre}</h2>
-					<p>${usuarioActual.biografia}</p>
+					<div class="col-4">
+						<img class="usuarioImagen mx-5" src="images/${usuarioActual.foto}">
+						<div class="biografia">
+							<h4 class="my-2">${usuarioActual.nombre}</h4>
+							<p class="my-2 mx-3">${usuarioActual.biografia}</p>
+						</div>
+						<a href="editar-perfil" class="btn btn-primary my-2 ml-4"> Editar
+							Perfil </a> <a href="reviews" class="btn btn-primary my-2 mx-2"> Ver
+							reviews </a>
+
+					</div>
+					<div class="col-8 favPerfil-container">
+						<c:if test="${usuarioActual.favoritos[0] != null}">
+							<h1>
+								Favoritos
+								<c:if test="${usuarioActual.favoritos[3] != null}">
+									<a href="lista-completa" class="verMasLista">Ver todos</a>
+								</c:if>
+							</h1>
+						</c:if>
+						<table class="table-responsive table-borderless">
+							<c:if test="${usuarioActual.favoritos[0] == null}">
+								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFRUTALO ACA!</p>
+							</c:if>
+
+							<c:if test="${usuarioActual.favoritos[0].pelicula != null}">
+								<td><a
+									href="perfil-pelicula?id=${usuarioActual.favoritos[0].pelicula.id}">
+										<img
+										src="images/${usuarioActual.favoritos[0].pelicula.poster}">
+										<p class="titulo">${usuarioActual.favoritos[0].pelicula.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[0].videojuego != null}">
+								<td><a
+									href="videojuego?id=${usuarioActual.favoritos[0].videojuego.id}">
+										<img
+										src="images/${usuarioActual.favoritos[0].videojuego.poster}">
+										<p class="titulo">${usuarioActual.favoritos[0].videojuego.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[0].serie != null}">
+								<td><a
+									href="perfil-serie?id=${usuarioActual.favoritos[0].serie.id}">
+										<img src="images/${usuarioActual.favoritos[0].serie.poster}">
+										<p class="titulo">${usuarioActual.favoritos[0].serie.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[1].pelicula != null}">
+								<td><a
+									href="perfil-pelicula?id=${usuarioActual.favoritos[1].pelicula.id}">
+										<img
+										src="images/${usuarioActual.favoritos[1].pelicula.poster}">
+										<p class="titulo">${usuarioActual.favoritos[1].pelicula.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[1].videojuego != null}">
+								<td><a
+									href="videojuego?id=${usuarioActual.favoritos[1].videojuego.id}">
+										<img
+										src="images/${usuarioActual.favoritos[1].videojuego.poster}">
+										<p class="titulo">${usuarioActual.favoritos[1].videojuego.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[1].serie != null}">
+								<td><a
+									href="perfil-serie?id=${usuarioActual.favoritos[1].serie.id}">
+										<img src="images/${usuarioActual.favoritos[1].serie.poster}">
+										<p class="titulo">${usuarioActual.favoritos[1].serie.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[2].pelicula != null}">
+								<td><a
+									href="perfil-pelicula?id=${usuarioActual.favoritos[2].pelicula.id}">
+										<img
+										src="images/${usuarioActual.favoritos[2].pelicula.poster}">
+										<p class="titulo">${usuarioActual.favoritos[2].pelicula.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[2].videojuego != null}">
+								<td><a
+									href="videojuego?id=${usuarioActual.favoritos[2].videojuego.id}">
+										<img
+										src="images/${usuarioActual.favoritos[2].videojuego.poster}">
+										<p class="titulo">${usuarioActual.favoritos[2].videojuego.nombre}</p>
+								</a></td>
+							</c:if>
+							<c:if test="${usuarioActual.favoritos[2].serie != null}">
+								<td><a
+									href="perfil-serie?id=${usuarioActual.favoritos[2].serie.id}">
+										<img src="images/${usuarioActual.favoritos[2].serie.poster}">
+										<p class="titulo">${usuarioActual.favoritos[2].serie.nombre}</p>
+								</a></td>
+							</c:if>
+						</table>
+
+					</div>
 				</div>
 
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
-		<a href="editar-perfil" class="btn btn-primary"> Editar Perfil </a>
-		<a href="reviews" class="btn btn-primary"> Ver reviews </a>
-	</div>
-	
+
+
 	<div class="container">
 		<div class="recomendaciones-container">
 
 			<h1>Actividad reciente</h1>
 
-<%-- 			<table class="table-responsive table-borderless">
-				<c:forEach items="${usuarioActual.historial}" var="contenido">
-					<td><a href="videojuego?id=${contenido.id}"> <img
-							src="images/${contenido.poster}"><br>
-							${contenido.nombre}
-					</a></td>
-				</c:forEach>
-			</table>  --%>
 
 		</div>
 	</div>
 
 
-<jsp:include page="footer.jsp" />
+
+	<jsp:include page="footer.jsp" />
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

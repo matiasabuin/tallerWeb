@@ -97,7 +97,7 @@ textarea {
 	margin-bottom: 1em;
 }
 
-button {
+.button-reviews {
 	width: 15%;
 	margin: auto;
 	display: block;
@@ -137,4 +137,8 @@ button {
 	border: 1px solid #ea377a;
 	margin: 5px;
 	border-radius: 5px;
+}
+
+.button-agregarfavs:hover {
+	background-color: #b02a5c !important;
 }

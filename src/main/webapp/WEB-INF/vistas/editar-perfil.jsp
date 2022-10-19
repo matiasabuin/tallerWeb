@@ -22,7 +22,7 @@
 
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div>
 
@@ -37,7 +37,7 @@
 				</div>
 
 				<div class="form-group">
-					<form:input path="" type="file" id="foto" name="file"/>
+					<form:input path="" type="file" id="foto" name="file" />
 				</div>
 
 				<div class="form-group">
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 	<script src="js/script.js"></script>
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -75,3 +75,4 @@
 
 </body>
 </html>
+

@@ -24,9 +24,9 @@ public class ControladorPerfil {
 
 	private ServicioLogin servicioLogin;
 	private ServicioFiles servicioFiles;
-	
+
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles){
+	public ControladorPerfil(ServicioLogin servicioLogin,ServicioFiles servicioFiles){
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 	}

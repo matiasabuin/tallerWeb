@@ -1,21 +1,20 @@
-:root {
-	--primary-color: #263441;
-	--light-color: #86939f;
-	--color-footer: #576777;
-	--onMouseover: #fff
+:root { -
+	-primary-color: #263441; -
+	-light-color: #86939f; -
+	-color-footer: #576777; -
+	-onMouseover: #fff
 }
 
 .bg-primary {
-	background-color: #242832!important;
+	background-color: #242832 !important;
 }
 
 body {
 	background-color: #17181c;
 	font-size: 12pt !important;
-	font-family: Roboto,sans-serif;
+	font-family: Roboto, sans-serif;
 	color: #c7c7c7;
 }
-
 
 .navbar {
 	min-height: 70px;
@@ -23,51 +22,55 @@ body {
 
 .nav-link {
 	font-size: 20px;
-	color: var(--light-color);
+	color: var(- -light-color);
 	font-weight: bold;
 	padding: 0px 8px;
 }
 
 .nav-link:hover {
-	color: var(--onMouseover) !important;
+	color: var(- -onMouseover) !important;
 	border: 1px solid white;
-    border-radius: 5px;
+	border-radius: 5px;
 }
 
 .navbar-brand {
-	color: var(--light-color) !important;
-	
+	color: var(- -light-color) !important;
 }
 
 .dropdown-menu {
-	background-color: var(--light-color) !important;
+	background-color: var(- -light-color) !important;
 }
-.dropdown-item:hover{
-	background-color: var(--primary-color);
-	color:var(--onMouseover);
 
+.dropdown-item:hover {
+	background-color: var(- -primary-color);
+	color: var(- -onMouseover);
 }
-.poster-secction .poster-serie img{
-	height:350px;
+
+.poster-secction .poster-serie img {
+	height: 350px;
 	width: 100%;
 	/*  margin-right:50px;
-     */}
-     
-.poster-serie img{
-height:350px;
-width: 100%;
+     */
 }
 
-.poster-secction .poster-peli img{
-	height:350px;
+.poster-serie img {
+	height: 350px;
+	width: 100%;
+}
+
+.poster-secction .poster-peli img {
+	height: 350px;
 	/*  margin-right:50px;
-     */}
+     */
+}
+
 .poster-secction .col {
 	font-weight: bold;
-	font-size:40px;
+	font-size: 40px;
 }
+
 .poster-secction .col img {
-	height:60px;
+	height: 60px;
 }
 
 .tags-secction .col-2 {
@@ -77,72 +80,75 @@ width: 100%;
 
 .tags-secction .col-2 border {
 	background-color: #17181c;
-	color: var(--onMouseover);
+	color: var(- -onMouseover);
 }
-.tags-secction a{
+
+.tags-secction a {
 	text-decoration: none;
 	color: #c7c7c7;
-
 }
 
 .reviews .col-12 {
-	background-color: var(--primary-color);
+	background-color: var(- -primary-color);
 	padding: 150px;
 }
 
 .reviews .col-12 p {
 	font-size: 25px;
 }
-.formulario-registro{
+
+.formulario-registro {
 	margin-top: 100px;
-    margin-bottom: 310px;
+	margin-bottom: 310px;
 }
 
-.formulario-registro p{
-	font-size:30px;
+.formulario-registro p {
+	font-size: 30px;
 	color: #9ab;
 	font-weight: bold;
-	text-align:left
-}
-.form-group{
-	font-size:15px;
-}
-.tipo{
-	margin-top:4px;
+	text-align: left
 }
 
-.marco-poster-registro{
-	margin-top:3px;
-	display:flex;
-	width:375px;
-	align-content:center;
-	height:450px;
-	border:5px solid #121212;
-	background-position:center;
-	background-size:cover;
-	background-color:#E1DEDE;
+.form-group {
+	font-size: 15px;
+}
 
+.tipo {
+	margin-top: 4px;
 }
-#botonDeregistroPeliSerie{
-	background-color:#ea377a !important;
-	border:none;
-	
+
+.marco-poster-registro {
+	margin-top: 3px;
+	display: flex;
+	width: 375px;
+	align-content: center;
+	height: 450px;
+	border: 5px solid #121212;
+	background-position: center;
+	background-size: cover;
+	background-color: #E1DEDE;
 }
+
+#botonDeregistroPeliSerie {
+	background-color: #ea377a !important;
+	border: none;
+}
+
 .footer {
 	grid-area: footer;
-	background-color:  #2c3440; 
+	background-color: #2c3440;
 	margin-top: 150px;
 	padding-top: 10px;
 }
 
 .column1 h4 {
 	font-size: 12pt;
-	background-color:  #2c3440; 
+	background-color: #2c3440;
 }
 
 .column1 .social {
 	justify-content: center;
-	background-color:  #2c3440; 
+	background-color: #2c3440;
 	text-decoration: none;
 	list-style: none;
 	margin-top: 10px;
@@ -156,7 +162,7 @@ width: 100%;
 }
 
 .footer a:hover {
-	color: var(--onMouseover);
+	color: var(- -onMouseover);
 }
 
 .footer a {
@@ -165,78 +171,83 @@ width: 100%;
 }
 
 .footer-copyright {
-	background-color:  #2c3440; 
-	color: var(--primary-color);
+	background-color: #2c3440;
+	color: var(- -primary-color);
 }
 
 .enlaceDeCopy {
-	color: var(--primary-color);
+	color: var(- -primary-color);
 }
 
 .enlaceDeCopy:hover {
-	color: var(--onMouseover);
+	color: var(- -onMouseover);
 }
 
-.table-borderless a{
+.table-borderless a {
 	color: #9ab;
 	width: 100px;
 }
 
-.table-borderless img{
+.table-borderless img {
 	width: 225px;
 	height: 350px;
 	border-radius: 5px;
 	transition: 1s;
 }
 
-.table-borderless img:hover{
+.table-borderless img:hover {
 	transform: scale(0.9);
 }
 
-.table-borderless td{
+.table-borderless td {
 	vertical-align: middle;
 	text-align: center;
 	padding: 0px 10px;
-	
 }
 
-.login{
-	width:400px;
+.login {
+	width: 400px;
 }
 
-
-.boton-nav{
+.boton-nav {
 	font-size: 20px;
-	color: var(--light-color);
+	color: var(- -light-color);
 	margin: 0em 1em;
 }
 
-.search{
+.search {
 	padding: 4px 20px;
 	font-size: 18px;
 	border-radius: 20px;
 	margin-right: 10px;
 }
-.search:focus{
-outline:none;
+
+.search:focus {
+	outline: none;
 }
-.foto-perfil img{
+
+.foto-perfil img {
 	display: block;
 	margin-left: auto;
-  	margin-right: auto;
+	margin-right: auto;
 }
 
 .biografia {
-	padding: 10px 30px;
-}
-.portada img{
-	 width: 200px;
-    height: 300px;
-    border: 1px solid #badefc;
-    border-radius: 5px;
+	/*padding: 10px 30px;*/
+	padding-left: 10px;
 }
 
-.poster-pelicula img{
-    height: 300px;
-	
+.portada img {
+	width: 200px;
+	height: 300px;
+	border: 1px solid #badefc;
+	border-radius: 5px;
 }
+
+.poster-pelicula img {
+	height: 300px;
+}
+/* .button-agregarfavs{
+	background-color: #ea377a !important;
+	border: none;	
+} */

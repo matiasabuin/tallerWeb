@@ -26,7 +26,21 @@
 		<div class="container contenedor">
 			<section class="datos">
 				<div>
-					<img src="images/${datosPelicula.poster}">
+					<img src="images/${datosPelicula.poster}"><br> <br>
+					<c:if test="${usuarioActual != null}">
+				
+						<form:form action="guardarFavPelicula" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="pelicula.id" type="hidden"
+								value="${datosPelicula.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit" class="btn btn-primary button-agregarfavs">
+								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+							</form:button>
+						</form:form>
+					</c:if>
+
 				</div>
 				<div style="margin-left: 2em;">
 					<h2>${datosPelicula.nombre}</h2>
@@ -64,7 +78,7 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit">Enviar</form:button>
+							<form:button type="submit" class="button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 

@@ -38,7 +38,7 @@ textarea {
 	margin-bottom: 1em;
 }
 
-button {
+.button-reviews {
 	width: 15%;
 	margin: auto;
 	display: block;
@@ -112,4 +112,14 @@ button {
 
 .items {
 	font-size: 20px;
+}
+
+.button-agregarfavs {
+	background-color: #ea377a !important;
+	border: none;
+	justify-content: center;
+}
+
+.button-agregarfavs:hover {
+	background-color: #b02a5c !important;
 }

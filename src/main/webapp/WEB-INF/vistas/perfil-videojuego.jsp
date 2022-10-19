@@ -26,6 +26,19 @@
 			<div class="portada">
 				<div style="text-align: center;">
 					<img src="images/${datosVideojuego.poster}"><br>
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavVideojuego" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="videojuego.id" type="hidden"
+								value="${datosVideojuego.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit" class="btn btn-primary button-agregarfavs mt-4">
+									Agregar <i class="fa fa-heart"
+										aria-hidden="true"></i>
+								</form:button>
+						</form:form>
+					</c:if>
 				</div>
 			</div>
 			<div class="centro" style="width: 50%;">
@@ -85,7 +98,7 @@
 						value="${datosVideojuego.id}" />
 					<form:input path="usuario.id" type="hidden"
 						value="${usuarioActual.id}" />
-					<form:button type="submit">Enviar</form:button>
+					<form:button type="submit" class="button-reviews">Enviar</form:button>
 				</form:form>
 			</c:if>
 
