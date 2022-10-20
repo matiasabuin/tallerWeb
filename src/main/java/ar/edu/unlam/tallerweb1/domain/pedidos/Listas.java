@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -32,7 +35,7 @@ public class Listas {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="videojuego_id")
 	private Videojuego videojuego;
@@ -56,7 +59,6 @@ public class Listas {
 	public void setSerie(Serie serie) {
 		this.serie = serie;
 	}
-	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -75,7 +77,6 @@ public class Listas {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public Pelicula getPelicula() {
 		return pelicula;
 	}

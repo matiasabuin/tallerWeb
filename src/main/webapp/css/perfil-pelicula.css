@@ -124,3 +124,7 @@ textarea {
 .button-agregarfavs:hover {
 	background-color: #b02a5c !important;
 }
+
+.col-4{
+	max-width: 50%;
+}

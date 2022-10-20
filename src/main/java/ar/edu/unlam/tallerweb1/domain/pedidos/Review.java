@@ -18,6 +18,10 @@ public class Review {
 	private String descripcion;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="videojuego_id")
 	private Videojuego videojuego;
 	
@@ -29,10 +33,6 @@ public class Review {
 	@JoinColumn(name="serie_id")
 	private Serie serie;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
-	
 
 	public Usuario getUsuario() {
 		return usuario;

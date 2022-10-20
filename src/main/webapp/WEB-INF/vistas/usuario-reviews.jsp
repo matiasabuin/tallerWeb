@@ -32,6 +32,7 @@
 							<div class="descripcion">
 								<h4>${review.pelicula.nombre}</h4>
 								<p>${review.descripcion}</p>
+								<a href="eliminar-review?id=${review.id}" class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
 							</div>
 						</div>
 					</c:if>
@@ -43,6 +44,19 @@
 							<div class="descripcion">
 								<h4>${review.videojuego.nombre}</h4>
 								<p>${review.descripcion}</p>
+								<a href="eliminar-review?id=${review.id}" class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+							</div>
+						</div>
+					</c:if>
+
+					<c:if test="${review.serie != null}">
+						<div class="comentario">
+							<img src="images/${review.serie.poster}">
+
+							<div class="descripcion">
+								<h4>${review.serie.nombre}</h4>
+								<p>${review.descripcion}</p>
+								<a href="eliminar-review?id=${review.id}" class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
 							</div>
 						</div>
 					</c:if>

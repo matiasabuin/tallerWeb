@@ -34,6 +34,11 @@ public class RepositorioReviewImpl implements RepositorioReview {
 	public void modificar(Review review) {
 		sessionFactory.getCurrentSession().update(review);
 	}
+	
+	@Override
+	public void elimimar(Review review) {
+		sessionFactory.getCurrentSession().remove(review);
+	}
 
 	@Override
 	public List<Review> obtenerReviews() {
@@ -48,6 +53,7 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 	
+	@Override
 	public List<Review> obtenerReviewsDePeliculaPorId(Integer id) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Review.class)
@@ -55,6 +61,7 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 
+	@Override
 	public List<Review> obtenerReviewsDeSeriePorId(Integer id) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Review.class)
@@ -62,5 +69,11 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 
+	public List<Review> obtenerReviewsDeUsuarioPorId(Integer id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("usuario.id", id))
+				.list();
+	}
 
 }

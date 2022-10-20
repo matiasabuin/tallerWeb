@@ -30,7 +30,7 @@ public class ServicioReviewImpl implements ServicioReview {
 
 	@Override
 	public void eliminar(Review review) {
-		// TODO Auto-generated method stub
+		servicioReviewDao.elimimar(review);
 	}
 
 	@Override
@@ -56,6 +56,11 @@ public class ServicioReviewImpl implements ServicioReview {
 	@Override
 	public List<Review> getAllBySerieId(Integer id) {
 		return servicioReviewDao.obtenerReviewsDeSeriePorId(id);
+	}
+
+	@Override
+	public List<Review> getAllByUserId(Integer id) {
+		return servicioReviewDao.obtenerReviewsDeUsuarioPorId(id);
 	}
 
 }

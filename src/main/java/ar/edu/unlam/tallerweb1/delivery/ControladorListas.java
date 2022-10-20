@@ -44,6 +44,7 @@ public class ControladorListas {
 		// }
 		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
 	}
+	
 	@RequestMapping(path = "/eliminarFavVideojuego", method = RequestMethod.POST)
 	public ModelAndView eliminarFavVideojuego(@ModelAttribute("datosFav") Listas datosFavoritos) {
 
@@ -72,6 +73,7 @@ public class ControladorListas {
 
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 	}
+	
 	@RequestMapping(path = "/eliminarFavPelicula", method = RequestMethod.POST)
 	public ModelAndView eliminarFavPelicula(@ModelAttribute("datosFav") Listas datosFavoritos) {
 
@@ -99,6 +101,7 @@ public class ControladorListas {
 
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
+	
 	@RequestMapping(path = "/eliminarFavSerie", method = RequestMethod.POST)
 	public ModelAndView eliminarFavSerie(@ModelAttribute("datosFav") Listas datosFavoritos) {
 		Serie serie = datosFavoritos.getSerie();
@@ -116,14 +119,4 @@ public class ControladorListas {
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
 
-	@RequestMapping(path = "/lista-completa")
-	public ModelAndView irAListaFav(HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") != null) {
-
-		ModelMap model = new ModelMap();
-		
-		return new ModelAndView("lista-completa", model);
-		}
-		return new ModelAndView("redirect:/home");
-	}
 }

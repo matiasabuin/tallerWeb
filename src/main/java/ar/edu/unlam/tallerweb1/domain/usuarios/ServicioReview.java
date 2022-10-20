@@ -10,8 +10,11 @@ public interface ServicioReview {
 	void modificar(Review review);
 	void eliminar(Review review);
 	Review getById(Integer id);
+	
 	List<Review> getAll();
 	List<Review> getAllByVideojuegoId(Integer id);
 	List<Review> getAllByPeliculaId(Integer id);
 	List<Review> getAllBySerieId(Integer id);
+	List<Review> getAllByUserId(Integer id);
+
 }

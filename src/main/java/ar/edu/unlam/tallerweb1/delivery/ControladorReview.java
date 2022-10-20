@@ -1,15 +1,18 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -51,6 +54,16 @@ public class ControladorReview {
 		servicioReview.registrar(datosReview);
 
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
+	}
+	
+	@RequestMapping(path = "/eliminar-review")
+	public ModelAndView eliminarReview(@RequestParam("id") Integer id) {
+		
+		Review reviewEncontrada = servicioReview.getById(id);
+		
+		servicioReview.eliminar(reviewEncontrada);
+		
+		return new ModelAndView("redirect:/perfil");
 	}
 	
 }

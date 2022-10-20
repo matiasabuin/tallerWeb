@@ -4,6 +4,8 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,11 +26,13 @@ public class ControladorPerfil {
 
 	private ServicioLogin servicioLogin;
 	private ServicioFiles servicioFiles;
+	private ServicioReview servicioReview;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin,ServicioFiles servicioFiles){
+	public ControladorPerfil(ServicioLogin servicioLogin,ServicioFiles servicioFiles, ServicioReview servicioReview){
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
+		this.servicioReview = servicioReview;
 	}
 
 	@RequestMapping("/perfil")
@@ -78,10 +82,21 @@ public class ControladorPerfil {
 		
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Review> reviews = usuarioEncontrado.getReviews();
+		List<Review> reviews = servicioReview.getAllByUserId(usuarioEncontrado.getId());
 		
 		modelo.addAttribute("listaReviews", reviews);
 		return new ModelAndView("usuario-reviews", modelo);
+	}
+	
+	@RequestMapping(path = "/lista-completa")
+	public ModelAndView irAListaFav(HttpServletRequest request) {
+		if (request.getSession().getAttribute("usuarioActual") != null) {
+
+		ModelMap model = new ModelMap();
+		
+		return new ModelAndView("lista-completa", model);
+		}
+		return new ModelAndView("redirect:/home");
 	}
 	
 }
