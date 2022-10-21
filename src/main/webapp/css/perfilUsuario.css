@@ -73,8 +73,6 @@ h4 {
 	margin: 0em 1em;
 }
 
-.descripcion a{
-	position: absolute;
-    bottom: 0;
-    right: 0;
+.botones{
+	text-align: right;
 }

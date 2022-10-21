@@ -20,13 +20,17 @@
 </head>
 <body>
 
+	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
 
+	<!-- PORTADA DE SERIE -->
 	<div class="fsv-page-wrapper">
 		<div class="container contenedor">
 			<section class="datos">
-				<div>
+				<div style="text-align: center;">
 					<img src="images/${datosSerie.poster}"><br> <br>
+
+					<!-- BOTON AGREGAR A FAVS -->
 					<c:if test="${usuarioActual != null}">
 						<form:form action="guardarFavSerie" method="POST"
 							modelAttribute="datosLista">
@@ -34,20 +38,31 @@
 								value="${datosSerie.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit" class="btn btn-primary button-agregarfavs">
+							<form:button type="submit"
+								class="btn btn-primary button-agregarfavs">
 								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
 							</form:button>
 						</form:form>
 					</c:if>
 
+					<!-- BOTON VER REVIEW DEL USUARIO -->
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
+						<a href="review?id=${datosReview.id}"
+							class="btn btn-primary button-agregarfavs">Ver review</a>
+					</c:if>
 				</div>
+				
+				<!-- INFORMACION PRINCIPAL DE SERIE -->
 				<div style="margin-left: 2em;">
 					<h2>${datosSerie.nombre}</h2>
 					<p>Cantidad de Temporadas:&nbsp;${datosSerie.cantDeTemps}</p>
 					<p>Fecha de estreno:&nbsp;${datosSerie.fechaEstreno}</p>
 					<p class="align-self-center mx-2 sinopsis">${datosSerie.sinopsis}</p>
-					<p class="col-4 text-center border rounded">Cantidad de capitulos:&nbsp;${datosSerie.cantDeCaps}&nbsp;</p>
-					<p class="col-4 text-center border rounded">Duracion por capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
+					<p class="col-4 text-center border rounded">Cantidad de
+						capitulos:&nbsp;${datosSerie.cantDeCaps}&nbsp;</p>
+					<p class="col-4 text-center border rounded">Duracion por
+						capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
 
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
@@ -62,14 +77,14 @@
 							<p class="plataforma">${plataforma.descripcion}</p>
 						</c:forEach>
 					</div>
-
 				</div>
 			</section>
 
+			<!-- GESTION DE REVIEWS -->
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if test="${usuarioActual != null}">
+					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
 						<form:form action="registrarReviewSerie" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,17 @@ public class ControladorReview {
 	@Autowired
 	public ControladorReview(ServicioReview servicioReview) {
 		this.servicioReview = servicioReview;
+	}
+	
+	@RequestMapping("/review")
+	public ModelAndView verReview(@RequestParam("id") Integer id) {
+		
+		ModelMap modelo = new ModelMap();
+		Review review = servicioReview.getById(id);
+		
+		modelo.addAttribute("review", review);
+	
+		return new ModelAndView();	
 	}
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
@@ -64,6 +76,16 @@ public class ControladorReview {
 		servicioReview.eliminar(reviewEncontrada);
 		
 		return new ModelAndView("redirect:/perfil");
+	}
+	
+	@RequestMapping(path = "/editar-review")
+	public ModelAndView editarReview(@RequestParam("id") Integer id) {
+		
+		Review reviewEncontrada = servicioReview.getById(id);
+		
+		servicioReview.modificar(reviewEncontrada);
+		
+		return new ModelAndView("redirect:/review?id=" + reviewEncontrada.getId());
 	}
 	
 }
