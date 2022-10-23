@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
@@ -57,7 +57,7 @@ public class ControladorVideojuego {
 		ModelMap modelo = new ModelMap();
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
 		Review review = new Review();
-		Listas fav=new Listas();
+		Lista fav=new Lista();
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		

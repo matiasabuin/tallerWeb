@@ -42,86 +42,86 @@
 
 					</div>
 					<div class="col-8 favPerfil-container">
-						<c:if test="${usuarioActual.favoritos[0] != null}">
+						<c:if test="${listaFavs[0] != null}">
 							<h1>
 								Favoritos
-								<c:if test="${usuarioActual.favoritos[3] != null}">
+								<c:if test="${listaFavs[3] != null}">
 									<a href="lista-completa" class="verMasLista">Ver todos</a>
 								</c:if>
 							</h1>
 						</c:if>
 						<table class="table-responsive table-borderless">
-							<c:if test="${usuarioActual.favoritos[0] == null}">
+							<c:if test="${listaFavs[0] == null}">
 								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFRUTALO ACA!</p>
 							</c:if>
 
-							<c:if test="${usuarioActual.favoritos[0].pelicula != null}">
+							<c:if test="${listaFavs[0].pelicula != null}">
 								<td><a
-									href="perfil-pelicula?id=${usuarioActual.favoritos[0].pelicula.id}">
+									href="perfil-pelicula?id=${listaFavs[0].pelicula.id}">
 										<img
-										src="images/${usuarioActual.favoritos[0].pelicula.poster}">
-										<p class="titulo">${usuarioActual.favoritos[0].pelicula.nombre}</p>
+										src="images/${listaFavs[0].pelicula.poster}">
+										<p class="titulo">${listaFavs[0].pelicula.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[0].videojuego != null}">
+							<c:if test="${listaFavs[0].videojuego != null}">
 								<td><a
-									href="videojuego?id=${usuarioActual.favoritos[0].videojuego.id}">
+									href="videojuego?id=${listaFavs[0].videojuego.id}">
 										<img
-										src="images/${usuarioActual.favoritos[0].videojuego.poster}">
-										<p class="titulo">${usuarioActual.favoritos[0].videojuego.nombre}</p>
+										src="images/${listaFavs[0].videojuego.poster}">
+										<p class="titulo">${listaFavs[0].videojuego.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[0].serie != null}">
+							<c:if test="${listaFavs[0].serie != null}">
 								<td><a
-									href="perfil-serie?id=${usuarioActual.favoritos[0].serie.id}">
-										<img src="images/${usuarioActual.favoritos[0].serie.poster}">
-										<p class="titulo">${usuarioActual.favoritos[0].serie.nombre}</p>
+									href="perfil-serie?id=${listaFavs[0].serie.id}">
+										<img src="images/${listaFavs[0].serie.poster}">
+										<p class="titulo">${listaFavs[0].serie.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[1].pelicula != null}">
+							<c:if test="${listaFavs[1].pelicula != null}">
 								<td><a
-									href="perfil-pelicula?id=${usuarioActual.favoritos[1].pelicula.id}">
+									href="perfil-pelicula?id=${listaFavs[1].pelicula.id}">
 										<img
-										src="images/${usuarioActual.favoritos[1].pelicula.poster}">
-										<p class="titulo">${usuarioActual.favoritos[1].pelicula.nombre}</p>
+										src="images/${listaFavs[1].pelicula.poster}">
+										<p class="titulo">${listaFavs[1].pelicula.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[1].videojuego != null}">
+							<c:if test="${listaFavs[1].videojuego != null}">
 								<td><a
-									href="videojuego?id=${usuarioActual.favoritos[1].videojuego.id}">
+									href="videojuego?id=${listaFavs[1].videojuego.id}">
 										<img
-										src="images/${usuarioActual.favoritos[1].videojuego.poster}">
-										<p class="titulo">${usuarioActual.favoritos[1].videojuego.nombre}</p>
+										src="images/${listaFavs[1].videojuego.poster}">
+										<p class="titulo">${listaFavs[1].videojuego.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[1].serie != null}">
+							<c:if test="${listaFavs[1].serie != null}">
 								<td><a
-									href="perfil-serie?id=${usuarioActual.favoritos[1].serie.id}">
-										<img src="images/${usuarioActual.favoritos[1].serie.poster}">
-										<p class="titulo">${usuarioActual.favoritos[1].serie.nombre}</p>
+									href="perfil-serie?id=${listaFavs[1].serie.id}">
+										<img src="images/${listaFavs[1].serie.poster}">
+										<p class="titulo">${listaFavs[1].serie.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[2].pelicula != null}">
+							<c:if test="${listaFavs[2].pelicula != null}">
 								<td><a
-									href="perfil-pelicula?id=${usuarioActual.favoritos[2].pelicula.id}">
+									href="perfil-pelicula?id=${listaFavs[2].pelicula.id}">
 										<img
-										src="images/${usuarioActual.favoritos[2].pelicula.poster}">
-										<p class="titulo">${usuarioActual.favoritos[2].pelicula.nombre}</p>
+										src="images/${listaFavs[2].pelicula.poster}">
+										<p class="titulo">${listaFavs[2].pelicula.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[2].videojuego != null}">
+							<c:if test="${listaFavs[2].videojuego != null}">
 								<td><a
-									href="videojuego?id=${usuarioActual.favoritos[2].videojuego.id}">
+									href="videojuego?id=${listaFavs[2].videojuego.id}">
 										<img
-										src="images/${usuarioActual.favoritos[2].videojuego.poster}">
-										<p class="titulo">${usuarioActual.favoritos[2].videojuego.nombre}</p>
+										src="images/${listaFavs[2].videojuego.poster}">
+										<p class="titulo">${listaFavs[2].videojuego.nombre}</p>
 								</a></td>
 							</c:if>
-							<c:if test="${usuarioActual.favoritos[2].serie != null}">
+							<c:if test="${listaFavs[2].serie != null}">
 								<td><a
-									href="perfil-serie?id=${usuarioActual.favoritos[2].serie.id}">
-										<img src="images/${usuarioActual.favoritos[2].serie.poster}">
-										<p class="titulo">${usuarioActual.favoritos[2].serie.nombre}</p>
+									href="perfil-serie?id=${listaFavs[2].serie.id}">
+										<img src="images/${listaFavs[2].serie.poster}">
+										<p class="titulo">${listaFavs[2].serie.nombre}</p>
 								</a></td>
 							</c:if>
 						</table>

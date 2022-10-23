@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+h2{
+ 	font-size: 30px;
+    color: #9ab;
+    font-weight: bold;
+    text-align: center;
+    margin: 1em 0em;
+}
+
+label{
+	display: block;
+    font-size: 20px;
+    margin: 5px;
+}

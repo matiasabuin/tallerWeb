@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
@@ -111,7 +111,7 @@ public class ControladorSerie{
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id) {
 
 		ModelMap modelo = new ModelMap();
-		Listas fav=new Listas();		
+		Lista fav=new Lista();		
 		Review review = new Review();
 
 		Serie serie = servicioSerie.consultarSerie(id);

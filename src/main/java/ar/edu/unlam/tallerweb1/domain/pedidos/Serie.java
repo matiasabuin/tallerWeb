@@ -38,7 +38,7 @@ public class Serie extends Contenido{
 	private List<Review> reviews = new ArrayList<Review>();
 	
 	@OneToMany(mappedBy = "serie")
-	private List<Listas> favoritos = new ArrayList<Listas>();	
+	private List<Lista> favoritos = new ArrayList<Lista>();	
 	
 	
 	public List<Genero> getGeneros() {
@@ -59,10 +59,10 @@ public class Serie extends Contenido{
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	public List<Listas> getFavoritos() {
+	public List<Lista> getFavoritos() {
 		return favoritos;
 	}
-	public void setFavoritos(List<Listas> favoritos) {
+	public void setFavoritos(List<Lista> favoritos) {
 		this.favoritos = favoritos;
 	}
 	public Integer getDuracionPorCaps() {
