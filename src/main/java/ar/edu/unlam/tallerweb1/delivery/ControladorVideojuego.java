@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.delivery;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
@@ -53,20 +53,28 @@ public class ControladorVideojuego {
 //			Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 //			usuarioBuscado.getHistorial().add(servicioVideojuego.consultarVideojuego(id));
 //		}
-		
 		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+				
+		if(usuarioEncontrado != null) {
+			Review reviewEncontrada = servicioReview.getByUserAndVideogameID(usuarioEncontrado.getId(), id);	
+			if(reviewEncontrada.getUsuario() != null) {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			} else {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			}
+		}
+		
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
-		Review review = new Review();
-		Lista fav=new Lista();
+
+		Lista fav = new Lista();  
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		
-		modelo.addAttribute("datosReview", review);
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
-		modelo.addAttribute("datosLista",fav);
+		modelo.addAttribute("datosLista", fav);
 
-		
 		return new ModelAndView("perfil-videojuego", modelo);
 	}
 

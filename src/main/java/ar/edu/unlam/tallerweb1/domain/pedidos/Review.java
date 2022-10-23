@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(length = 1000)
 	private String descripcion;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

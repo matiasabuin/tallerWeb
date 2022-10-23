@@ -49,8 +49,6 @@ body {
 .poster-secction .poster-serie img {
 	height: 350px;
 	width: 100%;
-	/*  margin-right:50px;
-     */
 }
 
 .poster-serie img {
@@ -60,8 +58,6 @@ body {
 
 .poster-secction .poster-peli img {
 	height: 350px;
-	/*  margin-right:50px;
-     */
 }
 
 .poster-secction .col {
@@ -135,6 +131,10 @@ body {
 }
 #botonDeregistroPeliSerie:hover {
 	background-color: #b02a5c !important;
+}
+
+#datosLista{
+	display: inline-block;
 }
 
 .footer {
@@ -236,7 +236,6 @@ body {
 }
 
 .biografia {
-	/*padding: 10px 30px;*/
 	padding-left: 10px;
 }
 

@@ -22,6 +22,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
@@ -29,7 +30,7 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
 @Controller
-public class ControladorPeliculas {
+public class ControladorPelicula{
 
 	private ServicioPelicula servicioPelicula;
 	private ServicioReview servicioReview;
@@ -38,7 +39,7 @@ public class ControladorPeliculas {
 	private ServicioFiles servicioFiles;
 
 	@Autowired
-	public ControladorPeliculas(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
+	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
 		this.servicioReview = servicioReview;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
@@ -113,17 +114,31 @@ public class ControladorPeliculas {
 	}
 
 	@RequestMapping("/perfil-pelicula")
-	public ModelAndView VerPerfilPeli(@RequestParam("id") Integer id) {
+	public ModelAndView VerPerfilPeli(@RequestParam("id") Integer id, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+				
+		if(usuarioEncontrado != null) {
+			Review reviewEncontrada = servicioReview.getByUserAndPeliculaID(usuarioEncontrado.getId(), id);
+			if(reviewEncontrada.getUsuario() != null) {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			} else {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			}
+		}
+		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
+<<<<<<< HEAD:src/main/java/ar/edu/unlam/tallerweb1/delivery/ControladorPeliculas.java
 		Review review = new Review();
 		Lista fav=new Lista();
+=======
+		Listas fav=new Listas();
+>>>>>>> e8b6387ef965fe24002c2973fd052f45482048c4:src/main/java/ar/edu/unlam/tallerweb1/delivery/ControladorPelicula.java
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
 		modelo.addAttribute("listaReviews", reviews);
-		modelo.addAttribute("datosReview", review);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista",fav);
 		

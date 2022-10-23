@@ -14,5 +14,10 @@ public interface RepositorioReview {
 	List<Review> obtenerReviewsDePeliculaPorId(Integer id);
 	List<Review> obtenerReviewsDeSeriePorId(Integer id);
 	List<Review> obtenerReviewsDeUsuarioPorId(Integer id);
+	
+	Review buscarPorUsuario(Integer id);
+	Review buscarPorUsuarioyVideojuego(Integer userId, Integer videogameId);
+	Review buscarPorUsuarioyPelicula(Integer userId, Integer peliculaId);
+	Review buscarPorUsuarioySerie(Integer userId, Integer serieId);
 
 }
