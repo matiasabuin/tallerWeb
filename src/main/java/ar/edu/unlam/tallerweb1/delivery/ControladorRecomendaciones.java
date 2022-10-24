@@ -48,6 +48,8 @@ public class ControladorRecomendaciones {
 		model.addAttribute("videojuegos", videojuegosRegistrados);
 		model.addAttribute("series", seriesRegistradas);
 		
+		model.addAttribute("horasRecomendacion", request.getSession().getAttribute("horasRecomendacion"));
+		
 		model.addAttribute("videojuegosRecomendados", request.getSession().getAttribute("videojuegosRecomendados"));
 		model.addAttribute("peliculasRecomendadas", request.getSession().getAttribute("peliculasRecomendadas"));
 		model.addAttribute("seriesRecomendadas", request.getSession().getAttribute("seriesRecomendadas"));
@@ -58,6 +60,10 @@ public class ControladorRecomendaciones {
 	@RequestMapping(path = "/buscar-recomendaciones", method = RequestMethod.GET)
 	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
 			HttpServletRequest request) {
+
+		if(horas != null) {
+		
+		request.getSession().setAttribute("horasRecomendacion", horas);
 		
 		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorTiempo(horas);
 		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(horas);
@@ -68,7 +74,9 @@ public class ControladorRecomendaciones {
 		request.getSession().setAttribute("seriesRecomendadas", seriesRecomendadas);
 		
 		return irARecomendaciones(request);
-
+		}
+		
+		return new ModelAndView("redirect:/home");
 	}
 	
 }

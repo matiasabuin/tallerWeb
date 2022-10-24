@@ -1,95 +1,123 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Perfil-serie</title>
+<title>${datosSerie.nombre}</title>
+
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
 <link rel="stylesheet" href="css/estilos.css" />
-
+<link rel="stylesheet" href="css/perfil-serie.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<!-- IMPORT HEADER -->
+	<jsp:include page="header.jsp" />
 
+	<!-- PORTADA DE SERIE -->
 	<div class="fsv-page-wrapper">
-		<hr>
-		<hr>
-		<div class=container>
-			<section class="director-fechaEstreno mx-2">
+		<div class="container contenedor">
+			<section class="datos">
+				<div style="text-align: center;">
+					<img src="images/${datosSerie.poster}"><br> <br>
 
-				<div class="row">
-					<div class="col-4 mx-2">
-						<p>
-							FECHA DE ESTRENO: <em>22-09-1994</em>
-						</p>
+					<!-- BOTON AGREGAR A FAVS -->
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavSerie" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="serie.id" type="hidden"
+								value="${datosSerie.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit"
+								class="btn btn-primary button-agregarfavs">
+								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+							</form:button>
+						</form:form>
+					</c:if>
+
+					<!-- BOTON VER REVIEW DEL USUARIO -->
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
+						<a href="review?id=${datosReview.id}"
+							class="btn btn-primary button-agregarfavs">Ver review</a>
+					</c:if>
+				</div>
+				
+				<!-- INFORMACION PRINCIPAL DE SERIE -->
+				<div style="margin-left: 2em;">
+					<h2>${datosSerie.nombre}</h2>
+					<p>Cantidad de Temporadas:&nbsp;${datosSerie.cantDeTemps}</p>
+					<p>Fecha de estreno:&nbsp;${datosSerie.fechaEstreno}</p>
+					<p class="align-self-center mx-2 sinopsis">${datosSerie.sinopsis}</p>
+					<p class="col-4 text-center border rounded">Cantidad de
+						capitulos:&nbsp;${datosSerie.cantDeCaps}&nbsp;</p>
+					<p class="col-4 text-center border rounded">Duracion por
+						capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
+
+					<strong class="items">Generos</strong>
+					<div style="margin: 5px 0em;">
+						<c:forEach var="genero" items="${datosSerie.generos}">
+							<p class="genero">${genero.descripcion}</p>
+						</c:forEach>
 					</div>
-					<div class="col-2">
-						<p>
-							<strong>TEMPORADAS: <em>10</em></strong>
-						</p>
+
+					<strong class="items">Plataformas</strong>
+					<div style="margin: 5px 0em;">
+						<c:forEach var="plataforma" items="${datosSerie.plataformas}">
+							<p class="plataforma">${plataforma.descripcion}</p>
+						</c:forEach>
 					</div>
 				</div>
-
-			</section>
-			<section class="poster-secction mx-3">
-				<div class="row">
-					<div class="col-6 poster-serie">
-						<img src="images/${datosSerie.poster}">
-					</div>
-					<!-- 	<div class="col align-self-center text-center">
-						FRIENDS<br> <img
-							src="https://t3.ftcdn.net/jpg/03/82/27/72/360_F_382277203_OnBiCfeANOzSCxvkkSdgICNMz98fHirV.jpg"
-							alt="estrellitas">
-
-					</div> -->
-					<div class="col-1"></div>
-					<div class="col-4 align-self-start">Tres hombres y tres
-						mujeres j�venes son mejores amigos y viven en el mismo conjunto de
-						apartamentos. Ellos enfrentan la vida y el amor en la ciudad de
-						Nueva York y se involucran en los asuntos personales de los dem�s,
-						donde incluso a veces intercambian novios o novias, lo que algunas
-						veces genera situaciones que las personas comunes quiz�s nunca
-						experimentan, especialmente durante las rupturas.</div>
-				</div>
-			</section>
-			<hr>
-			<section class="tags-secction mx-3">
-				<div class="row">
-
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">COMEDIA</a>
-					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">DRAMA</a>
-					</div>
-					<div class="col-2 mx-2 text-center border rounded">
-						<a href="!">ROMANCE</a>
-					</div>
-					<div class="col-4 mx-5 text-center border rounded">180 mins</div>
-				</div>
-				<hr>
 			</section>
 
-			<section class="reviews mx-3">
-				<div class="row">
-					<div class="col-12 gutter-right-1 mx-2 rounded">
-						<p class="text-center font-weight-bold">REVIEWS</p>
-					</div>
+			<!-- GESTION DE REVIEWS -->
+			<section>
+				<div class="reviews">
+					<h3>Reviews</h3>
+					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
+						<form:form action="registrarReviewSerie" method="POST"
+							modelAttribute="datosReview">
+							<form:textarea path="descripcion"
+								placeholder="Escribe tu reseña sobre la serie" />
+							<form:input path="serie.id" type="hidden"
+								value="${datosSerie.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit" class="button-reviews">Enviar</form:button>
+						</form:form>
+					</c:if>
+
+					<c:if test="${listaReviews != null}">
+						<c:forEach var="review" items="${listaReviews}">
+							<div class="comentario">
+								<img src="images/${review.usuario.foto}">
+								<div>
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</c:if>
+
+					<c:if test="${listaReviews[0] == null}">
+						<h5>No hay reviews por ahora</h5>
+					</c:if>
 				</div>
 			</section>
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

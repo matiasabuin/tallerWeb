@@ -1,3 +1,7 @@
+<%@page import="org.apache.taglibs.standard.tei.ForEachTEI"%>
+<%@page import="org.apache.taglibs.standard.tag.common.xml.ForEachTag"%>
+<%@page
+	import="org.apache.taglibs.standard.tag.common.core.ForEachSupport"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -19,21 +23,50 @@
 </head>
 <body>
 
+	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
 
 	<main>
+
+		<!-- PORTADA DE VIDEOJUEGO -->
 		<div class="container">
 			<div class="portada">
 				<div style="text-align: center;">
 					<img src="images/${datosVideojuego.poster}"><br>
+
+					<!-- BOTON AGREGAR A FAVS -->
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavVideojuego" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="videojuego.id" type="hidden"
+								value="${datosVideojuego.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit"
+								class="btn btn-primary button-agregarfavs mt-4">
+									Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+							</form:button>
+						</form:form>
+					</c:if>
+
+					<!-- BOTON VER REVIEW DEL USUARIO -->
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
+						<a href="review?id=${datosReview.id}"
+							class="btn btn-primary button-agregarfavs mt-4">Ver review</a>
+					</c:if>
 				</div>
 			</div>
+
+			<!-- INFORMACION PRINCIPAL DE VIDEOJUEGO -->
 			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
 				<strong>Fecha de lanzamiento</strong>
 				<p>${datosVideojuego.fechaEstreno}</p>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
 			</div>
+
+			<!-- INFORMACION ADICIONAL DE VIDEOJUEGO -->
 			<div>
 				<strong>Generos</strong>
 				<c:forEach var="genero" items="${datosVideojuego.generos}">
@@ -46,7 +79,7 @@
 				<strong>Modalidad</strong>
 				<c:if test="${datosVideojuego.cantidadJugadores > 1}">
 					<span>Multijugador</span>
-					<p>${datosVideojuego.cantidadJugadores}jugadores</p>
+					<p>${datosVideojuego.cantidadJugadores}&nbsp;jugadores</p>
 				</c:if>
 				<c:if test="${datosVideojuego.cantidadJugadores == 1}">
 					<p>Un jugador</p>
@@ -58,6 +91,7 @@
 			</div>
 		</div>
 
+		<!-- REQUISITOS DE VIDEOJUEGO PARA PC -->
 		<!--<c:if test="${datosVideojuego.requisitosMinimos != null && datosVideojuego.requisitosRecomendados != null}">
 			<div class="contenedor-requisitos">
 				<h3>Requisitos del sistema</h3>
@@ -74,9 +108,11 @@
 			</div>
 		</c:if>-->
 
+		<!-- GESTION DE REVIEWS -->
 		<div class="reviews">
 			<h3>Reviews</h3>
-			<c:if test="${usuarioActual != null}">
+
+			<c:if test="${usuarioActual != null && datosReview.usuario == null}">
 				<form:form action="registrarReviewVideojuego" method="POST"
 					modelAttribute="datosReview">
 					<form:textarea path="descripcion"
@@ -85,7 +121,7 @@
 						value="${datosVideojuego.id}" />
 					<form:input path="usuario.id" type="hidden"
 						value="${usuarioActual.id}" />
-					<form:button type="submit">Enviar</form:button>
+					<form:button type="submit" class="btn button-reviews">Enviar</form:button>
 				</form:form>
 			</c:if>
 
@@ -104,10 +140,10 @@
 			<c:if test="${listaReviews[0] == null}">
 				<h5>No hay reviews por ahora</h5>
 			</c:if>
-
 		</div>
 	</main>
 
+	<!-- IMPORT DE FOOTER -->
 	<jsp:include page="footer.jsp" />
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

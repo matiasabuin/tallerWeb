@@ -75,6 +75,7 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
+			
 			if(LocalDate.now().isBefore(usuarioBuscado.getFechaVencimientoPlan())) {
 				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanPremium());
 			}else {

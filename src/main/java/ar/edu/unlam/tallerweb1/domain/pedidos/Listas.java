@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,19 +9,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Review {
-
+public class Listas {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(length = 1000)
+		
+	private String nombre;
 	private String descripcion;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
-	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="videojuego_id")
 	private Videojuego videojuego;
@@ -34,8 +42,18 @@ public class Review {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="serie_id")
 	private Serie serie;
-
-
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	
+	
+	public Serie getSerie() {
+		return this.serie;
+	}
+	public void setSerie(Serie serie) {
+		this.serie = serie;
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -54,22 +72,11 @@ public class Review {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 	public Pelicula getPelicula() {
 		return pelicula;
 	}
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
 	}
-	public Serie getSerie() {
-		return serie;
-	}
-	public void setSerie(Serie serie) {
-		this.serie = serie;
-	}
+
 }

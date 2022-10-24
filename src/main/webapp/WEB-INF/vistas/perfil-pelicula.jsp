@@ -20,14 +20,40 @@
 </head>
 <body>
 
+	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
 
+	<!-- PORTADA DE PELICULA -->
 	<div class="fsv-page-wrapper">
 		<div class="container contenedor">
 			<section class="datos">
-				<div>
-					<img src="images/${datosPelicula.poster}">
+				<div style="text-align: center;">
+					<img src="images/${datosPelicula.poster}"><br> <br>
+
+					<!-- BOTON AGREGAR A FAVS -->
+					<c:if test="${usuarioActual != null}">
+						<form:form action="guardarFavPelicula" method="POST"
+							modelAttribute="datosLista">
+							<form:input path="pelicula.id" type="hidden"
+								value="${datosPelicula.id}" />
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:button type="submit"
+								class="btn btn-primary button-agregarfavs">
+								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+							</form:button>
+						</form:form>
+					</c:if>
+
+					<!-- BOTON VER REVIEW DEL USUARIO -->
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
+						<a href="review?id=${datosReview.id}"
+							class="btn btn-primary button-agregarfavs">Ver review</a>
+					</c:if>
 				</div>
+
+				<!-- INFORMACION PRINCIPAL DE PELICULA -->
 				<div style="margin-left: 2em;">
 					<h2>${datosPelicula.nombre}</h2>
 					<p>Dirigida por&nbsp;${datosPelicula.director}</p>
@@ -48,14 +74,14 @@
 							<p class="plataforma">${plataforma.descripcion}</p>
 						</c:forEach>
 					</div>
-
 				</div>
 			</section>
 
+			<!-- GESTION DE REVIEWS -->
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if test="${usuarioActual != null}">
+					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
 						<form:form action="registrarReviewPelicula" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"
@@ -64,7 +90,7 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit">Enviar</form:button>
+							<form:button type="submit" class="btn button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 
@@ -88,6 +114,7 @@
 		</div>
 	</div>
 
+	<!-- IMPORT DE FOOTER -->
 	<jsp:include page="footer.jsp" />
 
 	<!-- Placed at the end of the document so the pages load faster -->

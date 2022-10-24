@@ -55,8 +55,8 @@
 				</form>
 
 				<c:if test="${usuarioActual.nombre == null}">
-					<a href="registro-usuario" class="nav-link">Register</a>
-					<a href="login" class="nav-link">Log In</a>
+					<a href="registro-usuario" class="nav-link">Sign in</a>
+					<a href="login" class="nav-link">Log in</a>
 				</c:if>
 
 			</div>

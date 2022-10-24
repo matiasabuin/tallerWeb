@@ -24,54 +24,63 @@
 
 <jsp:include page="header.jsp" />
 	
-	<c:if test="${videojuegosEncontrados != null}">
+	<c:if test="${seriesEncontradas.isEmpty() == true && videojuegosEncontrados.isEmpty() == true 
+					&& peliculasEncontradas.isEmpty() == true}">
+		<div class="container">
+			<div class="comentario">
+				<h1 class="text-center">No se han encontrado resultados que incluyan "${busquedaBuscado}"</h1>
+			</div>
+		</div>
+	</c:if>
+
+	<c:if test="${videojuegosEncontrados.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
 
-			<h1>Videojuegos Encontrados</h1>
+			<h1 >Videojuegos encontrados que incluyen "${busquedaBuscado}":</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegosEncontrados}" var="encontrado">
 					<td><a href="videojuego?id=${encontrado.id}"> <img
 							src="images/${encontrado.poster}">
-					</a>
 						<p class="titulo">${encontrado.nombre}</p></td>
+					</a>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	</c:if>
 	
-	<c:if test="${peliculasEncontradas != null}">
+	<c:if test="${peliculasEncontradas.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
 
-			<h1>Peliculas Encontrados</h1>
+			<h1>Peliculas encontradas que incluyen "${busquedaBuscado}":</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculasEncontradas}" var="encontrado">
 					<td><a href="perfil-pelicula?id=${encontrado.id}"> <img
 							src="images/${encontrado.poster}">
-					</a>
 						<p class="titulo">${encontrado.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	</c:if>
 	
-	<c:if test="${seriesEncontradas != null}">
+	<c:if test="${seriesEncontradas.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
 
-			<h1>Series Encontrados</h1>
+			<h1>Series encontradas que incluyen "${busquedaBuscado}":</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${seriesEncontradas}" var="encontrado">
 					<td><a href="perfil-pelicula?id=${encontrado.id}"> <img
 							src="images/${encontrado.poster}">
-					</a>
 						<p class="titulo">${encontrado.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>

@@ -23,55 +23,61 @@
 <body>
 
 <jsp:include page="header.jsp" />
-	
-	<c:if test="${videojuegosRecomendados != null}">
+
+	<c:if test="${videojuegosRecomendados.isEmpty() == true && peliculasRecomendadas.isEmpty() == true 
+					&& seriesRecomendadas.isEmpty() == true}">
+			<div class="container">
+				<div class="comentario">	
+					<h1 class="text-center">No se han encontrado resultados que duren ${horasRecomendacion} hora(s)</h1>
+			</div>
+		</div>
+	</c:if>
+
+	<c:if test="${videojuegosRecomendados.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
-
-			<h1>Videojuegos Recomendados</h1>
+			<h1>Videojuegos que duren ${horasRecomendacion} hora(s):</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${videojuegosRecomendados}" var="recomendado">
 					<td><a href="videojuego?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
-					</a>
 						<p class="titulo">${recomendado.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	</c:if>
 	
-	<c:if test="${peliculasRecomendadas != null}">
+	<c:if test="${peliculasRecomendadas.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
-
-			<h1>Peliculas Recomendadas</h1>
+			<h1>Peliculas que duren ${horasRecomendacion} hora(s):</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
 					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
-					</a>
 						<p class="titulo">${recomendado.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	</c:if>
 	
-	<c:if test="${seriesRecomendadas != null}">
+	<c:if test="${seriesRecomendadas.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
-
-			<h1>Series Recomendadas</h1>
+			<h1>Series que duren ${horasRecomendacion} hora(s):</h1>
 
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${seriesRecomendadas}" var="recomendado">
 					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
 							src="images/${recomendado.poster}">
-					</a>
 						<p class="titulo">${recomendado.nombre}</p></td>
+						</a>
 				</c:forEach>
 			</table>
 		</div>

@@ -48,6 +48,8 @@ public class ControladorBusqueda {
 		model.addAttribute("videojuegos", videojuegosRegistrados);
 		model.addAttribute("series", seriesRegistradas);
 		
+		model.addAttribute("busquedaBuscado", request.getSession().getAttribute("busquedaBuscado"));
+		
 		model.addAttribute("videojuegosEncontrados", request.getSession().getAttribute("videojuegosEncontrados"));
 		model.addAttribute("peliculasEncontradas", request.getSession().getAttribute("peliculasEncontradas"));
 		model.addAttribute("seriesEncontradas", request.getSession().getAttribute("seriesEncontradas"));
@@ -58,6 +60,8 @@ public class ControladorBusqueda {
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscarRecomendaciones(@RequestParam("busqueda") String busqueda,
 			HttpServletRequest request) {
+		
+		request.getSession().setAttribute("busquedaBuscado", busqueda);
 		
 		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorBusqueda(busqueda);
 		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorBusqueda(busqueda);

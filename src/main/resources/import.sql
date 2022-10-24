@@ -20,7 +20,7 @@ insert into plan (id, descripcion) values ('1', 'Free')
 insert into plan (id, descripcion) values ('2', 'Basico')
 insert into plan (id, descripcion) values ('3', 'Premium')
 
-insert into usuario (email, password, nombre, foto, biografia, plan_id, fechaVencimientoPlan) values ('admin@gmail.com','123','admin','perfil.jpg', 'soy admin','1','2022-10-18');
+insert into usuario (email, password, nombre, foto, biografia, plan_id, fechaVencimientoPlan) values ('admin@gmail.com','123','admin','perfil.jpg', 'soy admin','3','2022-10-18');
 
 insert into videojuego (poster, nombre, desarrollador, duracion, cantidadJugadores, sinopsis, fechaEstreno) values ('zeldabotw.jpg', 'The Legend Of Zelda', 'Nintendo', '55', '1','Olvida todo lo que sabes acerca de los juegos de la serie The Legend of Zelda. Explora y descubre un mundo lleno de aventuras en The Legend of Zelda: Breath of the Wild, una nueva saga que rompe los esquemas de la aclamada serie. Viaja a través de praderas y bosques, y alcanza cimas de montañas mientras descubres cómo cayó en la ruina el reino de Hyrule en esta emocionante aventura al aire libre.','2020-03-25')
 insert into videojuego_genero(videojuego_id, genero_id) values ('1','2')
@@ -48,6 +48,6 @@ insert into pelicula (poster, director, nombre, duracion, sinopsis, fechaEstreno
 insert into pelicula_genero(pelicula_id, genero_id) values ('4','5')
 insert into pelicula_plataforma(pelicula_id, plataforma_id) values ('4','7')
 
-insert into serie (poster, nombre, duracion) values ('friends.jpg', 'Friends', '20')
-
-
+insert into serie (poster, nombre, cantDeTemps, cantDeCaps, duracionPorCaps, sinopsis, fechaEstreno  ) values ('friends.jpg', 'Friends', '10','236', '22','Tres hombres y tres mujeres jóvenes son mejores amigos y viven en el mismo conjunto de apartamentos. Ellos enfrentan la vida y el amor en la ciudad de Nueva York y se involucran en los asuntos personales de los demás, donde incluso a veces intercambian novios o novias, lo que algunas veces genera situaciones que las personas comunes quizás nunca experimentan, especialmente durante las rupturas.', '1994-09-22' )
+insert into serie_genero(serie_id, genero_id) values ('1','5')
+insert into serie_plataforma(serie_id, plataforma_id) values ('1','3')

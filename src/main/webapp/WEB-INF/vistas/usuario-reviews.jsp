@@ -24,25 +24,59 @@
 		<div class="usuario-container">
 			<h3 style="text-align: center;">Mis Reviews</h3>
 			<div>
+		<c:if test="${listaReviews.isEmpty() == true}">
+				<div class="comentario">
+					<h1 class="text-center">Todavía no has hecho ninguna review</h1>
+				</div>
+		</c:if>
 				<c:forEach var="review" items="${listaReviews}">
 					<c:if test="${review.pelicula != null}">
 						<div class="comentario">
-							<img src="images/${review.pelicula.poster}">
+							<a href="perfil-pelicula?id=${review.pelicula.id}"><img style="width: 160px" src="images/${review.pelicula.poster}"></a>
 
 							<div class="descripcion">
 								<h4>${review.pelicula.nombre}</h4>
 								<p>${review.descripcion}</p>
+								<div class="botones">
+									<a href="editar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
+										href="eliminar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+								</div>
 							</div>
 						</div>
 					</c:if>
 
 					<c:if test="${review.videojuego != null}">
 						<div class="comentario">
-							<img src="images/${review.videojuego.poster}">
+							<a href="videojuego?id=${review.videojuego.id}"><img style="width: 160px" src="images/${review.videojuego.poster}"></a>
 
 							<div class="descripcion">
 								<h4>${review.videojuego.nombre}</h4>
 								<p>${review.descripcion}</p>
+								<div class="botones">
+									<a href="editar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
+										href="eliminar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+								</div>
+							</div>
+						</div>
+					</c:if>
+
+					<c:if test="${review.serie != null}">
+						<div class="comentario">
+							<a href="perfil-serie?id=${review.serie.id}"><img style="width: 160px" src="images/${review.serie.poster}"></a>
+
+							<div class="descripcion">
+								<h4>${review.serie.nombre}</h4>
+								<p>${review.descripcion}</p>
+								<div class="botones">
+									<a href="editar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
+										href="eliminar-review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+								</div>
 							</div>
 						</div>
 					</c:if>

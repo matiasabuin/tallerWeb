@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.delivery;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -17,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
@@ -32,14 +34,16 @@ public class ControladorVideojuego {
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 	private ServicioReview servicioReview;
 	private ServicioFiles servicioFiles;
+	private ServicioListas servicioFav;
 
 	@Autowired
 	public ControladorVideojuego(ServicioVideojuego servicioVideojuego,
-			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles) {
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles, ServicioListas servicioFav) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 		this.servicioReview = servicioReview;
 		this.servicioFiles = servicioFiles;
+		this.servicioFav=servicioFav;
 	}
 	
 	@RequestMapping("/videojuego")
@@ -49,17 +53,27 @@ public class ControladorVideojuego {
 //			Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 //			usuarioBuscado.getHistorial().add(servicioVideojuego.consultarVideojuego(id));
 //		}
-		
 		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+				
+		if(usuarioEncontrado != null) {
+			Review reviewEncontrada = servicioReview.getByUserAndVideogameID(usuarioEncontrado.getId(), id);	
+			if(reviewEncontrada.getUsuario() != null) {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			} else {
+				modelo.addAttribute("datosReview", reviewEncontrada);
+			}
+		}
+		
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
-		Review review = new Review();
+		Listas fav = new Listas();  
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		
-		modelo.addAttribute("datosReview", review);
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
-		
+		modelo.addAttribute("datosLista", fav);
+
 		return new ModelAndView("perfil-videojuego", modelo);
 	}
 

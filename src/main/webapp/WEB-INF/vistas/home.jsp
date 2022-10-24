@@ -9,7 +9,7 @@
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
@@ -22,26 +22,27 @@
 
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="boton-container">
-	<div class="boton mx-3"  style="width: 350px;">
-		<h2>Disfruta de tu tiempo libre</h2>
-		<p> Encontra el contenido que mejor se adapte a tus tiempos</p>
+
+		<div class="boton mx-3" style="width: 350px;">
+			<h2>Disfruta de tu tiempo libre</h2>
+			<p>Encontra el contenido que mejor se adapte a tus tiempos</p>
 		</div>
-		
+
 		<div class="boton mx-3 form-tiempo">
 			<form action="buscar-recomendaciones" method="GET" class="time-form">
 				<div class="tipos">
-					<label for="horas" class="time">Cantidad de horas</label>
-					<input type="number" name="horas" class="horas">
+					<label for="horas" class="time">Cantidad de horas</label> <input
+						type="number" name="horas" class="horas">
 				</div>
-				<button type="submit" class="empezar">¡Empezar!</button>
+				<button type="submit" class="empezar btn btn-primary button-agregarfavs">¡Empezar!</button>
 			</form>
 		</div>
-		
+
 	</div>
-	
+
 	<div class="container">
 		<div class="recomendaciones-container">
 
@@ -51,8 +52,8 @@
 				<c:forEach items="${videojuegos}" var="videojuego">
 					<td><a href="videojuego?id=${videojuego.id}"> <img
 							src="images/${videojuego.poster}">
-						<p class="titulo">${videojuego.nombre}</p></td>
-						</a>
+							<p class="titulo">${videojuego.nombre}</p></td>
+					</a>
 				</c:forEach>
 			</table>
 		</div>
@@ -65,34 +66,32 @@
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${peliculas}" var="pelicula">
 					<td><a href="perfil-pelicula?id=${pelicula.id}"> <img
-							src="images/${pelicula.poster}">						
-					<p class="titulo">${pelicula.nombre}</p>
-					</a>
-					</td>
+							src="images/${pelicula.poster}">
+							<p class="titulo">${pelicula.nombre}</p>
+					</a></td>
 				</c:forEach>
 			</table>
 
 		</div>
 	</div>
-	
-		<div class="container">
+
+	<div class="container">
 		<div class="recomendaciones-container">
 
 			<h1>Series</h1>
 			<table class="table-responsive table-borderless">
 				<c:forEach items="${series}" var="serie">
 					<td><a href="perfil-serie?id=${serie.id}"> <img
-							src="images/${serie.poster}">						
-					<p class="titulo">${serie.nombre}</p>
-					</a>
-					</td>
+							src="images/${serie.poster}">
+							<p class="titulo">${serie.nombre}</p>
+					</a></td>
 				</c:forEach>
 			</table>
 
 		</div>
 	</div>
 
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 
 	<!-- Placed at the end of the document so the pages load faster -->

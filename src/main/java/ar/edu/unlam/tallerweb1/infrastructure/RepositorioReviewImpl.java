@@ -29,10 +29,21 @@ public class RepositorioReviewImpl implements RepositorioReview {
 		return (Review) sessionFactory.getCurrentSession().createCriteria(Review.class).add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
+	
+	@Override
+	public Review buscarPorUsuario(Integer id) {
+		return (Review) sessionFactory.getCurrentSession().createCriteria(Review.class).add(Restrictions.eq("usuario.id", id))
+				.uniqueResult();
+	}
 
 	@Override
 	public void modificar(Review review) {
 		sessionFactory.getCurrentSession().update(review);
+	}
+	
+	@Override
+	public void elimimar(Review review) {
+		sessionFactory.getCurrentSession().remove(review);
 	}
 
 	@Override
@@ -48,6 +59,7 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 	
+	@Override
 	public List<Review> obtenerReviewsDePeliculaPorId(Integer id) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Review.class)
@@ -55,5 +67,47 @@ public class RepositorioReviewImpl implements RepositorioReview {
 				.list();
 	}
 
+	@Override
+	public List<Review> obtenerReviewsDeSeriePorId(Integer id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("serie.id", id))
+				.list();
+	}
+
+	@Override
+	public List<Review> obtenerReviewsDeUsuarioPorId(Integer id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("usuario.id", id))
+				.list();
+	}
+
+	@Override
+	public Review buscarPorUsuarioyVideojuego(Integer userId, Integer videogameId) {
+		return (Review) sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("usuario.id", userId))
+				.add(Restrictions.eq("videojuego.id", videogameId))
+				.uniqueResult();
+	}
+
+	@Override
+	public Review buscarPorUsuarioyPelicula(Integer userId, Integer peliculaId) {
+		return (Review) sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("usuario.id", userId))
+				.add(Restrictions.eq("pelicula.id", peliculaId))
+				.uniqueResult();
+	}
+
+	@Override
+	public Review buscarPorUsuarioySerie(Integer userId, Integer serieId) {
+		return (Review) sessionFactory.getCurrentSession()
+				.createCriteria(Review.class)
+				.add(Restrictions.eq("usuario.id", userId))
+				.add(Restrictions.eq("serie.id", serieId))
+				.uniqueResult();
+	}
 
 }

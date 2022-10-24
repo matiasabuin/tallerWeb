@@ -1,37 +1,45 @@
 @charset "ISO-8859-1";
-h2{
+
+h2 {
 	font-size: 40px;
-    font-weight: 700;
-    color: #fff;
-    font-family: Roboto,sans-serif!important;
-    text-align: left;
+	font-weight: 700;
+	color: #fff;
+	font-family: Roboto, sans-serif !important;
+	text-align: left;
 }
-h3{
+
+h3 {
 	text-align: center;
 	margin: 20px;
 }
-h4{
+
+h4 {
 	display: block;
+    padding: 0px 20px;
 }
-h5{
+
+h5 {
 	margin: 1em;
 	color: #badefc;
-    text-align: center;
-    font-size: 1.25rem;
-    text-transform: uppercase;
+	text-align: center;
+	font-size: 1.25rem;
+	text-transform: uppercase;
 }
-form{
+
+form {
 	text-align: center;
 }
-textarea{
+
+textarea {
 	padding: 20px;
 	width: 70%;
 	border-radius: 10px;
 	background-color: #16181c;
-    color: #badefc;
-    margin-bottom: 1em;
+	color: #badefc;
+	margin-bottom: 1em;
 }
-button{
+
+.button-reviews {
 	width: 15%;
 	margin: auto;
 	display: block;
@@ -42,55 +50,82 @@ button{
 	border-radius: 30px;
 	border: none;
 }
-.reviews{
-	background-color: #242832!important;
+
+.reviews {
+	background-color: #242832 !important;
 	padding: 10px 0px;
 	border-radius: 10px;
 }
-.comentario{
+
+.comentario {
 	display: flex;
 	flex-wrap: nowrap;
 	width: 70%;
 	margin: 1em auto;
 	justify-content: flex-start;
 	padding-bottom: 10px;
-    border-bottom: 1px solid #badefc;
+	border-bottom: 1px solid #badefc;
 }
-.comentario img{
+
+.comentario img {
 	width: 15%;
+    height: 100px;
 }
-.comentario p{
+
+.comentario p {
 	width: 100%;
 	padding: 10px 20px;
 	margin-bottom: 0;
 	color: #badefc;
 }
-.genero, .plataforma{
+
+.genero, .plataforma {
 	font-size: 16px;
-    display: inline;
-    padding: 5px;
-    border: 1px solid #badefc;
-    margin: 5px;    
-    border-radius: 5px;
+	display: inline;
+	padding: 5px;
+	border: 1px solid #badefc;
+	margin: 5px;
+	border-radius: 5px;
 }
-.datos{
+
+.datos {
 	display: flex;
 	flex-wrap: nowrap;
 	margin: 3em 0em;
 }
-.datos img{
+
+.datos img {
 	width: 300px;
 	height: 450px;
+	border: 1px solid #badefc;
+	border-radius: 5px;
 }
-.contenedor{
+
+.contenedor {
 	margin: 3em auto;
 }
-.sinopsis{
-    margin-top: 1em;
-    font-family: Open Sans,sans-serif;
-    color: #badefc;
-    line-height: 1.5;
+
+.sinopsis {
+	margin-top: 1em;
+	font-family: Open Sans, sans-serif;
+	color: #badefc;
+	line-height: 1.5;
 }
-.items{
+
+.items {
 	font-size: 20px;
+}
+
+.button-agregarfavs {
+	background-color: #ea377a !important;
+	border: none;
+	justify-content: center;
+}
+
+.button-agregarfavs:hover {
+	background-color: #b02a5c !important;
+}
+
+.col-4{
+	max-width: 50%;
 }

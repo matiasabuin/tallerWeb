@@ -20,22 +20,27 @@ public class ServicioReviewImpl implements ServicioReview {
 	
 	@Override
 	public void registrar(Review review) {
-		servicioReviewDao.guardar(review);;
+		servicioReviewDao.guardar(review);
 	}
 
 	@Override
 	public void modificar(Review review) {
-		// TODO Auto-generated method stub
+		servicioReviewDao.modificar(review);
 	}
 
 	@Override
 	public void eliminar(Review review) {
-		// TODO Auto-generated method stub
+		servicioReviewDao.elimimar(review);
 	}
 
 	@Override
 	public Review getById(Integer id) {
 		return servicioReviewDao.buscar(id);
+	}
+	
+	@Override
+	public Review getByUserId(Integer id) {
+		return servicioReviewDao.buscarPorUsuario(id);
 	}
 
 	@Override
@@ -51,6 +56,49 @@ public class ServicioReviewImpl implements ServicioReview {
 
 	public List<Review> getAllByPeliculaId(Integer id) {
 		return servicioReviewDao.obtenerReviewsDePeliculaPorId(id);
+	}
+
+	@Override
+	public List<Review> getAllBySerieId(Integer id) {
+		return servicioReviewDao.obtenerReviewsDeSeriePorId(id);
+	}
+
+	@Override
+	public List<Review> getAllByUserId(Integer id) {
+		return servicioReviewDao.obtenerReviewsDeUsuarioPorId(id);
+	}
+
+	@Override
+	public Review getByUserAndVideogameID(Integer userId, Integer videogameId) {
+		Review review;
+		if(servicioReviewDao.buscarPorUsuarioyVideojuego(userId, videogameId) != null) {
+			review = servicioReviewDao.buscarPorUsuarioyVideojuego(userId, videogameId);
+		} else {
+			review = new Review();
+		}
+		return review;
+	}
+
+	@Override
+	public Review getByUserAndPeliculaID(Integer userId, Integer peliculaId) {
+		Review review;
+		if(servicioReviewDao.buscarPorUsuarioyPelicula(userId, peliculaId) != null) {
+			review = servicioReviewDao.buscarPorUsuarioyPelicula(userId, peliculaId);
+		} else {
+			review = new Review();
+		}
+		return review;
+	}
+
+	@Override
+	public Review getByUserAndSerieID(Integer userId, Integer serieId) {
+		Review review;
+		if(servicioReviewDao.buscarPorUsuarioySerie(userId, serieId) != null) {
+			review = servicioReviewDao.buscarPorUsuarioySerie(userId, serieId);
+		} else {
+			review = new Review();
+		}
+		return review;
 	}
 
 }
