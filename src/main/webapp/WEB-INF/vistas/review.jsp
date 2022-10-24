@@ -42,15 +42,23 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-							<div class="container form-comentario">
-								<form:form action="registrar-comentario" modelAttribute="review"
-									method="POST">
-									<form:textarea path="descripcion"
-										placeholder="Deja un comentario" />
-									<form:button type="submit"
-										class="btn btn-primary button-agregarfavs" style="margin-top: 1em;">Comentar</form:button>
-								</form:form>
-							</div>
+
+							<c:if test="${usuarioActual != null}">
+								<div class="container form-comentario">
+									<form:form action="registrar-comentario"
+										modelAttribute="comentario" method="POST">
+										<form:input path="usuario.id" type="hidden"
+											value="${usuarioActual.id}" />
+										<form:input path="review.id" type="hidden"
+											value="${review.id}" />
+										<form:textarea path="descripcion"
+											placeholder="Deja un comentario" />
+										<form:button type="submit"
+											class="btn btn-primary button-agregarfavs"
+											style="margin-top: 1em;">Comentar</form:button>
+									</form:form>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</c:if>
@@ -70,15 +78,22 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-							<div class="container form-comentario">
-								<form:form action="registrar-comentario" modelAttribute="review"
-									method="POST">
-									<form:textarea path="descripcion"
-										placeholder="Deja un comentario" />
-									<form:button type="submit"
-										class="btn btn-primary button-agregarfavs" style="margin-top: 1em;">Comentar</form:button>
-								</form:form>
-							</div>
+							<c:if test="${usuarioActual != null}">
+								<div class="container form-comentario">
+									<form:form action="registrar-comentario"
+										modelAttribute="comentario" method="POST">
+										<form:input path="usuario.id" type="hidden"
+											value="${usuarioActual.id}" />
+										<form:input path="review.id" type="hidden"
+											value="${review.id}" />
+										<form:textarea path="descripcion"
+											placeholder="Deja un comentario" />
+										<form:button type="submit"
+											class="btn btn-primary button-agregarfavs"
+											style="margin-top: 1em;">Comentar</form:button>
+									</form:form>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</c:if>
@@ -96,17 +111,36 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-							<div class="container form-comentario">
-								<form:form action="registrar-comentario" modelAttribute="review"
-									method="POST">
-									<form:textarea path="descripcion"
-										placeholder="Deja un comentario" />
-									<form:button type="submit"
-										class="btn btn-primary button-agregarfavs" style="margin-top: 1em;">Comentar</form:button>
-								</form:form>
-							</div>
+							<c:if test="${usuarioActual != null}">
+								<div class="container form-comentario">
+									<form:form action="registrar-comentario"
+										modelAttribute="comentario" method="POST">
+										<form:input path="usuario.id" type="hidden"
+											value="${usuarioActual.id}" />
+										<form:input path="review.id" type="hidden"
+											value="${review.id}" />
+										<form:textarea path="descripcion"
+											placeholder="Deja un comentario" />
+										<form:button type="submit"
+											class="btn btn-primary button-agregarfavs"
+											style="margin-top: 1em;">Comentar</form:button>
+									</form:form>
+								</div>
+							</c:if>
 						</div>
 					</div>
+				</c:if>
+
+				<c:if test="${listaComentarios != null}">
+					<c:forEach var="comentario" items="${listaComentarios}">
+						<div class="comentario-review">
+							<img src="images/${comentario.usuario.foto}">
+							<div class="datosreview">
+								<h4>${comentario.usuario.nombre}</h4>
+								<p>${comentario.descripcion}</p>
+							</div>
+						</div>
+					</c:forEach>
 				</c:if>
 
 			</div>

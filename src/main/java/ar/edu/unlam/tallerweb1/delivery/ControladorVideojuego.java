@@ -70,7 +70,6 @@ public class ControladorVideojuego {
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		
-		modelo.addAttribute("usuarioActual", usuarioEncontrado);
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosLista", fav);

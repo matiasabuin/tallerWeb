@@ -41,6 +41,10 @@ public class Usuario {
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
+	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Comentario> Comentarios = new ArrayList<Comentario>();
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
