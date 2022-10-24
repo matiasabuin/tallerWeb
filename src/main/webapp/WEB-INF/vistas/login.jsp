@@ -31,7 +31,7 @@
 			<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 			<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
 			<form:form action="validar-login" method="POST"
-				modelAttribute="datosLogin">
+				modelAttribute="datosLogin" style="margin-bottom: 1em;">
 				<h3 class="form-signin-heading text-center">Bienvenido</h3>
 				<hr class="colorgraph">
 				<br>

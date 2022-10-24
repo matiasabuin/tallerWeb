@@ -58,4 +58,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 	
 	}
 
+	@Override
+	public Usuario getById(Integer id) {
+		return servicioLoginDao.getById(id);
+	}
+
 }

@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Listas {
+public class Lista {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

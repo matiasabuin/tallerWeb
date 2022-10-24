@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
@@ -129,7 +129,7 @@ public class ControladorPelicula{
 		}
 		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
-		Listas fav=new Listas();
+		Lista fav=new Lista();
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		

@@ -44,14 +44,14 @@ public class Usuario {
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Listas> favoritos = new ArrayList<Listas>();
+	private List<Lista> favoritos = new ArrayList<Lista>();
 
 	
-	public List<Listas> getFavoritos() {
+	public List<Lista> getFavoritos() {
 		return favoritos;
 	}
 
-	public void setFavoritos(List<Listas> favoritos) {
+	public void setFavoritos(List<Lista> favoritos) {
 		this.favoritos = favoritos;
 	}
 

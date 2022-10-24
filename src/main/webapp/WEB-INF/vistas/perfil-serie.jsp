@@ -28,7 +28,15 @@
 		<div class="container contenedor">
 			<section class="datos">
 				<div style="text-align: center;">
-					<img src="images/${datosSerie.poster}"><br> <br>
+					<img src="images/${datosSerie.poster}">
+
+					<!-- REDIRIGIR A LOGIN -->
+					<c:if test="${usuarioActual == null}">
+						<div class="sesion">
+							<a href="login">Inicia Sesion</a><span> para dejar una
+								reseña</span>
+						</div>
+					</c:if>
 
 					<!-- BOTON AGREGAR A FAVS -->
 					<c:if test="${usuarioActual != null}">
@@ -49,10 +57,11 @@
 					<c:if
 						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
 						<a href="review?id=${datosReview.id}"
-							class="btn btn-primary button-agregarfavs">Ver review</a>
+							class="btn btn-primary button-agregarfavs">Mi review <i
+							class="fa fa-comment" aria-hidden="true"></i></a>
 					</c:if>
 				</div>
-				
+
 				<!-- INFORMACION PRINCIPAL DE SERIE -->
 				<div style="margin-left: 2em;">
 					<h2>${datosSerie.nombre}</h2>
@@ -84,7 +93,8 @@
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario == null}">
 						<form:form action="registrarReviewSerie" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"
@@ -101,9 +111,15 @@
 						<c:forEach var="review" items="${listaReviews}">
 							<div class="comentario">
 								<img src="images/${review.usuario.foto}">
-								<div>
+								<div class="datosreview">
 									<h4>${review.usuario.nombre}</h4>
 									<p>${review.descripcion}</p>
+									<div class="vistareview">
+										<c:if test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+											<a href="review?id=${review.id}">Responder</a>
+										</c:if>
+										<a href="review?id=${review.id}">Ver review</a>
+									</div>
 								</div>
 							</div>
 						</c:forEach>

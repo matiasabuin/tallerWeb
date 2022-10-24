@@ -35,7 +35,7 @@ public class ControladorReview {
 		
 		modelo.addAttribute("review", review);
 	
-		return new ModelAndView();	
+		return new ModelAndView("review", modelo);	
 	}
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
@@ -75,7 +75,7 @@ public class ControladorReview {
 		
 		servicioReview.eliminar(reviewEncontrada);
 		
-		return new ModelAndView("redirect:/perfil");
+		return new ModelAndView("redirect:/reviews");
 	}
 	
 	@RequestMapping(path = "/editar-review")

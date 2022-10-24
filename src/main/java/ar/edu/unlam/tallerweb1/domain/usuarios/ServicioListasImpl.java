@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
@@ -28,17 +28,17 @@ public class ServicioListasImpl implements ServicioListas {
 
 
 	@Override
-	public Listas getById(Integer id) {
+	public Lista getById(Integer id) {
 		return servicioFavoritosDao.buscar(id);
 	}
 
 	@Override
-	public List<Listas> getAll() {
+	public List<Lista> getAll() {
 		return servicioFavoritosDao.obtenerFavoritos();
 	}
 
 	@Override
-	public void guardar(Listas favoritos) {
+	public void guardar(Lista favoritos) {
 		servicioFavoritosDao.guardar(favoritos);;
 	
 	}
@@ -65,7 +65,7 @@ public class ServicioListasImpl implements ServicioListas {
 
 
 	@Override
-	public void eliminar(Listas lista) {
+	public void eliminar(Lista lista) {
 		this.servicioFavoritosDao.eliminar(lista);
 	}
 	

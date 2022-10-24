@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
@@ -27,19 +27,19 @@ public class RepositorioListasImpl implements RepositorioListas {
 	}
 
 	@Override
-	public List<Listas> obtenerFavoritos() {
-		return sessionFactory.getCurrentSession().createCriteria(Listas.class).list();
+	public List<Lista> obtenerFavoritos() {
+		return sessionFactory.getCurrentSession().createCriteria(Lista.class).list();
 
 	}
 
 	@Override
-	public Listas buscar(Integer id) {
-		return (Listas) sessionFactory.getCurrentSession().createCriteria(Listas.class).add(Restrictions.eq("id", id))
+	public Lista buscar(Integer id) {
+		return (Lista) sessionFactory.getCurrentSession().createCriteria(Lista.class).add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 
 	@Override
-	public void guardar(Listas fav) {
+	public void guardar(Lista fav) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(fav);
 	}
@@ -49,7 +49,7 @@ public class RepositorioListasImpl implements RepositorioListas {
 		// TODO Auto-generated method stub
 
 		final Session session = sessionFactory.getCurrentSession();
-		return (Videojuego) session.createCriteria(Listas.class).add(Restrictions.eq("videojuego.id", id))
+		return (Videojuego) session.createCriteria(Lista.class).add(Restrictions.eq("videojuego.id", id))
 				.uniqueResult();
 
 	}
@@ -57,19 +57,19 @@ public class RepositorioListasImpl implements RepositorioListas {
 	@Override
 	public Pelicula buscarPeliculaId(Integer id) {
 		// TODO Auto-generated method stub
-		return (Pelicula) this.sessionFactory.getCurrentSession().createCriteria(Listas.class)
+		return (Pelicula) this.sessionFactory.getCurrentSession().createCriteria(Lista.class)
 				.add(Restrictions.eq("videojuego.id", id)).uniqueResult();
 	}
 
 	@Override
 	public Serie buscarSerieId(Integer id) {
 		// TODO Auto-generated method stub
-		return (Serie) this.sessionFactory.getCurrentSession().createCriteria(Listas.class)
+		return (Serie) this.sessionFactory.getCurrentSession().createCriteria(Lista.class)
 				.add(Restrictions.eq("videojuego.id", id)).uniqueResult();
 	}
 
 	@Override
-	public void eliminar(Listas lista) {
+	public void eliminar(Lista lista) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(lista);
 
