@@ -39,6 +39,10 @@ public class ServicioPeliculaImpl implements ServicioPelicula {
 	public List<Pelicula> obtenerPeliculaPorTiempo(Integer horas) {
 		return servicioPeliculaDao.obtenerLasPeliculasPorTiempo(horas);
 	}
+	@Override
+	public List<Pelicula> obtenerPeliculaPorBusqueda(String busqueda) {
+		return servicioPeliculaDao.obtenerLasPeliculasPorBusqueda(busqueda);
+	}
 
 
 }

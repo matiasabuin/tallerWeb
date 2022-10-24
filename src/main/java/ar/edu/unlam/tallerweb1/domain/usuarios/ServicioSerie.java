@@ -10,4 +10,5 @@ public interface ServicioSerie {
 	Serie registrarSerie(Serie datosSerie);
 	List<Serie> obtenerTodasLasSeries();
 	List<Serie> obtenerSeriePorTiempo(Integer horas);
+	List<Serie> obtenerSeriePorBusqueda(String busqueda);
 }

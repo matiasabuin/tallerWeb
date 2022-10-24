@@ -33,9 +33,8 @@
 								<a class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
 							</div>
 						</li>
-					</c:if>
-								
-					<c:if test="${usuarioActual.plan == 'Premium'}">
+					
+					<c:if test="${usuarioActual.plan.id == 3}">
 						<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -46,12 +45,13 @@
 								<a class="dropdown-item" href="registro-videojuego">VideoJuego</a>
 							</div>
 						</li>
-					</c:if>		
+					</c:if>	
+					</c:if>	
 						
 				</ul>
 
 				<form action="buscar" method="GET">
-					<input type="text" placeholder="Buscar contenido" class="search">
+					<input type="text" placeholder="Buscar contenido" class="search" name="busqueda">
 				</form>
 
 				<c:if test="${usuarioActual.nombre == null}">

@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,6 +48,15 @@ public class RepositorioVideojuegoImpl implements RepositorioVideojuego {
 				.createCriteria(Videojuego.class)
 				.add(Restrictions.eq("duracion", horas))
 				.list();
+	}
+
+	@Override
+	public List<Videojuego> obtenerLosVideojuegosPorBusqueda(String busqueda) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Videojuego.class)
+				.add(Restrictions.ilike("nombre", busqueda, MatchMode.ANYWHERE))
+				.list();
+		
 	}
 
 }

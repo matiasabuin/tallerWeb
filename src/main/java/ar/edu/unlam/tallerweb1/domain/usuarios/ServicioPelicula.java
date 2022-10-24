@@ -10,4 +10,5 @@ public interface ServicioPelicula {
 	Pelicula registrarPelicula(Pelicula datosPelicula);
 	List<Pelicula> obtenerTodasLasPeliculas();
 	List<Pelicula> obtenerPeliculaPorTiempo(Integer horas);
+	List<Pelicula> obtenerPeliculaPorBusqueda(String busqueda);
 }

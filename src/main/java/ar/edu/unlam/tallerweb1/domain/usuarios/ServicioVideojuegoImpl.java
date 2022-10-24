@@ -42,5 +42,10 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 		servicioVideojuegoDao.modificar(datosVideojuego);
 	}
 
+	@Override
+	public List<Videojuego> obtenerVideojuegoPorBusqueda(String busqueda) {
+		return servicioVideojuegoDao.obtenerLosVideojuegosPorBusqueda(busqueda);
+	}
+
 
 }

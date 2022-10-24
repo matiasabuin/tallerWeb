@@ -4,6 +4,8 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,10 +31,12 @@ public class ControladorLogin {
 	// paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
+	private ServicioPlan servicioPlan;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan){
 		this.servicioLogin = servicioLogin;
+		this.servicioPlan= servicioPlan;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -65,14 +71,19 @@ public class ControladorLogin {
 		// hace una llamada a otro action a traves de la URL correspondiente a esta
 		
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-	
+		
 		if (usuarioBuscado != null) {
 			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
+			if(LocalDate.now().isBefore(usuarioBuscado.getFechaVencimientoPlan())) {
+				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanPremium());
+			}else {
+				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanFree());
+			}
 			
 			return new ModelAndView("redirect:/home");
 		} else {
-			// si el usuario no existe agrega un mensaje de error en el modelo.
+//			 si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
 		}
 		return new ModelAndView("login", model);
@@ -107,7 +118,9 @@ public class ControladorLogin {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
-		modelo.put("usuario", new Usuario());
+		
+		modelo.put("usuario",new Usuario());
+		
 		return new ModelAndView("registro-usuario", modelo);
 	}
 	

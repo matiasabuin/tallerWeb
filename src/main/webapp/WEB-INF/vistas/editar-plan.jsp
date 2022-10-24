@@ -6,19 +6,21 @@
 <html>
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Editar Plan</title>
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	<meta charset="ISO-8859-1" >
+	<title>Editar Plan</title>
+	<!-- Bootstrap core CSS -->
+	
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/estilos.css" />
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/planes.css">
-<link rel="stylesheet"
+	<link rel="stylesheet" href="css/estilos.css" />
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/planes.css">
+	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
 	<div class="container">
 		<div class="d-flex justify-content-between">
 
-			<div class="recomendaciones-container">
+			<div class="recomendaciones-container plan-free">
 			<h1>Plan Free</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -37,9 +39,8 @@
 			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
-			
 			<c:choose>
-    			<c:when test="${usuarioActual.plan == 'Premium'}">
+    			<c:when test="${usuarioActual.plan.id != 1}">
 		        	<form action="adquirir-free" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block" Type="Submit">
@@ -56,9 +57,37 @@
 			</c:choose>
 			
 			</div>
+
+			<div class="recomendaciones-container">
+			<h1>Plan Básico</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+			id est laborum.</p>
 			
-
-
+			<c:choose>
+    			<c:when test="${usuarioActual.plan.id != 2}">
+		        	<form action="adquirir-basico" method="POST">
+						<button id="btn-registrarme"
+							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							Adquirir
+						</button>
+					</form>
+    			</c:when> 	   
+    			<c:otherwise>
+			         <button 
+						class="btn-lg btn-secondary btn-block">
+						Plan Actual
+					</button>
+					<p>Vence: ${usuarioActual.fechaVencimientoPlan}</p>
+			    </c:otherwise>
+			</c:choose>
+			
+			</div>
+			
 			<div class="recomendaciones-container">
 			<h1>Plan Premium</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -69,27 +98,46 @@
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
 			
-			
 			<c:choose>
-    			<c:when test="${usuarioActual.plan == 'Free'}">
+    			<c:when test="${usuarioActual.plan.id != 3}">
 					<form action="adquirir-premium" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block" Type="Submit">
 							Adquirir
 						</button>
 					</form>
+					<div class="adquirir">
+					</div>
     			</c:when> 	   
     			<c:otherwise>
     				<button 
 						class="btn-lg btn-secondary btn-block">
 						Plan Actual
 					</button>
+					<p>Vence: ${usuarioActual.fechaVencimientoPlan}</p>
 			    </c:otherwise>
 			</c:choose>
 				
 			</div>
 		</div>
 	</div>
+
+
+<!-- <script>
+  const mp = new MercadoPago('TEST-bf789ba6-c91b-4a6a-8e4d-1f6315513a30', {
+    locale: 'es-AR'
+  });
+
+  mp.checkout({
+    preference: {
+      id: "${compra.id}"
+    },
+    render: {
+      container: '.adquirir',
+      label: 'Pagar con MercadoPago',
+    }
+  });
+</script> -->
 	
 <jsp:include page="footer.jsp" />
 
