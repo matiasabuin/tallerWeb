@@ -36,30 +36,6 @@ public class RepositorioListasImpl implements RepositorioListas {
 	}
 
 	@Override
-	public Videojuego buscarVideojuegoId(Integer id) {
-		// TODO Auto-generated method stub
-
-		final Session session = sessionFactory.getCurrentSession();
-		return (Videojuego) session.createCriteria(Lista.class).add(Restrictions.eq("videojuego.id", id))
-				.uniqueResult();
-
-	}
-
-	@Override
-	public Pelicula buscarPeliculaId(Integer id) {
-		// TODO Auto-generated method stub
-		return (Pelicula) this.sessionFactory.getCurrentSession().createCriteria(Lista.class)
-				.add(Restrictions.eq("videojuego.id", id)).uniqueResult();
-	}
-
-	@Override
-	public Serie buscarSerieId(Integer id) {
-		// TODO Auto-generated method stub
-		return (Serie) this.sessionFactory.getCurrentSession().createCriteria(Lista.class)
-				.add(Restrictions.eq("videojuego.id", id)).uniqueResult();
-	}
-
-	@Override
 	public void eliminar(Lista lista) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().remove(lista);

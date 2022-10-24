@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/ed06e9b771.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -42,10 +42,23 @@
 								value="${datosVideojuego.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
+							  <c:set var="eliminar" value="NoEstaEnFavs" />	
+							<c:forEach var="favoritos" items="${listaFavs}">
+								<c:if
+									test="${favoritos.videojuego != null && favoritos.videojuego.id == datosVideojuego.id}">
+									<a href="eliminar-Fav?id=${favoritos.id}"><button
+											type="button" class="btn btn-primary button-agregarfavs mt-4">
+											Eliminar <i class="fa-solid fa-heart-crack ml-1" aria-hidden="true"></i>
+										</button> </a>
+										<c:set var="eliminar" value="EstaEnFavs" />
+								</c:if>
+							</c:forEach>
+							<c:if test="${eliminar == 'NoEstaEnFavs'}">
 							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs mt-4">
-									Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+								class="btn btn-primary button-agregarfavs mt-4">Agregar <i
+									class="fa-solid fa-heart" aria-hidden="true"></i>
 							</form:button>
+							</c:if>
 						</form:form>
 					</c:if>
 

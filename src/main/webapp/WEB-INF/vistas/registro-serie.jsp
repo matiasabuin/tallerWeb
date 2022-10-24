@@ -28,52 +28,44 @@
 
 	<jsp:include page="header.jsp" />
 
+	<h2>REGISTRO SERIE</h2>
 	<div class="container">
 		<form:form action="registrar-serie" method="POST"
-			class="formulario-registro rounded" modelAttribute="datosSerie" enctype="multipart/form-data">
-			<div class="form-group row">
-				<p class="col-md-6">REGISTRO DE SERIE</p>
-
-			</div>
+			class="formulario-registro rounded" modelAttribute="datosSerie"
+			enctype="multipart/form-data">
 			<div class="row">
 				<div class="form-group col-md-6">
+					<form:label path="poster">Subir el poster</form:label>
+					<form:input path="" type="file" id="foto" name="file" />
+					<br>
 					<label for="inputNombre">Nombre</label>
 					<form:input path="nombre" type="text" class="form-control"
-						id="inputNombre" placeholder="Nombre" />
-					<br> <label for="inputDuracion">Duracion minutos</label>
+						id="inputNombre" />
+					 <label for="inputDuracion">Duracion minutos</label>
 					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" placeholder="576 min, 364 min" />
-					<br> <label for="inputDuracion">Duracion por capitulo</label>
+						id="inputDuracion" />
+					 <label for="inputDuracion">Duracion por capitulo</label>
 					<form:input path="duracionPorCaps" type="number"
-						class="form-control" id="inputDuracion"
-						placeholder="60 min, 24 min" />
-					<br>
+						class="form-control" id="inputDuracion" />
+					
 					<form:label path="generos">Genero</form:label>
 					<form:select path="generos" multiple="multiple"
 						items="${listaGeneros}" itemLabel="descripcion" itemValue="id" />
-					<br>
+				
 					<form:label path="plataformas">Plataforma</form:label>
 					<form:select path="plataformas" multiple="multiple"
 						items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
-					<br> <label for="inputDate">Fecha de estreno</label>
+					 <label for="inputDate">Fecha de estreno</label>
 					<form:input path="fechaEstreno" type="date" class="form-control"
 						id="inputPlataforma" />
-					<br> <label for="inputDuracion">Cantidad de temporadas</label>
+					<label for="inputDuracion">Cantidad de temporadas</label>
 					<form:input path="cantDeTemps" type="number" class="form-control"
-						min="1" id="inputDuracion" placeholder="2,6" />
-					<br> <label for="inputDuracion">Cantidad de capitulos</label>
+						min="1" id="inputDuracion" />
+					 <label for="inputDuracion">Cantidad de capitulos</label>
 					<form:input path="cantDeCaps" type="number" class="form-control"
-						min="1" id="inputDuracion" placeholder="24, 12" />
+						min="1" id="inputDuracion" />
 				</div>
-				<div class="col-md-6 text-center">
-					<form:label path="poster">Subir el poster</form:label>
-					<br>
-					<form:input path="" type="file" id="foto" name="file" />
-					<br> <br>
-					<div class="marco-poster-registro mx-auto"></div>
-
-				</div>
-
+			
 			</div>
 			<br>
 			<div class="form-group col-md-10 mx-auto">
@@ -85,7 +77,7 @@
 			</div>
 			<div class="col text-center mt-2">
 				<form:button type="submit" class="btn btn-primary"
-					id="botonDeregistroPeliSerie">Registrar</form:button>
+					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
 			</div>
 		</form:form>
 
@@ -103,7 +95,7 @@
 		new MultiSelectTag('plataformas')
 	</script>
 
-	<script src="js/script.js"></script>
+<!-- 	<script src="js/script.js"></script> -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

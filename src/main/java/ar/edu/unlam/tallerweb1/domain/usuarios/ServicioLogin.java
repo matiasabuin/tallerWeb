@@ -14,4 +14,5 @@ public interface ServicioLogin {
 	List<Usuario> obtenerTodosLosUsarios();
 
 	void editarPerfil(Usuario usuario);
+	
 }

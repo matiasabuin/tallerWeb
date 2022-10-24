@@ -39,27 +39,6 @@ public class ServicioListasImpl implements ServicioListas {
 	}
 
 	@Override
-	public Videojuego consultarVideojuegoId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarVideojuegoId(id);
-	}
-
-
-	@Override
-	public Pelicula consultarPeliculaId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarPeliculaId(id);
-	}
-
-
-	@Override
-	public Serie consultarSerieId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarSerieId(id);
-	}
-
-
-	@Override
 	public void eliminar(Lista lista) {
 		this.servicioFavoritosDao.eliminar(lista);
 	}

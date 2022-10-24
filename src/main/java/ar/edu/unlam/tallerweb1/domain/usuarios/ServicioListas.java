@@ -13,10 +13,7 @@ public interface ServicioListas {
 	void eliminar(Lista lista);
 
 	Lista getById(Integer id);
-	
-    Videojuego consultarVideojuegoId(Integer id);
-	Pelicula consultarPeliculaId(Integer id);
-	Serie consultarSerieId(Integer id);
+
 	List<Lista> getAllByUserId(Integer id);
 
 

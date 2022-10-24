@@ -15,8 +15,9 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-serie.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/ed06e9b771.js"
+	crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -38,10 +39,25 @@
 								value="${datosSerie.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs">
-								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
-							</form:button>
+							<c:set var="eliminar" value="NoEstaEnFavs" />
+							<c:forEach var="favoritos" items="${listaFavs}">
+								<c:if
+									test="${favoritos.serie != null && favoritos.serie.id == datosSerie.id}">
+									<a href="eliminar-Fav?id=${favoritos.id}"><button
+											type="button" class="btn btn-primary button-agregarfavs">
+											Eliminar <i class="fa-solid fa-heart-crack ml-1"
+												aria-hidden="true"></i>
+										</button> </a>
+									<c:set var="eliminar" value="EstaEnFavs" />
+								</c:if>
+
+							</c:forEach>
+							<c:if test="${eliminar == 'NoEstaEnFavs'}">
+								<form:button type="submit"
+									class="btn btn-primary button-agregarfavs">Agregar <i
+										class="fa-solid fa-heart" aria-hidden="true"></i>
+								</form:button>
+							</c:if>
 						</form:form>
 					</c:if>
 
@@ -52,17 +68,16 @@
 							class="btn btn-primary button-agregarfavs">Ver review</a>
 					</c:if>
 				</div>
-				
+
 				<!-- INFORMACION PRINCIPAL DE SERIE -->
 				<div style="margin-left: 2em;">
 					<h2>${datosSerie.nombre}</h2>
 					<p>Cantidad de Temporadas:&nbsp;${datosSerie.cantDeTemps}</p>
 					<p>Fecha de estreno:&nbsp;${datosSerie.fechaEstreno}</p>
-					<p class="align-self-center mx-2 sinopsis">${datosSerie.sinopsis}</p>
+					<p class="align-self-center sinopsis">${datosSerie.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Cantidad de
 						capitulos:&nbsp;${datosSerie.cantDeCaps}&nbsp;</p>
-					<p class="col-4 text-center border rounded">Duracion por
-						capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
+					<p class="col-4 text-center border rounded">Duracion por capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
 
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
@@ -84,7 +99,8 @@
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario == null}">
 						<form:form action="registrarReviewSerie" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"

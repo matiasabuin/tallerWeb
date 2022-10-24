@@ -94,14 +94,7 @@ body {
 }
 
 .formulario-registro {
-	margin-top: 50px;
-}
-
-.formulario-registro p {
-	font-size: 30px;
-	color: #9ab;
-	font-weight: bold;
-	text-align: left
+	margin-top: 35px;
 }
 
 .form-group {
@@ -124,12 +117,12 @@ body {
 	background-color: #E1DEDE;
 }
 
-#botonDeregistroPeliSerie {
+#botonDeregistroPeliSerieVideojuego {
 	background-color: #ea377a !important;
 	border: none;
 	font-size: 22px;
 }
-#botonDeregistroPeliSerie:hover {
+#botonDeregistroPeliSerieVideojuego:hover {
 	background-color: #b02a5c !important;
 }
 

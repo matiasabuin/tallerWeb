@@ -133,7 +133,11 @@ public class ControladorSerie {
 		Serie serie = servicioSerie.consultarSerie(id);
 
 		List<Review> reviews = servicioReview.getAllBySerieId(id);
-
+		
+		if(usuarioEncontrado != null) {
+			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			modelo.addAttribute("listaFavs", listas);
+			}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosSerie", serie);
 		modelo.addAttribute("datosLista", fav);

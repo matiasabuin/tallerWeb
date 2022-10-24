@@ -38,6 +38,7 @@ public class ControladorPelicula{
 	private ServicioListas servicioFav;
 	private ServicioFiles servicioFiles;
 
+
 	@Autowired
 	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
@@ -129,15 +130,15 @@ public class ControladorPelicula{
 		}
 		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
-<<<<<<< HEAD:src/main/java/ar/edu/unlam/tallerweb1/delivery/ControladorPeliculas.java
-		Review review = new Review();
+
 		Lista fav=new Lista();
-=======
-		Listas fav=new Listas();
->>>>>>> e8b6387ef965fe24002c2973fd052f45482048c4:src/main/java/ar/edu/unlam/tallerweb1/delivery/ControladorPelicula.java
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
+		if(usuarioEncontrado != null) {
+		List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+		modelo.addAttribute("listaFavs", listas);
+		}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista",fav);

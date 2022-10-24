@@ -71,6 +71,10 @@ public class ControladorVideojuego {
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		
+		if(usuarioEncontrado != null) {
+			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			modelo.addAttribute("listaFavs", listas);
+			}
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosLista", fav);
