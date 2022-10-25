@@ -15,9 +15,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-pelicula.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+<script src="https://kit.fontawesome.com/ed06e9b771.js" crossorigin="anonymous"></script>
 <body>
 
 	<!-- IMPORT HEADER -->
@@ -46,11 +44,26 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
+						    <c:set var="eliminar" value="NoEstaEnFavs" />	
+							<c:forEach var="favoritos" items="${listaFavs}">
+								<c:if
+									test="${favoritos.pelicula != null && favoritos.pelicula.id == datosPelicula.id}">
+									<a href="eliminar-Fav?id=${favoritos.id}"><button
+											type="button" class="btn btn-primary button-agregarfavs">
+											Eliminar<i class="fa-solid fa-heart-crack ml-1" aria-hidden="true"></i>
+										</button> </a>
+										<c:set var="eliminar" value="EstaEnFavs" />
+								</c:if>
+							</c:forEach>
+							<c:if test="${eliminar == 'NoEstaEnFavs'}">
 							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs">
-								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+								class="btn btn-primary button-agregarfavs">Agregar <i
+									class="fa-solid fa-heart" aria-hidden="true"></i>
 							</form:button>
+							</c:if>
 						</form:form>
+
+
 					</c:if>
 
 					<!-- BOTON VER REVIEW DEL USUARIO -->
@@ -67,7 +80,7 @@
 					<h2>${datosPelicula.nombre}</h2>
 					<p>Dirigida por&nbsp;${datosPelicula.director}</p>
 					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
-					<p class="align-self-center mx-2 sinopsis">${datosPelicula.sinopsis}</p>
+					<p class="align-self-center sinopsis">${datosPelicula.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
 
 					<strong class="items">Generos</strong>

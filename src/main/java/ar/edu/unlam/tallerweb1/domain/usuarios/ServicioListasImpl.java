@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -37,36 +36,21 @@ public class ServicioListasImpl implements ServicioListas {
 		return servicioFavoritosDao.obtenerFavoritos();
 	}
 
+
 	@Override
 	public void guardar(Lista favoritos) {
 		servicioFavoritosDao.guardar(favoritos);;
 	
 	}
 
-	@Override
-	public Videojuego consultarVideojuegoId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarVideojuegoId(id);
-	}
-
-
-	@Override
-	public Pelicula consultarPeliculaId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarPeliculaId(id);
-	}
-
-
-	@Override
-	public Serie consultarSerieId(Integer id) {
-		// TODO Auto-generated method stub
-		return servicioFavoritosDao.buscarSerieId(id);
-	}
-
-
-	@Override
 	public void eliminar(Lista lista) {
 		this.servicioFavoritosDao.eliminar(lista);
+	}
+
+
+	@Override
+	public List<Lista> getAllByUserId(Integer id) {
+		return this.servicioFavoritosDao.obtenerListasDelUsuarioPorId(id);
 	}
 	
 }

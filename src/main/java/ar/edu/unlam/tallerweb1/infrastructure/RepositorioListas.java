@@ -15,9 +15,8 @@ public interface RepositorioListas {
 	Lista buscar(Integer id);
 
 	List<Lista> obtenerFavoritos();
+	List<Lista> obtenerListasDelUsuarioPorId(Integer id);
 
-	Videojuego buscarVideojuegoId(Integer id);
-	Pelicula buscarPeliculaId(Integer id);
-	Serie buscarSerieId(Integer id);
+
 
 }

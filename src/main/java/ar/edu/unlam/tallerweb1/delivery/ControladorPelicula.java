@@ -38,6 +38,7 @@ public class ControladorPelicula{
 	private ServicioListas servicioFav;
 	private ServicioFiles servicioFiles;
 
+
 	@Autowired
 	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
@@ -129,10 +130,15 @@ public class ControladorPelicula{
 		}
 		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
+
 		Lista fav=new Lista();
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
+		if(usuarioEncontrado != null) {
+		List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+		modelo.addAttribute("listaFavs", listas);
+		}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista",fav);

@@ -47,22 +47,23 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Comentario> Comentarios = new ArrayList<Comentario>();
 
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Lista> favoritos = new ArrayList<Lista>();
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="plan_id")
 	private Plan plan;
 	
 	private LocalDate fechaVencimientoPlan = LocalDate.now().minusDays(1);
 	
+
 	public Plan getPlan() {
 		return plan;
 	}
 	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
-	
-	@Fetch(FetchMode.SELECT)
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Lista> favoritos = new ArrayList<Lista>();
 	
 	public List<Lista> getFavoritos() {
 		return favoritos;

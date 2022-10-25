@@ -36,10 +36,10 @@
 							<h3>Detalle</h3>
 
 							<form:label path="poster">Portada</form:label>
-							<form:input path="" type="file" id="poster" name="file"/>
+							<form:input path="" type="file" id="poster" name="file" />
 
 							<form:label path="fechaEstreno">Fecha de lanzamiento</form:label>
-							<form:input path="fechaEstreno" type="date" id="fechaEstreno"/>
+							<form:input path="fechaEstreno" type="date" id="fechaEstreno" />
 
 							<form:label path="duracion">Duracion</form:label>
 							<form:input path="duracion" type="number" id="duracion" min="1"
@@ -71,7 +71,8 @@
 
 									<form:label path="plataformas">Plataforma</form:label>
 									<form:select path="plataformas" multiple="multiple"
-										items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
+										items="${listaPlataformas}" itemLabel="descripcion"
+										itemValue="id" />
 								</div>
 							</div>
 						</div>
@@ -92,14 +93,16 @@
 								</div>
 								<div>
 									<form:label path="requisitosRecomendados">Recomendado</form:label>
-									<form:textarea path="requisitosRecomendados" id="requisitosRecomendados"
+									<form:textarea path="requisitosRecomendados"
+										id="requisitosRecomendados"
 										placeholder="Escribe algo aqui (opcional)" />
 								</div>
 							</div>
 						</div>
-						
+
 						<div>
-							<form:button type="submit">Registrar</form:button>
+							<form:button type="submit" class="btn btn-primary"
+								id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
 						</div>
 					</div>
 				</div>

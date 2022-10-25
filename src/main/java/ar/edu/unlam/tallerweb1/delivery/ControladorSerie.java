@@ -117,7 +117,9 @@ public class ControladorSerie {
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
+
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+
 
 		if (usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndSerieID(usuarioEncontrado.getId(), id);
@@ -129,10 +131,15 @@ public class ControladorSerie {
 		}
 
 		Lista fav = new Lista();
+		
 		Serie serie = servicioSerie.consultarSerie(id);
 
 		List<Review> reviews = servicioReview.getAllBySerieId(id);
-
+		
+		if(usuarioEncontrado != null) {
+			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			modelo.addAttribute("listaFavs", listas);
+			}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosSerie", serie);
 		modelo.addAttribute("datosLista", fav);

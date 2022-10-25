@@ -154,3 +154,8 @@ textarea {
 	color: #ea377a;
 	margin-left: 1em;
 }
+
+.col-4{
+	max-width: 50%;
+}
+

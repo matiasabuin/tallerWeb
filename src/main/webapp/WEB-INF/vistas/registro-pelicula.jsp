@@ -27,14 +27,16 @@
 
 	<h2>REGISTRO PELICULA</h2>
 	<div class="container">
-		<form:form action="registrar-pelicula" method="POST" class="formulario-registro rounded" modelAttribute="datosPelicula" enctype="multipart/form-data">
+		<form:form action="registrar-pelicula" method="POST"
+			class="formulario-registro rounded" modelAttribute="datosPelicula"
+			enctype="multipart/form-data">
 
 			<div class="row">
 				<div class="form-group col-md-6">
 
-					<form:label path="poster">Poster</form:label>
-					<form:input path="" type="file" id="foto" name="file"/>
-				
+					<form:label path="poster">Subir el poster</form:label>
+					<form:input path="" type="file" id="foto" name="file" />
+					<br>
 					<form:label path="nombre">Nombre</form:label>
 					<form:input path="nombre" type="text" class="form-control"
 						id="nombre" />
@@ -59,14 +61,20 @@
 					<form:input path="duracion" type="number" class="form-control"
 						id="duracion" />
 
-					<form:label path="sinopsis">Sinopsis</form:label>
-					<form:textarea path="sinopsis" class="form-control" id="sinopsis"
-						rows="3" />
 
 				</div>
 			</div>
+			<br>
+			<div class="form-group col-md-10 mx-auto">
+				<label for="exampleFormSinopsis">Sinopsis</label>
+				<form:textarea path="sinopsis" class="form-control"
+					id="exampleFormControlTextarea1" rows="3" />
+				<br>
+
+			</div>
 			<div class="col text-center mt-2">
-				<form:button type="submit" class="btn btn-primary">REGISTRAR</form:button>
+				<form:button type="submit" class="btn btn-primary"
+					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
 			</div>
 		</form:form>
 
@@ -83,7 +91,7 @@
 	<script>
 		new MultiSelectTag('plataformas')
 	</script>
-	<script src="js/script.js"></script>
+<!-- 	<script src="js/script.js"></script> -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
