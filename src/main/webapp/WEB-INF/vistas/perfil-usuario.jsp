@@ -36,8 +36,8 @@
 							<h4 class="my-2">${usuarioActual.nombre}</h4>
 							<p class="my-2 mx-3">${usuarioActual.biografia}</p>
 						</div>
-						<a href="editar-perfil" class="btn btn-primary my-2 ml-4"> Editar
-							Perfil </a> <a href="reviews" class="btn btn-primary my-2 mx-2"> Ver
+						<a href="editar-perfil" class="btn btn-primary my-2 ml-4 button-agregarfavs"> Editar
+							Perfil </a> <a href="reviews" class="btn btn-primary my-2 mx-2 button-agregarfavs"> Ver
 							reviews </a>
 
 					</div>

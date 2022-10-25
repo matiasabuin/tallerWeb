@@ -29,8 +29,6 @@ body {
 
 .nav-link:hover {
 	color: var(--onMouseover) !important;
-	border: 1px solid white;
-	border-radius: 5px;
 }
 
 .navbar-brand {
@@ -251,3 +249,29 @@ body {
 	background-color: #ea377a !important;
 	border: none;	
 }
+
+.button-agregarfavs:hover {
+	background-color: #b02a5c !important;
+}
+
+.comentario {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 70%;
+	margin: 1em auto;
+	justify-content: flex-start;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #badefc;
+}
+
+.comentario img {
+	width: 15%;
+}
+
+.comentario h1{
+	font-size: 25px;
+	font-weight: bold;
+	color: #9ab;
+	padding: 20px 0px;
+}
+

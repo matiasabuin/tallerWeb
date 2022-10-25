@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,14 @@ public class RepositorioSerieImpl implements RepositorioSerie {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Serie.class)
 				.add(Restrictions.eq("duracion", horas))
+				.list();
+	}
+
+	@Override
+	public List<Serie> obtenerLasSeriesPorBusqueda(String busqueda) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Serie.class)
+				.add(Restrictions.ilike("nombre", busqueda, MatchMode.ANYWHERE))
 				.list();
 	}
 	

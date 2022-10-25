@@ -44,6 +44,11 @@ public class ServicioSerieImpl implements ServicioSerie {
 	public List<Serie> obtenerSeriePorTiempo(Integer horas) {
 		return servicioSerieDao.obtenerLasSeriesPorTiempo(horas);
 	}
+
+	@Override
+	public List<Serie> obtenerSeriePorBusqueda(String busqueda) {
+		return servicioSerieDao.obtenerLasSeriesPorBusqueda(busqueda);
+	}
 	
 
 }

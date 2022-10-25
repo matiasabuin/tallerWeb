@@ -10,4 +10,5 @@ public interface RepositorioVideojuego {
 	void modificar(Videojuego videojuego);
 	List<Videojuego> obtenerTodosLosVideojuegos();
 	List<Videojuego> obtenerLosVideojuegosPorTiempo(Integer horas);
+	List<Videojuego> obtenerLosVideojuegosPorBusqueda(String busqueda);
 }

@@ -53,7 +53,6 @@ public class ServicioLoginImpl implements ServicioLogin {
 
 	@Override
 	public void editarPerfil(Usuario usuario) {
-		
 		servicioLoginDao.modificar(usuario);
 	
 	}

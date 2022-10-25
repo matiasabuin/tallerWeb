@@ -17,22 +17,22 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 
 @Controller
-public class ControladorRecomendaciones {
+public class ControladorBusqueda {
 
 	private ServicioVideojuego servicioVideojuego;
 	private ServicioPelicula servicioPelicula;
 	private ServicioSerie servicioSerie;
 	
 	@Autowired
-	public ControladorRecomendaciones(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula, 
+	public ControladorBusqueda(ServicioVideojuego servicioVideojuego, ServicioPelicula servicioPelicula, 
 			ServicioSerie servicioSerie) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioPelicula = servicioPelicula;
 		this.servicioSerie = servicioSerie;
 	}
 	
-	@RequestMapping(path = "/recomendaciones", method = RequestMethod.GET)
-	public ModelAndView irARecomendaciones(HttpServletRequest request) {
+	@RequestMapping(path = "/busqueda", method = RequestMethod.GET)
+	public ModelAndView irABusqueda(HttpServletRequest request) {
 		
 		ModelMap model = new ModelMap();
 
@@ -48,35 +48,31 @@ public class ControladorRecomendaciones {
 		model.addAttribute("videojuegos", videojuegosRegistrados);
 		model.addAttribute("series", seriesRegistradas);
 		
-		model.addAttribute("horasRecomendacion", request.getSession().getAttribute("horasRecomendacion"));
+		model.addAttribute("busquedaBuscado", request.getSession().getAttribute("busquedaBuscado"));
 		
-		model.addAttribute("videojuegosRecomendados", request.getSession().getAttribute("videojuegosRecomendados"));
-		model.addAttribute("peliculasRecomendadas", request.getSession().getAttribute("peliculasRecomendadas"));
-		model.addAttribute("seriesRecomendadas", request.getSession().getAttribute("seriesRecomendadas"));
+		model.addAttribute("videojuegosEncontrados", request.getSession().getAttribute("videojuegosEncontrados"));
+		model.addAttribute("peliculasEncontradas", request.getSession().getAttribute("peliculasEncontradas"));
+		model.addAttribute("seriesEncontradas", request.getSession().getAttribute("seriesEncontradas"));
 		
-		return new ModelAndView("recomendaciones", model);
+		return new ModelAndView("busqueda", model);
 	}
 
-	@RequestMapping(path = "/buscar-recomendaciones", method = RequestMethod.GET)
-	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
+	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
+	public ModelAndView buscarRecomendaciones(@RequestParam("busqueda") String busqueda,
 			HttpServletRequest request) {
+		
+		request.getSession().setAttribute("busquedaBuscado", busqueda);
+		
+		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorBusqueda(busqueda);
+		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorBusqueda(busqueda);
+		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorBusqueda(busqueda);
+		
+		request.getSession().setAttribute("peliculasEncontradas", peliculasRecomendadas);
+		request.getSession().setAttribute("videojuegosEncontrados", videojuegosRecomendados);
+		request.getSession().setAttribute("seriesEncontradas", seriesRecomendadas);
+		
+		return irABusqueda(request);
 
-		if(horas != null) {
-		
-		request.getSession().setAttribute("horasRecomendacion", horas);
-		
-		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorTiempo(horas);
-		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(horas);
-		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorTiempo(horas);
-		
-		request.getSession().setAttribute("peliculasRecomendadas", peliculasRecomendadas);
-		request.getSession().setAttribute("videojuegosRecomendados", videojuegosRecomendados);
-		request.getSession().setAttribute("seriesRecomendadas", seriesRecomendadas);
-		
-		return irARecomendaciones(request);
-		}
-		
-		return new ModelAndView("redirect:/home");
 	}
 	
 }

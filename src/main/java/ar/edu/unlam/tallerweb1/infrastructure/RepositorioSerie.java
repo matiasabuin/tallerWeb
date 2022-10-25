@@ -9,5 +9,6 @@ public interface RepositorioSerie {
     Serie buscar(Integer id);
 	List<Serie> obtenerTodasLasSeries();
 	List<Serie> obtenerLasSeriesPorTiempo(Integer horas);
+	List<Serie> obtenerLasSeriesPorBusqueda(String busqueda);
 
 }

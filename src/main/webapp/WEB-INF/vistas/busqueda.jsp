@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Recomendaciones</title>
+<title>Busqueda</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -23,26 +23,45 @@
 <body>
 
 <jsp:include page="header.jsp" />
-
-	<c:if test="${videojuegosRecomendados.isEmpty() == true && peliculasRecomendadas.isEmpty() == true 
-					&& seriesRecomendadas.isEmpty() == true}">
-			<div class="container">
-				<div class="comentario">	
-					<h1 class="text-center">No se han encontrado resultados que duren ${horasRecomendacion} hora(s)</h1>
+	
+	<c:if test="${seriesEncontradas.isEmpty() == true && videojuegosEncontrados.isEmpty() == true 
+					&& peliculasEncontradas.isEmpty() == true}">
+		<div class="container">
+			<div class="comentario">
+				<h1 class="text-center">No se han encontrado resultados que incluyan "${busquedaBuscado}"</h1>
 			</div>
 		</div>
 	</c:if>
 
-	<c:if test="${videojuegosRecomendados.isEmpty() == false}">
+	<c:if test="${videojuegosEncontrados.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
-			<h1>Videojuegos que duren ${horasRecomendacion} hora(s):</h1>
+
+			<h1 >Videojuegos encontrados que incluyen "${busquedaBuscado}":</h1>
 
 			<table class="table-responsive table-borderless">
-				<c:forEach items="${videojuegosRecomendados}" var="recomendado">
-					<td><a href="videojuego?id=${recomendado.id}"> <img
-							src="images/${recomendado.poster}">
-						<p class="titulo">${recomendado.nombre}</p></td>
+				<c:forEach items="${videojuegosEncontrados}" var="encontrado">
+					<td><a href="videojuego?id=${encontrado.id}"> <img
+							src="images/${encontrado.poster}">
+						<p class="titulo">${encontrado.nombre}</p></td>
+					</a>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	</c:if>
+	
+	<c:if test="${peliculasEncontradas.isEmpty() == false}">
+		<div class="container">
+		<div class="recomendaciones-container">
+
+			<h1>Peliculas encontradas que incluyen "${busquedaBuscado}":</h1>
+
+			<table class="table-responsive table-borderless">
+				<c:forEach items="${peliculasEncontradas}" var="encontrado">
+					<td><a href="perfil-pelicula?id=${encontrado.id}"> <img
+							src="images/${encontrado.poster}">
+						<p class="titulo">${encontrado.nombre}</p></td>
 						</a>
 				</c:forEach>
 			</table>
@@ -50,33 +69,17 @@
 	</div>
 	</c:if>
 	
-	<c:if test="${peliculasRecomendadas.isEmpty() == false}">
+	<c:if test="${seriesEncontradas.isEmpty() == false}">
 		<div class="container">
 		<div class="recomendaciones-container">
-			<h1>Peliculas que duren ${horasRecomendacion} hora(s):</h1>
+
+			<h1>Series encontradas que incluyen "${busquedaBuscado}":</h1>
 
 			<table class="table-responsive table-borderless">
-				<c:forEach items="${peliculasRecomendadas}" var="recomendado">
-					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
-							src="images/${recomendado.poster}">
-						<p class="titulo">${recomendado.nombre}</p></td>
-						</a>
-				</c:forEach>
-			</table>
-		</div>
-	</div>
-	</c:if>
-	
-	<c:if test="${seriesRecomendadas.isEmpty() == false}">
-		<div class="container">
-		<div class="recomendaciones-container">
-			<h1>Series que duren ${horasRecomendacion} hora(s):</h1>
-
-			<table class="table-responsive table-borderless">
-				<c:forEach items="${seriesRecomendadas}" var="recomendado">
-					<td><a href="perfil-pelicula?id=${recomendado.id}"> <img
-							src="images/${recomendado.poster}">
-						<p class="titulo">${recomendado.nombre}</p></td>
+				<c:forEach items="${seriesEncontradas}" var="encontrado">
+					<td><a href="perfil-pelicula?id=${encontrado.id}"> <img
+							src="images/${encontrado.poster}">
+						<p class="titulo">${encontrado.nombre}</p></td>
 						</a>
 				</c:forEach>
 			</table>

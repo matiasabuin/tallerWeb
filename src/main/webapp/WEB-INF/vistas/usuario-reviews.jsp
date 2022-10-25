@@ -29,6 +29,14 @@
 			<h3 style="text-align: center;">Mis Reviews</h3>
 			<div>
 
+				<!-- LISTADO DE REVIEWS VACIA-->
+
+				<c:if test="${listaReviews.isEmpty() == true}">
+					<div class="comentario">
+						<h1 class="text-center">Todavía no has hecho ninguna review</h1>
+					</div>
+				</c:if>
+
 				<!-- LISTADO DE REVIEWS -->
 				<c:forEach var="review" items="${listaReviews}">
 

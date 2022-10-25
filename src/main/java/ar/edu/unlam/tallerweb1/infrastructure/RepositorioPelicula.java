@@ -11,4 +11,5 @@ public interface RepositorioPelicula {
     Pelicula buscar(Integer id);
 	List<Pelicula> obtenerTodasLasPeliculas();
 	List<Pelicula> obtenerLasPeliculasPorTiempo(Integer horas);
+	List<Pelicula> obtenerLasPeliculasPorBusqueda(String busqueda);
 }

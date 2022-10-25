@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,6 +42,14 @@ public class RepositorioPeliculaImpl implements RepositorioPelicula {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Pelicula.class)
 				.add(Restrictions.eq("duracion", horas))
+				.list();
+	}
+
+	@Override
+	public List<Pelicula> obtenerLasPeliculasPorBusqueda(String busqueda) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Pelicula.class)
+				.add(Restrictions.ilike("nombre", busqueda, MatchMode.ANYWHERE))
 				.list();
 	}
 

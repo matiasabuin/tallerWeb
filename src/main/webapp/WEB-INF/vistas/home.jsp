@@ -37,7 +37,7 @@
 					<label for="horas" class="time">Cantidad de horas</label> <input
 						type="number" name="horas" class="horas">
 				</div>
-				<button type="submit" class="empezar">¡Empezar!</button>
+				<button type="submit" class="empezar btn btn-primary button-agregarfavs">¡Empezar!</button>
 			</form>
 		</div>
 

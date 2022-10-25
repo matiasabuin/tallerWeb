@@ -1,12 +1,17 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
@@ -30,14 +35,10 @@ public class Usuario {
 	// dato de java.
 	private String email;
 	private String password;
-	private String rol;
-	private Boolean activo = false;
-
 	private String nombre;
 	private String biografia;
 	private String foto = "perfil.jpg";
-	private String plan = "Free";
-
+	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
@@ -46,10 +47,22 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Comentario> Comentarios = new ArrayList<Comentario>();
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="plan_id")
+	private Plan plan;
+	
+	private LocalDate fechaVencimientoPlan = LocalDate.now().minusDays(1);
+	
+	public Plan getPlan() {
+		return plan;
+	}
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Lista> favoritos = new ArrayList<Lista>();
-
 	
 	public List<Lista> getFavoritos() {
 		return favoritos;
@@ -94,31 +107,7 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
-
-	public boolean activo() {
-		return activo;
-	}
-
-	public void activar() {
-		activo = true;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -142,12 +131,11 @@ public class Usuario {
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
 	}
-
-	public String getPlan() {
-		return plan;
+	
+	public LocalDate getFechaVencimientoPlan() {
+		return fechaVencimientoPlan;
 	}
-
-	public void setPlan(String plan) {
-		this.plan = plan;
+	public void setFechaVencimientoPlan(LocalDate fechaVencimientoPlan) {
+		this.fechaVencimientoPlan = fechaVencimientoPlan;
 	}
 }
