@@ -118,7 +118,7 @@
 								value="${datosSerie.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit" class="button-reviews">Enviar</form:button>
+							<form:button type="submit" class="btn button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 

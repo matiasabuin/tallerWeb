@@ -31,7 +31,7 @@
 
 				<!-- REVIEW PELICULA -->
 				<c:if test="${review.pelicula != null}">
-					<div class="comentario">
+					<div class="comentario" style="border-bottom: none;">
 						<a href="perfil-pelicula?id=${review.pelicula.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.pelicula.poster}"></a>
@@ -43,7 +43,8 @@
 							<p>${review.descripcion}</p>
 
 
-							<c:if test="${usuarioActual != null}">
+							<c:if
+								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
 									<form:form action="registrar-comentario"
 										modelAttribute="comentario" method="POST">
@@ -67,7 +68,7 @@
 				<c:if test="${review.videojuego != null}">
 
 
-					<div class="comentario">
+					<div class="comentario" style="border-bottom: none;">
 						<a href="videojuego?id=${review.videojuego.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.videojuego.poster}"></a>
@@ -78,7 +79,8 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-							<c:if test="${usuarioActual != null}">
+							<c:if
+								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
 									<form:form action="registrar-comentario"
 										modelAttribute="comentario" method="POST">
@@ -100,7 +102,7 @@
 
 				<!-- REVIEW SERIE -->
 				<c:if test="${review.serie != null}">
-					<div class="comentario">
+					<div class="comentario" style="border-bottom: none;">
 						<a href="perfil-serie?id=${review.serie.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.serie.poster}"></a>
@@ -111,7 +113,8 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-							<c:if test="${usuarioActual != null}">
+							<c:if
+								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
 									<form:form action="registrar-comentario"
 										modelAttribute="comentario" method="POST">
