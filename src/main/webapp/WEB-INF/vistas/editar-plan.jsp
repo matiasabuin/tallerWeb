@@ -43,7 +43,7 @@
     			<c:when test="${usuarioActual.plan.id != 1}">
 		        	<form action="adquirir-free" method="POST">
 						<button id="btn-registrarme"
-							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
 							Adquirir
 						</button>
 					</form>
@@ -72,7 +72,7 @@
     			<c:when test="${usuarioActual.plan.id != 2}">
 		        	<form action="adquirir-basico" method="POST">
 						<button id="btn-registrarme"
-							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
 							Adquirir
 						</button>
 					</form>
@@ -102,7 +102,7 @@
     			<c:when test="${usuarioActual.plan.id != 3}">
 					<form action="adquirir-premium" method="POST">
 						<button id="btn-registrarme"
-							class="btn btn-lg btn-primary btn-block" Type="Submit">
+							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
 							Adquirir
 						</button>
 					</form>

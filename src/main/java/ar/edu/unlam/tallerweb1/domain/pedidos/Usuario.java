@@ -60,6 +60,10 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Listas> favoritos = new ArrayList<Listas>();
 	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Listas> historial = new ArrayList<Listas>();
+	
 	public List<Listas> getFavoritos() {
 		return favoritos;
 	}

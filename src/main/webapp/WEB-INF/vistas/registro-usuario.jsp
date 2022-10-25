@@ -12,9 +12,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/estilos.css" />
-
 <link href="css/styles.css" rel="stylesheet">
-
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -47,7 +45,7 @@
 
 				</div>
 				<button id="btn-registrarme"
-					class="btn btn-lg btn-primary btn-block" Type="Submit">
+					class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
 					Registrarme</button>
 			</form:form>
 		</div>

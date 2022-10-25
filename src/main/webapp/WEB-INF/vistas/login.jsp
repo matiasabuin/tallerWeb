@@ -45,7 +45,7 @@
 					<form:input path="password" type="password" id="password"
 						class="form-control" placeholder="Contraseña" />
 				</div>
-				<button class="btn btn-lg btn-primary btn-block" Type="Submit" />Ingresar</button>
+				<button class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit" />Ingresar</button>
 			</form:form>
 			<a href="registro-usuario" class="register">¿No tenes cuenta?
 				Registrate!</a>
