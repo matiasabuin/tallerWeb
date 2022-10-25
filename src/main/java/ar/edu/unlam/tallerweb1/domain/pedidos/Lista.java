@@ -16,9 +16,9 @@ public class Lista {
 	private Integer id;
 		
 	private String nombre;
+	
 	private String descripcion;
 	
-
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="videojuego_id")
 	private Videojuego videojuego;
@@ -34,6 +34,7 @@ public class Lista {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
+	
 	
 	public String getNombre() {
 		return nombre;

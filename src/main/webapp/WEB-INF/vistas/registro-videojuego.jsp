@@ -1,6 +1,3 @@
-<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
-<%@page import="java.io.File"%>
-<%@page import="ar.edu.unlam.tallerweb1.domain.pedidos.Genero"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -23,14 +20,17 @@
 </head>
 <body>
 
+	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
 
 	<main>
 		<h2>REGISTRO VIDEOJUEGO</h2>
 		<section class="formulario">
+		
 			<form:form action="registrar-videojuego" method="POST"
 				modelAttribute="datosVideojuego" enctype="multipart/form-data">
 				<div class="container">
+				
 					<div class="left">
 						<div class="detalle">
 							<h3>Detalle</h3>
@@ -47,6 +47,7 @@
 							<span style="display: inline; margin-left: 1em;">Horas</span>
 						</div>
 					</div>
+					
 					<div class="right">
 						<div class="campos">
 							<h3>Caracteristicas</h3>
@@ -61,7 +62,6 @@
 									<form:label path="cantidadJugadores">Cantidad de jugadores</form:label>
 									<form:input path="cantidadJugadores" type="number"
 										id="cantidadJugadores" min="1" />
-
 								</div>
 
 								<div style="margin-left: 4em;">
@@ -76,6 +76,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="campos">
 							<h3>Historia</h3>
 							<form:label path="sinopsis">Sinopsis</form:label>
@@ -110,8 +111,10 @@
 		</section>
 	</main>
 
+	<!-- IMPORT FOOTER -->
 	<jsp:include page="footer.jsp" />
 
+	<!-- SCRIPT PARA SELECT MULTIPLE DESPLEGABLE -->
 	<script
 		src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 	<script>
@@ -120,6 +123,7 @@
 	<script>
 		new MultiSelectTag('plataformas')
 	</script>
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

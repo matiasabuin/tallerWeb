@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="container">
 		<div id="loginbox" class="formulario-registro rounded login mx-auto">
@@ -59,8 +59,8 @@
 			<br>
 		</c:if>
 	</div>
-	
-<jsp:include page="footer.jsp" />
+
+	<jsp:include page="footer.jsp" />
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -77,11 +77,12 @@ public class ControladorLogin {
 			
 			if(LocalDate.now().isBefore(usuarioBuscado.getFechaVencimientoPlan())) {
 				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanPremium());
-			}else {
+			} else {
 				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanFree());
 			}
 			
 			return new ModelAndView("redirect:/home");
+			
 		} else {
 //			 si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");

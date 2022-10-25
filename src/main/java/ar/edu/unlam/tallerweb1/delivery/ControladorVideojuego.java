@@ -53,6 +53,7 @@ public class ControladorVideojuego {
 //			Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 //			usuarioBuscado.getHistorial().add(servicioVideojuego.consultarVideojuego(id));
 //		}
+		
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
 				
