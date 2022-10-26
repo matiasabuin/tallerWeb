@@ -47,13 +47,11 @@ public class ServicioReviewImpl implements ServicioReview {
 	public List<Review> getAll() {
 		return servicioReviewDao.obtenerReviews();
 	}
-
 	
 	public List<Review> getAllByVideojuegoId(Integer id) {
 		return servicioReviewDao.obtenerReviewsDeVideojuegoPorId(id);
 	}
 	
-
 	public List<Review> getAllByPeliculaId(Integer id) {
 		return servicioReviewDao.obtenerReviewsDePeliculaPorId(id);
 	}

@@ -136,6 +136,9 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 							<div class="vistareview">
+								<a href="review?id=${review.id}"><i
+									class="fa-solid fa-comment ml-1" aria-hidden="true">&nbsp;${review.comentarios.size()}</i>
+								</a>
 								<c:if
 									test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 									<a href="review?id=${review.id}">Responder</a>

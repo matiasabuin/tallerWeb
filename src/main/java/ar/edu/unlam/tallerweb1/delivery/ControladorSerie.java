@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,7 +142,9 @@ public class ControladorSerie {
 			}
 		}
 
-		List<Review> reviews = servicioReview.getAllBySerieId(id);
+		List<Review> reviewsCache = servicioReview.getAllBySerieId(id);
+		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
+		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 		
 		if(usuarioEncontrado != null) {
 			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());

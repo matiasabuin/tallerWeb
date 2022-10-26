@@ -27,7 +27,7 @@
 	<div class="container top">
 		<div>
 			<h3 style="text-align: center;"></h3>
-			<div>
+			<div style="margin-top: 6em;">
 
 				<!-- REVIEW -->
 				<c:if test="${review.pelicula != null}">

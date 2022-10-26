@@ -9,10 +9,11 @@ public interface ServicioVideojuego {
 
 	Videojuego consultarVideojuego(Integer id) throws ExceptionVideojuegoNoEncontrado;
 	Videojuego registrarVideojuego(Videojuego datosVideojuego);
+	
 	List<Videojuego> obtenerTodosLosVideojuegos();
 	List<Videojuego> obtenerVideojuegoPorTiempo(Integer horas);
 	void actualizarVideojuego(Videojuego datosVideojuego);
 	List<Videojuego> obtenerVideojuegoPorBusqueda(String busqueda);
 	
-	boolean validar(Videojuego datosVideojuego) throws ExceptionRegistroCamposVacios;
+//	void validarCampos(Videojuego datosVideojuego);
 }

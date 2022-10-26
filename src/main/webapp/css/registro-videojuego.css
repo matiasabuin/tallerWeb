@@ -104,3 +104,8 @@ textarea {
 .error span{
 	color: red;
 }
+
+.error-banner{
+	background-color: red;
+	color: #fff;
+}

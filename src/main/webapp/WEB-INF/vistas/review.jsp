@@ -31,35 +31,20 @@
 
 				<!-- REVIEW PELICULA -->
 				<c:if test="${review.pelicula != null}">
-					<div class="comentario" style="border-bottom: none;">
+					<div class="comentario">
 						<a href="perfil-pelicula?id=${review.pelicula.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.pelicula.poster}"></a>
 
 						<div class="descripcion">
 							<h3>${review.pelicula.nombre}</h3>
-							<img src="images/${review.usuario.foto}">
-							<h4>${review.usuario.nombre}</h4>
-							<p>${review.descripcion}</p>
-
-							<!-- FORMULARIO COMENTARIO -->
-							<c:if
-								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
-								<div class="container form-comentario">
-									<form:form action="registrar-comentario"
-										modelAttribute="comentario" method="POST">
-										<form:input path="usuario.id" type="hidden"
-											value="${usuarioActual.id}" />
-										<form:input path="review.id" type="hidden"
-											value="${review.id}" />
-										<form:textarea path="descripcion"
-											placeholder="Deja un comentario" />
-										<form:button type="submit"
-											class="btn btn-primary button-agregarfavs"
-											style="margin-top: 1em;">Comentar</form:button>
-									</form:form>
+							<div class="flex-review">
+								<img src="images/${review.usuario.foto}">
+								<div style="margin-left: 1em;">
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
 								</div>
-							</c:if>
+							</div>
 						</div>
 					</div>
 				</c:if>
@@ -68,71 +53,59 @@
 				<c:if test="${review.videojuego != null}">
 
 
-					<div class="comentario" style="border-bottom: none;">
+					<div class="comentario">
 						<a href="videojuego?id=${review.videojuego.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.videojuego.poster}"></a>
 
 						<div class="descripcion">
 							<h3>${review.videojuego.nombre}</h3>
-							<img src="images/${review.usuario.foto}">
-							<h4>${review.usuario.nombre}</h4>
-							<p>${review.descripcion}</p>
-
-							<!-- FORMULARIO COMENTARIO -->
-							<c:if
-								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
-								<div class="container form-comentario">
-									<form:form action="registrar-comentario"
-										modelAttribute="comentario" method="POST">
-										<form:input path="usuario.id" type="hidden"
-											value="${usuarioActual.id}" />
-										<form:input path="review.id" type="hidden"
-											value="${review.id}" />
-										<form:textarea path="descripcion"
-											placeholder="Deja un comentario" />
-										<form:button type="submit"
-											class="btn btn-primary button-agregarfavs"
-											style="margin-top: 1em;">Comentar</form:button>
-									</form:form>
+							<div class="flex-review">
+								<img src="images/${review.usuario.foto}">
+								<div style="margin-left: 1em;">
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
 								</div>
-							</c:if>
+							</div>
 						</div>
 					</div>
 				</c:if>
 
 				<!-- REVIEW SERIE -->
 				<c:if test="${review.serie != null}">
-					<div class="comentario" style="border-bottom: none;">
+					<div class="comentario">
 						<a href="perfil-serie?id=${review.serie.id}"><img
 							style="width: 200px; height: 300px;"
 							src="images/${review.serie.poster}"></a>
 
 						<div class="descripcion">
 							<h3>${review.serie.nombre}</h3>
-							<img src="images/${review.usuario.foto}">
-							<h4>${review.usuario.nombre}</h4>
-							<p>${review.descripcion}</p>
-
-							<!-- FORMULARIO COMENTARIO -->
-							<c:if
-								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
-								<div class="container form-comentario">
-									<form:form action="registrar-comentario"
-										modelAttribute="comentario" method="POST">
-										<form:input path="usuario.id" type="hidden"
-											value="${usuarioActual.id}" />
-										<form:input path="review.id" type="hidden"
-											value="${review.id}" />
-										<form:textarea path="descripcion"
-											placeholder="Deja un comentario" />
-										<form:button type="submit"
-											class="btn btn-primary button-agregarfavs"
-											style="margin-top: 1em;">Comentar</form:button>
-									</form:form>
+							<div class="flex-review">
+								<img src="images/${review.usuario.foto}">
+								<div style="margin-left: 1em;">
+									<h4>${review.usuario.nombre}</h4>
+									<p>${review.descripcion}</p>
 								</div>
-							</c:if>
+							</div>
 						</div>
+					</div>
+				</c:if>
+
+				<!-- FORMULARIO COMENTARIO -->
+				<c:if
+					test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+					<div class="container form-comentario">
+						<form:form action="registrar-comentario"
+							modelAttribute="comentario" method="POST">
+							<form:input path="usuario.id" type="hidden"
+								value="${usuarioActual.id}" />
+							<form:input path="review.id" type="hidden" value="${review.id}" />
+							<form:textarea path="descripcion"
+								placeholder="Deja un comentario" />
+							<form:button type="submit"
+								class="btn btn-primary button-agregarfavs"
+								style="margin-top: 1em;">Comentar</form:button>
+						</form:form>
 					</div>
 				</c:if>
 

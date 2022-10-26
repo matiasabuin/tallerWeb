@@ -24,7 +24,7 @@
 
 	<jsp:include page="header.jsp" />
 
-	<div>
+	<div style="margin-top: 6em;">
 
 		<div class="formulario-registro rounded login mx-auto">
 			<form:form action="editar-usuario" method="POST"
@@ -33,7 +33,7 @@
 				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
 
 				<div class="form-group foto-perfil">
-					<img src="images/${usuarioActual.foto}" style="width: 100%;">
+					<img src="images/${usuarioActual.foto}" style="width: 50%;">
 				</div>
 
 				<div class="form-group">

@@ -24,7 +24,6 @@ h4 {
 	width: 100%;
 	margin-bottom: 0;
 	color: #badefc;
-	border-bottom: 1px solid #badefc;
 }
 
 .texto {
@@ -65,11 +64,11 @@ img{
 
 textarea{
 	display: block;
-	width: 100%;
+	width: 70%;
 	margin: auto;
 	background-color: #30394c;
     border: 1px solid #30394c;
-    height: 6em;
+    height: 9em;
     border-radius: 5px;
     padding: 10px;
     color: #cbd4dc;
@@ -86,4 +85,11 @@ textarea{
 
 .comentario-review img{
 	margin-right: 1em;
+}
+
+.flex-review{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	margin: 1em auto;
 }

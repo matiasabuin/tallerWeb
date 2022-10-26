@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,12 +140,15 @@ public class ControladorPelicula{
 
 		Favorito fav=new Favorito();
 
-		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
+		List<Review> reviewsCache = servicioReview.getAllByPeliculaId(id);
+		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
+		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 		
 		if(usuarioEncontrado != null) {
 		List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 		modelo.addAttribute("listaFavs", listas);
 		}
+		
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista",fav);

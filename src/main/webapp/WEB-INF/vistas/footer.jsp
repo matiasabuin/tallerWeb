@@ -1,4 +1,4 @@
-	<footer class="footer">
+	<footer class="navbar-fixed-bottom footer">
 		<div class="container">
 			<div class="column1">
 				<h4 class="mx-2" style="text-align: center; margin: 1em;">Redes

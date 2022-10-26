@@ -198,3 +198,7 @@ h3 {
 .error span{
 	color: red;
 }
+
+.imagen-fav{
+	width: 150px;
+}

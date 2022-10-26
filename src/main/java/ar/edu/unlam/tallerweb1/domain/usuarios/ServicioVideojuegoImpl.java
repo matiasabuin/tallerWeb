@@ -53,49 +53,49 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 		return servicioVideojuegoDao.obtenerLosVideojuegosPorBusqueda(busqueda);
 	}
 
-	@Override
-	public boolean validar(Videojuego datosVideojuego) throws ExceptionRegistroCamposVacios {
-		String msg = "";
-		
-		if(datosVideojuego.getNombre().isEmpty()) {
-			msg = msg + "Rellene campo Nombre <br>";
-		}
-		
-		if(datosVideojuego.getDesarrollador().isEmpty()) {
-			msg = msg + "Rellene campo desarrollador <br>";
-		}
-		
-		if(datosVideojuego.getSinopsis().isEmpty()) {
-			msg = msg + "Redacte una sinopsis <br>";
-		}
-		
-		if(datosVideojuego.getCantidadJugadores() == null) {
-			msg = msg + "Indique cantidad Jugadores <br>";
-		}
-		
-		if(datosVideojuego.getDuracion() == null) {
-			msg = msg + "Indique la duracion <br>";
-		}
-		
-		if(datosVideojuego.getFechaEstreno() == null) {
-			msg = msg + "Indique la fecha de estreno <br>";
-		}
-		
-		if(datosVideojuego.getGeneros().isEmpty()) {
-			msg = msg + "Seleccione al menos un genero <br>";
-		}
-		
-		if(datosVideojuego.getPlataformas().isEmpty()) {
-			msg = msg + "Seleccione al menos una plataforma <br>";
-		}
-		
-		if(msg != "") {
-			throw new ExceptionRegistroCamposVacios(msg);
-		} else {
-			return true;
-		}
-		
-	}
-
+//	@Override
+//	public void validarCampos(Videojuego datosVideojuego) {
+//		String msg = "";
+//		
+//		if(datosVideojuego.getNombre() == "") {
+//			msg = msg + "Rellene campo Nombre <br>";
+//		}
+//		
+//		if(datosVideojuego.getNombre() == null) {
+//			msg = msg + "Rellene campo Nombre <br>";
+//		}
+//		
+//		if(datosVideojuego.getDesarrollador().isEmpty()) {
+//			msg = msg + "Rellene campo desarrollador <br>";
+//		}
+//		
+//		if(datosVideojuego.getSinopsis().isEmpty()) {
+//			msg = msg + "Redacte una sinopsis <br>";
+//		}
+//		
+//		if(datosVideojuego.getCantidadJugadores() == null) {
+//			msg = msg + "Indique cantidad Jugadores <br>";
+//		}
+//		
+//		if(datosVideojuego.getDuracion() == null) {
+//			msg = msg + "Indique la duracion <br>";
+//		}
+//		
+//		if(datosVideojuego.getFechaEstreno() == null) {
+//			msg = msg + "Indique la fecha de estreno <br>";
+//		}
+//		
+////		if(datosVideojuego.getGeneros().isEmpty()) {
+////			msg = msg + "Seleccione al menos un genero <br>";
+////		}
+////		
+////		if(datosVideojuego.getPlataformas().isEmpty()) {
+////			msg = msg + "Seleccione al menos una plataforma <br>";
+////		}
+//		
+//		if(msg != "") {
+//			throw new ExceptionRegistroCamposVacios("No deben haber campos vacios");
+//		} 
+//	}
 
 }

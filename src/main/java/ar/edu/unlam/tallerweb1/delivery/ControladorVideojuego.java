@@ -1,7 +1,11 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -76,7 +80,9 @@ public class ControladorVideojuego {
 			}
 		}
 		
-		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
+		List<Review> reviewsCache = servicioReview.getAllByVideojuegoId(id);
+		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
+		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 		
 		if(usuarioEncontrado != null) {
 			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
@@ -152,16 +158,7 @@ public class ControladorVideojuego {
 			return new ModelAndView("redirect:/home");
 		}
 		
-		try {
-			servicioFiles.uploadImage(file);
-			servicioVideojuego.validar(datosVideojuego);
-		} catch (ExceptionRegistroCamposVacios e) {
-			ModelMap modelo = new ModelMap();
-			modelo.put("errorCampos", e.getMessage());
-			modelo.put("datosVideojuego", datosVideojuego);
-			return new ModelAndView("redirect:/registro-videojuego", modelo);
-		} 
-
+		servicioFiles.uploadImage(file);
 		datosVideojuego.setPoster(file.getOriginalFilename());
 		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());

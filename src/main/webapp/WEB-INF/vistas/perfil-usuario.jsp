@@ -31,10 +31,10 @@
 
 				<div class="row">
 
-					<div class="col-4">
+					<div class="col-4" style="text-align: center;">
 						<img class="usuarioImagen mx-5" src="images/${usuarioActual.foto}">
 						<div class="biografia">
-							<h4 class="my-2">${usuarioActual.nombre}</h4>
+							<h4 class="my-2" style="margin: auto;">${usuarioActual.nombre}</h4>
 							<p class="my-2 mx-3">${usuarioActual.biografia}</p>
 						</div>
 						<a href="editar-perfil" class="btn btn-primary my-2 ml-4 button-agregarfavs"> Editar
@@ -51,7 +51,7 @@
 								</c:if>
 							</h1>
 						</c:if>
-						<table class="table-responsive table-borderless">
+						<table class="table-responsive table-borderless imagen-fav">
 							<c:if test="${listaFavs[0] == null}">
 								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFR&Uacute;TALO AC&Aacute;!</p>
 							</c:if>

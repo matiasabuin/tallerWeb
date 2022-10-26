@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
+
 
 @Service("servicioFiles")
 @Transactional
@@ -18,16 +20,21 @@ public class ServicioFilesImpl implements ServicioFiles{
 	HttpSession session;
 
 	@Override
-	public void uploadImage(MultipartFile file) throws  IOException {
+	public void uploadImage(MultipartFile file) throws IOException {
 		
-		String path = session.getServletContext().getRealPath("/images");
-        String filename = file.getOriginalFilename();
-        
-        byte[] data = file.getBytes();
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(path+"/"+filename));
-     	bufferedOutputStream.write(data);
-     	bufferedOutputStream.flush();
-     	bufferedOutputStream.close();
+//		if(file.getBytes() != null) {
+			String path = session.getServletContext().getRealPath("/images");
+	        String filename = file.getOriginalFilename();
+	        
+	        byte[] data = file.getBytes();
+	        
+	        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(path+"/"+filename));
+	     	bufferedOutputStream.write(data);
+	     	bufferedOutputStream.flush();
+	     	bufferedOutputStream.close();
+//		}
+//     	
+//		throw new ExceptionImagenNoIngresada("No se ha insertado una imagen");
      	
 	}
 
