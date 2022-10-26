@@ -120,7 +120,7 @@ textarea {
 
 .comentario img {
 	width: 15%;
-    height: 100px;
+	height: 100px;
 }
 
 .comentario p {
@@ -141,4 +141,29 @@ textarea {
 
 .button-agregarfavs:hover {
 	background-color: #b02a5c !important;
+}
+
+.sesion {
+	font-size: 18px;
+	width: 200px;
+	margin-top: 10px;
+}
+
+.sesion a {
+	font-weight: bold;
+	color: #ea377a;
+}
+
+.datosreview{
+	width: 100%;
+}
+
+.vistareview{
+	text-align: end;	
+}
+
+.vistareview a{
+	font-weight: bold;
+	color: #ea377a;
+	margin-left: 1em;
 }

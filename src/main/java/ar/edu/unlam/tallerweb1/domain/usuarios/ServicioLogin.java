@@ -9,4 +9,7 @@ public interface ServicioLogin {
 	Usuario registrarUsuario(String email, String password, String nombre);
 	List<Usuario> obtenerTodosLosUsarios();
 	void editarPerfil(Usuario usuario);
+
+	Usuario getById(Integer id);
+
 }

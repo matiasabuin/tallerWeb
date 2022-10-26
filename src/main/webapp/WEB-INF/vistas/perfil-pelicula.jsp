@@ -15,9 +15,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-pelicula.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+<script src="https://kit.fontawesome.com/ed06e9b771.js" crossorigin="anonymous"></script>
 <body>
 
 	<!-- IMPORT HEADER -->
@@ -28,7 +26,15 @@
 		<div class="container contenedor">
 			<section class="datos">
 				<div style="text-align: center;">
-					<img src="images/${datosPelicula.poster}"><br> <br>
+					<img src="images/${datosPelicula.poster}">
+
+					<!-- REDIRIGIR A LOGIN -->
+					<c:if test="${usuarioActual == null}">
+						<div class="sesion">
+							<a href="login">Inicia Sesion</a><span> para dejar una
+								reseña</span>
+						</div>
+					</c:if>
 
 					<!-- BOTON AGREGAR A FAVS -->
 					<c:if test="${usuarioActual != null}">
@@ -38,18 +44,34 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
+						    <c:set var="eliminar" value="NoEstaEnFavs" />	
+							<c:forEach var="favoritos" items="${listaFavs}">
+								<c:if
+									test="${favoritos.pelicula != null && favoritos.pelicula.id == datosPelicula.id}">
+									<a href="eliminar-Fav?id=${favoritos.id}"><button
+											type="button" class="btn btn-primary button-agregarfavs">
+											Eliminar<i class="fa-solid fa-heart-crack ml-1" aria-hidden="true"></i>
+										</button> </a>
+										<c:set var="eliminar" value="EstaEnFavs" />
+								</c:if>
+							</c:forEach>
+							<c:if test="${eliminar == 'NoEstaEnFavs'}">
 							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs">
-								Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+								class="btn btn-primary button-agregarfavs">Agregar <i
+									class="fa-solid fa-heart" aria-hidden="true"></i>
 							</form:button>
+							</c:if>
 						</form:form>
+
+
 					</c:if>
 
 					<!-- BOTON VER REVIEW DEL USUARIO -->
 					<c:if
 						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
 						<a href="review?id=${datosReview.id}"
-							class="btn btn-primary button-agregarfavs">Ver review</a>
+							class="btn btn-primary button-agregarfavs">Mi review <i
+							class="fa fa-comment" aria-hidden="true"></i></a>
 					</c:if>
 				</div>
 
@@ -58,7 +80,7 @@
 					<h2>${datosPelicula.nombre}</h2>
 					<p>Dirigida por&nbsp;${datosPelicula.director}</p>
 					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
-					<p class="align-self-center mx-2 sinopsis">${datosPelicula.sinopsis}</p>
+					<p class="align-self-center sinopsis">${datosPelicula.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
 
 					<strong class="items">Generos</strong>
@@ -81,7 +103,8 @@
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if test="${usuarioActual != null && datosReview.usuario == null}">
+					<c:if
+						test="${usuarioActual != null && datosReview.usuario == null}">
 						<form:form action="registrarReviewPelicula" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"
@@ -98,9 +121,15 @@
 						<c:forEach var="review" items="${listaReviews}">
 							<div class="comentario">
 								<img src="images/${review.usuario.foto}">
-								<div>
+								<div class="datosreview">
 									<h4>${review.usuario.nombre}</h4>
 									<p>${review.descripcion}</p>
+									<div class="vistareview">
+										<c:if test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+											<a href="review?id=${review.id}">Responder</a>
+										</c:if>
+										<a href="review?id=${review.id}">Ver review</a>
+									</div>
 								</div>
 							</div>
 						</c:forEach>

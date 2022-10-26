@@ -37,7 +37,6 @@ public class Videojuego extends Contenido{
 	@OneToMany(mappedBy = "videojuego")
 	private List<Review> reviews = new ArrayList<Review>();
 	
-	
 	public String getRequisitosMinimos() {
 		return requisitosMinimos;
 	}

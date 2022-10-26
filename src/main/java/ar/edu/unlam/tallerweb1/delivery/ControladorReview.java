@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unlam.tallerweb1.domain.pedidos.Comentario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
 @Controller
 public class ControladorReview {
 	
 	private ServicioReview servicioReview;
+	private ServicioComentario servicioComentario;
 
 	@Autowired
-	public ControladorReview(ServicioReview servicioReview) {
+	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario) {
 		this.servicioReview = servicioReview;
+		this.servicioComentario = servicioComentario;
 	}
 	
 	@RequestMapping("/review")
@@ -32,10 +38,15 @@ public class ControladorReview {
 		
 		ModelMap modelo = new ModelMap();
 		Review review = servicioReview.getById(id);
+		Comentario comentario = new Comentario();
+		
+		List<Comentario> comentarios = servicioComentario.getAllByReview(id); 
 		
 		modelo.addAttribute("review", review);
+		modelo.addAttribute("comentario", comentario);
+		modelo.addAttribute("listaComentarios", comentarios);
 	
-		return new ModelAndView();	
+		return new ModelAndView("review", modelo);	
 	}
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
@@ -75,7 +86,7 @@ public class ControladorReview {
 		
 		servicioReview.eliminar(reviewEncontrada);
 		
-		return new ModelAndView("redirect:/perfil");
+		return new ModelAndView("redirect:/reviews");
 	}
 	
 	@RequestMapping(path = "/editar-review")

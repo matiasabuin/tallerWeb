@@ -15,7 +15,7 @@ h3 {
 
 h4 {
 	display: block;
-    padding: 0px 20px;
+	padding: 0px 20px;
 }
 
 h5 {
@@ -47,7 +47,6 @@ textarea {
 	font-size: 20px;
 	color: white;
 	padding: 5px;
-	border-radius: 30px;
 	border: none;
 }
 
@@ -69,7 +68,7 @@ textarea {
 
 .comentario img {
 	width: 15%;
-    height: 100px;
+	height: 100px;
 }
 
 .comentario p {
@@ -117,6 +116,7 @@ textarea {
 }
 
 .button-agregarfavs {
+	margin-top: 2em;
 	background-color: #ea377a !important;
 	border: none;
 	justify-content: center;
@@ -126,6 +126,35 @@ textarea {
 	background-color: #b02a5c !important;
 }
 
+.col-4 {
+	max-width: 50%;
+}
+
+.sesion {
+	font-size: 18px;
+	margin-top: 1em;
+}
+
+.sesion a {
+	font-weight: bold;
+	color: #ea377a;
+}
+
+.datosreview{
+	width: 100%;
+}
+
+.vistareview{
+	text-align: end;	
+}
+
+.vistareview a{
+	font-weight: bold;
+	color: #ea377a;
+	margin-left: 1em;
+}
+
 .col-4{
 	max-width: 50%;
 }
+

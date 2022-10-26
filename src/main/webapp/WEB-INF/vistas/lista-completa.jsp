@@ -37,7 +37,7 @@
 						<br>
 						<div class="col-12">
 							<ul class="list-group">
-								<c:forEach var="favoritos" items="${usuarioActual.favoritos}">
+								<c:forEach var="favoritos" items="${listaFavs}">
 									<c:if test="${favoritos.pelicula != null}">
 										<div class="row">
 											<div class="col-md-4">

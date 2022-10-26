@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -27,76 +29,85 @@ public class ControladorPerfil {
 	private ServicioLogin servicioLogin;
 	private ServicioFiles servicioFiles;
 	private ServicioReview servicioReview;
+	private ServicioListas servicioListas;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin,ServicioFiles servicioFiles, ServicioReview servicioReview){
+	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioListas servicioListas) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
+		this.servicioListas = servicioListas;
 	}
 
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		List<Lista> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
+
+		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("perfil-usuario", modelo);
 	}
-	
+
 	@RequestMapping("/editar-perfil")
 	public ModelAndView editarPerfil(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
 		modelo.put("datosPerfil", request.getSession().getAttribute("usuarioActual"));
 		return new ModelAndView("editar-perfil", modelo);
 	}
-	
+
 	@RequestMapping(path = "/editar-usuario", method = RequestMethod.POST)
-	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil, @RequestParam("file") MultipartFile foto,
-			HttpServletRequest request) throws IOException {
+	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil,
+			@RequestParam("file") MultipartFile foto, HttpServletRequest request) throws IOException {
 
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
+
 		servicioFiles.uploadImage(foto);
-		
+
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
-		
+
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-		
+
 		usuarioBuscado.setFoto(foto.getOriginalFilename());
-		
+
 		servicioLogin.editarPerfil(usuarioBuscado);
-		
+
 		return new ModelAndView("redirect:/perfil");
 
 	}
-	
+
 	@RequestMapping("/reviews")
 	public ModelAndView verReviews(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") == null){
+		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
-		
+
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		List<Review> reviews = servicioReview.getAllByUserId(usuarioEncontrado.getId());
-		
+
 		modelo.addAttribute("listaReviews", reviews);
 		return new ModelAndView("usuario-reviews", modelo);
 	}
-	
+
 	@RequestMapping(path = "/lista-completa")
 	public ModelAndView irAListaFav(HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") != null) {
-
-		ModelMap model = new ModelMap();
-		
-		return new ModelAndView("lista-completa", model);
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			return new ModelAndView("redirect:/home");
 		}
-		return new ModelAndView("redirect:/home");
+		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		List<Lista> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
+
+		modelo.addAttribute("listaFavs", listas);
+		return new ModelAndView("lista-completa", modelo);
+
 	}
-	
+
 }

@@ -39,8 +39,8 @@
 			in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
-			<c:choose>
-    			<c:when test="${usuarioActual.plan.id != 1}">
+			 <c:choose> 
+    			 <c:when test="${usuarioActual.planAdquirido.plan.descripcion != 'Free'}"> 
 		        	<form action="adquirir-free" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
@@ -53,8 +53,8 @@
 						class="btn-lg btn-secondary btn-block">
 						Plan Actual
 					</button>
-			    </c:otherwise>
-			</c:choose>
+			    </c:otherwise> 
+			 </c:choose> 
 			
 			</div>
 
@@ -68,23 +68,23 @@
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
 			
-			<c:choose>
-    			<c:when test="${usuarioActual.plan.id != 2}">
+			 <c:choose>
+    			<c:when test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico'}"> 
 		        	<form action="adquirir-basico" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
 							Adquirir
 						</button>
 					</form>
-    			</c:when> 	   
-    			<c:otherwise>
+  				</c:when> 	   
+    			<c:otherwise> 
 			         <button 
 						class="btn-lg btn-secondary btn-block">
 						Plan Actual
 					</button>
-					<p>Vence: ${usuarioActual.fechaVencimientoPlan}</p>
-			    </c:otherwise>
-			</c:choose>
+					<p>Vence: ${usuarioActual.planAdquirido.fechaVencimiento}</p> 
+ 			    </c:otherwise>
+			</c:choose> 
 			
 			</div>
 			
@@ -98,8 +98,8 @@
 			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
 			id est laborum.</p>
 			
-			<c:choose>
-    			<c:when test="${usuarioActual.plan.id != 3}">
+ 			<c:choose>
+    			<c:when test="${usuarioActual.planAdquirido.plan.descripcion != 'Premium'}"> 
 					<form action="adquirir-premium" method="POST">
 						<button id="btn-registrarme"
 							class="btn btn-lg btn-primary btn-block button-agregarfavs" Type="Submit">
@@ -109,14 +109,14 @@
 					<div class="adquirir">
 					</div>
     			</c:when> 	   
-    			<c:otherwise>
+    			<c:otherwise> 
     				<button 
 						class="btn-lg btn-secondary btn-block">
 						Plan Actual
 					</button>
-					<p>Vence: ${usuarioActual.fechaVencimientoPlan}</p>
+ 					<p>Vence: ${usuarioActual.planAdquirido.fechaVencimiento}</p> 
 			    </c:otherwise>
-			</c:choose>
+			</c:choose> 
 				
 			</div>
 		</div>

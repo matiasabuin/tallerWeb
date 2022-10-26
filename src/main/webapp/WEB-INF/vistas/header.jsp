@@ -26,7 +26,7 @@
 						<li class="nav-item mx-2 dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> ${usuarioActual.nombre} </a>
+							aria-expanded="false"> ${usuarioActual.nombre}</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="perfil">Perfil</a> 
 								<a class="dropdown-item" href="editar-plan">Suscripciones</a>
@@ -34,7 +34,7 @@
 							</div>
 						</li>
 					
-					<c:if test="${usuarioActual.plan.id == 3}">
+				 	<c:if test="${usuarioActual.planAdquirido.plan.descripcion == 'Premium'}">
 						<li class="nav-item mx-2 dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -46,7 +46,7 @@
 							</div>
 						</li>
 					</c:if>	
-					</c:if>	
+				</c:if>	
 						
 				</ul>
 
@@ -54,7 +54,7 @@
 					<input type="text" placeholder="Buscar contenido" class="search" name="busqueda">
 				</form>
 
-				<c:if test="${usuarioActual.nombre == null}">
+				<c:if test="${usuarioActual == null}">
 					<a href="registro-usuario" class="nav-link">Sign in</a>
 					<a href="login" class="nav-link">Log in</a>
 				</c:if>

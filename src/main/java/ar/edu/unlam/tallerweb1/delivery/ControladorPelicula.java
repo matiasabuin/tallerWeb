@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
@@ -38,6 +38,7 @@ public class ControladorPelicula{
 	private ServicioListas servicioFav;
 	private ServicioFiles servicioFiles;
 
+
 	@Autowired
 	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
@@ -50,7 +51,8 @@ public class ControladorPelicula{
 	@RequestMapping(path = "/registro-pelicula")
 	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
 		
-		if(request.getSession().getAttribute("usuarioActual") != null){
+		if(request.getSession().getAttribute("usuarioActual") != null &&
+				request.getSession().getAttribute("usuarioPlan").equals("Premium")){
 			
 			ModelMap modelo = new ModelMap();
 			Pelicula pelicula = new Pelicula();
@@ -99,8 +101,6 @@ public class ControladorPelicula{
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
 	
-		if(request.getSession().getAttribute("usuarioActual") != null){
-			
 			servicioFiles.uploadImage(file);
 				
 		    datosPelicula.setPoster(file.getOriginalFilename());
@@ -108,9 +108,7 @@ public class ControladorPelicula{
 			Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
 
 			return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
-		}
 		
-		return new ModelAndView("redirect:/home");
 	}
 
 	@RequestMapping("/perfil-pelicula")
@@ -129,10 +127,15 @@ public class ControladorPelicula{
 		}
 		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
-		Listas fav=new Listas();
+
+		Lista fav=new Lista();
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
+		if(usuarioEncontrado != null) {
+		List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+		modelo.addAttribute("listaFavs", listas);
+		}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista",fav);

@@ -1,7 +1,3 @@
-<%@page import="org.apache.taglibs.standard.tei.ForEachTEI"%>
-<%@page import="org.apache.taglibs.standard.tag.common.xml.ForEachTag"%>
-<%@page
-	import="org.apache.taglibs.standard.tag.common.core.ForEachSupport"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -18,8 +14,8 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/ed06e9b771.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -34,6 +30,14 @@
 				<div style="text-align: center;">
 					<img src="images/${datosVideojuego.poster}"><br>
 
+					<!-- REDIRIGIR A LOGIN -->
+					<c:if test="${usuarioActual == null}">
+						<div class="sesion">
+							<a href="login">Inicia Sesion</a><span> para dejar una
+								reseña</span>
+						</div>
+					</c:if>
+
 					<!-- BOTON AGREGAR A FAVS -->
 					<c:if test="${usuarioActual != null}">
 						<form:form action="guardarFavVideojuego" method="POST"
@@ -42,10 +46,23 @@
 								value="${datosVideojuego.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
+							  <c:set var="eliminar" value="NoEstaEnFavs" />	
+							<c:forEach var="favoritos" items="${listaFavs}">
+								<c:if
+									test="${favoritos.videojuego != null && favoritos.videojuego.id == datosVideojuego.id}">
+									<a href="eliminar-Fav?id=${favoritos.id}"><button
+											type="button" class="btn btn-primary button-agregarfavs mt-4">
+											Eliminar <i class="fa-solid fa-heart-crack ml-1" aria-hidden="true"></i>
+										</button> </a>
+										<c:set var="eliminar" value="EstaEnFavs" />
+								</c:if>
+							</c:forEach>
+							<c:if test="${eliminar == 'NoEstaEnFavs'}">
 							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs mt-4">
-									Agregar <i class="fa fa-heart" aria-hidden="true"></i>
+								class="btn btn-primary button-agregarfavs mt-4">Agregar <i
+									class="fa-solid fa-heart" aria-hidden="true"></i>
 							</form:button>
+							</c:if>
 						</form:form>
 					</c:if>
 
@@ -53,7 +70,8 @@
 					<c:if
 						test="${usuarioActual != null && datosReview.usuario.id == usuarioActual.id}">
 						<a href="review?id=${datosReview.id}"
-							class="btn btn-primary button-agregarfavs mt-4">Ver review</a>
+							class="btn btn-primary button-agregarfavs mt-4">Mi review <i
+							class="fa fa-comment" aria-hidden="true"></i></a>
 					</c:if>
 				</div>
 			</div>
@@ -129,9 +147,15 @@
 				<c:forEach var="review" items="${listaReviews}">
 					<div class="comentario">
 						<img src="images/${review.usuario.foto}">
-						<div>
+						<div class="datosreview">
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
+							<div class="vistareview">
+								<c:if test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+									<a href="review?id=${review.id}">Responder</a>
+								</c:if>
+								<a href="review?id=${review.id}">Ver review</a>
+							</div>
 						</div>
 					</div>
 				</c:forEach>

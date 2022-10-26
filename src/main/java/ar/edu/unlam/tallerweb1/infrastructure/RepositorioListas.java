@@ -2,22 +2,21 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 
 public interface RepositorioListas {
 
-	void guardar(Listas fav);
-	void eliminar(Listas lista);
+	void guardar(Lista fav);
+	void eliminar(Lista lista);
 
-	Listas buscar(Integer id);
+	Lista buscar(Integer id);
 
-	List<Listas> obtenerFavoritos();
+	List<Lista> obtenerFavoritos();
+	List<Lista> obtenerListasDelUsuarioPorId(Integer id);
 
-	Videojuego buscarVideojuegoId(Integer id);
-	Pelicula buscarPeliculaId(Integer id);
-	Serie buscarSerieId(Integer id);
+
 
 }

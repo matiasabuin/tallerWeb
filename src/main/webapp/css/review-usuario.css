@@ -1,0 +1,89 @@
+@charset "ISO-8859-1";
+h3 {
+	color: #fff;
+}
+
+h4 {
+	margin-top: 10px;
+}
+
+.comentario {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 80%;
+	margin: 1em auto;
+	justify-content: flex-start;
+	padding-bottom: 10px;
+}
+
+.comentario img , .comentario-review img{
+	width: 15%;
+}
+
+.comentario p {
+	width: 100%;
+	margin-bottom: 0;
+	color: #badefc;
+	border-bottom: 1px solid #badefc;
+}
+
+.texto {
+	margin-left: 2em;
+	font-size: 15px;
+}
+
+.portada {
+	height: 150px;
+}
+
+.portada img {
+	width: 100%;
+}
+
+.descripcion {
+	margin-left: 1em;
+	position: relative;
+	width: 100%;
+}
+
+.botones{
+	text-align: right;
+}
+
+img{
+	border-radius: 5px;
+}
+
+.top{
+	margin-top: 3em;
+}
+
+.form-comentario{
+	margin-top: 1em;
+	text-align: center;
+}
+
+textarea{
+	display: block;
+	width: 100%;
+	margin: auto;
+	background-color: #30394c;
+    border: 1px solid #30394c;
+    height: 6em;
+    border-radius: 5px;
+    padding: 10px;
+    color: #cbd4dc;
+}
+
+.comentario-review{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 672px;
+	margin: 1em auto;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #badefc;
+}
+
+.comentario-review img{
+	margin-right: 1em;
+}

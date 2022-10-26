@@ -3,12 +3,21 @@ package ar.edu.unlam.tallerweb1.domain.pedidos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,6 +39,8 @@ public class Contenido {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
 
+//	@OneToMany(mappedBy = "contenido")
+//	private Historial historial;
 
 	public Integer getId() {
 		return id;

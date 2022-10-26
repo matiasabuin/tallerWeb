@@ -11,4 +11,5 @@ public interface RepositorioUsuario {
     Usuario buscar(String email);
 	void modificar(Usuario usuario);
 	List<Usuario> obtenerTodosLosUsarios();
+	Usuario getById(Integer id);
 }

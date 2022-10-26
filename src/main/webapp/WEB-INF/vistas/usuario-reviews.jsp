@@ -18,27 +18,41 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
+
 <body>
+
+	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
+
 	<div class="container">
 		<div class="usuario-container">
 			<h3 style="text-align: center;">Mis Reviews</h3>
 			<div>
-		<c:if test="${listaReviews.isEmpty() == true}">
-				<div class="comentario">
-					<h1 class="text-center">Todavía no has hecho ninguna review</h1>
-				</div>
-		</c:if>
+
+				<!-- LISTADO DE REVIEWS VACIA-->
+
+				<c:if test="${listaReviews.isEmpty() == true}">
+					<div class="comentario">
+						<h1 class="text-center">Todavía no has hecho ninguna review</h1>
+					</div>
+				</c:if>
+
+				<!-- LISTADO DE REVIEWS -->
 				<c:forEach var="review" items="${listaReviews}">
+
+					<!-- REVIEW PELICULA -->
 					<c:if test="${review.pelicula != null}">
 						<div class="comentario">
-							<a href="perfil-pelicula?id=${review.pelicula.id}"><img style="width: 160px" src="images/${review.pelicula.poster}"></a>
+							<a href="perfil-pelicula?id=${review.pelicula.id}"><img
+								style="width: 160px" src="images/${review.pelicula.poster}"></a>
 
 							<div class="descripcion">
 								<h4>${review.pelicula.nombre}</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
-									<a href="editar-review?id=${review.id}"
+									<a href="review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
+										href="editar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
@@ -47,15 +61,19 @@
 						</div>
 					</c:if>
 
+					<!-- REVIEW VIDEOJUEGO -->
 					<c:if test="${review.videojuego != null}">
 						<div class="comentario">
-							<a href="videojuego?id=${review.videojuego.id}"><img style="width: 160px" src="images/${review.videojuego.poster}"></a>
+							<a href="videojuego?id=${review.videojuego.id}"><img
+								style="width: 160px" src="images/${review.videojuego.poster}"></a>
 
 							<div class="descripcion">
 								<h4>${review.videojuego.nombre}</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
-									<a href="editar-review?id=${review.id}"
+									<a href="review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
+										href="editar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
@@ -64,15 +82,19 @@
 						</div>
 					</c:if>
 
+					<!-- REVIEW SERIE -->
 					<c:if test="${review.serie != null}">
 						<div class="comentario">
-							<a href="perfil-serie?id=${review.serie.id}"><img style="width: 160px" src="images/${review.serie.poster}"></a>
+							<a href="perfil-serie?id=${review.serie.id}"><img
+								style="width: 160px" src="images/${review.serie.poster}"></a>
 
 							<div class="descripcion">
 								<h4>${review.serie.nombre}</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
-									<a href="editar-review?id=${review.id}"
+									<a href="review?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
+										href="editar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
@@ -84,6 +106,8 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- IMPORT FOOTER -->
 	<jsp:include page="footer.jsp" />
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

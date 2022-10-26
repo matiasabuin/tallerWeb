@@ -1,18 +1,16 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -42,33 +40,32 @@ public class Usuario {
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
+	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="plan_id")
-	private Plan plan;
-	
-	private LocalDate fechaVencimientoPlan = LocalDate.now().minusDays(1);
-	
-	public Plan getPlan() {
-		return plan;
-	}
-	public void setPlan(Plan plan) {
-		this.plan = plan;
-	}
-	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Listas> favoritos = new ArrayList<Listas>();
+	private List<Lista> favoritos = new ArrayList<Lista>();
 	
-	@Fetch(FetchMode.SELECT)
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Listas> historial = new ArrayList<Listas>();
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="planAdquirido_id")
+	private UsuarioPlan planAdquirido;
 	
-	public List<Listas> getFavoritos() {
+	public UsuarioPlan getPlanAdquirido(){
+		return planAdquirido;
+	}
+
+	public void setPlanAdquirido(UsuarioPlan plan) {
+		this.planAdquirido = plan;
+	}
+	
+	public List<Lista> getFavoritos() {
 		return favoritos;
 	}
 
-	public void setFavoritos(List<Listas> favoritos) {
+	public void setFavoritos(List<Lista> favoritos) {
 		this.favoritos = favoritos;
 	}
 
@@ -132,10 +129,4 @@ public class Usuario {
 		this.biografia = biografia;
 	}
 	
-	public LocalDate getFechaVencimientoPlan() {
-		return fechaVencimientoPlan;
-	}
-	public void setFechaVencimientoPlan(LocalDate fechaVencimientoPlan) {
-		this.fechaVencimientoPlan = fechaVencimientoPlan;
-	}
 }

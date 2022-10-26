@@ -2,9 +2,12 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +35,13 @@ public class ControladorLogin {
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
 	private ServicioPlan servicioPlan;
+	private ServicioUsuarioPlan servicioUsuarioPlan;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan){
 		this.servicioLogin = servicioLogin;
 		this.servicioPlan= servicioPlan;
+		this.servicioUsuarioPlan = servicioUsuarioPlan;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -76,11 +81,18 @@ public class ControladorLogin {
 			
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 			
-			if(LocalDate.now().isBefore(usuarioBuscado.getFechaVencimientoPlan())) {
-				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanPremium());
-			}else {
-				usuarioBuscado.setPlan(servicioPlan.ObtenerPlanFree());
+			if(LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
+				Plan planFree = servicioPlan.ObtenerPlanFree();
+				UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planFree,
+											(usuarioBuscado.getPlanAdquirido().getFechaVencimiento()));
+				usuarioBuscado.setPlanAdquirido(usuarioplan);
+				servicioLogin.editarPerfil(usuarioBuscado);
+				request.getSession().setAttribute("usuarioPlan", usuarioplan);
 			}
+			
+			//admin@gmail.com
+			
+			request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
 			
 			return new ModelAndView("redirect:/home");
 		} else {
@@ -107,10 +119,15 @@ public class ControladorLogin {
 	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro,
 			HttpServletRequest request) {
 
-		servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword(),
+		Usuario usuario = servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword(),
 				datosRegistro.getNombre());
-
-		return irALogin(request);
+		
+		Plan planBuscado = servicioPlan.ObtenerPlanFree();
+		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuario, planBuscado, LocalDate.now().minusDays(1));
+		usuario.setPlanAdquirido(usuarioplan);
+		servicioLogin.editarPerfil(usuario);
+		
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping("/registro-usuario")
@@ -118,9 +135,9 @@ public class ControladorLogin {
 		if(request.getSession().getAttribute("usuarioActual") != null){
 			return new ModelAndView("redirect:/home");
 		}
-		ModelMap modelo = new ModelMap();
 		
-		modelo.put("usuario",new Usuario());
+		ModelMap modelo = new ModelMap();
+		modelo.put("usuario", new Usuario());
 		
 		return new ModelAndView("registro-usuario", modelo);
 	}

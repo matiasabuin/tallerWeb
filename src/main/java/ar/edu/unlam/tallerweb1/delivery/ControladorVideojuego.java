@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
@@ -66,10 +66,15 @@ public class ControladorVideojuego {
 		}
 		
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(id);
-		Listas fav = new Listas();  
+		
+		Lista fav = new Lista();  
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
 		
+		if(usuarioEncontrado != null) {
+			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			modelo.addAttribute("listaFavs", listas);
+			}
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosLista", fav);
@@ -80,7 +85,8 @@ public class ControladorVideojuego {
 	@RequestMapping("/registro-videojuego")
 	public ModelAndView iraRegistrarVideojuego(HttpServletRequest request) {
 
-		if (request.getSession().getAttribute("usuarioActual") != null) {
+		if(request.getSession().getAttribute("usuarioActual") != null &&
+				request.getSession().getAttribute("usuarioPlan").equals("Premium")) {
 
 			ModelMap modelo = new ModelMap();
 			Videojuego videojuego = new Videojuego();

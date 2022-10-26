@@ -21,19 +21,24 @@ import com.mercadopago.client.preference.PreferenceRequest;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
 
 @Controller
 public class ControladorPlan {
 
 	private ServicioPlan servicioPlan;
+	private ServicioUsuarioPlan servicioUsuarioPlan;
 	private ServicioLogin servicioLogin;
 
 	@Autowired
-	public ControladorPlan(ServicioPlan servicioPlan, ServicioLogin servicioLogin){
+	public ControladorPlan(ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, ServicioLogin servicioLogin){
 		this.servicioPlan = servicioPlan;
+		this.servicioUsuarioPlan = servicioUsuarioPlan;
 		this.servicioLogin = servicioLogin;
 	}
 	
@@ -80,9 +85,16 @@ public class ControladorPlan {
 	public ModelAndView adquirirFree(HttpServletRequest request) {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().minusDays(1));
-		usuarioBuscado.setPlan(servicioPlan.ObtenerPlanFree());
+		Plan planBuscado = servicioPlan.ObtenerPlanFree();
+		
+		UsuarioPlan usuarioplan = 
+				servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().minusDays(1));
+		usuarioBuscado.setPlanAdquirido(usuarioplan);
+		
 		servicioLogin.editarPerfil(usuarioBuscado);
+		
+		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
+		
 		return new ModelAndView("redirect:/editar-plan");
 	}
 	
@@ -90,9 +102,16 @@ public class ControladorPlan {
 	public ModelAndView adquirirBasico(HttpServletRequest request) {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().plusMonths(1));
-		usuarioBuscado.setPlan(servicioPlan.ObtenerPlanBasico());
+		Plan planBuscado = servicioPlan.ObtenerPlanBasico();
+		
+		UsuarioPlan usuarioplan = 
+				servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
+		usuarioBuscado.setPlanAdquirido(usuarioplan);
+		
 		servicioLogin.editarPerfil(usuarioBuscado);
+		
+		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
+		
 		return new ModelAndView("redirect:/editar-plan");
 	}
 	
@@ -100,9 +119,16 @@ public class ControladorPlan {
 	public ModelAndView adquirirPremium(HttpServletRequest request) {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().plusMonths(1));
-		usuarioBuscado.setPlan(servicioPlan.ObtenerPlanPremium());
+		Plan planBuscado = servicioPlan.ObtenerPlanPremium();
+		
+		UsuarioPlan usuarioplan = 
+				servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
+		usuarioBuscado.setPlanAdquirido(usuarioplan);
+		
 		servicioLogin.editarPerfil(usuarioBuscado);
+		
+		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
+		
 		return new ModelAndView("redirect:/editar-plan");
 	}
 }

@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Listas;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
@@ -53,9 +53,9 @@ public class ControladorSerie {
 
 	@RequestMapping(path = "/registro-serie")
 	public ModelAndView iraRegistroSerie(HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
-			return new ModelAndView("redirect:/home");
-		}
+		
+		if(request.getSession().getAttribute("usuarioActual") != null &&
+				request.getSession().getAttribute("usuarioPlan").equals("Premium")) {
 
 		ModelMap modelo = new ModelMap();
 		Serie serie = new Serie();
@@ -67,6 +67,8 @@ public class ControladorSerie {
 		modelo.addAttribute("listaPlataformas", plataformas);
 		modelo.put("datosSerie", serie);
 		return new ModelAndView("registro-serie", modelo);
+		}
+		return new ModelAndView("redirect:/home");
 	}
 
 	@InitBinder
@@ -117,7 +119,9 @@ public class ControladorSerie {
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
+
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+
 
 		if (usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndSerieID(usuarioEncontrado.getId(), id);
@@ -128,11 +132,16 @@ public class ControladorSerie {
 			}
 		}
 
-		Listas fav = new Listas();
+		Lista fav = new Lista();
+		
 		Serie serie = servicioSerie.consultarSerie(id);
 
 		List<Review> reviews = servicioReview.getAllBySerieId(id);
-
+		
+		if(usuarioEncontrado != null) {
+			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			modelo.addAttribute("listaFavs", listas);
+			}
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosSerie", serie);
 		modelo.addAttribute("datosLista", fav);
