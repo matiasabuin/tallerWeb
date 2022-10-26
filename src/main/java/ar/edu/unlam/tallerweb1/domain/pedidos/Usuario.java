@@ -47,8 +47,8 @@ public class Usuario {
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Lista> favoritos = new ArrayList<Lista>();
-	
+	private List<Favorito> favoritos = new ArrayList<Favorito>();
+
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="planAdquirido_id")
 	private UsuarioPlan planAdquirido;
@@ -61,11 +61,11 @@ public class Usuario {
 		this.planAdquirido = plan;
 	}
 	
-	public List<Lista> getFavoritos() {
+	public List<Favorito> getFavoritos() {
 		return favoritos;
 	}
 
-	public void setFavoritos(List<Lista> favoritos) {
+	public void setFavoritos(List<Favorito> favoritos) {
 		this.favoritos = favoritos;
 	}
 

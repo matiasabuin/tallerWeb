@@ -40,14 +40,16 @@ textarea {
 }
 
 .button-reviews {
-	width: 15%;
+	width: 12%;
 	margin: auto;
 	display: block;
 	background-color: #ea377a;
 	font-size: 20px;
-	color: white;
 	padding: 5px;
 	border: none;
+}
+.button-reviews:hover {
+	background-color: #b02a5c !important;
 }
 
 .reviews {
@@ -116,7 +118,7 @@ textarea {
 }
 
 .button-agregarfavs {
-	margin-top: 2em;
+	margin-top: 1em;
 	background-color: #ea377a !important;
 	border: none;
 	justify-content: center;

@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
@@ -37,12 +37,11 @@ public class ControladorVideojuego {
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 	private ServicioReview servicioReview;
 	private ServicioFiles servicioFiles;
-	private ServicioListas servicioFav;
+	private ServicioFavoritos servicioFav;
 
 	@Autowired
 	public ControladorVideojuego(ServicioVideojuego servicioVideojuego,
-			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview,
-			ServicioFiles servicioFiles, ServicioListas servicioFav) {
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles, ServicioFavoritos servicioFav) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 		this.servicioReview = servicioReview;
@@ -76,17 +75,17 @@ public class ControladorVideojuego {
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			}
 		}
-
-		if (usuarioEncontrado != null) {
-			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+		
+		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
+		
+		if(usuarioEncontrado != null) {
+			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 			modelo.addAttribute("listaFavs", listas);
 		}
 
-		List<Review> reviews = servicioReview.getAllByVideojuegoId(id);
-
 		modelo.addAttribute("datosVideojuego", videojuego);
 		modelo.addAttribute("listaReviews", reviews);
-		modelo.addAttribute("datosLista", new Lista());
+		modelo.addAttribute("datosLista", new Favorito());
 
 		return new ModelAndView("perfil-videojuego", modelo);
 	}

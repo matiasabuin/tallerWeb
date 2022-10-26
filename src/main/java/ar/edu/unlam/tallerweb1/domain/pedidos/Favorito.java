@@ -9,16 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Lista {
+public class Favorito {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-		
-	private String nombre;
-	
-	private String descripcion;
-	
+			
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="videojuego_id")
 	private Videojuego videojuego;
@@ -34,21 +30,7 @@ public class Lista {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
+		
 	public Serie getSerie() {
 		return this.serie;
 	}

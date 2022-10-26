@@ -35,7 +35,7 @@
 					<c:if test="${usuarioActual == null}">
 						<div class="sesion">
 							<a href="login">Inicia Sesion</a><span> para dejar una
-								reseña</span>
+								rese&ntilde;a</span>
 						</div>
 					</c:if>
 
@@ -86,7 +86,8 @@
 					<p class="align-self-center sinopsis">${datosSerie.sinopsis}</p>
 					<p class="col-4 text-center border rounded">Cantidad de
 						capitulos:&nbsp;${datosSerie.cantDeCaps}&nbsp;</p>
-					<p class="col-4 text-center border rounded">Duracion por capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
+					<p class="col-4 text-center border rounded">Duracion por
+						capitulo:&nbsp;${datosSerie.duracionPorCaps}&nbsp;minutos</p>
 
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
@@ -118,7 +119,7 @@
 								value="${datosSerie.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit" class="btn button-reviews">Enviar</form:button>
+							<form:button type="submit" class="btn btn-primary button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 
@@ -130,7 +131,8 @@
 									<h4>${review.usuario.nombre}</h4>
 									<p>${review.descripcion}</p>
 									<div class="vistareview">
-										<c:if test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+										<c:if
+											test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 											<a href="review?id=${review.id}">Responder</a>
 										</c:if>
 										<a href="review?id=${review.id}">Ver review</a>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ListaCompleta</title>
+<title>Favoritos-Lista</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"

@@ -18,14 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
@@ -37,12 +37,12 @@ public class ControladorPelicula{
 	private ServicioPelicula servicioPelicula;
 	private ServicioReview servicioReview;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
-	private ServicioListas servicioFav;
+	private ServicioFavoritos servicioFav;
 	private ServicioFiles servicioFiles;
 
 
 	@Autowired
-	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,ServicioFiles servicioFiles) {
+	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioFavoritos servicioFav,ServicioFiles servicioFiles) {
 		this.servicioPelicula = servicioPelicula;
 		this.servicioReview = servicioReview;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
@@ -135,12 +135,12 @@ public class ControladorPelicula{
 			}
 		}
 
-		Lista fav=new Lista();
+		Favorito fav=new Favorito();
 
 		List<Review> reviews = servicioReview.getAllByPeliculaId(id);
 		
 		if(usuarioEncontrado != null) {
-		List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+		List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 		modelo.addAttribute("listaFavs", listas);
 		}
 		modelo.addAttribute("listaReviews", reviews);
