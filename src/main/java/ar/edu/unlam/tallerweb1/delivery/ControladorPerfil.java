@@ -7,6 +7,8 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionNombreDeUsuarioRepetido;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,18 +70,19 @@ public class ControladorPerfil {
 
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 
-		servicioFiles.uploadImage(foto);
-
+        if(foto.getBytes() != null) {
+        	servicioFiles.uploadImage(foto);
+        	usuarioBuscado.setFoto(foto.getOriginalFilename());
+        } else {
+        	usuarioBuscado.setFoto(usuarioBuscado.getFoto());
+        }
+	
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
-
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-
-		usuarioBuscado.setFoto(foto.getOriginalFilename());
 
 		servicioLogin.editarPerfil(usuarioBuscado);
 
 		return new ModelAndView("redirect:/perfil");
-
 	}
 
 	@RequestMapping("/reviews")

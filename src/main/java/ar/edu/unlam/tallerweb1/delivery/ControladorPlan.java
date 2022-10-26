@@ -24,6 +24,7 @@ import com.mercadopago.exceptions.MPException;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionNombreDeUsuarioRepetido;
 
 @Controller
 public class ControladorPlan {
@@ -77,7 +78,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-free", method = RequestMethod.POST)
-	public ModelAndView adquirirFree(HttpServletRequest request) {
+	public ModelAndView adquirirFree(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().minusDays(1));
@@ -87,7 +88,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-basico", method = RequestMethod.POST)
-	public ModelAndView adquirirBasico(HttpServletRequest request) {
+	public ModelAndView adquirirBasico(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().plusMonths(1));
@@ -97,7 +98,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-premium", method = RequestMethod.POST)
-	public ModelAndView adquirirPremium(HttpServletRequest request) {
+	public ModelAndView adquirirPremium(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		usuarioBuscado.setFechaVencimientoPlan(LocalDate.now().plusMonths(1));

@@ -52,7 +52,7 @@
 								<div class="botones">
 									<a href="review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="editar-review?id=${review.id}"
+										href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
@@ -73,7 +73,7 @@
 								<div class="botones">
 									<a href="review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="editar-review?id=${review.id}"
+										href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
@@ -94,7 +94,7 @@
 								<div class="botones">
 									<a href="review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="editar-review?id=${review.id}"
+										href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>

@@ -37,7 +37,7 @@
 				</div>
 
 				<div class="form-group">
-					<form:input path="" type="file" id="foto" name="file" />
+					<form:input path="" type="file" name="file" accept=".jpg, .jpeg"/>
 				</div>
 
 				<div class="form-group">
@@ -55,6 +55,13 @@
 
 			</form:form>
 		</div>
+		
+		<!-- ERROR NOMBRE YA EXISTE -->
+		<c:if test="${not empty errorNombre}">
+			<div class="error">
+				<span>${errorNombre}</span>
+			</div>
+		</c:if>
 	</div>
 
 	<jsp:include page="footer.jsp" />

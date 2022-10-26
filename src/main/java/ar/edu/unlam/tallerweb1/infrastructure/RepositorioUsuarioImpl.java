@@ -67,5 +67,21 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.uniqueResult();
 	}
 
+	@Override
+	public Usuario findByName(String name) {
+        return (Usuario)sessionFactory.getCurrentSession()
+                .createCriteria(Usuario.class)
+                .add(Restrictions.eq("nombre", name))
+                .uniqueResult();
+	}
+	
+	@Override
+	public Usuario findByEmail(String email) {
+        return (Usuario)sessionFactory.getCurrentSession()
+                .createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", email))
+                .uniqueResult();
+	}
+
 	
 }

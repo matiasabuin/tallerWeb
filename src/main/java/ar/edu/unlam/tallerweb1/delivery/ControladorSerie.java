@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.delivery;
 import java.io.IOException;
 import java.util.List;
 
+import javax.management.modelmbean.ModelMBeanOperationInfo;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -29,6 +30,8 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 
 @Controller
 public class ControladorSerie {
@@ -53,6 +56,7 @@ public class ControladorSerie {
 
 	@RequestMapping(path = "/registro-serie")
 	public ModelAndView iraRegistroSerie(HttpServletRequest request) {
+
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
@@ -66,6 +70,7 @@ public class ControladorSerie {
 		modelo.addAttribute("listaGeneros", generos);
 		modelo.addAttribute("listaPlataformas", plataformas);
 		modelo.put("datosSerie", serie);
+		
 		return new ModelAndView("registro-serie", modelo);
 	}
 
@@ -101,15 +106,15 @@ public class ControladorSerie {
 	@RequestMapping(path = "/registrar-serie", method = RequestMethod.POST)
 	public ModelAndView registrarSerie(@ModelAttribute("datosSerie") Serie datosSerie,
 			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+		
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
+		
 		servicioFiles.uploadImage(file);
-
 		datosSerie.setPoster(file.getOriginalFilename());
-
-		Serie serie = this.servicioSerie.registrarSerie(datosSerie);
-
+		
+		Serie serie = servicioSerie.registrarSerie(datosSerie);
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
 
@@ -117,9 +122,14 @@ public class ControladorSerie {
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-
+		
+		Serie serie;
+		try {
+			serie = servicioSerie.consultarSerie(id);
+		} catch (ExceptionSerieNoEncontrada e) {
+			return new ModelAndView("redirect:/home");
+		}
 
 		if (usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndSerieID(usuarioEncontrado.getId(), id);
@@ -129,20 +139,17 @@ public class ControladorSerie {
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			}
 		}
-
-		Lista fav = new Lista();
 		
-		Serie serie = servicioSerie.consultarSerie(id);
-
-		List<Review> reviews = servicioReview.getAllBySerieId(id);
-		
-		if(usuarioEncontrado != null) {
+		if (usuarioEncontrado != null) {
 			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 			modelo.addAttribute("listaFavs", listas);
-			}
+		}
+
+		List<Review> reviews = servicioReview.getAllBySerieId(id);
+
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosSerie", serie);
-		modelo.addAttribute("datosLista", fav);
+		modelo.addAttribute("datosLista", new Lista());
 
 		return new ModelAndView("perfil-serie", modelo);
 	}

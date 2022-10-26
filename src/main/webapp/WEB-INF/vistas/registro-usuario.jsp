@@ -12,9 +12,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/estilos.css" />
-
 <link href="css/styles.css" rel="stylesheet">
-
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -52,11 +50,23 @@
 			</form:form>
 		</div>
 
-		<c:if test="${not empty error}">
-			<h4>
-				<span>${error}</span>
-			</h4>
-			<br>
+		<!-- ERRORES VALIDACION REGISTRO -->
+		<c:if test="${not empty errorCampos}">
+			<div class="error">
+				<span>${errorCampos}</span>
+			</div>
+		</c:if>
+		
+		<c:if test="${not empty errorNombre}">
+			<div class="error">
+				<span>${errorNombre}</span>
+			</div>
+		</c:if>
+
+		<c:if test="${not empty errorEmail}">
+			<div class="error">
+				<span>${errorEmail}</span>
+			</div>
 		</c:if>
 	</div>
 

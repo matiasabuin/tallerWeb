@@ -1,12 +1,13 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionEmailRegistrado;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionNombreDeUsuarioRepetido;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioUsuario;
 
 // Implelemtacion del Servicio de usuarios, la anotacion @Service indica a Spring que esta clase es un componente que debe
@@ -33,28 +34,41 @@ public class ServicioLoginImpl implements ServicioLogin {
 	
 
 	@Override
-	public Usuario registrarUsuario(String email, String password, String nombre) {
-		
+	public Usuario registrarUsuario(String email, String password, String nombre) throws ExceptionNombreDeUsuarioRepetido, ExceptionEmailRegistrado, ExceptionRegistroCamposVacios {
 		Usuario usuario = new Usuario();
 		
-		usuario.setEmail(email);
-		usuario.setPassword(password);
-		usuario.setNombre(nombre);
-		servicioLoginDao.guardar(usuario);
+		if(email == "" || password == "" || nombre == "") {
+			throw new ExceptionRegistroCamposVacios("No debe haber campos vacios");
+		}
 		
+		if(servicioLoginDao.findByName(nombre) == null) {
+			usuario.setNombre(nombre);
+		} else {
+			throw new ExceptionNombreDeUsuarioRepetido("Ya existe un usuario con este nombre");
+		}
+		
+		if(servicioLoginDao.findByEmail(email) == null) {
+			usuario.setEmail(email);
+		} else {
+			throw new ExceptionEmailRegistrado("Ya existe un usuario con este email");
+		}
+		
+		usuario.setPassword(password);
+		servicioLoginDao.guardar(usuario);
 		return usuario;
 	}
 
 	@Override
 	public List<Usuario> obtenerTodosLosUsarios() {
-		
 		return servicioLoginDao.obtenerTodosLosUsarios();
 	}
 
 	@Override
 	public void editarPerfil(Usuario usuario) {
+//		if(servicioLoginDao.findByName(usuario.getNombre()) != null) {
+//			throw new ExceptionNombreDeUsuarioRepetido("Ya existe un usuario con este nombre");
+//		}
 		servicioLoginDao.modificar(usuario);
-	
 	}
 
 	@Override

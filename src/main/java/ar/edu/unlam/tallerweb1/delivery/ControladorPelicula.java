@@ -28,6 +28,8 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
 
 @Controller
 public class ControladorPelicula{
@@ -119,6 +121,13 @@ public class ControladorPelicula{
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		Pelicula pelicula;
+		try {
+			pelicula = servicioPelicula.consultarPelicula(id);
+		} catch (ExceptionPeliculaNoEncontrada e) {
+			return new ModelAndView("redirect:/home");
+		}
 				
 		if(usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndPeliculaID(usuarioEncontrado.getId(), id);
@@ -128,8 +137,6 @@ public class ControladorPelicula{
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			}
 		}
-		
-		Pelicula pelicula = servicioPelicula.consultarPelicula(id);
 
 		Lista fav=new Lista();
 

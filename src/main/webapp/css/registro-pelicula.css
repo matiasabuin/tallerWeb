@@ -12,3 +12,13 @@ label{
     font-size: 20px;
     margin: 5px;
 }
+
+.form-group{
+	background-color: #242832 !important;
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.mult-select-tag{
+	color: black;
+}
