@@ -89,14 +89,23 @@ public class ControladorReview {
 		return new ModelAndView("redirect:/reviews");
 	}
 	
-	@RequestMapping(path = "/editar-review")
-	public ModelAndView editarReview(@RequestParam("id") Integer id) {
+	@RequestMapping("/review-editar")
+	public ModelAndView irEditarReview(@RequestParam("id") Integer id) {
+		ModelMap modelo = new ModelMap();
 		
 		Review reviewEncontrada = servicioReview.getById(id);
 		
-		servicioReview.modificar(reviewEncontrada);
+		modelo.addAttribute("review", reviewEncontrada);
+		return new ModelAndView("editar-review", modelo);
+	}
+	
+	
+	@RequestMapping(path = "/editar-review", method = RequestMethod.POST)
+	public ModelAndView editarReview(@ModelAttribute("review") Review reviewActualizada) {
 		
-		return new ModelAndView("redirect:/review?id=" + reviewEncontrada.getId());
+		servicioReview.modificar(reviewActualizada);
+		
+		return new ModelAndView("redirect:/review?id=" + reviewActualizada.getId());
 	}
 	
 }

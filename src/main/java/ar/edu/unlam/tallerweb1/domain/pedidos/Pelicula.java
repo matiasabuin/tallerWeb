@@ -37,13 +37,14 @@ public class Pelicula extends Contenido {
 	@OneToMany(mappedBy = "pelicula")
 	private List<Lista> favoritos = new ArrayList<Lista>();
 	
+	
 	public List<Lista> getFavoritos() {
 		return favoritos;
 	}
+	
 	public void setFavoritos(List<Lista> favoritos) {
 		this.favoritos = favoritos;
 	}
-	
 	
 	public List<Genero> getGeneros() {
 		return generos;

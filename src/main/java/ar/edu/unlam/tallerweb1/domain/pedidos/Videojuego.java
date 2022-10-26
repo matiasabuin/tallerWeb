@@ -19,11 +19,6 @@ public class Videojuego extends Contenido{
 	private String desarrollador;
 	private Integer cantidadJugadores;
 	
-	@Column(length = 5000)
-	private String requisitosMinimos;
-	@Column(length = 5000)
-	private String requisitosRecomendados;
-	
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "videojuego_genero", joinColumns = @JoinColumn(name = "videojuego_id"), inverseJoinColumns = @JoinColumn(name = "genero_id"))
@@ -37,18 +32,6 @@ public class Videojuego extends Contenido{
 	@OneToMany(mappedBy = "videojuego")
 	private List<Review> reviews = new ArrayList<Review>();
 	
-	public String getRequisitosMinimos() {
-		return requisitosMinimos;
-	}
-	public void setRequisitosMinimos(String requisitosMinimos) {
-		this.requisitosMinimos = requisitosMinimos;
-	}
-	public String getRequisitosRecomendados() {
-		return requisitosRecomendados;
-	}
-	public void setRequisitosRecomendados(String requisitosRecomendados) {
-		this.requisitosRecomendados = requisitosRecomendados;
-	}
 	public String getDesarrollador() {
 		return desarrollador;
 	}

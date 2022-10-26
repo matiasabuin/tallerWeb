@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionVideojuegoNoEncontrado;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioVideojuego;
 
 @Service("servicioVideojuego")
@@ -18,8 +20,12 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 		this.servicioVideojuegoDao = servicioVideojuegoDao;
 	}
 
-	public Videojuego consultarVideojuego (Integer id) {
-		return servicioVideojuegoDao.buscar(id);
+	public Videojuego consultarVideojuego (Integer id) throws ExceptionVideojuegoNoEncontrado {
+		Videojuego videojuego = servicioVideojuegoDao.buscar(id);
+		if(videojuego == null){
+			throw new ExceptionVideojuegoNoEncontrado("");
+		}
+		return videojuego;
 	}
 
 	@Override
@@ -45,6 +51,50 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 	@Override
 	public List<Videojuego> obtenerVideojuegoPorBusqueda(String busqueda) {
 		return servicioVideojuegoDao.obtenerLosVideojuegosPorBusqueda(busqueda);
+	}
+
+	@Override
+	public boolean validar(Videojuego datosVideojuego) throws ExceptionRegistroCamposVacios {
+		String msg = "";
+		
+		if(datosVideojuego.getNombre().isEmpty()) {
+			msg = msg + "Rellene campo Nombre <br>";
+		}
+		
+		if(datosVideojuego.getDesarrollador().isEmpty()) {
+			msg = msg + "Rellene campo desarrollador <br>";
+		}
+		
+		if(datosVideojuego.getSinopsis().isEmpty()) {
+			msg = msg + "Redacte una sinopsis <br>";
+		}
+		
+		if(datosVideojuego.getCantidadJugadores() == null) {
+			msg = msg + "Indique cantidad Jugadores <br>";
+		}
+		
+		if(datosVideojuego.getDuracion() == null) {
+			msg = msg + "Indique la duracion <br>";
+		}
+		
+		if(datosVideojuego.getFechaEstreno() == null) {
+			msg = msg + "Indique la fecha de estreno <br>";
+		}
+		
+		if(datosVideojuego.getGeneros().isEmpty()) {
+			msg = msg + "Seleccione al menos un genero <br>";
+		}
+		
+		if(datosVideojuego.getPlataformas().isEmpty()) {
+			msg = msg + "Seleccione al menos una plataforma <br>";
+		}
+		
+		if(msg != "") {
+			throw new ExceptionRegistroCamposVacios(msg);
+		} else {
+			return true;
+		}
+		
 	}
 
 

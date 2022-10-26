@@ -109,23 +109,6 @@
 			</div>
 		</div>
 
-		<!-- REQUISITOS DE VIDEOJUEGO PARA PC -->
-		<!--<c:if test="${datosVideojuego.requisitosMinimos != null && datosVideojuego.requisitosRecomendados != null}">
-			<div class="contenedor-requisitos">
-				<h3>Requisitos del sistema</h3>
-				<div class="requisitos">
-					<div class="requisito">
-						<h4>Mínimos</h4>
-						<p>${datosVideojuego.requisitosMinimos}</p>
-					</div>
-					<div class="requisito">
-						<h4>Recomendados</h4>
-						<p>${datosVideojuego.requisitosRecomendados}</p>
-					</div>
-				</div>
-			</div>
-		</c:if>-->
-
 		<!-- GESTION DE REVIEWS -->
 		<div class="reviews">
 			<h3>Reviews</h3>

@@ -60,8 +60,6 @@
 					<form:label path="duracion">Duracion</form:label>
 					<form:input path="duracion" type="number" class="form-control"
 						id="duracion" />
-
-
 				</div>
 			</div>
 			<br>
@@ -77,7 +75,6 @@
 					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
 			</div>
 		</form:form>
-
 
 	</div>
 

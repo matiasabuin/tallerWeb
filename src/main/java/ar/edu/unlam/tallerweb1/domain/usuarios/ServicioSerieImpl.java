@@ -8,25 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioSerie;
 
 @Service("servicioSerie")
 @Transactional
 public class ServicioSerieImpl implements ServicioSerie {
-	
+
 	private RepositorioSerie servicioSerieDao;
-	
+
 	@Autowired
 	public ServicioSerieImpl(RepositorioSerie reposotorioSerieDao) {
-		this.servicioSerieDao=reposotorioSerieDao;
-		
+		this.servicioSerieDao = reposotorioSerieDao;
+
 	}
 
 	@Override
-	public Serie consultarSerie(Integer id) {
-		
-	return	this.servicioSerieDao.buscar(id);
-	
+	public Serie consultarSerie(Integer id) throws ExceptionSerieNoEncontrada {
+		Serie serie = servicioSerieDao.buscar(id);
+		if(serie == null) {
+			throw new ExceptionSerieNoEncontrada("");
+		}
+		return serie;
 	}
 
 	@Override
@@ -49,6 +52,5 @@ public class ServicioSerieImpl implements ServicioSerie {
 	public List<Serie> obtenerSeriePorBusqueda(String busqueda) {
 		return servicioSerieDao.obtenerLasSeriesPorBusqueda(busqueda);
 	}
-	
 
 }

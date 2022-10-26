@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Plan {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

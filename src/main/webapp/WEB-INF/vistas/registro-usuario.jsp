@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
 	<div class="container">
 		<div id="loginbox" class="formulario-registro rounded login mx-auto">
@@ -50,15 +50,27 @@
 			</form:form>
 		</div>
 
-		<c:if test="${not empty error}">
-			<h4>
-				<span>${error}</span>
-			</h4>
-			<br>
+		<!-- ERRORES VALIDACION REGISTRO -->
+		<c:if test="${not empty errorCampos}">
+			<div class="error">
+				<span>${errorCampos}</span>
+			</div>
+		</c:if>
+		
+		<c:if test="${not empty errorNombre}">
+			<div class="error">
+				<span>${errorNombre}</span>
+			</div>
+		</c:if>
+
+		<c:if test="${not empty errorEmail}">
+			<div class="error">
+				<span>${errorEmail}</span>
+			</div>
 		</c:if>
 	</div>
-	
-<jsp:include page="footer.jsp" />
+
+	<jsp:include page="footer.jsp" />
 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

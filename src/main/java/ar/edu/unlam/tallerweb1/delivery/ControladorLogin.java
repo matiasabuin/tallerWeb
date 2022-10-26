@@ -8,6 +8,9 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionEmailRegistrado;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionNombreDeUsuarioRepetido;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +51,7 @@ public class ControladorLogin {
 	// invocada por metodo http GET
 	@RequestMapping("/login")
 	public ModelAndView irALogin(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") != null){
+		if (request.getSession().getAttribute("usuarioActual") != null) {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
@@ -74,11 +77,11 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL
 		// /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a traves de la URL correspondiente a esta
-		
+
 		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		
+
 		if (usuarioBuscado != null) {
-			
+
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 			
 			if(LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
@@ -95,14 +98,15 @@ public class ControladorLogin {
 			request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
 			
 			return new ModelAndView("redirect:/home");
+
 		} else {
 //			 si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
 		}
 		return new ModelAndView("login", model);
 	}
-	
-	@RequestMapping(path= "/cerrar-sesion")
+
+	@RequestMapping(path = "/cerrar-sesion")
 	public ModelAndView cerrarSesion(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return new ModelAndView("redirect:/home");
@@ -116,23 +120,41 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro,
-			HttpServletRequest request) {
+	public ModelAndView registrar(@ModelAttribute("datosRegistro") DatosRegistro datosRegistro) {
+		
+		ModelMap modelo = new ModelMap();
+		
+		try {
+			Usuario usuario = servicioLogin.registrarUsuario(
+								datosRegistro.getEmail(), 
+								datosRegistro.getPassword(),
+								datosRegistro.getNombre());
+			Plan planBuscado = servicioPlan.ObtenerPlanFree();
+			UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan
+					(usuario, planBuscado, LocalDate.now().minusDays(1));
+			usuario.setPlanAdquirido(usuarioplan);
+			servicioLogin.editarPerfil(usuario);
+			
+		} catch (ExceptionRegistroCamposVacios e){
+			modelo.put("errorCampos", e.getMessage());
+			modelo.put("usuario", datosRegistro);
+			return new ModelAndView("registro-usuario", modelo);
+		} catch (ExceptionNombreDeUsuarioRepetido e) {
+			modelo.put("errorNombre", e.getMessage());
+			modelo.put("usuario", datosRegistro);
+			return new ModelAndView("registro-usuario", modelo);
+		} catch (ExceptionEmailRegistrado e) {
+			modelo.put("errorEmail", e.getMessage());
+			modelo.put("usuario", datosRegistro);
+			return new ModelAndView("registro-usuario", modelo);
+		}
 
-		Usuario usuario = servicioLogin.registrarUsuario(datosRegistro.getEmail(), datosRegistro.getPassword(),
-				datosRegistro.getNombre());
-		
-		Plan planBuscado = servicioPlan.ObtenerPlanFree();
-		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuario, planBuscado, LocalDate.now().minusDays(1));
-		usuario.setPlanAdquirido(usuarioplan);
-		servicioLogin.editarPerfil(usuario);
-		
 		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping("/registro-usuario")
 	public ModelAndView registrarUsuario(HttpServletRequest request) {
-		if(request.getSession().getAttribute("usuarioActual") != null){
+		if (request.getSession().getAttribute("usuarioActual") != null) {
 			return new ModelAndView("redirect:/home");
 		}
 		
@@ -141,5 +163,5 @@ public class ControladorLogin {
 		
 		return new ModelAndView("registro-usuario", modelo);
 	}
-	
+
 }

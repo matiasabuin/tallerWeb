@@ -12,4 +12,7 @@ public interface RepositorioUsuario {
 	void modificar(Usuario usuario);
 	List<Usuario> obtenerTodosLosUsarios();
 	Usuario getById(Integer id);
+	
+	Usuario findByName(String name);
+	Usuario findByEmail(String email);
 }

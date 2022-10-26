@@ -26,9 +26,9 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 
 @Controller
 public class ControladorSerie {
@@ -66,6 +66,7 @@ public class ControladorSerie {
 		modelo.addAttribute("listaGeneros", generos);
 		modelo.addAttribute("listaPlataformas", plataformas);
 		modelo.put("datosSerie", serie);
+		
 		return new ModelAndView("registro-serie", modelo);
 		}
 		return new ModelAndView("redirect:/home");
@@ -103,15 +104,15 @@ public class ControladorSerie {
 	@RequestMapping(path = "/registrar-serie", method = RequestMethod.POST)
 	public ModelAndView registrarSerie(@ModelAttribute("datosSerie") Serie datosSerie,
 			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+		
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
+		
 		servicioFiles.uploadImage(file);
-
 		datosSerie.setPoster(file.getOriginalFilename());
-
-		Serie serie = this.servicioSerie.registrarSerie(datosSerie);
-
+		
+		Serie serie = servicioSerie.registrarSerie(datosSerie);
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
 
@@ -119,9 +120,14 @@ public class ControladorSerie {
 	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-
+		
+		Serie serie;
+		try {
+			serie = servicioSerie.consultarSerie(id);
+		} catch (ExceptionSerieNoEncontrada e) {
+			return new ModelAndView("redirect:/home");
+		}
 
 		if (usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndSerieID(usuarioEncontrado.getId(), id);
@@ -131,20 +137,17 @@ public class ControladorSerie {
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			}
 		}
-
-		Lista fav = new Lista();
 		
-		Serie serie = servicioSerie.consultarSerie(id);
-
-		List<Review> reviews = servicioReview.getAllBySerieId(id);
-		
-		if(usuarioEncontrado != null) {
+		if (usuarioEncontrado != null) {
 			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 			modelo.addAttribute("listaFavs", listas);
-			}
+		}
+
+		List<Review> reviews = servicioReview.getAllBySerieId(id);
+
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosSerie", serie);
-		modelo.addAttribute("datosLista", fav);
+		modelo.addAttribute("datosLista", new Lista());
 
 		return new ModelAndView("perfil-serie", modelo);
 	}

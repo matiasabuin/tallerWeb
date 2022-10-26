@@ -82,7 +82,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-free", method = RequestMethod.POST)
-	public ModelAndView adquirirFree(HttpServletRequest request) {
+	public ModelAndView adquirirFree(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		Plan planBuscado = servicioPlan.ObtenerPlanFree();
@@ -99,7 +99,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-basico", method = RequestMethod.POST)
-	public ModelAndView adquirirBasico(HttpServletRequest request) {
+	public ModelAndView adquirirBasico(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		Plan planBuscado = servicioPlan.ObtenerPlanBasico();
@@ -116,7 +116,7 @@ public class ControladorPlan {
 	}
 	
 	@RequestMapping(path = "/adquirir-premium", method = RequestMethod.POST)
-	public ModelAndView adquirirPremium(HttpServletRequest request) {
+	public ModelAndView adquirirPremium(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		Plan planBuscado = servicioPlan.ObtenerPlanPremium();

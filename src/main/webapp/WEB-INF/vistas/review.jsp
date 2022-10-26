@@ -42,7 +42,7 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
-
+							<!-- FORMULARIO COMENTARIO -->
 							<c:if
 								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
@@ -79,6 +79,7 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
+							<!-- FORMULARIO COMENTARIO -->
 							<c:if
 								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
@@ -113,6 +114,7 @@
 							<h4>${review.usuario.nombre}</h4>
 							<p>${review.descripcion}</p>
 
+							<!-- FORMULARIO COMENTARIO -->
 							<c:if
 								test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 								<div class="container form-comentario">
@@ -134,6 +136,7 @@
 					</div>
 				</c:if>
 
+				<!-- LISTADO DE COMENTARIOS -->
 				<c:if test="${listaComentarios != null}">
 					<c:forEach var="comentario" items="${listaComentarios}">
 						<div class="comentario-review">
