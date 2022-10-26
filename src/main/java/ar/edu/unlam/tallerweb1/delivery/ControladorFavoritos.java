@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 
 @Controller
-public class ControladorListas {
+public class ControladorFavoritos {
 
-	private ServicioListas servicioFav;
+	private ServicioFavoritos servicioFav;
 
 	@Autowired
-	public ControladorListas(ServicioListas servicioFav) {
+	public ControladorFavoritos(ServicioFavoritos servicioFav) {
 		this.servicioFav = servicioFav;
 	}
 
 	@RequestMapping(path = "/guardarFavVideojuego", method = RequestMethod.POST)
-	public ModelAndView guardarFavVideojuego(@ModelAttribute("datosFav") Lista datosFavoritos) {
+	public ModelAndView guardarFavVideojuego(@ModelAttribute("datosFav") Favorito datosFavoritos) {
 
 		Videojuego videojuego = datosFavoritos.getVideojuego();
 
@@ -36,7 +36,7 @@ public class ControladorListas {
 	@RequestMapping(path = "/eliminar-Fav")
 	public ModelAndView eliminarFavVideojuego(@RequestParam("id") Integer id) {
 
-		Lista fav = servicioFav.getById(id); 
+		Favorito fav = servicioFav.getById(id); 
 
 		servicioFav.eliminar(fav);
 		
@@ -45,7 +45,7 @@ public class ControladorListas {
 
 
 	@RequestMapping(path = "/guardarFavPelicula", method = RequestMethod.POST)
-	public ModelAndView guardarFavPelicula(@ModelAttribute("datosFav") Lista datosFavoritos) {
+	public ModelAndView guardarFavPelicula(@ModelAttribute("datosFav") Favorito datosFavoritos) {
 
 		Pelicula pelicula = datosFavoritos.getPelicula();
 
@@ -55,7 +55,7 @@ public class ControladorListas {
 	}
 	
 	@RequestMapping(path = "/guardarFavSerie", method = RequestMethod.POST)
-	public ModelAndView guardarFavSerie(@ModelAttribute("datosFav") Lista datosFavoritos) {
+	public ModelAndView guardarFavSerie(@ModelAttribute("datosFav") Favorito datosFavoritos) {
 
 		Serie serie = datosFavoritos.getSerie();
 

@@ -1,10 +1,10 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 
@@ -29,10 +29,10 @@ public class ControladorPerfil {
 	private ServicioLogin servicioLogin;
 	private ServicioFiles servicioFiles;
 	private ServicioReview servicioReview;
-	private ServicioListas servicioListas;
+	private ServicioFavoritos servicioListas;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioListas servicioListas) {
+	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioFavoritos servicioListas) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
@@ -46,7 +46,7 @@ public class ControladorPerfil {
 		}
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Lista> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
+		List<Favorito> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
 
 		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("perfil-usuario", modelo);
@@ -103,7 +103,7 @@ public class ControladorPerfil {
 		}
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Lista> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
+		List<Favorito> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
 
 		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("lista-completa", modelo);

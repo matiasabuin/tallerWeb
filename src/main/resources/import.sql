@@ -6,6 +6,8 @@ insert into genero (id, descripcion) values('5', 'Comedia');
 insert into genero (id, descripcion) values('6', 'Fantasia');
 insert into genero (id, descripcion) values('7', 'Suspenso');
 insert into genero (id, descripcion) values('8', 'Deporte');
+insert into genero (id, descripcion) values('9', 'Drama');
+
 
 insert into plataforma (id, descripcion) values('1', 'Steam');
 insert into plataforma (id, descripcion) values('2', 'Playstation');
@@ -51,3 +53,12 @@ insert into pelicula_plataforma(pelicula_id, plataforma_id) values ('4','7')
 insert into serie (poster, nombre, cantDeTemps, cantDeCaps, duracionPorCaps, sinopsis, fechaEstreno  ) values ('friends.jpg', 'Friends', '10','236', '22','Tres hombres y tres mujeres jóvenes son mejores amigos y viven en el mismo conjunto de apartamentos. Ellos enfrentan la vida y el amor en la ciudad de Nueva York y se involucran en los asuntos personales de los demás, donde incluso a veces intercambian novios o novias, lo que algunas veces genera situaciones que las personas comunes quizás nunca experimentan, especialmente durante las rupturas.', '1994-09-22' )
 insert into serie_genero(serie_id, genero_id) values ('1','5')
 insert into serie_plataforma(serie_id, plataforma_id) values ('1','3')
+insert into serie (poster, nombre, cantDeTemps, cantDeCaps, duracionPorCaps, sinopsis, fechaEstreno  ) values ('TheWire.jpg', 'The Wire', '5','60', '55','The Wire trata de ser una visión realista de la vida de Baltimore, centrándose especialmente en el tráfico de drogas. Muchos de sus personajes se basan en personas reales de Baltimore y varios actores secundarios son aficionados que interpretan sus propios personajes.', '2002-06-02')
+insert into serie_genero(serie_id, genero_id) values ('2','9')
+insert into serie_plataforma(serie_id, plataforma_id) values ('2','5')
+insert into serie (poster, nombre, cantDeTemps, cantDeCaps, duracionPorCaps, sinopsis, fechaEstreno  ) values ('chernobyl.jpg', 'Chernobyl', '1','5', '60','Con millones de personas en peligro después de la explosión de Chernobyl, la físico nuclear Ulana Khomyuk hace un intento desesperado de llegar a Valery Legasov, un destacado físico nuclear soviético, y le advierte sobre la amenaza de una segunda explosión que podría devastar el continente.', '2019-05-06' )
+insert into serie_genero(serie_id, genero_id) values ('3','9')
+insert into serie_plataforma(serie_id, plataforma_id) values ('3','5')
+insert into serie (poster, nombre, cantDeTemps, cantDeCaps, duracionPorCaps, sinopsis, fechaEstreno  ) values ('strangerThings.jpg', 'Stranger Things', '4','34', '50','La historia se sitúa en el pueblo ficticio de Hawkins, en el estado Indiana, Estados Unidos, durante los años ochenta, cuando un niño de doce años llamado Will Byers desaparece misteriosamente. Poco después, Eleven (Once, en español), una niña aparentemente fugitiva y con poderes telequinéticos, se encuentra con Mike, Dustin y Lucas, amigos de Will, y los ayuda en la búsqueda del mismo.', '2016-07-15' )
+insert into serie_genero(serie_id, genero_id) values ('4','9')
+insert into serie_plataforma(serie_id, plataforma_id) values ('4','7')

@@ -15,7 +15,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-pelicula.css" />
-<script src="https://kit.fontawesome.com/ed06e9b771.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/ed06e9b771.js"
+	crossorigin="anonymous"></script>
 <body>
 
 	<!-- IMPORT HEADER -->
@@ -32,7 +33,7 @@
 					<c:if test="${usuarioActual == null}">
 						<div class="sesion">
 							<a href="login">Inicia Sesion</a><span> para dejar una
-								reseña</span>
+								rese&ntilde;a</span>
 						</div>
 					</c:if>
 
@@ -44,22 +45,23 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-						    <c:set var="eliminar" value="NoEstaEnFavs" />	
+							<c:set var="eliminar" value="NoEstaEnFavs" />
 							<c:forEach var="favoritos" items="${listaFavs}">
 								<c:if
 									test="${favoritos.pelicula != null && favoritos.pelicula.id == datosPelicula.id}">
 									<a href="eliminar-Fav?id=${favoritos.id}"><button
 											type="button" class="btn btn-primary button-agregarfavs">
-											Eliminar<i class="fa-solid fa-heart-crack ml-1" aria-hidden="true"></i>
+											Eliminar<i class="fa-solid fa-heart-crack ml-1"
+												aria-hidden="true"></i>
 										</button> </a>
-										<c:set var="eliminar" value="EstaEnFavs" />
+									<c:set var="eliminar" value="EstaEnFavs" />
 								</c:if>
 							</c:forEach>
 							<c:if test="${eliminar == 'NoEstaEnFavs'}">
-							<form:button type="submit"
-								class="btn btn-primary button-agregarfavs">Agregar <i
-									class="fa-solid fa-heart" aria-hidden="true"></i>
-							</form:button>
+								<form:button type="submit"
+									class="btn btn-primary button-agregarfavs">Agregar <i
+										class="fa-solid fa-heart" aria-hidden="true"></i>
+								</form:button>
 							</c:if>
 						</form:form>
 
@@ -113,7 +115,7 @@
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
 								value="${usuarioActual.id}" />
-							<form:button type="submit" class="btn button-reviews">Enviar</form:button>
+							<form:button type="submit" class="btn btn-primary button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
 
@@ -125,7 +127,8 @@
 									<h4>${review.usuario.nombre}</h4>
 									<p>${review.descripcion}</p>
 									<div class="vistareview">
-										<c:if test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
+										<c:if
+											test="${usuarioActual != null && usuarioActual.id != review.usuario.id}">
 											<a href="review?id=${review.id}">Responder</a>
 										</c:if>
 										<a href="review?id=${review.id}">Ver review</a>

@@ -60,7 +60,7 @@ strong {
 
 .reviews {
 	background-color: #242832 !important;
-	margin: 50px 462px;
+	margin: 50px 350px;
 	padding: 10px 0px;
 	border-radius: 10px;
 }
@@ -98,14 +98,16 @@ textarea {
 }
 
 .button-reviews {
-	width: 15%;
+	width: 12%;
 	margin: auto;
 	display: block;
 	background-color: #ea377a;
 	font-size: 20px;
-	color: white;
 	padding: 5px;
 	border: none;
+}
+.button-reviews:hover {
+	background-color: #b02a5c !important;
 }
 
 .comentario {

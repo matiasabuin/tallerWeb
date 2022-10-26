@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
 						</c:if>
 						<table class="table-responsive table-borderless">
 							<c:if test="${listaFavs[0] == null}">
-								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFRUTALO ACA!</p>
+								<p class="noHayFav"> &iexcl;AGREGA TU CONTENIDO FAVORITO Y DISFR&Uacute;TALO AC&Aacute;!</p>
 							</c:if>
 
 							<c:if test="${listaFavs[0].pelicula != null}">

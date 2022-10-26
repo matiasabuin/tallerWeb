@@ -7,49 +7,49 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
-import ar.edu.unlam.tallerweb1.infrastructure.RepositorioListas;
+import ar.edu.unlam.tallerweb1.infrastructure.RepositorioFavoritos;
 
 @Service("servicioFavoritos")
 @Transactional
-public class ServicioListasImpl implements ServicioListas {
+public class ServicioFavoritosImpl implements ServicioFavoritos {
 
 
-	private RepositorioListas servicioFavoritosDao;
+	private RepositorioFavoritos servicioFavoritosDao;
 
 	@Autowired
-	public ServicioListasImpl(RepositorioListas servicioFavoritosDao){
+	public ServicioFavoritosImpl(RepositorioFavoritos servicioFavoritosDao){
 		this.servicioFavoritosDao = servicioFavoritosDao;
 	}
 
 
 	@Override
-	public Lista getById(Integer id) {
+	public Favorito getById(Integer id) {
 		return servicioFavoritosDao.buscar(id);
 	}
 
 	@Override
-	public List<Lista> getAll() {
+	public List<Favorito> getAll() {
 		return servicioFavoritosDao.obtenerFavoritos();
 	}
 
 
 	@Override
-	public void guardar(Lista favoritos) {
+	public void guardar(Favorito favoritos) {
 		servicioFavoritosDao.guardar(favoritos);;
 	
 	}
 
-	public void eliminar(Lista lista) {
+	public void eliminar(Favorito lista) {
 		this.servicioFavoritosDao.eliminar(lista);
 	}
 
 
 	@Override
-	public List<Lista> getAllByUserId(Integer id) {
+	public List<Favorito> getAllByUserId(Integer id) {
 		return this.servicioFavoritosDao.obtenerListasDelUsuarioPorId(id);
 	}
 	

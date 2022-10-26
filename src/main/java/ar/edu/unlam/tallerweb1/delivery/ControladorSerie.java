@@ -18,14 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Lista;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioListas;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
@@ -33,7 +33,7 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 @Controller
 public class ControladorSerie {
 
-	private ServicioListas servicioFav;
+	private ServicioFavoritos servicioFav;
 	private ServicioSerie servicioSerie;
 	private ServicioReview servicioReview;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
@@ -41,7 +41,7 @@ public class ControladorSerie {
 
 	@Autowired
 	public ControladorSerie(ServicioSerie servicioSerie, ServicioReview servicioReview,
-			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioListas servicioFav,
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioFavoritos servicioFav,
 			ServicioFiles servicioFiles) {
 		this.servicioSerie = servicioSerie;
 		this.servicioReview = servicioReview;
@@ -130,14 +130,14 @@ public class ControladorSerie {
 			}
 		}
 
-		Lista fav = new Lista();
+		Favorito fav = new Favorito();
 		
 		Serie serie = servicioSerie.consultarSerie(id);
 
 		List<Review> reviews = servicioReview.getAllBySerieId(id);
 		
 		if(usuarioEncontrado != null) {
-			List<Lista> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
 			modelo.addAttribute("listaFavs", listas);
 			}
 		modelo.addAttribute("listaReviews", reviews);

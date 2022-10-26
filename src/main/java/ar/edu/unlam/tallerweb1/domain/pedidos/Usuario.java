@@ -49,7 +49,7 @@ public class Usuario {
 
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Lista> favoritos = new ArrayList<Lista>();
+	private List<Favorito> favoritos = new ArrayList<Favorito>();
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="plan_id")
@@ -65,11 +65,11 @@ public class Usuario {
 		this.plan = plan;
 	}
 	
-	public List<Lista> getFavoritos() {
+	public List<Favorito> getFavoritos() {
 		return favoritos;
 	}
 
-	public void setFavoritos(List<Lista> favoritos) {
+	public void setFavoritos(List<Favorito> favoritos) {
 		this.favoritos = favoritos;
 	}
 
