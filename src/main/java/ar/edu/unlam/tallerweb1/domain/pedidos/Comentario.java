@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,13 +21,14 @@ public class Comentario {
 	@Column(length = 1000)
 	private String descripcion;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne()
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne()
 	@JoinColumn(name="review_id")
 	private Review review;
+	
 	
 	public Integer getId() {
 		return id;

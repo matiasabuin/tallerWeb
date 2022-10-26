@@ -96,7 +96,7 @@
 									type="hidden" />
 								<form:input path="videojuego.id" value="${review.serie.id}"
 									type="hidden" />
-								<form:textarea path="descripcion" value="${review.descripcion}" />
+								<form:textarea path="descripcion" class="edit-desc" value="${review.descripcion}" />
 								<form:button type="submit"
 									class="btn btn-primary button-agregarfavs"
 									style="margin-top: 1em;">Actualizar</form:button>
