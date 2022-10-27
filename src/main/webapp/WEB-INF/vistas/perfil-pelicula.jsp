@@ -29,6 +29,7 @@
 				<div style="text-align: center;">
 					<img src="images/${datosPelicula.poster}">
 
+<br>
 					<!-- REDIRIGIR A LOGIN -->
 					<c:if test="${usuarioActual == null}">
 						<div class="sesion">
@@ -105,8 +106,7 @@
 			<section>
 				<div class="reviews">
 					<h3>Reviews</h3>
-					<c:if
-						test="${usuarioActual != null && datosReview.usuario == null}">
+					<c:if test="${usuarioActual != null && datosReview.usuario == null && usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
 						<form:form action="registrarReviewPelicula" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"

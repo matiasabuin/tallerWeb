@@ -30,6 +30,7 @@
 			<section class="datos">
 				<div style="text-align: center;">
 					<img src="images/${datosSerie.poster}">
+<br>
 
 					<!-- REDIRIGIR A LOGIN -->
 					<c:if test="${usuarioActual == null}">
@@ -110,7 +111,7 @@
 				<div class="reviews">
 					<h3>Reviews</h3>
 					<c:if
-						test="${usuarioActual != null && datosReview.usuario == null}">
+						test="${usuarioActual != null && datosReview.usuario == null && usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
 						<form:form action="registrarReviewSerie" method="POST"
 							modelAttribute="datosReview">
 							<form:textarea path="descripcion"

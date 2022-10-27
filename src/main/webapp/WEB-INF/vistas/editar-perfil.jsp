@@ -29,17 +29,17 @@
 		<div class="formulario-registro rounded login mx-auto">
 			<form:form action="editar-usuario" method="POST"
 				modelAttribute="datosPerfil" enctype="multipart/form-data">
+				<c:if test="${usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
+					<h3 class="form-signin-heading text-center">Editar Perfil</h3>
 
-				<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+					<div class="form-group foto-perfil">
+						<img src="images/${usuarioActual.foto}" style="width: 50%;">
+					</div>
 
-				<div class="form-group foto-perfil">
-					<img src="images/${usuarioActual.foto}" style="width: 50%;">
-				</div>
-
-				<div class="form-group">
-					<form:input path="" type="file" name="file" accept=".jpg, .jpeg"/>
-				</div>
-
+					<div class="form-group">
+						<form:input path="" type="file" name="file" accept=".jpg, .jpeg" />
+					</div>
+				</c:if>
 				<div class="form-group">
 					<form:input path="nombre" id="nombre" class="form-control"
 						placeholder="Nombre de usuario" />
@@ -55,7 +55,7 @@
 
 			</form:form>
 		</div>
-		
+
 		<!-- ERROR NOMBRE YA EXISTE -->
 		<c:if test="${not empty errorNombre}">
 			<div class="error">
