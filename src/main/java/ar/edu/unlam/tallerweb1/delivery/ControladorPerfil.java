@@ -21,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -93,7 +96,10 @@ public class ControladorPerfil {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Review> reviews = servicioReview.getAllByUserId(usuarioEncontrado.getId());
+		
+		List<Review> reviewsCache = servicioReview.getAllByUserId(usuarioEncontrado.getId());
+		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
+		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 
 		modelo.addAttribute("listaReviews", reviews);
 		return new ModelAndView("usuario-reviews", modelo);

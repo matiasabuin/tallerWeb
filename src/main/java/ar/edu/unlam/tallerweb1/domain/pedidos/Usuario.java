@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,7 +41,7 @@ public class Usuario {
 	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	private List<Review> reviews = new ArrayList<Review>();
+	private Set<Review> reviews = new HashSet<Review>();
 	
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
@@ -52,6 +54,7 @@ public class Usuario {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="planAdquirido_id")
 	private UsuarioPlan planAdquirido;
+	
 	
 	public UsuarioPlan getPlanAdquirido(){
 		return planAdquirido;
@@ -80,13 +83,21 @@ public class Usuario {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public List<Review> getReviews() {
+	
+	public Set<Review> getReviews() {
 		return reviews;
 	}
 
-	public void setReviews(List<Review> reviews) {
+	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 	public String getEmail() {

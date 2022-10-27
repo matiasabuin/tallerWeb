@@ -44,7 +44,7 @@ public class Review {
 	@JoinColumn(name="serie_id")
 	private Serie serie;
 
-	@OneToMany(mappedBy = "review", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "review", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 

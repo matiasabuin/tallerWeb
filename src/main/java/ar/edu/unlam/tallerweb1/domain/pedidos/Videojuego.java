@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +33,7 @@ public class Videojuego extends Contenido{
 	private List<Plataforma> plataformas= new ArrayList<Plataforma>();
 
 	@OneToMany(mappedBy = "videojuego")
-	private List<Review> reviews = new ArrayList<Review>();
+	private Set<Review> reviews = new HashSet<Review>();
 	
 	public String getDesarrollador() {
 		return desarrollador;
@@ -57,10 +60,10 @@ public class Videojuego extends Contenido{
 	public void setPlataformas(List<Plataforma> plataformas) {
 		this.plataformas = plataformas;
 	}
-	public List<Review> getReviews() {
+	public Set<Review> getReviews() {
 		return reviews;
 	}
-	public void setReviews(List<Review> reviews) {
+	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
 
