@@ -1,6 +1,26 @@
 .recomendaciones-container{
 	margin: 50px 20px;
 }
-#btn-registrarme{
-	margin-top: 87px;
+
+.activo{
+	border-radius: 5px;
+    margin-top: 5em;
+	font-size: 20px;
+	text-align: center;
+	background-color: #ea377a;
+	color: #fff;
+	padding: 8px 16px;
+}
+
+.vencimiento{
+	color: #ea377a;
+	text-align: center;
+}
+
+form{
+	text-align: center;
+}
+
+form button{
+	font-size: 20px;
 }

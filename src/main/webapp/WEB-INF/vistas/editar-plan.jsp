@@ -40,27 +40,16 @@
 					<li>Series</li>
 				</ul>
 				<p>
-					Como así tambien comentar  y ver todas las <strong>Reviews</strong> de usuarios, y
-					la función de <strong>&iexcl;Mi Tiempo Libre!</strong>, donde
-					podrás ver una lista de películas, series y videojuegos
-					recomendados según tu cantidad de horas libre!.
+					Como así tambien comentar y ver todas las <strong>Reviews</strong>
+					de usuarios, y la función de <strong>&iexcl;Mi Tiempo
+						Libre!</strong>, donde podrás ver una lista de películas, series y
+					videojuegos recomendados según tu cantidad de horas libre!.
 				</p>
 				<br>
-				<c:choose>
-					<c:when
-						test="${usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
-						<form action="adquirir-free" method="POST">
-							<button id="btn-registrarmeFree"
-								class="btn btn-lg btn-primary btn-block button-agregarfavs"
-								Type="Submit">Adquirir</button>
-						</form>
-					</c:when>
-					<c:otherwise>
-						<button class="btn-lg btn-secondary btn-block">Plan
-							Actual</button>
-					</c:otherwise>
-				</c:choose>
-
+				<c:if
+					test="${usuarioActual.planAdquirido.plan.descripcion == 'Free'}">
+					<button class="btn-lg btn-secondary btn-block">Plan Actual</button>
+				</c:if>
 			</div>
 
 			<div class="recomendaciones-container">
@@ -76,70 +65,60 @@
 					Elige una <strong>foto de perfil</strong> que más te guste y
 					súbela.
 				</p>
-				<c:choose>
-					<c:when
-						test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico'}">
-						<form action="adquirir-basico" method="POST">
-							<button id="btn-registrarme"
-								class="btn btn-lg btn-primary btn-block button-agregarfavs"
-								Type="Submit">Adquirir</button>
-						</form>
-					</c:when>
-					<c:otherwise>
-						<button class="btn-lg btn-secondary btn-block" id="btn-registrarme">Plan
-							Actual</button>
-						<p>Vence: ${usuarioActual.planAdquirido.fechaVencimiento}</p>
-					</c:otherwise>
-				</c:choose>
 
+				<c:if
+					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
+					<form action="adquirir-basico" method="POST">
+						<script
+							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+							data-preference-id="${preferenceBasico.id}"
+							data-button-label="Adquirir Basico">
+						</script>
+					</form>
+				</c:if>
+
+				<c:if
+					test="${usuarioActual.planAdquirido.plan.descripcion == 'Basico'}">
+					<h2 class="activo">Plan activo</h2>
+					<p class="vencimiento">
+						<strong>Vence:</strong>${usuarioActual.planAdquirido.fechaVencimiento}</p>
+				</c:if>
 			</div>
 
 			<div class="recomendaciones-container">
 				<h1>Plan Premium</h1>
 				<p>
-				 <strong>Registra</strong> a nuestra pagina:
+					<strong>Registra</strong> a nuestra pagina:
 				</p>
 				<ul>
 					<li>Videojuegos</li>
 					<li>Películas</li>
 					<li>Series</li>
 				</ul>
-				<p>&iexcl;Haz que los usuarios puedan disfrutar comentando y conociendo todo el contenido nuevo que agregaste!</p>
-					 <c:choose>
-							<c:when
-								test="${usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
-								<form action="adquirir-premium" method="POST">
-									<button id="btn-registrarme"
-										class="btn btn-lg btn-primary btn-block button-agregarfavs"
-										Type="Submit">Adquirir</button>
-								</form>
-								<div class="adquirir"></div>
-							</c:when>
-							<c:otherwise>
-								<button class="btn-lg btn-secondary btn-block" id="btn-registrarme">Plan
-									Actual</button>
-								<p>Vence: ${usuarioActual.planAdquirido.fechaVencimiento}</p>
-							</c:otherwise>
-						</c:choose>
+				<p>&iexcl;Haz que los usuarios puedan disfrutar comentando y
+					conociendo todo el contenido nuevo que agregaste!</p>
+
+
+				<c:if
+					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
+					<form action="adquirir-premium" method="POST">
+						<script
+							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+							data-preference-id="${preferencePremium.id}"
+							data-button-label="Adquirir Premium">
+						</script>
+					</form>
+				</c:if>
+
+				<c:if
+					test="${usuarioActual.planAdquirido.plan.descripcion == 'Premium'}">
+					<h2 class="activo">Plan activo</h2>
+					<p class="vencimiento">
+						<strong>Vence: </strong>${usuarioActual.planAdquirido.fechaVencimiento}</p>
+				</c:if>
 			</div>
 		</div>
 	</div>
-
-
-	<!-- <script>
-  const mp = new MercadoPago('TEST-bf789ba6-c91b-4a6a-8e4d-1f6315513a30', {
-    locale: 'es-AR'
-  });
-  mp.checkout({
-    preference: {
-      id: "${compra.id}"
-    },
-    render: {
-      container: '.adquirir',
-      label: 'Pagar con MercadoPago',
-    }
-  });
-</script> -->
 
 	<jsp:include page="footer.jsp" />
 
