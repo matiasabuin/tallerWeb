@@ -92,13 +92,9 @@ public class ControladorLogin {
 				servicioLogin.editarPerfil(usuarioBuscado);
 				request.getSession().setAttribute("usuarioPlan", usuarioplan);
 			}
-			
-			//admin@gmail.com
-			
-			request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
-			
+		
 			return new ModelAndView("redirect:/home");
-
+			
 		} else {
 //			 si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");

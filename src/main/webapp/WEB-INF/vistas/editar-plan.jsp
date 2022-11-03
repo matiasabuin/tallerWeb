@@ -98,7 +98,6 @@
 				<p>&iexcl;Haz que los usuarios puedan disfrutar comentando y
 					conociendo todo el contenido nuevo que agregaste!</p>
 
-
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
 					<form action="adquirir-premium" method="POST">

@@ -16,7 +16,6 @@ public class UsuarioPlan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private LocalDate fechaVencimiento;
 
 	@OneToOne(cascade = CascadeType.PERSIST)

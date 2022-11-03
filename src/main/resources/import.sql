@@ -18,9 +18,9 @@ insert into plataforma (id, descripcion) values('6', 'Xbox');
 insert into plataforma (id, descripcion) values('7', 'Disney +');
 insert into plataforma (id, descripcion) values('8', 'Amazon');
 
-insert into plan (id, descripcion) values ('1', 'Free')
-insert into plan (id, descripcion) values ('2', 'Basico')
-insert into plan (id, descripcion) values ('3', 'Premium')
+insert into plan (id, descripcion, precio) values ('1', 'Free', '0')
+insert into plan (id, descripcion, precio) values ('2', 'Basico', '500')
+insert into plan (id, descripcion, precio) values ('3', 'Premium', '900')
 
 insert into videojuego (poster, nombre, desarrollador, duracion, cantidadJugadores, sinopsis, fechaEstreno) values ('zeldabotw.jpg', 'The Legend Of Zelda', 'Nintendo', '55', '1','Olvida todo lo que sabes acerca de los juegos de la serie The Legend of Zelda. Explora y descubre un mundo lleno de aventuras en The Legend of Zelda: Breath of the Wild, una nueva saga que rompe los esquemas de la aclamada serie. Viaja a través de praderas y bosques, y alcanza cimas de montañas mientras descubres cómo cayó en la ruina el reino de Hyrule en esta emocionante aventura al aire libre.','2020-03-25')
 insert into videojuego_genero(videojuego_id, genero_id) values ('1','2')

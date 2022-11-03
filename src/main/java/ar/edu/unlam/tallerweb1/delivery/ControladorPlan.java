@@ -47,35 +47,37 @@ public class ControladorPlan {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
-        Preference preferenciaBasico = new Preference();
+        Plan planPremium = servicioPlan.ObtenerPlanPremium();
+        Preference preferenciaPremium = new Preference();
         try{
             MercadoPago.SDK.setAccessToken("TEST-1735674503019884-032202-d54a673969e467b857cf50292aaedaa6-201226814");
-            Preference p = new Preference();
-            Item item = new Item();
-            item.setTitle("Adquirir Basico").setQuantity(1).setUnitPrice((float) 500);
-            p.appendItem(item);
+            Preference p2 = new Preference();
+            Item item2 = new Item();
+            item2.setTitle("Adquirir Premium").setQuantity(1).setUnitPrice((float) planPremium.getPrecio());
+            p2.appendItem(item2);
             Payer payer = new Payer();
             payer.setEmail(usuario.getEmail());
-            p.setPayer(payer);
-            p.setBinaryMode(true);
-            preferenciaBasico = p.save();
+            p2.setPayer(payer);
+            p2.setBinaryMode(true);
+            preferenciaPremium = p2.save();
         }catch (MPException e){
             System.out.println("Exeception MP\n");
             e.printStackTrace();
         }
-		
-        Preference preferenciaPremium = new Preference();
+        
+		Plan planBasico = servicioPlan.ObtenerPlanBasico();
+        Preference preferenciaBasico = new Preference();
         try{
             MercadoPago.SDK.setAccessToken("TEST-1735674503019884-032202-d54a673969e467b857cf50292aaedaa6-201226814");
-            Preference p = new Preference();
-            Item item = new Item();
-            item.setTitle("Adquirir Premium").setQuantity(1).setUnitPrice((float) 1000);
-            p.appendItem(item);
+            Preference p1 = new Preference();
+            Item item1 = new Item();
+            item1.setTitle("Adquirir Basico").setQuantity(1).setUnitPrice((float)planBasico.getPrecio());
+            p1.appendItem(item1);
             Payer payer = new Payer();
             payer.setEmail(usuario.getEmail());
-            p.setPayer(payer);
-            p.setBinaryMode(true);
-            preferenciaPremium = p.save();
+            p1.setPayer(payer);
+            p1.setBinaryMode(true);
+            preferenciaBasico = p1.save();
         }catch (MPException e){
             System.out.println("Exeception MP\n");
             e.printStackTrace();
@@ -86,22 +88,22 @@ public class ControladorPlan {
 		return new ModelAndView("editar-plan", modelo);
 	}
 	
-	@RequestMapping(path = "/adquirir-free", method = RequestMethod.POST)
-	public ModelAndView adquirirFree(HttpServletRequest request) throws Exception {
-		
-		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		Plan planBuscado = servicioPlan.ObtenerPlanFree();
-		
-		UsuarioPlan usuarioplan = 
-				servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().minusDays(1));
-		usuarioBuscado.setPlanAdquirido(usuarioplan);
-		
-		servicioLogin.editarPerfil(usuarioBuscado);
-		
-		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
-		
-		return new ModelAndView("redirect:/editar-plan");
-	}
+//	@RequestMapping(path = "/adquirir-free", method = RequestMethod.GET)
+//	public ModelAndView adquirirFree(HttpServletRequest request) throws Exception {
+//		
+//		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+//		Plan planBuscado = servicioPlan.ObtenerPlanFree();
+//		
+//		UsuarioPlan usuarioplan = 
+//				servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().minusDays(1));
+//		usuarioBuscado.setPlanAdquirido(usuarioplan);
+//		
+//		servicioLogin.editarPerfil(usuarioBuscado);
+//		
+//		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
+//		
+//		return new ModelAndView("redirect:/editar-plan");
+//	}
 	
 	@RequestMapping(path = "/adquirir-basico", method = RequestMethod.POST)
 	public ModelAndView adquirirBasico(@RequestParam(value = "payment_status") String estado, HttpServletRequest request) throws Exception {
@@ -113,6 +115,7 @@ public class ControladorPlan {
 		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
 		usuarioBuscado.setPlanAdquirido(usuarioplan);
 		servicioLogin.editarPerfil(usuarioBuscado);
+		request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
 		} 
 		
@@ -129,6 +132,7 @@ public class ControladorPlan {
 		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
 		usuarioBuscado.setPlanAdquirido(usuarioplan);
 		servicioLogin.editarPerfil(usuarioBuscado);
+		request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
 		}
 		
