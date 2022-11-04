@@ -50,6 +50,10 @@ public class Usuario {
 	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Favorito> favoritos = new ArrayList<Favorito>();
+	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Notificacion> notifaciones = new ArrayList<Notificacion>();
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="planAdquirido_id")
@@ -98,6 +102,14 @@ public class Usuario {
 
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
+	}
+	
+	public List<Notificacion> getNotifaciones() {
+		return notifaciones;
+	}
+
+	public void setNotifaciones(List<Notificacion> notifaciones) {
+		this.notifaciones = notifaciones;
 	}
 
 	public String getEmail() {

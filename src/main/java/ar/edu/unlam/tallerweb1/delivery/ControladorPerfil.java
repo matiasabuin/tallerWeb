@@ -1,15 +1,14 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionNombreDeUsuarioRepetido;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,13 +34,15 @@ public class ControladorPerfil {
 	private ServicioFiles servicioFiles;
 	private ServicioReview servicioReview;
 	private ServicioFavoritos servicioListas;
+	private ServicioNotificacion servicioNotificacion;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioFavoritos servicioListas) {
+	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioFavoritos servicioListas, ServicioNotificacion servicioNotificacion) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
 		this.servicioListas = servicioListas;
+		this.servicioNotificacion = servicioNotificacion;
 	}
 
 	@RequestMapping("/perfil")
@@ -103,6 +104,23 @@ public class ControladorPerfil {
 
 		modelo.addAttribute("listaReviews", reviews);
 		return new ModelAndView("usuario-reviews", modelo);
+	}
+	
+	@RequestMapping("/notificaciones")
+	public ModelAndView verNotificaciones(HttpServletRequest request) {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			return new ModelAndView("redirect:/home");
+		}
+
+		ModelMap modelo = new ModelMap();
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		List<Notificacion> notificacionesLeidasCache = servicioNotificacion.getAllLeidosByUserId(usuarioEncontrado.getId());
+		List<Notificacion> notificacionesCache = servicioNotificacion.getAllByUserId(usuarioEncontrado.getId());
+
+		modelo.addAttribute("listaNotificacionesLeidas", notificacionesLeidasCache);
+		modelo.addAttribute("listaNotificaciones", notificacionesCache);
+		return new ModelAndView("usuario-notificaciones", modelo);
 	}
 
 	@RequestMapping(path = "/lista-completa")

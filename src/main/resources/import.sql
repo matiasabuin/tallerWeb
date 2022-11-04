@@ -8,7 +8,6 @@ insert into genero (id, descripcion) values('7', 'Suspenso');
 insert into genero (id, descripcion) values('8', 'Deporte');
 insert into genero (id, descripcion) values('9', 'Drama');
 
-
 insert into plataforma (id, descripcion) values('1', 'Steam');
 insert into plataforma (id, descripcion) values('2', 'Playstation');
 insert into plataforma (id, descripcion) values('3', 'Netflix');

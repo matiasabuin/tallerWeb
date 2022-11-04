@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionEmailRegistrado;
@@ -39,12 +40,14 @@ public class ControladorLogin {
 	private ServicioLogin servicioLogin;
 	private ServicioPlan servicioPlan;
 	private ServicioUsuarioPlan servicioUsuarioPlan;
+	private ServicioNotificacion servicioNotificacion;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, ServicioNotificacion servicioNoticacion){
 		this.servicioLogin = servicioLogin;
 		this.servicioPlan= servicioPlan;
 		this.servicioUsuarioPlan = servicioUsuarioPlan;
+		this.servicioNotificacion = servicioNoticacion;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -93,6 +96,8 @@ public class ControladorLogin {
 				request.getSession().setAttribute("usuarioPlan", usuarioplan);
 			}
 		
+			Integer cantNotificacionesNoLeidas = servicioNotificacion.getAllByUserId(usuarioBuscado.getId()).size();
+			request.getSession().setAttribute("cantNotificaciones", cantNotificacionesNoLeidas);
 			return new ModelAndView("redirect:/home");
 			
 		} else {

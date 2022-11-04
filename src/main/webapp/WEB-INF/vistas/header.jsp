@@ -28,7 +28,8 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${usuarioActual.nombre}</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="perfil">Perfil</a> 
+								<a class="dropdown-item" href="perfil">Perfil</a>
+								<a class="dropdown-item" href="notificaciones">Notificaciones <strong style="display: inline;">${cantNotificaciones}</strong></a>  
 								<a class="dropdown-item" href="editar-plan">Suscripciones</a>
 								<a class="dropdown-item" href="cerrar-sesion">Cerrar sesion</a>
 							</div>
