@@ -26,11 +26,15 @@ public class ControladorNotificacion {
 	}
 	
 	@RequestMapping(path = "/leido")
-	public ModelAndView marcarLeido(@RequestParam("id") Integer id) {
+	public ModelAndView marcarLeido(@RequestParam("id") Integer id, HttpServletRequest request) {
 		
 		Notificacion notificacion = servicioNotificacion.getById(id);
 		notificacion.setLeido(LocalDate.now());
 		servicioNotificacion.modificar(notificacion);
+		
+		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		Integer cantNotificacionesNoLeidas = servicioNotificacion.getAllByUserId(usuarioBuscado.getId()).size();
+		request.getSession().setAttribute("cantNotificaciones", cantNotificacionesNoLeidas);
 		
 		return new ModelAndView("redirect:/notificaciones");
 	}
