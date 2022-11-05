@@ -26,15 +26,13 @@
 
 	<div class="container">
 		<div class="usuario-container">
-			<h3 style="text-align: center;">Mis Notificaciones</h3>
+			<h3 style="text-align: center; margin-bottom: 0em;">Mis Notificaciones</h3>
 			<div>
 
 				<c:if test="${listaNotificacionesLeidas.isEmpty() == false}">
-					<div class="comentario">
-						<h2 class="text-right">
-							<a href="ver-leidos">Ver leidos</a>
+						<h2 class="text-center">
+							<a href="ver-leidos" class="btn btn-primary button-agregarfavs mt-4">Ver leidos</a>
 						</h2>
-					</div>
 				</c:if>
 
 				<!-- LISTADO DE NOTIFICACIONES VACIAS-->
@@ -50,9 +48,9 @@
 					<div class="comentario">
 						<div class="descripcion">
 							<p>${notificacion.mensaje}</p>
-							<div class="botones">
+							<div class="text-right">
 								<a href="leido?id=${notificacion.id}"
-									class="btn btn-primary button-agregarfavs mt-4">Marcar como
+									class="btn btn-primary button-agregarfavs">Marcar como
 									leido</a>
 							</div>
 						</div>

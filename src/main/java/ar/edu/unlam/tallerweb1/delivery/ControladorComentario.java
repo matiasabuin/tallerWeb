@@ -43,7 +43,7 @@ public class ControladorComentario {
 		
 		Notificacion notificacion = new Notificacion();
 		notificacion.setUsuario(usuarioReceptor);
-		notificacion.setMensaje(usuarioRemitente.getNombre() + " Te ha dejado un comentario a una review que hiciste");
+		notificacion.setMensaje(usuarioRemitente.getNombre() + " Te ha dejado un comentario a una review que hiciste " + "<a href='review?id=" + reviewEncontrada.getId() +"'>Ver review</a>");
 		servicioNotificacion.registrar(notificacion);
 		
 		servicioComentario.registrar(datosComentario);

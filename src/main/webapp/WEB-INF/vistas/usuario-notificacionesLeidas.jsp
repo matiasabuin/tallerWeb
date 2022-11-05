@@ -26,14 +26,14 @@
 
 	<div class="container">
 		<div class="usuario-container">
-			<h3 style="text-align: center;">Mis Notificaciones</h3>
+			<h3 style="text-align: center; margin-bottom: 0em;">Mis Notificaciones</h3>
 			<div>
 			
 				<!-- LISTADO DE REVIEWS -->
 				<c:forEach var="notificacion" items="${listaNotificacionesLeidas}">
 					<div class="comentario">
 						<div class="descripcion">
-							<h1>Leido: ${notificacion.leido}</h1>
+							<h1 style="padding: 0px;"><strong style="color: #ea377a">Leido: </strong>${notificacion.leido}</h1>
 							<p>${notificacion.mensaje}</p>
 						</div>
 					</div>
