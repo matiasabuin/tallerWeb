@@ -21,6 +21,24 @@ insert into plan (id, descripcion, precio) values ('1', 'Free', '0')
 insert into plan (id, descripcion, precio) values ('2', 'Basico', '500')
 insert into plan (id, descripcion, precio) values ('3', 'Premium', '900')
 
+insert into usuario (id, email, password, nombre, biografia, foto) values('1', 'free@gmail.com', '123', 'free', 'hola soy un usuario free', 'perfil.jpg')
+insert into usuario (id, email, password, nombre, biografia, foto) values('2', 'basico@gmail.com', '123', 'basico', 'hola soy un usuario basico', 'perfil.jpg')
+insert into usuario (id, email, password, nombre, biografia, foto) values('3', 'premium@gmail.com', '123', 'premium', 'hola soy un usuario premium', 'perfil.jpg')
+insert into usuario (id, email, password, nombre, biografia, foto) values('4', 'premium2@gmail.com', '123', 'premium 2', 'hola soy un usuario premium 2', 'perfil.jpg')
+insert into usuario (id, email, password, nombre, biografia, foto) values('5', 'premium3@gmail.com', '123', 'premium 3', 'hola soy un usuario premium 3', 'perfil.jpg')
+
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('1', '1', '1', '2022-01-01')
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('2', '2', '2', '2022-11-15')
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('3', '3', '3', '2022-12-05')
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('4', '3', '4', '2022-11-15')
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('5', '3', '5', '2022-11-04')
+
+update usuario set planAdquirido_id = 1 where id = 1
+update usuario set planAdquirido_id = 2 where id = 2
+update usuario set planAdquirido_id = 3 where id = 3
+update usuario set planAdquirido_id = 4 where id = 4
+update usuario set planAdquirido_id = 5 where id = 5
+
 insert into videojuego (poster, nombre, desarrollador, duracion, cantidadJugadores, sinopsis, fechaEstreno) values ('zeldabotw.jpg', 'The Legend Of Zelda', 'Nintendo', '55', '1','Olvida todo lo que sabes acerca de los juegos de la serie The Legend of Zelda. Explora y descubre un mundo lleno de aventuras en The Legend of Zelda: Breath of the Wild, una nueva saga que rompe los esquemas de la aclamada serie. Viaja a través de praderas y bosques, y alcanza cimas de montañas mientras descubres cómo cayó en la ruina el reino de Hyrule en esta emocionante aventura al aire libre.','2020-03-25')
 insert into videojuego_genero(videojuego_id, genero_id) values ('1','2')
 insert into videojuego_plataforma(videojuego_id, plataforma_id) values ('1','2')

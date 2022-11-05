@@ -94,7 +94,7 @@ public class ControladorLogin {
 				usuarioBuscado.setPlanAdquirido(usuarioplan);
 				servicioLogin.editarPerfil(usuarioBuscado);
 				request.getSession().setAttribute("usuarioPlan", usuarioplan);
-			}
+			} 
 		
 			Integer cantNotificacionesNoLeidas = servicioNotificacion.getAllByUserId(usuarioBuscado.getId()).size();
 			request.getSession().setAttribute("cantNotificaciones", cantNotificacionesNoLeidas);
