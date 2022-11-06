@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
@@ -88,12 +89,20 @@ public class ControladorLogin {
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 			
 			if(LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
+				
+				Notificacion notificacion = new Notificacion();
+				notificacion.setUsuario(usuarioBuscado);
+				notificacion.setMensaje("Tu plan " + usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion() 
+						+  " ha vencido el día " + usuarioBuscado.getPlanAdquirido().getFechaVencimiento());
+				servicioNotificacion.registrar(notificacion);
+				
 				Plan planFree = servicioPlan.ObtenerPlanFree();
 				UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planFree,
 											(usuarioBuscado.getPlanAdquirido().getFechaVencimiento()));
 				usuarioBuscado.setPlanAdquirido(usuarioplan);
 				servicioLogin.editarPerfil(usuarioBuscado);
 				request.getSession().setAttribute("usuarioPlan", usuarioplan);
+				
 			} 
 		
 			Integer cantNotificacionesNoLeidas = servicioNotificacion.getAllByUserId(usuarioBuscado.getId()).size();

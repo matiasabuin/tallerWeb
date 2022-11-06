@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Comentario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 
 @Repository("repositorioComentario")
 public class RepositorioComentarioImpl implements RepositorioComentario {
@@ -29,5 +30,16 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 				.add(Restrictions.eq("review.id", id))
 				.list();
 	}
+	
+	@Override
+	public Comentario buscar(Integer id) {
+		return (Comentario) sessionFactory.getCurrentSession().createCriteria(Comentario.class).add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
 
+	@Override
+	public void elimimar(Comentario comentario) {
+		sessionFactory.getCurrentSession().remove(comentario);
+	}
+	
 }

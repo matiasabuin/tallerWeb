@@ -118,6 +118,12 @@
 								<h4>${comentario.usuario.nombre}</h4>
 								<p>${comentario.descripcion}</p>
 							</div>
+							<c:if test="${usuarioActual.id == comentario.usuario.id}">
+								<div class="botones">
+				 				<a href="eliminar-comentario?id=${comentario.id}"
+								class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+								</div>
+							</c:if>
 						</div>
 					</c:forEach>
 				</c:if>
