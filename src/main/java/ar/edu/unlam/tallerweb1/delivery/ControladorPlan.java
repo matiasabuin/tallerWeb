@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
+import com.mercadopago.resources.Preference.AutoReturn;
+import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 import com.mercadopago.resources.datastructures.preference.Payer;
 
@@ -55,9 +57,14 @@ public class ControladorPlan {
             Item item2 = new Item();
             item2.setTitle("Adquirir Premium").setQuantity(1).setUnitPrice((float) planPremium.getPrecio());
             p2.appendItem(item2);
-            Payer payer = new Payer();
-            payer.setEmail(usuario.getEmail());
-            p2.setPayer(payer);
+            Payer payer2 = new Payer();
+            payer2.setEmail(usuario.getEmail());
+            p2.setPayer(payer2);
+            BackUrls backUrls2 = new BackUrls(
+                    "http://localhost:8080/proyecto-limpio-spring/adquirir-premium",
+                    "http://localhost:8080/proyecto-limpio-spring/editar-plan",
+                    "http://localhost:8080/proyecto-limpio-spring/editar-plan");
+            p2.setBackUrls(backUrls2);
             p2.setBinaryMode(true);
             preferenciaPremium = p2.save();
         }catch (MPException e){
@@ -73,9 +80,14 @@ public class ControladorPlan {
             Item item1 = new Item();
             item1.setTitle("Adquirir Basico").setQuantity(1).setUnitPrice((float)planBasico.getPrecio());
             p1.appendItem(item1);
-            Payer payer = new Payer();
-            payer.setEmail(usuario.getEmail());
-            p1.setPayer(payer);
+            Payer payer1 = new Payer();
+            payer1.setEmail(usuario.getEmail());
+            p1.setPayer(payer1);
+            BackUrls backUrls1 = new BackUrls(
+                    "http://localhost:8080/proyecto-limpio-spring/adquirir-basico",
+                    "http://localhost:8080/proyecto-limpio-spring/editar-plan",
+                    "http://localhost:8080/proyecto-limpio-spring/editar-plan");
+            p1.setBackUrls(backUrls1);
             p1.setBinaryMode(true);
             preferenciaBasico = p1.save();
         }catch (MPException e){
@@ -105,37 +117,34 @@ public class ControladorPlan {
 //		return new ModelAndView("redirect:/editar-plan");
 //	}
 	
-	@RequestMapping(path = "/adquirir-basico", method = RequestMethod.POST)
-	public ModelAndView adquirirBasico(@RequestParam(value = "payment_status") String estado, HttpServletRequest request) throws Exception {
+	@RequestMapping(path = "/adquirir-basico")
+	public ModelAndView adquirirBasico(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		Plan planBuscado = servicioPlan.ObtenerPlanBasico();
 		
-		if(estado.equals("approved")){
 		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
 		usuarioBuscado.setPlanAdquirido(usuarioplan);
 		servicioLogin.editarPerfil(usuarioBuscado);
 		request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
-		} 
 		
 		return new ModelAndView("redirect:/editar-plan");
 	}
 	
-	@RequestMapping(path = "/adquirir-premium", method = RequestMethod.POST)
-	public ModelAndView adquirirPremium(@RequestParam(value = "payment_status") String estado, HttpServletRequest request) throws Exception {
+	@RequestMapping(path = "/adquirir-premium")
+	public ModelAndView adquirirPremium(HttpServletRequest request) throws Exception {
 		
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		Plan planBuscado = servicioPlan.ObtenerPlanPremium();
-		
-		if(estado.equals("approved")){
+				
 		UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planBuscado, LocalDate.now().plusMonths(1));
 		usuarioBuscado.setPlanAdquirido(usuarioplan);
 		servicioLogin.editarPerfil(usuarioBuscado);
 		request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 		request.getSession().setAttribute("usuarioPlan", usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion());
-		}
 		
 		return new ModelAndView("redirect:/editar-plan");
 	}
+	
 }

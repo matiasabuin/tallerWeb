@@ -48,7 +48,7 @@
 				<br>
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion == 'Free'}">
-					<button class="btn-lg btn-secondary btn-block">Plan Actual</button>
+					<button class="activo-free">Plan activo</button>
 				</c:if>
 			</div>
 
@@ -68,20 +68,16 @@
 
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
-					<form action="adquirir-basico" method="POST">
-						<script
-							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-							data-preference-id="${preferenceBasico.id}"
-							data-button-label="Adquirir Basico">
-						</script>
-					</form>
+					<div class="text-center"><a href="${preferenceBasico.initPoint}" class="plan">Adquirir basico</a></div>
 				</c:if>
 
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion == 'Basico'}">
 					<h2 class="activo">Plan activo</h2>
 					<p class="vencimiento">
-						<strong>Vence:</strong>${usuarioActual.planAdquirido.fechaVencimiento}</p>
+						<strong>Vence:</strong>
+						${usuarioActual.planAdquirido.fechaVencimiento}
+					</p>
 				</c:if>
 			</div>
 
@@ -100,20 +96,16 @@
 
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
-					<form action="adquirir-premium" method="POST">
-						<script
-							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-							data-preference-id="${preferencePremium.id}"
-							data-button-label="Adquirir Premium">
-						</script>
-					</form>
+					<div class="text-center"><a href="${preferencePremium.initPoint}" class="plan">Adquirir premium</a></div>
 				</c:if>
 
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion == 'Premium'}">
 					<h2 class="activo">Plan activo</h2>
 					<p class="vencimiento">
-						<strong>Vence: </strong>${usuarioActual.planAdquirido.fechaVencimiento}</p>
+						<strong>Vence:</strong>
+						${usuarioActual.planAdquirido.fechaVencimiento}
+					</p>
 				</c:if>
 			</div>
 		</div>
