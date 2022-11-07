@@ -90,7 +90,8 @@ public class ControladorLogin {
 
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 			
-			if(LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
+			if(!usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion().equals("Free")
+					&& LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
 				
 				Notificacion notificacion = new Notificacion();
 				notificacion.setUsuario(usuarioBuscado);
