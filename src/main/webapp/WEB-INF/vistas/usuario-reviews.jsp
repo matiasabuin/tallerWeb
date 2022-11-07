@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Mis reviews</title>
+<title>Reviews de ${usuario.nombre}</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -26,14 +26,14 @@
 
 	<div class="container">
 		<div class="usuario-container">
-			<h3 style="text-align: center;">Mis Reviews</h3>
+			<h3 style="text-align: center;">Reviews de ${usuario.nombre}</h3>
 			<div>
 
 				<!-- LISTADO DE REVIEWS VACIA-->
 
 				<c:if test="${listaReviews.isEmpty() == true}">
 					<div class="comentario">
-						<h1 class="text-center">Todavía no has hecho ninguna review</h1>
+						<h1 class="text-center">Todavía no hay reviews</h1>
 					</div>
 				</c:if>
 
@@ -51,11 +51,13 @@
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
-										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="review-editar?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a>
+										<c:if test="${usuarioActual.id == review.usuario.id}"> 
+										<a href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+										</c:if>
 								</div>
 							</div>
 						</div>
@@ -72,11 +74,13 @@
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
-										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="review-editar?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a>
+										<c:if test="${usuarioActual.id == review.usuario.id}"> 
+										<a href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+										</c:if>
 								</div>
 							</div>
 						</div>
@@ -93,11 +97,13 @@
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
-										class="btn btn-primary button-agregarfavs mt-4">Ver</a> <a
-										href="review-editar?id=${review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver</a>
+										<c:if test="${usuarioActual.id == review.usuario.id}"> 
+										<a href="review-editar?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
 										href="eliminar-review?id=${review.id}"
 										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+										</c:if>
 								</div>
 							</div>
 						</div>

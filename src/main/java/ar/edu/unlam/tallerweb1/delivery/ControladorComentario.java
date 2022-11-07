@@ -4,9 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Comentario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
@@ -49,4 +51,15 @@ public class ControladorComentario {
 		servicioComentario.registrar(datosComentario);
 		return new ModelAndView("redirect:/review?id=" + datosComentario.getReview().getId());
 	}
+	
+	@RequestMapping(path = "/eliminar-comentario")
+	public ModelAndView eliminarComentario(@RequestParam("id") Integer id) {
+		
+		Comentario comentarioEncontrado = servicioComentario.getById(id);
+		
+		servicioComentario.eliminar(comentarioEncontrado);
+		
+		return new ModelAndView("redirect:/");
+	}
+	
 }

@@ -39,9 +39,11 @@
 						<div class="descripcion">
 							<h3>${review.pelicula.nombre}</h3>
 							<div class="flex-review">
-								<img src="images/${review.usuario.foto}">
-								<div style="margin-left: 1em;">
-									<h4>${review.usuario.nombre}</h4>
+							<a href ="perfil?id=${review.usuario.id}">
+								<img src="images/${review.usuario.foto}"></a>
+								<div>
+								<a href ="perfil?id=${review.usuario.id}">
+									<h4>${review.usuario.nombre}</h4></a>
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -61,9 +63,13 @@
 						<div class="descripcion">
 							<h3>${review.videojuego.nombre}</h3>
 							<div class="flex-review">
-								<img src="images/${review.usuario.foto}">
-								<div style="margin-left: 1em;">
-									<h4>${review.usuario.nombre}</h4>
+							<a href ="perfil?id=${review.usuario.id}">
+								<img src="images/${review.usuario.foto}"></a>
+								<br>
+								<div>
+								<a href ="perfil?id=${review.usuario.id}">
+									<h4>${review.usuario.nombre}</h4></a>
+									
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -81,9 +87,11 @@
 						<div class="descripcion">
 							<h3>${review.serie.nombre}</h3>
 							<div class="flex-review">
-								<img src="images/${review.usuario.foto}">
-								<div style="margin-left: 1em;">
-									<h4>${review.usuario.nombre}</h4>
+							<a href ="perfil?id=${review.usuario.id}">
+								<img src="images/${review.usuario.foto}"></a>
+								<div>
+								<a href ="perfil?id=${review.usuario.id}">
+									<h4>${review.usuario.nombre}</h4></a>
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -118,6 +126,12 @@
 								<h4>${comentario.usuario.nombre}</h4>
 								<p>${comentario.descripcion}</p>
 							</div>
+							<c:if test="${usuarioActual.id == comentario.usuario.id}">
+								<div class="botones">
+				 				<a href="eliminar-comentario?id=${comentario.id}"
+								class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+								</div>
+							</c:if>
 						</div>
 					</c:forEach>
 				</c:if>

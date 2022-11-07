@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosLogin;
 import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
@@ -43,7 +44,8 @@ public class ControladorLogin {
 	private ServicioNotificacion servicioNotificacion;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, ServicioNotificacion servicioNoticacion){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, 
+			ServicioUsuarioPlan servicioUsuarioPlan, ServicioNotificacion servicioNoticacion){
 		this.servicioLogin = servicioLogin;
 		this.servicioPlan= servicioPlan;
 		this.servicioUsuarioPlan = servicioUsuarioPlan;
@@ -73,6 +75,7 @@ public class ControladorLogin {
 	// El metodo recibe un objeto Usuario el que tiene los datos ingresados en el
 	// form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
+	
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
@@ -87,14 +90,22 @@ public class ControladorLogin {
 
 			request.getSession().setAttribute("usuarioActual", usuarioBuscado);
 			
-			if(LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
+			if(!usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion().equals("Free")
+					&& LocalDate.now().isAfter(usuarioBuscado.getPlanAdquirido().getFechaVencimiento())) {
+				
+				Notificacion notificacion = new Notificacion();
+				notificacion.setUsuario(usuarioBuscado);
+				notificacion.setMensaje("Tu plan " + usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion() 
+						+  " ha vencido el día " + usuarioBuscado.getPlanAdquirido().getFechaVencimiento());
+				servicioNotificacion.registrar(notificacion);
+				
 				Plan planFree = servicioPlan.ObtenerPlanFree();
 				UsuarioPlan usuarioplan = servicioUsuarioPlan.registrarUsuarioPlan(usuarioBuscado, planFree,
 											(usuarioBuscado.getPlanAdquirido().getFechaVencimiento()));
 				usuarioBuscado.setPlanAdquirido(usuarioplan);
 				servicioLogin.editarPerfil(usuarioBuscado);
 				request.getSession().setAttribute("usuarioPlan", usuarioplan);
-			}
+			} 
 		
 			Integer cantNotificacionesNoLeidas = servicioNotificacion.getAllByUserId(usuarioBuscado.getId()).size();
 			request.getSession().setAttribute("cantNotificaciones", cantNotificacionesNoLeidas);
@@ -106,6 +117,8 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("login", model);
 	}
+	
+
 
 	@RequestMapping(path = "/cerrar-sesion")
 	public ModelAndView cerrarSesion(HttpServletRequest request) {
@@ -163,6 +176,8 @@ public class ControladorLogin {
 		modelo.put("usuario", new Usuario());
 		
 		return new ModelAndView("registro-usuario", modelo);
+		
 	}
-
+	
+	
 }
