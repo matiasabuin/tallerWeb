@@ -58,8 +58,10 @@ public class ControladorSerie {
 	@RequestMapping(path = "/registro-serie")
 	public ModelAndView iraRegistroSerie(HttpServletRequest request) {
 		
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
 		if(request.getSession().getAttribute("usuarioActual") != null &&
-				request.getSession().getAttribute("usuarioPlan").equals("Premium")) {
+				usuario.getPlanAdquirido().getPlan().getDescripcion().equals("Premium")){
 
 		ModelMap modelo = new ModelMap();
 		Serie serie = new Serie();
