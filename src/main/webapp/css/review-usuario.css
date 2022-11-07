@@ -41,7 +41,6 @@ h4 {
 
 .descripcion {
 	margin-left: 1em;
-	position: relative;
 	width: 100%;
 }
 
@@ -89,10 +88,14 @@ textarea{
 }
 
 .flex-review{
-	display: flex;
 	flex-wrap: nowrap;
 	width: 100%;
 	margin: 1em auto;
+}
+
+.flex-review a{
+	
+	color: #ea377a;
 }
 
 .edit-desc{

@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
 import java.time.LocalDate;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
 
@@ -29,12 +31,15 @@ public class ControladorPlan {
 	private ServicioPlan servicioPlan;
 	private ServicioUsuarioPlan servicioUsuarioPlan;
 	private ServicioLogin servicioLogin;
+	private ServicioNotificacion servicioNotificacion;
 
 	@Autowired
-	public ControladorPlan(ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, ServicioLogin servicioLogin){
+	public ControladorPlan(ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, 
+			ServicioLogin servicioLogin, ServicioNotificacion servicioNoticacion){
 		this.servicioPlan = servicioPlan;
 		this.servicioUsuarioPlan = servicioUsuarioPlan;
 		this.servicioLogin = servicioLogin;
+		this.servicioNotificacion = servicioNoticacion;
 	}
 	
 	@RequestMapping("/editar-plan")
@@ -138,4 +143,6 @@ public class ControladorPlan {
 		
 		return new ModelAndView("redirect:/editar-plan");
 	}
+	
 }
+

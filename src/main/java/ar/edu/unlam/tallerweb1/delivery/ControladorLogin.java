@@ -44,7 +44,8 @@ public class ControladorLogin {
 	private ServicioNotificacion servicioNotificacion;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan, ServicioNotificacion servicioNoticacion){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, 
+			ServicioUsuarioPlan servicioUsuarioPlan, ServicioNotificacion servicioNoticacion){
 		this.servicioLogin = servicioLogin;
 		this.servicioPlan= servicioPlan;
 		this.servicioUsuarioPlan = servicioUsuarioPlan;
@@ -74,6 +75,7 @@ public class ControladorLogin {
 	// El metodo recibe un objeto Usuario el que tiene los datos ingresados en el
 	// form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
+	
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
@@ -115,6 +117,8 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("login", model);
 	}
+	
+
 
 	@RequestMapping(path = "/cerrar-sesion")
 	public ModelAndView cerrarSesion(HttpServletRequest request) {
@@ -172,6 +176,8 @@ public class ControladorLogin {
 		modelo.put("usuario", new Usuario());
 		
 		return new ModelAndView("registro-usuario", modelo);
+		
 	}
-
+	
+	
 }

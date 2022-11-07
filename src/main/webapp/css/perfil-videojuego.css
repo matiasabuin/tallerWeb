@@ -170,3 +170,12 @@ textarea {
 	color: #ea377a;
 	margin-left: 1em;
 }
+
+.comentario a{
+	width: 100px;
+	color: #ea377a;
+}
+
+.comentario img{
+	width: 100px;
+}

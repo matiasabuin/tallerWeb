@@ -32,22 +32,23 @@
 				<div class="row">
 
 					<div class="col-4" style="text-align: center;">
-						<img class="usuarioImagen mx-5" src="images/${usuarioActual.foto}">
+						<img class="usuarioImagen mx-5" src="images/${usuario.foto}">
 						<div class="biografia">
-							<h4 class="my-2" style="margin: auto;">${usuarioActual.nombre}</h4>
-							<p class="my-2 mx-3">${usuarioActual.biografia}</p>
+							<h4 class="my-2" style="margin: auto;">${usuario.nombre}</h4>
+							<p class="my-2 mx-3">${usuario.biografia}</p>
 						</div>
-						<a href="editar-perfil" class="btn btn-primary my-2 ml-4 button-agregarfavs"> Editar
-							Perfil </a> <a href="reviews" class="btn btn-primary my-2 mx-2 button-agregarfavs"> Ver
-							reviews </a>
-
+						<c:if test="${usuarioActual.id == usuario.id}">
+							<a href="editar-perfil" class="btn btn-primary my-2 ml-4 button-agregarfavs"> Editar Perfil </a>
+						</c:if> 
+							<a href="reviews?id=${usuario.id}" class="btn btn-primary my-2 mx-2 button-agregarfavs"> Ver reviews </a>
+					
 					</div>
 					<div class="col-8 favPerfil-container">
 						<c:if test="${listaFavs[0] != null}">
 							<h1>
 								Favoritos
 								<c:if test="${listaFavs[3] != null}">
-									<a href="lista-completa" class="verMasLista">Ver todos</a>
+									<a href="lista-completa?id=${usuario.id}" class="verMasLista">Ver todos</a>
 								</c:if>
 							</h1>
 						</c:if>

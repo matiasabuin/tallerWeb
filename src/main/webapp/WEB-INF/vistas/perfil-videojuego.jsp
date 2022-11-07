@@ -131,9 +131,11 @@
 			<c:if test="${listaReviews != null}">
 				<c:forEach var="review" items="${listaReviews}">
 					<div class="comentario">
-						<img src="images/${review.usuario.foto}">
+					<a href ="perfil?id=${review.usuario.id}">
+						<img src="images/${review.usuario.foto}"></a>
 						<div class="datosreview">
-							<h4>${review.usuario.nombre}</h4>
+						<a href ="perfil?id=${review.usuario.id}">
+							<h4>${review.usuario.nombre}</h4></a>
 							<p>${review.descripcion}</p>
 							<div class="vistareview">
 								<a href="review?id=${review.id}"><i

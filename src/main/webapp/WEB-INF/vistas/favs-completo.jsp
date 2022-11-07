@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Favoritos-Lista</title>
+<title>Favoritos de ${usuario.nombre}</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -32,7 +32,7 @@
 					<div class="container"></div>
 					<div class="row">
 						<div class="col-12 my-4">
-							<h4 class="nameList">Mis favoritos</h4>
+							<h4 class="nameList">Favoritos de ${usuario.nombre}</h4>
 						</div>
 						<br>
 						<div class="col-12">
@@ -41,14 +41,16 @@
 									<c:if test="${favoritos.pelicula != null}">
 										<div class="row">
 											<div class="col-md-4">
-												<img src="images/${favoritos.pelicula.poster}">
+											<a href="perfil-pelicula?id=${favoritos.pelicula.id}"
+														class="verPefil">
+												<img src="images/${favoritos.pelicula.poster}"></a>
 											</div>
 											<div class="col-md-8">
+											<a href="perfil-pelicula?id=${favoritos.pelicula.id}"
+														class="verPefil">
 												<p class="titulo">${favoritos.pelicula.nombre}
-													</p>
+													</p></a>
 												<p class="descripcion">${favoritos.pelicula.sinopsis}
-													<a href="perfil-pelicula?id=${favoritos.pelicula.id}"
-														class="verPefil">Ver perfil</a>
 												</p>
 											</div>
 										</div>
@@ -59,14 +61,17 @@
 									<c:if test="${favoritos.videojuego != null}">
 										<div class="row">
 											<div class="col-md-4">
+											<a href="videojuego?id=${favoritos.videojuego.id}"
+														class="verPefil">
 												<img src="images/${favoritos.videojuego.poster}">
+												</a>
 											</div>
 											<div class="col-md-8">
+											<a href="videojuego?id=${favoritos.videojuego.id}"
+														class="verPefil">
 												<p class="titulo">${favoritos.videojuego.nombre}
-													</p>
+													</p></a>
 												<p class="descripcion">${favoritos.videojuego.sinopsis}
-													<a href="videojuego?id=${favoritos.videojuego.id}"
-														class="verPefil">Ver perfil</a>
 												</p>
 											</div>
 										</div>
@@ -77,15 +82,17 @@
 									<c:if test="${favoritos.serie != null}">
 										<div class="row">
 											<div class="col-md-4">
-												<img src="images/${favoritos.serie.poster}">
+											<a href="perfil-serie?id=${favoritos.serie.id}"
+														class="verPefil">
+												<img src="images/${favoritos.serie.poster}"></a>
 											</div>
 											<div class="col-md-8">
+											<a href="perfil-serie?id=${favoritos.serie.id}" 
+														class="verPefil">
 												<p class="titulo">${favoritos.serie.nombre}
+													</p></a>
+													<p class="descripcion">${favoritos.serie.sinopsis}
 													</p>
-												<p class="descripcion">${favoritos.serie.sinopsis}
-													<a href="perfil-serie?id=${favoritos.serie.id}"
-														class="verPefil">Ver perfil</a>
-												</p>
 											</div>
 										</div>
 										<br>
@@ -97,27 +104,6 @@
 
 						</div>
 
-						<!-- <ul class="list-group list-group-horizontal">
-						<li class="list-group-item">An item</li>
-						<li class="list-group-item">A dsadasd item</li>
-						<li class="list-group-item">A third item</li>
-					</ul>
-					<ul class="list-group list-group-horizontal">
-						<li class="list-group-item">An item</li>
-						<li class="list-group-item">A second item</li>
-						<li class="list-group-item">A third item</li>
-					</ul>
-					<ul class="list-group list-group-horizontal">
-						<li class="list-group-item">An item</li>
-						<li class="list-group-item">A second item</li>
-						<li class="list-group-item">A third item</li>
-					</ul>
-					<ul class="list-group list-group-horizontal">
-						<li class="list-group-item">An item</li>
-						<li class="list-group-item">A second item</li>
-						<li class="list-group-item">A third item</li> -->
-						<!-- 					</ul>
- -->
 					</div>
 				</main>
 			</div>
@@ -125,8 +111,8 @@
 
 			<!-- ESTE DIV ES PARA LOS FULTROS	 -->
 			<div class="col-md-2 my-4">
-				<a href="perfil"><img class="fotoDeUsuarioDeLista" src="images/${usuarioActual.foto}"></a>
-				<p>${usuarioActual.nombre}</p>
+				<a href="perfil?id=${usuario.id}"><img class="fotoDeUsuarioDeLista" src="images/${usuario.foto}">
+				<p>${usuario.nombre}</p></a>
 			</div>
 												
 		</div>

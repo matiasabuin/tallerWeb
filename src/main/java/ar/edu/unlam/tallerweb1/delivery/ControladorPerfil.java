@@ -46,15 +46,18 @@ public class ControladorPerfil {
 	}
 
 	@RequestMapping("/perfil")
-	public ModelAndView irAPerfil(HttpServletRequest request) {
+	public ModelAndView irAPerfil(@RequestParam("id") Integer id, HttpServletRequest request) {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
-		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Favorito> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
+		Usuario usuarioPerfil = servicioLogin.getById(id);
+		
+		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 
+		modelo.addAttribute("usuario", usuarioPerfil);
 		modelo.addAttribute("listaFavs", listas);
+		
 		return new ModelAndView("perfil-usuario", modelo);
 	}
 
@@ -90,18 +93,20 @@ public class ControladorPerfil {
 	}
 
 	@RequestMapping("/reviews")
-	public ModelAndView verReviews(HttpServletRequest request) {
+	public ModelAndView verReviews(@RequestParam("id") Integer id, HttpServletRequest request) {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 
 		ModelMap modelo = new ModelMap();
-		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
-		List<Review> reviewsCache = servicioReview.getAllByUserId(usuarioEncontrado.getId());
+		Usuario usuarioPerfil = servicioLogin.getById(id);
+		List<Review> reviewsCache = servicioReview.getAllByUserId(usuarioPerfil.getId());
+		
 		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
 		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 
+		modelo.addAttribute("usuario", usuarioPerfil);
 		modelo.addAttribute("listaReviews", reviews);
 		return new ModelAndView("usuario-reviews", modelo);
 	}
@@ -124,14 +129,16 @@ public class ControladorPerfil {
 	}
 
 	@RequestMapping(path = "/lista-completa")
-	public ModelAndView irAListaFav(HttpServletRequest request) {
+	public ModelAndView irAListaFav(@RequestParam("id") Integer id, HttpServletRequest request) {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
-		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		List<Favorito> listas = servicioListas.getAllByUserId(usuarioEncontrado.getId());
-
+		
+		Usuario usuarioPerfil = servicioLogin.getById(id);
+		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
+		
+		modelo.addAttribute("usuario", usuarioPerfil);
 		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("favs-completo", modelo);
 
