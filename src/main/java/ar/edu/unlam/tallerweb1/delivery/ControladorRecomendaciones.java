@@ -61,19 +61,23 @@ public class ControladorRecomendaciones {
 	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
 			HttpServletRequest request) {
 
+		ModelMap model = new ModelMap();
+		
 		if(horas != null) {
 		
-		request.getSession().setAttribute("horasRecomendacion", horas);
+		model.addAttribute("horasRecomendacion", horas);
+		
+		Integer minutos = horas * 60;
 		
 		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorTiempo(horas);
-		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(horas);
-		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorTiempo(horas);
+		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(minutos);
+		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorTiempo(minutos);
 		
 		request.getSession().setAttribute("peliculasRecomendadas", peliculasRecomendadas);
 		request.getSession().setAttribute("videojuegosRecomendados", videojuegosRecomendados);
 		request.getSession().setAttribute("seriesRecomendadas", seriesRecomendadas);
 		
-		return irARecomendaciones(request);
+		return new ModelAndView("recomendaciones", model);
 		}
 		
 		return new ModelAndView("redirect:/home");
