@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
@@ -32,8 +31,6 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionVideojuegoNoEncontrado;
 
 @Controller
@@ -62,11 +59,6 @@ public class ControladorVideojuego {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-
-//		if (request.getSession().getAttribute("usuarioActual") != null) {
-//		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
-//		usuarioBuscado.getHistorial().add(servicioVideojuego.consultarVideojuego(id));
-//	}
 
 		Videojuego videojuego;
 		try {

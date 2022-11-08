@@ -1,5 +1,9 @@
 @charset "ISO-8859-1";
 
+a:hover{
+	text-decoration: none;
+}
+
 h3 {
 	margin-bottom: 1em;
 }
