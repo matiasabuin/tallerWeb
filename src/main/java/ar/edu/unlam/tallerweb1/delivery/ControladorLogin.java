@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plan;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.UsuarioPlan;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPlan;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioUsuarioPlan;
@@ -39,12 +40,15 @@ public class ControladorLogin {
 	private ServicioLogin servicioLogin;
 	private ServicioPlan servicioPlan;
 	private ServicioUsuarioPlan servicioUsuarioPlan;
+	private ServicioHistorialUsuario servicioHistorial;
+
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioPlan servicioPlan, ServicioUsuarioPlan servicioUsuarioPlan,ServicioHistorialUsuario servicioHisrotial){
 		this.servicioLogin = servicioLogin;
 		this.servicioPlan= servicioPlan;
 		this.servicioUsuarioPlan = servicioUsuarioPlan;
+		this.servicioHistorial=servicioHisrotial;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es
@@ -130,6 +134,9 @@ public class ControladorLogin {
 					(usuario, planBuscado, LocalDate.now().minusDays(1));
 			usuario.setPlanAdquirido(usuarioplan);
 			servicioLogin.editarPerfil(usuario);
+			servicioHistorial.registrarHistorial(usuario);
+			usuario.setHistorialUsuario(servicioHistorial.getByUserId(usuario.getId()));
+
 			
 		} catch (ExceptionRegistroCamposVacios e){
 			modelo.put("errorCampos", e.getMessage());
@@ -144,6 +151,7 @@ public class ControladorLogin {
 			modelo.put("usuario", datosRegistro);
 			return new ModelAndView("registro-usuario", modelo);
 		}
+		
 
 		return new ModelAndView("redirect:/login");
 	}

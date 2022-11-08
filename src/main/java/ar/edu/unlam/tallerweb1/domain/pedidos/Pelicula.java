@@ -38,6 +38,9 @@ public class Pelicula extends Contenido {
 
 	@OneToMany(mappedBy = "pelicula")
 	private List<Favorito> favoritos = new ArrayList<Favorito>();
+	
+	@ManyToMany(mappedBy = "peliculas")
+	private List<Historial> historiales = new ArrayList<Historial>();
 
 	public List<Favorito> getFavoritos() {
 		return favoritos;
@@ -94,4 +97,12 @@ public class Pelicula extends Contenido {
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
+	public List<Historial> getHistoriales() {
+		return historiales;
+	}
+	public void setHistoriales(List<Historial> historiales) {
+		this.historiales = historiales;
+	}
+	
+	
 }

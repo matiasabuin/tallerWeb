@@ -29,6 +29,14 @@
 .verPefil:hover{
     color:#8F214A;
 }
+.fav-completaVolver{
+    color:#ea377a;
+	
+}
+.fav-completaVolver:hover{
+	color:#ea377a;
+	
+}
 .fotoDeUsuarioDeLista{
 	 width: 30%;
 }

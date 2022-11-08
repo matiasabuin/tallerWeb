@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.delivery.SpringTest;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 
 import org.junit.Test;

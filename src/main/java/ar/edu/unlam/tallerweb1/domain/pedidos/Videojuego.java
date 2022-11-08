@@ -32,6 +32,9 @@ public class Videojuego extends Contenido{
 	@JoinTable(name = "videojuego_plataforma", joinColumns = @JoinColumn(name="videojuego_id"), inverseJoinColumns = @JoinColumn(name="plataforma_id"))
 	private List<Plataforma> plataformas= new ArrayList<Plataforma>();
 
+	@ManyToMany(mappedBy = "videojuegos")
+	private List<Historial> historiales = new ArrayList<Historial>();
+	
 	@OneToMany(mappedBy = "videojuego")
 	private Set<Review> reviews = new HashSet<Review>();
 	

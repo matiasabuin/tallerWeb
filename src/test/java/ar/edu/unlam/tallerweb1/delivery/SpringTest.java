@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1;
+package ar.edu.unlam.tallerweb1.delivery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

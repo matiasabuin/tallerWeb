@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Historial;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
@@ -28,6 +29,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
@@ -35,124 +37,136 @@ import ar.edu.unlam.tallerweb1.excepciones.ExceptionImagenNoIngresada;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
 
 @Controller
-public class ControladorPelicula{
+public class ControladorPelicula {
 
 	private ServicioPelicula servicioPelicula;
 	private ServicioReview servicioReview;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 	private ServicioFavoritos servicioFav;
 	private ServicioFiles servicioFiles;
-
+	private ServicioHistorialUsuario servicioHistorial;
 
 	@Autowired
-	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview, ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioFavoritos servicioFav,ServicioFiles servicioFiles) {
+	public ControladorPelicula(ServicioPelicula servicioPelicula, ServicioReview servicioReview,
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioFavoritos servicioFav,
+			ServicioFiles servicioFiles, ServicioHistorialUsuario servicioHisrotial) {
 		this.servicioPelicula = servicioPelicula;
 		this.servicioReview = servicioReview;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
-		this.servicioFav= servicioFav;
-		this.servicioFiles=servicioFiles;
+		this.servicioFav = servicioFav;
+		this.servicioFiles = servicioFiles;
+		this.servicioHistorial = servicioHisrotial;
 	}
 
 	@RequestMapping(path = "/registro-pelicula")
 	public ModelAndView iraRegistroPeliSerie(HttpServletRequest request) {
-		
-		if(request.getSession().getAttribute("usuarioActual") != null &&
-				request.getSession().getAttribute("usuarioPlan").equals("Premium")){
-			
+
+		if (request.getSession().getAttribute("usuarioActual") != null
+				&& request.getSession().getAttribute("usuarioPlan").equals("Premium")) {
+
 			ModelMap modelo = new ModelMap();
 			Pelicula pelicula = new Pelicula();
-			
+
 			List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
 			List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
 
 			modelo.addAttribute("listaGeneros", generos);
 			modelo.addAttribute("listaPlataformas", plataformas);
 			modelo.put("datosPelicula", pelicula);
-			
-			return new ModelAndView("registro-pelicula", modelo);		
+
+			return new ModelAndView("registro-pelicula", modelo);
 		}
-		
+
 		return new ModelAndView("redirect:/home");
 	}
-	
+
 	@InitBinder
-    protected void initBinderGenero(WebDataBinder binder) throws Exception{
+	protected void initBinderGenero(WebDataBinder binder) throws Exception {
 		List<Genero> generosCache = servicioGeneroPlataforma.obtenerGeneros();
-        binder.registerCustomEditor(List.class,"generos", new CustomCollectionEditor(List.class){
-            protected Object convertElement(Object element){
-                if (element instanceof String) {
-                    Genero generos = servicioGeneroPlataforma.getGeneroById(Integer.parseInt(element.toString()));
-                    return generos;
-                }
-                return null;
-            }
-        });
-    }
-	
+		binder.registerCustomEditor(List.class, "generos", new CustomCollectionEditor(List.class) {
+			protected Object convertElement(Object element) {
+				if (element instanceof String) {
+					Genero generos = servicioGeneroPlataforma.getGeneroById(Integer.parseInt(element.toString()));
+					return generos;
+				}
+				return null;
+			}
+		});
+	}
+
 	@InitBinder
-    protected void initBinderPlataforma(WebDataBinder binder) throws Exception{
+	protected void initBinderPlataforma(WebDataBinder binder) throws Exception {
 		List<Plataforma> plataformasCache = servicioGeneroPlataforma.obtenerPlataformas();
-        binder.registerCustomEditor(List.class,"plataformas", new CustomCollectionEditor(List.class){
-            protected Object convertElement(Object element){
-                if (element instanceof String) {
-                    Plataforma plataformas = servicioGeneroPlataforma.getPlataformaById(Integer.parseInt(element.toString()));
-                    return plataformas;
-                }
-                return null;
-            }
-        });
-    }
+		binder.registerCustomEditor(List.class, "plataformas", new CustomCollectionEditor(List.class) {
+			protected Object convertElement(Object element) {
+				if (element instanceof String) {
+					Plataforma plataformas = servicioGeneroPlataforma
+							.getPlataformaById(Integer.parseInt(element.toString()));
+					return plataformas;
+				}
+				return null;
+			}
+		});
+	}
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
-	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
-	
-			servicioFiles.uploadImage(file);
-				
-		    datosPelicula.setPoster(file.getOriginalFilename());
+	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula,
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
 
-			Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
+		servicioFiles.uploadImage(file);
 
-			return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
-		
+		datosPelicula.setPoster(file.getOriginalFilename());
+
+		Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
+
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
+
 	}
 
 	@RequestMapping("/perfil-pelicula")
-	public ModelAndView VerPerfilPeli(@RequestParam("id") Integer id, HttpServletRequest request) {
+	public ModelAndView VerPerfilPeli(@RequestParam("id") Integer id, HttpServletRequest request)
+			throws ExceptionPeliculaNoEncontrada {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
+
 		Pelicula pelicula;
 		try {
 			pelicula = servicioPelicula.consultarPelicula(id);
 		} catch (ExceptionPeliculaNoEncontrada e) {
 			return new ModelAndView("redirect:/home");
 		}
-				
-		if(usuarioEncontrado != null) {
+
+		if (usuarioEncontrado != null) {
 			Review reviewEncontrada = servicioReview.getByUserAndPeliculaID(usuarioEncontrado.getId(), id);
-			if(reviewEncontrada.getUsuario() != null) {
+			if (reviewEncontrada.getUsuario() != null) {
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			} else {
 				modelo.addAttribute("datosReview", reviewEncontrada);
 			}
 		}
 
-		Favorito fav=new Favorito();
+		Favorito fav = new Favorito();
 
 		List<Review> reviewsCache = servicioReview.getAllByPeliculaId(id);
 		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
 		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
-		
-		if(usuarioEncontrado != null) {
-		List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
-		modelo.addAttribute("listaFavs", listas);
+
+		if (usuarioEncontrado != null) {
+			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			if (servicioHistorial.getByUserId(usuarioEncontrado.getId()).buscarPeliEnHistorial(id) == null) {
+				Historial historial=servicioHistorial.getByUserId(usuarioEncontrado.getId());
+				historial.getPeliculas().add(servicioPelicula.consultarPelicula(id));
+				servicioHistorial.update(historial);
+				
+			}
+			modelo.addAttribute("listaFavs", listas);
 		}
-		
+
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
-		modelo.addAttribute("datosLista",fav);
-		
+		modelo.addAttribute("datosLista", fav);
+
 		return new ModelAndView("perfil-pelicula", modelo);
 	}
 }
