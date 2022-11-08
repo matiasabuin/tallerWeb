@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Historial;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
@@ -42,19 +44,21 @@ public class ControladorVideojuego {
 	private ServicioReview servicioReview;
 	private ServicioFiles servicioFiles;
 	private ServicioFavoritos servicioFav;
+	private ServicioHistorialUsuario servicioHistorial;
 
 	@Autowired
 	public ControladorVideojuego(ServicioVideojuego servicioVideojuego,
-			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles, ServicioFavoritos servicioFav) {
+			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioReview servicioReview, ServicioFiles servicioFiles, ServicioFavoritos servicioFav, ServicioHistorialUsuario servicioHisrotial) {
 		this.servicioVideojuego = servicioVideojuego;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 		this.servicioReview = servicioReview;
 		this.servicioFiles = servicioFiles;
 		this.servicioFav = servicioFav;
+		this.servicioHistorial=servicioHisrotial;
 	}
 
 	@RequestMapping("/videojuego")
-	public ModelAndView iraVideojuego(@RequestParam("id") Integer id, HttpServletRequest request) {
+	public ModelAndView iraVideojuego(@RequestParam("id") Integer id, HttpServletRequest request) throws ExceptionVideojuegoNoEncontrado {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
@@ -86,6 +90,11 @@ public class ControladorVideojuego {
 		
 		if(usuarioEncontrado != null) {
 			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			if (servicioHistorial.getByUserId(usuarioEncontrado.getId()).buscarVideojuegoEnHistorial(id) == null) {
+				Historial historial=servicioHistorial.getByUserId(usuarioEncontrado.getId());
+				historial.getVideojuegos().add(servicioVideojuego.consultarVideojuego(id));
+				servicioHistorial.update(historial);
+			}
 			modelo.addAttribute("listaFavs", listas);
 		}
 

@@ -3,23 +3,18 @@ package ar.edu.unlam.tallerweb1.domain.pedidos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 @MappedSuperclass
 public class Contenido {
@@ -39,8 +34,8 @@ public class Contenido {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaEstreno;
 
-//	@OneToMany(mappedBy = "contenido")
-//	private Historial historial;
+//	@ManyToMany(mappedBy = "contenidos")
+//	private List<Historial> historiales = new ArrayList<Historial>();
 
 	public Integer getId() {
 		return id;
@@ -78,4 +73,12 @@ public class Contenido {
 	public void setFechaEstreno(LocalDate fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
 	}
+//	public List<Historial> getHistoriales() {
+//		return historiales;
+//	}
+//	public void setHistoriales(List<Historial> historiales) {
+//		this.historiales = historiales;
+//	}
+	
+	
 }

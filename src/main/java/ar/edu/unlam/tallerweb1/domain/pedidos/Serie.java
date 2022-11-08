@@ -35,6 +35,9 @@ public class Serie extends Contenido {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "serie_plataforma", joinColumns = @JoinColumn(name = "serie_id"), inverseJoinColumns = @JoinColumn(name = "plataforma_id"))
 	private List<Plataforma> plataformas = new ArrayList<Plataforma>();
+	
+	@ManyToMany(mappedBy = "series")
+	private List<Historial> historiales = new ArrayList<Historial>();
 
 	@OneToMany(mappedBy = "serie")
 	private Set<Review> reviews = new HashSet<Review>();

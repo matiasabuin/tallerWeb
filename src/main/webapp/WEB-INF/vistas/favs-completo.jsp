@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="css/listaCompleta.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script src="https://kit.fontawesome.com/ed06e9b771.js"
+	crossorigin="anonymous"></script>
 
 </head>
 
@@ -113,6 +115,9 @@
 			<div class="col-md-2 my-4">
 				<a href="perfil?id=${usuario.id}"><img class="fotoDeUsuarioDeLista" src="images/${usuario.foto}">
 				<p>${usuario.nombre}</p></a>
+				<a href="perfil?id=${usuario.id}" class="fav-completaVolver">
+			<i class="fa-solid fa-arrow-left-long"></i>	Volver atras
+				</a>
 			</div>
 												
 		</div>

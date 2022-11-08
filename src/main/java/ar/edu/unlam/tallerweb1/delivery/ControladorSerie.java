@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Historial;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
@@ -28,6 +29,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
@@ -42,16 +44,18 @@ public class ControladorSerie {
 	private ServicioReview servicioReview;
 	private ServicioGeneroPlataforma servicioGeneroPlataforma;
 	private ServicioFiles servicioFiles;
+	private ServicioHistorialUsuario servicioHistorial;
 
 	@Autowired
 	public ControladorSerie(ServicioSerie servicioSerie, ServicioReview servicioReview,
 			ServicioGeneroPlataforma servicioGeneroPlataforma, ServicioFavoritos servicioFav,
-			ServicioFiles servicioFiles) {
+			ServicioFiles servicioFiles, ServicioHistorialUsuario servicioHisrotial) {
 		this.servicioSerie = servicioSerie;
 		this.servicioReview = servicioReview;
 		this.servicioGeneroPlataforma = servicioGeneroPlataforma;
 		this.servicioFav = servicioFav;
 		this.servicioFiles = servicioFiles;
+		this.servicioHistorial = servicioHisrotial;
 
 	}
 
@@ -63,17 +67,17 @@ public class ControladorSerie {
 		if(request.getSession().getAttribute("usuarioActual") != null &&
 				usuario.getPlanAdquirido().getPlan().getDescripcion().equals("Premium")){
 
-		ModelMap modelo = new ModelMap();
-		Serie serie = new Serie();
+			ModelMap modelo = new ModelMap();
+			Serie serie = new Serie();
 
-		List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
-		List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
+			List<Genero> generos = servicioGeneroPlataforma.obtenerGeneros();
+			List<Plataforma> plataformas = servicioGeneroPlataforma.obtenerPlataformas();
 
-		modelo.addAttribute("listaGeneros", generos);
-		modelo.addAttribute("listaPlataformas", plataformas);
-		modelo.put("datosSerie", serie);
-		
-		return new ModelAndView("registro-serie", modelo);
+			modelo.addAttribute("listaGeneros", generos);
+			modelo.addAttribute("listaPlataformas", plataformas);
+			modelo.put("datosSerie", serie);
+
+			return new ModelAndView("registro-serie", modelo);
 		}
 		return new ModelAndView("redirect:/home");
 	}
@@ -110,24 +114,25 @@ public class ControladorSerie {
 	@RequestMapping(path = "/registrar-serie", method = RequestMethod.POST)
 	public ModelAndView registrarSerie(@ModelAttribute("datosSerie") Serie datosSerie,
 			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
-		
+
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
-		
+
 		servicioFiles.uploadImage(file);
 		datosSerie.setPoster(file.getOriginalFilename());
-		
+
 		Serie serie = servicioSerie.registrarSerie(datosSerie);
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}
 
 	@RequestMapping("/perfil-serie")
-	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request) {
+	public ModelAndView VerPerfilSerie(@RequestParam("id") Integer id, HttpServletRequest request)
+			throws ExceptionSerieNoEncontrada {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
+
 		Serie serie;
 		try {
 			serie = servicioSerie.consultarSerie(id);
@@ -147,9 +152,14 @@ public class ControladorSerie {
 		List<Review> reviewsCache = servicioReview.getAllBySerieId(id);
 		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
 		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
-		
-		if(usuarioEncontrado != null) {
+
+		if (usuarioEncontrado != null) {
 			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());
+			if (servicioHistorial.getByUserId(usuarioEncontrado.getId()).buscarSerieEnHistorial(id) == null) {
+				Historial historial=servicioHistorial.getByUserId(usuarioEncontrado.getId());
+				historial.getSeries().add(servicioSerie.consultarSerie(id));
+				servicioHistorial.update(historial);
+			}
 			modelo.addAttribute("listaFavs", listas);
 		}
 

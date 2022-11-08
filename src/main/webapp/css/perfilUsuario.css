@@ -49,6 +49,11 @@ h4 {
 .verMasLista:hover {
 	color: #8F214A;
 }
+.MSGNoHayActividad{
+	color: #badefc;
+	text-align: center;
+	
+}
 
 .noHayFav {
 	color: #badefc;

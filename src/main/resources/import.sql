@@ -27,11 +27,23 @@ insert into usuario (id, email, password, nombre, biografia, foto) values('3', '
 insert into usuario (id, email, password, nombre, biografia, foto) values('4', 'premium2@gmail.com', '123', 'premium 2', 'hola soy un usuario premium 2', 'perfil.jpg')
 insert into usuario (id, email, password, nombre, biografia, foto) values('5', 'premium3@gmail.com', '123', 'premium 3', 'hola soy un usuario premium 3', 'perfil.jpg')
 
+insert into historial(id, usuario_id) values ('1','1');
+insert into historial(id, usuario_id) values ('2','2');
+insert into historial(id, usuario_id) values ('3','3');
+insert into historial(id, usuario_id) values ('4','4');
+insert into historial(id, usuario_id) values ('5','5');
+
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('1', '1', '1', '2022-01-01')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('2', '2', '2', '2022-11-15')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('3', '3', '3', '2022-12-05')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('4', '3', '4', '2022-11-15')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('5', '3', '5', '2022-11-04')
+
+update usuario set historial_id = 1 where id = 1
+update usuario set historial_id = 2 where id = 2
+update usuario set historial_id = 3 where id = 3
+update usuario set historial_id = 4 where id = 4
+update usuario set historial_id = 5 where id = 5
 
 update usuario set planAdquirido_id = 1 where id = 1
 update usuario set planAdquirido_id = 2 where id = 2

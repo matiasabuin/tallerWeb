@@ -30,7 +30,7 @@
 		<div class="d-flex justify-content-between">
 
 			<div class="recomendaciones-container plan-free">
-				<h1>Plan Gratuito</h1>
+				<h1 class="nombrePlan">Plan Gratuito</h1>
 				<p>
 					&iexcl;Tienes acceso a la <strong>visualización </strong> de:
 				</p>
@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="recomendaciones-container">
-				<h1>Plan Básico</h1>
+				<h1 class="nombrePlan">Plan Básico</h1>
 				<p>
 					&iexcl;<strong>Comenta</strong> tu opinión sobre lo que viste!
 				</p>
@@ -82,7 +82,7 @@
 			</div>
 
 			<div class="recomendaciones-container">
-				<h1>Plan Premium</h1>
+				<h1 class="nombrePlan">Plan Premium</h1>
 				<p>
 					<strong>Registra</strong> a nuestra pagina:
 				</p>

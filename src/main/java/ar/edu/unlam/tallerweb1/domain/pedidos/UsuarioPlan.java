@@ -21,7 +21,7 @@ public class UsuarioPlan {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	
+
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="plan_id")
 	private Plan plan;

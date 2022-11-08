@@ -2,9 +2,13 @@ package ar.edu.unlam.tallerweb1.delivery;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
@@ -33,16 +37,21 @@ public class ControladorPerfil {
 	private ServicioLogin servicioLogin;
 	private ServicioFiles servicioFiles;
 	private ServicioReview servicioReview;
-	private ServicioFavoritos servicioListas;
 	private ServicioNotificacion servicioNotificacion;
+	private ServicioHistorialUsuario servicioHistorial;
+	private ServicioFavoritos servicioListas;
 
 	@Autowired
-	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, ServicioReview servicioReview, ServicioFavoritos servicioListas, ServicioNotificacion servicioNotificacion) {
+	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, 
+			ServicioReview servicioReview, ServicioFavoritos servicioListas, 
+			ServicioNotificacion servicioNotificacion, ServicioHistorialUsuario servicioHisrotial) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
 		this.servicioListas = servicioListas;
 		this.servicioNotificacion = servicioNotificacion;
+		this.servicioHistorial=servicioHisrotial;
+
 	}
 
 	@RequestMapping("/perfil")
@@ -51,11 +60,28 @@ public class ControladorPerfil {
 			return new ModelAndView("redirect:/home");
 		}
 		ModelMap modelo = new ModelMap();
+		
 		Usuario usuarioPerfil = servicioLogin.getById(id);
 		
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 
 		modelo.addAttribute("usuario", usuarioPerfil);
+		
+		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		List<Pelicula> cacheHistorialPeli=servicioHistorial.getByUserId(usuarioActual.getId()).getPeliculas();
+		List<Pelicula> historialPeli=servicioHistorial.getByUserId(usuarioActual.getId()).invertirListaDePeliculas(cacheHistorialPeli);
+		
+		List<Serie> cacheHistorialSeries=servicioHistorial.getByUserId(usuarioActual.getId()).getSeries();
+		List<Serie> historialSeries=servicioHistorial.getByUserId(usuarioActual.getId()).invertirListaDeSeries(cacheHistorialSeries);
+
+		List<Videojuego> cacheHistorialVideoJ=servicioHistorial.getByUserId(usuarioActual.getId()).getVideojuegos();
+		List<Videojuego> historialVideoJ=servicioHistorial.getByUserId(usuarioActual.getId()).invertirListaDeVideojuegos(cacheHistorialVideoJ);
+
+		modelo.addAttribute("historialPelis",historialPeli);
+		modelo.addAttribute("historialSeries",historialSeries);
+		modelo.addAttribute("historialVideoJ",historialVideoJ);
+		
 		modelo.addAttribute("listaFavs", listas);
 		
 		return new ModelAndView("perfil-usuario", modelo);

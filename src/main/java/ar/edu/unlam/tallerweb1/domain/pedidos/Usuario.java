@@ -56,10 +56,22 @@ public class Usuario {
 	private List<Notificacion> notifaciones = new ArrayList<Notificacion>();
 
 	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="historial_id")
+	private Historial historialUsuario;
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="planAdquirido_id")
 	private UsuarioPlan planAdquirido;
 	
 	
+	public Historial getHistorialUsuario() {
+		return historialUsuario;
+	}
+
+	public void setHistorialUsuario(Historial historialUsuario) {
+		this.historialUsuario = historialUsuario;
+	}
+
 	public UsuarioPlan getPlanAdquirido(){
 		return planAdquirido;
 	}
