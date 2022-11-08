@@ -79,7 +79,6 @@ public class ControladorPerfil {
 		modelo.addAttribute("historialPelis",historialPeli);
 		modelo.addAttribute("historialSeries",historialSeries);
 		modelo.addAttribute("historialVideoJ",historialVideoJ);
-		
 		modelo.addAttribute("listaFavs", listas);
 		
 		return new ModelAndView("perfil-usuario", modelo);
@@ -110,9 +109,8 @@ public class ControladorPerfil {
 	
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-
 		servicioLogin.editarPerfil(usuarioBuscado);
-
+		
 		return new ModelAndView("redirect:/perfil");
 	}
 
@@ -157,15 +155,14 @@ public class ControladorPerfil {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
-		ModelMap modelo = new ModelMap();
 		
+		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 		
 		modelo.addAttribute("usuario", usuarioPerfil);
 		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("favs-completo", modelo);
-
 	}
 
 }
