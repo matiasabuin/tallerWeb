@@ -62,11 +62,11 @@ public class ControladorPerfil {
 		List<Pelicula> cacheHistorialPeli=servicioHistorial.getByUserId(usuarioEncontrado.getId()).getPeliculas();
 		List<Pelicula> historialPeli=servicioHistorial.getByUserId(usuarioEncontrado.getId()).invertirListaDePeliculas(cacheHistorialPeli);
 		
-		List<Serie> cachehistorialSeries=servicioHistorial.getByUserId(usuarioEncontrado.getId()).getSeries();
-		List<Serie> historialSeries=servicioHistorial.getByUserId(usuarioEncontrado.getId()).invertirListaDeSeries(cachehistorialSeries);
+		List<Serie> cacheHistorialSeries=servicioHistorial.getByUserId(usuarioEncontrado.getId()).getSeries();
+		List<Serie> historialSeries=servicioHistorial.getByUserId(usuarioEncontrado.getId()).invertirListaDeSeries(cacheHistorialSeries);
 
-		List<Videojuego> cachehistorialVideoJ=servicioHistorial.getByUserId(usuarioEncontrado.getId()).getVideojuegos();
-		List<Videojuego> historialVideoJ=servicioHistorial.getByUserId(usuarioEncontrado.getId()).invertirListaDeVideojuegos(cachehistorialVideoJ);
+		List<Videojuego> cacheHistorialVideoJ=servicioHistorial.getByUserId(usuarioEncontrado.getId()).getVideojuegos();
+		List<Videojuego> historialVideoJ=servicioHistorial.getByUserId(usuarioEncontrado.getId()).invertirListaDeVideojuegos(cacheHistorialVideoJ);
 
 		modelo.addAttribute("historialPelis",historialPeli);
 		modelo.addAttribute("historialSeries",historialSeries);
