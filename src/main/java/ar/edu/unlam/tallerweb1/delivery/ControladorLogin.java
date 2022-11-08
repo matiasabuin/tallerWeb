@@ -96,7 +96,7 @@ public class ControladorLogin {
 				Notificacion notificacion = new Notificacion();
 				notificacion.setUsuario(usuarioBuscado);
 				notificacion.setMensaje("Tu plan " + usuarioBuscado.getPlanAdquirido().getPlan().getDescripcion() 
-						+  " ha vencido el día " + usuarioBuscado.getPlanAdquirido().getFechaVencimiento());
+						+  " venció el dia " + usuarioBuscado.getPlanAdquirido().getFechaVencimiento());
 				servicioNotificacion.registrar(notificacion);
 				
 				Plan planFree = servicioPlan.ObtenerPlanFree();

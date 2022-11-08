@@ -56,10 +56,10 @@ public class ControladorComentario {
 	public ModelAndView eliminarComentario(@RequestParam("id") Integer id) {
 		
 		Comentario comentarioEncontrado = servicioComentario.getById(id);
-		
+	
 		servicioComentario.eliminar(comentarioEncontrado);
 		
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/review?id=" + comentarioEncontrado.getReview().getId());
 	}
 	
 }

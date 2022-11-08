@@ -29,4 +29,16 @@ public class DatosRegistro {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public DatosRegistro() {
+
+	}
+	
+	public DatosRegistro(String email, String password, String nombre) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.nombre = nombre;
+	}
+	
 }

@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.delivery;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -80,13 +82,15 @@ public class ControladorReview {
 	}
 	
 	@RequestMapping(path = "/eliminar-review")
-	public ModelAndView eliminarReview(@RequestParam("id") Integer id) {
+	public ModelAndView eliminarReview(@RequestParam("id") Integer id, HttpServletRequest request) {
 		
 		Review reviewEncontrada = servicioReview.getById(id);
 		
 		servicioReview.eliminar(reviewEncontrada);
 		
-		return new ModelAndView("redirect:/reviews");
+		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		return new ModelAndView("redirect:/reviews?id=" + usuarioEncontrado.getId());
 	}
 	
 	@RequestMapping("/review-editar")
