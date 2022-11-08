@@ -44,13 +44,13 @@ public class ControladorPerfil {
 	@Autowired
 	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, 
 			ServicioReview servicioReview, ServicioFavoritos servicioListas, 
-			ServicioNotificacion servicioNotificacion, ServicioHistorialUsuario servicioHisrotial) {
+			ServicioNotificacion servicioNotificacion, ServicioHistorialUsuario servicioHistorial) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
 		this.servicioListas = servicioListas;
 		this.servicioNotificacion = servicioNotificacion;
-		this.servicioHistorial=servicioHisrotial;
+		this.servicioHistorial = servicioHistorial;
 
 	}
 
@@ -66,8 +66,6 @@ public class ControladorPerfil {
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 
 		modelo.addAttribute("usuario", usuarioPerfil);
-		
-		Usuario usuarioActual = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
 		List<Pelicula> cacheHistorialPeli=servicioHistorial.getByUserId(usuarioPerfil.getId()).getPeliculas();
 		List<Pelicula> historialPeli=servicioHistorial.getByUserId(usuarioPerfil.getId()).invertirListaDePeliculas(cacheHistorialPeli);
