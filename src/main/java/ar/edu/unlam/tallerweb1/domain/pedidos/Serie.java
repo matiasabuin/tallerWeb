@@ -25,6 +25,8 @@ public class Serie extends Contenido {
 	private Integer cantDeTemps;
 	private Integer cantDeCaps;
 	private Integer duracionPorCaps;
+	
+	private Double calificacion = 0.0;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -115,6 +117,14 @@ public class Serie extends Contenido {
 
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
+	}
+
+	public Double getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
 	}
 
 }

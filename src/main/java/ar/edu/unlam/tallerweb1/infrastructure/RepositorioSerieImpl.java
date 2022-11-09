@@ -59,7 +59,11 @@ public class RepositorioSerieImpl implements RepositorioSerie {
 	}
 	
 	
-	
+	@Override
+	public void modificar(Serie datosSerie) {
+		sessionFactory.getCurrentSession().update(datosSerie);
+	}
+
 	
 
 }

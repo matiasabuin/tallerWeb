@@ -94,11 +94,15 @@ textarea{
 }
 
 .flex-review a{
-	
-	color: #ea377a;
+	color: #badefc;
+}
+
+.flex-review a:hover{
+	color: #badefc;
 }
 
 .edit-desc{
 	margin: 0;
 	height: 10em;
 }
+

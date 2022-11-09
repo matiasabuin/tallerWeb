@@ -53,6 +53,11 @@ public class RepositorioPeliculaImpl implements RepositorioPelicula {
 				.list();
 	}
 
+	@Override
+	public void modificar(Pelicula datosPelicula) {
+		sessionFactory.getCurrentSession().update(datosPelicula);
+	}
+
 
 	
 }

@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-serie.css" />
+<link rel="stylesheet" href="css/estrellas.css" />
 <script src="https://kit.fontawesome.com/ed06e9b771.js"
 	crossorigin="anonymous"></script>
 
@@ -82,6 +83,20 @@
 				<!-- INFORMACION PRINCIPAL DE SERIE -->
 				<div style="margin-left: 2em;">
 					<h2>${datosSerie.nombre}</h2>
+					
+					<h4 class ="pl-0">★: 
+						<c:choose>
+						    <c:when test="${datosSerie.calificacion == 0.0}">
+						        No hay calificaciones suficientes
+						        <br />
+						    </c:when>    
+						    <c:otherwise>
+						        ${datosSerie.calificacion} / 5.0
+						        <br />
+						    </c:otherwise>
+						</c:choose>
+					</h4>
+					
 					<p>Cantidad de Temporadas:&nbsp;${datosSerie.cantDeTemps}</p>
 					<p>Fecha de estreno:&nbsp;${datosSerie.fechaEstreno}</p>
 					<p class="align-self-center sinopsis">${datosSerie.sinopsis}</p>
@@ -114,6 +129,21 @@
 						test="${usuarioActual != null && datosReview.usuario == null && usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
 						<form:form action="registrarReviewSerie" method="POST"
 							modelAttribute="datosReview">
+							  <p class="align-items-center mb-0">Calificacion: </p>
+									
+							  <div class="rate align-items-center mt-0">
+							    <form:radiobutton  path="calificacion" id="star5" name="rate" value="5" />
+							    <form:label path="calificacion" for="star5" title="text"></form:label>
+							    <form:radiobutton  path="calificacion"  id="star4" name="rate" value="4" />
+							    <form:label path="calificacion" for="star4" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star3" name="rate" value="3" />
+							    <form:label path="calificacion" for="star3" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star2" name="rate" value="2" />
+							    <form:label path="calificacion" for="star2" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star1" name="rate" value="1" />
+							    <form:label path="calificacion" for="star1" title="text"></form:label>
+							  </div>
+							  <br>
 							<form:textarea path="descripcion"
 								placeholder="Escribe tu reseña sobre la serie" />
 							<form:input path="serie.id" type="hidden"
@@ -131,8 +161,10 @@
 								<img src="images/${review.usuario.foto}"></a>
 								<div class="datosreview">
 								<a href ="perfil?id=${review.usuario.id}">
-									<h4>${review.usuario.nombre}</h4></a>
-									<p>${review.descripcion}</p>
+									<h4>${review.usuario.nombre}</h4>
+									</a>
+									<h4 class="mb-0">★: ${review.calificacion} / 5.0</h4>
+									<p class="mt-0 pt-0">${review.descripcion}</p>
 							<div class="vistareview">
 								<a href="review?id=${review.id}"><i
 									class="fa-solid fa-comment ml-1" aria-hidden="true">&nbsp;${review.comentarios.size()}</i>

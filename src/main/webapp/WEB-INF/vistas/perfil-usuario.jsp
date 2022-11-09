@@ -134,7 +134,7 @@
 			null && historialVideoJ[0] == null }">
 			<p class="MSGNoHayActividad">NO HAY NADA QUE MOSTRAR POR AHORA</p>
 			</c:if>
-				<table class="table-responsive table-borderless imagen-fav">
+				<table class="table-responsive table-borderless imagen-fav justify-content-center">
 
 					<c:forEach items="${historialPelis}" var="pelicula">
 						<td><a href="perfil-pelicula?id=${pelicula.id}"> <img

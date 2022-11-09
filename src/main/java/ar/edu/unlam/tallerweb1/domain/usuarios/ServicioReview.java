@@ -4,10 +4,11 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
 
 public interface ServicioReview {
 	
-	void registrar(Review review);
+	void registrar(Review review) throws ExceptionCalificacionVacia;
 	void modificar(Review review);
 	void eliminar(Review review);
 	Review getById(Integer id);

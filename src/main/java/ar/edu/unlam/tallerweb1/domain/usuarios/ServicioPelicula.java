@@ -9,6 +9,7 @@ public interface ServicioPelicula {
 	
 	Pelicula consultarPelicula(Integer id) throws ExceptionPeliculaNoEncontrada;
 	Pelicula registrarPelicula(Pelicula datosPelicula);
+	void modificarPelicula(Pelicula datosPelicula);
 	List<Pelicula> obtenerTodasLasPeliculas();
 	List<Pelicula> obtenerPeliculaPorTiempo(Integer horas);
 	List<Pelicula> obtenerPeliculaPorBusqueda(String busqueda);

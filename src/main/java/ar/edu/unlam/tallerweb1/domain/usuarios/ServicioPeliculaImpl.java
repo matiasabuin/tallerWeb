@@ -51,4 +51,9 @@ public class ServicioPeliculaImpl implements ServicioPelicula {
 		return servicioPeliculaDao.obtenerLasPeliculasPorBusqueda(busqueda);
 	}
 
+	@Override
+	public void modificarPelicula(Pelicula datosPelicula) {
+		servicioPeliculaDao.modificar(datosPelicula);
+	}
+
 }

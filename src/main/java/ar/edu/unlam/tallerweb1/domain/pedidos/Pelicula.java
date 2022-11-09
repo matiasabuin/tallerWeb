@@ -22,6 +22,7 @@ public class Pelicula extends Contenido {
 	private String director;
 	private String genero;
 	private String plataforma;
+	private Double calificacion = 0.0;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -102,6 +103,14 @@ public class Pelicula extends Contenido {
 	}
 	public void setHistoriales(List<Historial> historiales) {
 		this.historiales = historiales;
+	}
+
+	public Double getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
 	}
 	
 	

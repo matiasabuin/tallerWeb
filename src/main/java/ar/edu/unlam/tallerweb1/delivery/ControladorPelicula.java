@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
@@ -152,6 +155,16 @@ public class ControladorPelicula {
 		List<Review> reviewsCache = servicioReview.getAllByPeliculaId(id);
 		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
 		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
+		
+//		Double calificacionPelicula = 0.0;
+//		
+//	    for(Review reviewActual : reviewsCache){
+//	           calificacionPelicula += reviewActual.getCalificacion();
+//	    }
+//	    
+//	    Double calificacionFinal = calificacionPelicula / reviewsCache.size();
+//	    
+//	    modelo.addAttribute("calificacion", calificacionFinal);
 
 		if (usuarioEncontrado != null) {
 			List<Favorito> listas = servicioFav.getAllByUserId(usuarioEncontrado.getId());

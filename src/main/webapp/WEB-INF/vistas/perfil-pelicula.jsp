@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/perfil-pelicula.css" />
+<link rel="stylesheet" href="css/estrellas.css" />
 <script src="https://kit.fontawesome.com/ed06e9b771.js"
 	crossorigin="anonymous"></script>
 <body>
@@ -66,7 +67,6 @@
 							</c:if>
 						</form:form>
 
-
 					</c:if>
 
 					<!-- BOTON VER REVIEW DEL USUARIO -->
@@ -81,10 +81,24 @@
 				<!-- INFORMACION PRINCIPAL DE PELICULA -->
 				<div style="margin-left: 2em;">
 					<h2>${datosPelicula.nombre}</h2>
-					<p>Dirigida por&nbsp;${datosPelicula.director}</p>
+							
+					<h4 class ="pl-0">★: 
+						<c:choose>
+						    <c:when test="${datosPelicula.calificacion == 0.0}">
+						        No hay calificaciones suficientes
+						        <br />
+						    </c:when>    
+						    <c:otherwise>
+						        ${datosPelicula.calificacion} / 5.0
+						        <br />
+						    </c:otherwise>
+						</c:choose>
+					</h4>
+					
+					<p class="mt-1">Dirigida por&nbsp;${datosPelicula.director}</p>
 					<p>Fecha de estreno:&nbsp;${datosPelicula.fechaEstreno}</p>
 					<p class="align-self-center sinopsis">${datosPelicula.sinopsis}</p>
-					<p class="col-4 text-center border rounded">Duraci�n:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
+					<p class="col-4 text-center border rounded">Duración:&nbsp;${datosPelicula.duracion}&nbsp;Minutos</p>
 
 					<strong class="items">Generos</strong>
 					<div style="margin: 5px 0em;">
@@ -107,10 +121,26 @@
 				<div class="reviews">
 					<h3>Reviews</h3>
 					<c:if test="${usuarioActual != null && datosReview.usuario == null && usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
+					  		
 						<form:form action="registrarReviewPelicula" method="POST"
 							modelAttribute="datosReview">
+							  <p class="align-items-center mb-0">Calificacion: </p>
+									
+							  <div class="rate align-items-center mt-0">
+							    <form:radiobutton  path="calificacion" id="star5" name="rate" value="5" />
+							    <form:label path="calificacion" for="star5" title="text"></form:label>
+							    <form:radiobutton  path="calificacion"  id="star4" name="rate" value="4" />
+							    <form:label path="calificacion" for="star4" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star3" name="rate" value="3" />
+							    <form:label path="calificacion" for="star3" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star2" name="rate" value="2" />
+							    <form:label path="calificacion" for="star2" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star1" name="rate" value="1" />
+							    <form:label path="calificacion" for="star1" title="text"></form:label>
+							  </div>
+							  <br>
 							<form:textarea path="descripcion"
-								placeholder="Escribe tu rese�a sobre el videojuego" />
+								placeholder="Escribe tu reseña sobre el videojuego" />
 							<form:input path="pelicula.id" type="hidden"
 								value="${datosPelicula.id}" />
 							<form:input path="usuario.id" type="hidden"
@@ -118,6 +148,12 @@
 							<form:button type="submit" class="btn btn-primary button-reviews">Enviar</form:button>
 						</form:form>
 					</c:if>
+					
+							<c:if test="${not empty errorCalificacion}">
+								<div class="error">
+									<span>${errorCalificacion}</span>
+								</div>
+							</c:if>
 
 					<c:if test="${listaReviews != null}">
 						<c:forEach var="review" items="${listaReviews}">
@@ -128,7 +164,8 @@
 								<a href ="perfil?id=${review.usuario.id}">
 									<h4>${review.usuario.nombre}</h4>
 									</a>
-									<p>${review.descripcion}</p>
+									<h4 class="mb-0">★: ${review.calificacion} / 5.0</h4>
+									<p class="mt-0 pt-0">${review.descripcion}</p>
 							<div class="vistareview">
 								<a href="review?id=${review.id}"><i
 									class="fa-solid fa-comment ml-1" aria-hidden="true">&nbsp;${review.comentarios.size()}</i>

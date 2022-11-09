@@ -34,7 +34,18 @@
 					<div class="container"></div>
 					<div class="row">
 						<div class="col-12 my-4">
-							<h4 class="nameList">Favoritos de ${usuario.nombre}</h4>
+							<h4 class="nameList">
+								<c:choose>
+								    <c:when test="${usuario.id == usuarioActual.id}">
+								        Mis favoritos
+								        <br/>
+								    </c:when>    
+								    <c:otherwise>
+				        				Favoritos de ${usuario.nombre}
+								        <br/>
+								    </c:otherwise>
+								</c:choose>
+							</h4>
 						</div>
 						<br>
 						<div class="col-12">

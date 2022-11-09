@@ -21,18 +21,28 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioComentario;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 
 @Controller
 public class ControladorReview {
 	
 	private ServicioReview servicioReview;
 	private ServicioComentario servicioComentario;
+	private ServicioPelicula servicioPelicula;
+	private ServicioSerie servicioSerie;
 
 	@Autowired
-	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario) {
+	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario,
+			ServicioPelicula servicioPelicula, ServicioSerie servicioSerie) {
 		this.servicioReview = servicioReview;
 		this.servicioComentario = servicioComentario;
+		this.servicioPelicula = servicioPelicula;
+		this.servicioSerie = servicioSerie;
 	}
 	
 	@RequestMapping("/review")
@@ -52,7 +62,8 @@ public class ControladorReview {
 	}
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
-	public ModelAndView registrarReviewVideojuego(@ModelAttribute("datosReview") Review datosReview) {
+	public ModelAndView registrarReviewVideojuego(@ModelAttribute("datosReview") Review datosReview) 
+			throws ExceptionCalificacionVacia {
 		
 		Videojuego videojuego = datosReview.getVideojuego();
 		
@@ -62,23 +73,68 @@ public class ControladorReview {
 	}
 
 	@RequestMapping(path = "/registrarReviewPelicula", method = RequestMethod.POST)
-	public ModelAndView registrarReviewPelicula(@ModelAttribute("datosReview") Review datosReview) {
+	public ModelAndView registrarReviewPelicula(@ModelAttribute("datosReview") Review datosReview) 
+			throws ExceptionPeliculaNoEncontrada {
 		
-		Pelicula pelicula = datosReview.getPelicula();
+		ModelMap modelo = new ModelMap();
 		
-		servicioReview.registrar(datosReview);
+		Pelicula pelicula = servicioPelicula.consultarPelicula(datosReview.getPelicula().getId());
+		
+	    try {
+			servicioReview.registrar(datosReview);
+		} catch (ExceptionCalificacionVacia e) {
+			modelo.put("errorCalificacion", e.getMessage());
+			return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
+		}
+		
+		List<Review> reviews = servicioReview.getAllByPeliculaId(datosReview.getPelicula().getId());
+		
+	    Double calificacion = 0.0;
+	    
+	    for (Review element : reviews) {
+	    	calificacion += element.getCalificacion();
+	    }
 
-		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
+	    Double calificacionFinal = calificacion / reviews.size();
+	    
+	    pelicula.setCalificacion(calificacionFinal);
+	    
+	    servicioPelicula.modificarPelicula(pelicula);
+		
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
 	}
 	
 	@RequestMapping(path = "/registrarReviewSerie", method = RequestMethod.POST)
-	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) {
+	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) 
+			throws ExceptionSerieNoEncontrada {
 		
-		Serie serie = datosReview.getSerie();
+		ModelMap modelo = new ModelMap();
 		
-		servicioReview.registrar(datosReview);
+		Serie serie = servicioSerie.consultarSerie(datosReview.getSerie().getId());
+		
+	    try {
+			servicioReview.registrar(datosReview);
+		} catch (ExceptionCalificacionVacia e) {
+			modelo.put("errorCalificacion", e.getMessage());
+			return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
+		}
+		
+		List<Review> reviews = servicioReview.getAllBySerieId(datosReview.getSerie().getId());
+		
+	    Double calificacion = 0.0;
+	    
+	    for (Review element : reviews) {
+	    	calificacion += element.getCalificacion();
+	    }
 
-		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
+	    Double calificacionFinal = calificacion / reviews.size();
+	    
+	    serie.setCalificacion(calificacionFinal);
+	    
+	    servicioSerie.modificarSerie(serie);
+		
+		return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
+		
 	}
 	
 	@RequestMapping(path = "/eliminar-review")

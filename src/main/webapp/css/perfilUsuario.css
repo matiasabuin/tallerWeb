@@ -88,8 +88,17 @@ h4 {
 	margin: 0em 1em;
 }
 
-.botones{
+.botones {
 	position: absolute;
     bottom: 0;
     right: 0;
+   	color: white;
 }
+
+.tituloReview {
+	color: #badefc;
+}
+.tituloReview:hover{
+	color: #badefc;
+}
+

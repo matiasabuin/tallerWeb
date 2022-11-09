@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioSerie;
@@ -52,5 +53,9 @@ public class ServicioSerieImpl implements ServicioSerie {
 	public List<Serie> obtenerSeriePorBusqueda(String busqueda) {
 		return servicioSerieDao.obtenerLasSeriesPorBusqueda(busqueda);
 	}
-
+	
+	@Override
+	public void modificarSerie(Serie datosserie) {
+		servicioSerieDao.modificar(datosserie);
+	}
 }

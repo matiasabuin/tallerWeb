@@ -25,6 +25,8 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	private Double calificacion;
+	
 	@Column(length = 1000)
 	private String descripcion;
 	
@@ -104,5 +106,11 @@ public class Review {
 	}
 	public void setSerie(Serie serie) {
 		this.serie = serie;
+	}
+	public Double getCalificacion() {
+		return calificacion;
+	}
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
 	}
 }

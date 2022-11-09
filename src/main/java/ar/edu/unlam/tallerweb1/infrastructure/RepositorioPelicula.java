@@ -12,4 +12,5 @@ public interface RepositorioPelicula {
 	List<Pelicula> obtenerTodasLasPeliculas();
 	List<Pelicula> obtenerLasPeliculasPorTiempo(Integer horas);
 	List<Pelicula> obtenerLasPeliculasPorBusqueda(String busqueda);
+	void modificar(Pelicula datosPelicula);
 }

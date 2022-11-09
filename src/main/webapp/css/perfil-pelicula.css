@@ -146,7 +146,7 @@ textarea {
 
 .comentario a{
 	width: 100px;
-	color: #ea377a;
+	color: #badefc;
 }
 
 .comentario img{
@@ -166,5 +166,14 @@ textarea {
 
 .col-4{
 	max-width: 50%;
+}
+
+.error{
+	margin-top: 1em;
+	text-align: center;
+}
+
+.error span{
+	color: red;
 }
 

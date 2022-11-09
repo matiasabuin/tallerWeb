@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +26,27 @@
 
 	<div class="container">
 		<div class="usuario-container">
-			<h3 style="text-align: center;">Reviews de ${usuario.nombre}</h3>
+		
+			<h3 style="text-align: center;">	
+				<c:choose>
+				    <c:when test="${usuario.id == usuarioActual.id}">
+				        Mis reviews
+				        <br />
+				    </c:when>    
+				    <c:otherwise>
+				        Reviews de ${usuario.nombre}
+				        <br />
+				    </c:otherwise>
+				</c:choose>
+			</h3>
+						
 			<div>
 
 				<!-- LISTADO DE REVIEWS VACIA-->
 
 				<c:if test="${listaReviews.isEmpty() == true}">
 					<div class="comentario">
-						<h1 class="text-center">Todav�a no hay reviews</h1>
+						<h1 class="text-center">Todavía no hay reviews</h1>
 					</div>
 				</c:if>
 
@@ -47,7 +60,9 @@
 								style="width: 160px" src="images/${review.pelicula.poster}"></a>
 
 							<div class="descripcion">
-								<h4>${review.pelicula.nombre}</h4>
+							<a class="tituloReview" href="perfil-pelicula?id=${review.pelicula.id}">
+								<h4>${review.pelicula.nombre}</h4></a>
+								<h4>★: ${review.calificacion} / 5.0</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
@@ -68,9 +83,10 @@
 						<div class="comentario">
 							<a href="videojuego?id=${review.videojuego.id}"><img
 								style="width: 160px" src="images/${review.videojuego.poster}"></a>
-
 							<div class="descripcion">
-								<h4>${review.videojuego.nombre}</h4>
+							<a class="tituloReview" href="perfil-videojuego?id=${review.videojuego.id}">
+								<h4>${review.videojuego.nombre}</h4></a>
+								<h4>★: ${review.calificacion} / 5.0</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
@@ -91,9 +107,10 @@
 						<div class="comentario">
 							<a href="perfil-serie?id=${review.serie.id}"><img
 								style="width: 160px" src="images/${review.serie.poster}"></a>
-
 							<div class="descripcion">
-								<h4>${review.serie.nombre}</h4>
+							<a class="tituloReview" href="perfil-serie?id=${review.serie.id}">
+								<h4>${review.serie.nombre}</h4></a>
+								<h4>★: ${review.calificacion} / 5.0</h4>
 								<p>${review.descripcion}</p>
 								<div class="botones">
 									<a href="review?id=${review.id}"
