@@ -22,6 +22,8 @@ public class Videojuego extends Contenido{
 	private String desarrollador;
 	private Integer cantidadJugadores;
 	
+	private Double calificacion = 0.0;
+	
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "videojuego_genero", joinColumns = @JoinColumn(name = "videojuego_id"), inverseJoinColumns = @JoinColumn(name = "genero_id"))
@@ -68,6 +70,12 @@ public class Videojuego extends Contenido{
 	}
 	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
+	}
+	public Double getCalificacion() {
+		return calificacion;
+	}
+	public void setCalificacion(Double calificacion) {
+		this.calificacion = calificacion;
 	}
 
 }

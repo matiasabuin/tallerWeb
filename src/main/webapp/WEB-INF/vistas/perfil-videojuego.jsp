@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/perfil-videojuego.css" />
+<link rel="stylesheet" href="css/estrellas.css" />
 <script src="https://kit.fontawesome.com/ed06e9b771.js"
 	crossorigin="anonymous"></script>
 
@@ -81,6 +82,20 @@
 			<!-- INFORMACION PRINCIPAL DE VIDEOJUEGO -->
 			<div class="centro" style="width: 50%;">
 				<h2>${datosVideojuego.nombre}</h2>
+				
+					<h4 class ="pl-0">★: 
+						<c:choose>
+						    <c:when test="${datosVideojuego.calificacion == 0.0}">
+						        No hay calificaciones suficientes
+						        <br />
+						    </c:when>    
+						    <c:otherwise>
+						        ${datosVideojuego.calificacion} / 5.0
+						        <br />
+						    </c:otherwise>
+						</c:choose>
+					</h4>
+					
 				<strong>Fecha de lanzamiento</strong>
 				<p>${datosVideojuego.fechaEstreno}</p>
 				<p class="sinopsis">${datosVideojuego.sinopsis}</p>
@@ -106,7 +121,7 @@
 				</c:if>
 				<strong>Desarrollador</strong>
 				<p>${datosVideojuego.desarrollador}</p>
-				<strong>Duraci�n</strong>
+				<strong>Duración</strong>
 				<p>${datosVideojuego.duracion}&nbsp;Horas</p>
 			</div>
 		</div>
@@ -118,8 +133,24 @@
 			<c:if test="${usuarioActual != null && datosReview.usuario == null && usuarioActual.planAdquirido.plan.descripcion != 'Free'}">
 				<form:form action="registrarReviewVideojuego" method="POST"
 					modelAttribute="datosReview">
+				  <p class="align-items-center mb-0">Calificacion: </p>
+									
+							  <div class="rate align-items-center mt-0">
+							    <form:radiobutton  path="calificacion" id="star5" name="rate" value="5" />
+							    <form:label path="calificacion" for="star5" title="text"></form:label>
+							    <form:radiobutton  path="calificacion"  id="star4" name="rate" value="4" />
+							    <form:label path="calificacion" for="star4" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star3" name="rate" value="3" />
+							    <form:label path="calificacion" for="star3" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star2" name="rate" value="2" />
+							    <form:label path="calificacion" for="star2" title="text"></form:label>
+							    <form:radiobutton  path="calificacion" id="star1" name="rate" value="1" />
+							    <form:label path="calificacion" for="star1" title="text"></form:label>
+							  </div>
+							  <br>
+							  
 					<form:textarea path="descripcion"
-						placeholder="Escribe tu rese�a sobre el videojuego" />
+						placeholder="Escribe tu reseña sobre el videojuego" />
 					<form:input path="videojuego.id" type="hidden"
 						value="${datosVideojuego.id}" />
 					<form:input path="usuario.id" type="hidden"
@@ -136,6 +167,7 @@
 						<div class="datosreview">
 						<a href ="perfil?id=${review.usuario.id}">
 							<h4>${review.usuario.nombre}</h4></a>
+							<h4 class="mb-0">★: ${review.calificacion} / 5.0</h4>
 							<p>${review.descripcion}</p>
 							<div class="vistareview">
 								<a href="review?id=${review.id}"><i

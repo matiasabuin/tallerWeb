@@ -24,9 +24,11 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionVideojuegoNoEncontrado;
 
 @Controller
 public class ControladorReview {
@@ -35,14 +37,17 @@ public class ControladorReview {
 	private ServicioComentario servicioComentario;
 	private ServicioPelicula servicioPelicula;
 	private ServicioSerie servicioSerie;
+	private ServicioVideojuego servicioVideojuego;
 
 	@Autowired
 	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario,
-			ServicioPelicula servicioPelicula, ServicioSerie servicioSerie) {
+			ServicioPelicula servicioPelicula, ServicioSerie servicioSerie,
+			ServicioVideojuego servicioVideojuego) {
 		this.servicioReview = servicioReview;
 		this.servicioComentario = servicioComentario;
 		this.servicioPelicula = servicioPelicula;
 		this.servicioSerie = servicioSerie;
+		this.servicioVideojuego = servicioVideojuego;
 	}
 	
 	@RequestMapping("/review")
@@ -63,13 +68,34 @@ public class ControladorReview {
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
 	public ModelAndView registrarReviewVideojuego(@ModelAttribute("datosReview") Review datosReview) 
-			throws ExceptionCalificacionVacia {
+			throws ExceptionVideojuegoNoEncontrado {
 		
-		Videojuego videojuego = datosReview.getVideojuego();
+		ModelMap modelo = new ModelMap();
 		
-		servicioReview.registrar(datosReview);
+		Videojuego videojuego = servicioVideojuego.consultarVideojuego(datosReview.getVideojuego().getId());
 		
-		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());
+	    try {
+			servicioReview.registrar(datosReview);
+		} catch (ExceptionCalificacionVacia e) {
+			modelo.put("errorCalificacion", e.getMessage());
+			return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
+		}
+		
+		List<Review> reviews = servicioReview.getAllByVideojuegoId(datosReview.getVideojuego().getId());
+		
+	    Double calificacion = 0.0;
+	    
+	    for (Review element : reviews) {
+	    	calificacion += element.getCalificacion();
+	    }
+
+	    Double calificacionFinal = calificacion / reviews.size();
+	    
+	    videojuego.setCalificacion(calificacionFinal);
+	    
+	    servicioVideojuego.actualizarVideojuego(videojuego);
+		
+		return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
 	}
 
 	@RequestMapping(path = "/registrarReviewPelicula", method = RequestMethod.POST)
