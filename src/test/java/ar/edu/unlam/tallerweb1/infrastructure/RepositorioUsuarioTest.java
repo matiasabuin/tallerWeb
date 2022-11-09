@@ -27,7 +27,5 @@ public class RepositorioUsuarioTest extends SpringTest{
 		
 		assertThat(usuario.getId()).isNotNull();
 	}
-
-	
 	//1:22
 }

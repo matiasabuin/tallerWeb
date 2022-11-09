@@ -38,4 +38,14 @@ public class ServicioComentarioImpl implements ServicioComentario {
 		return servicioComentarioDao.buscar(id);
 	}
 
+	@Override
+	public void modificar(Comentario comentarioEncontrado) {
+		servicioComentarioDao.modificar(comentarioEncontrado);
+	}
+
+	@Override
+	public List<Comentario> getAllByUser(Integer id) {
+		return servicioComentarioDao.obtenerComentariosUsuario(id);
+	}
+
 }

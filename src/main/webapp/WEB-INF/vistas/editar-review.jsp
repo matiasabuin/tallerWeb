@@ -39,18 +39,20 @@
 						<div class="descripcion">
 							<h3>${review.pelicula.nombre}</h3>
 							<h4>${review.usuario.nombre}</h4>
-							<form:form action="editar-review" method="POST"
-								modelAttribute="review">
-								<form:input path="id" value="${review.id}" type="hidden" />
-								<form:input path="usuario.id" value="${review.usuario.id}"
-									type="hidden" />
-								<form:input path="videojuego.id" value="${review.pelicula.id}"
-									type="hidden" />
-								<form:textarea path="descripcion" value="${review.descripcion}" />
-								<form:button type="submit"
-									class="btn btn-primary button-agregarfavs"
-									style="margin-top: 1em;">Actualizar</form:button>
-							</form:form>
+							<c:if test="${usuarioActual.id == review.usuario.id}">
+								<form:form action="editar-review" method="POST"
+									modelAttribute="review">
+									<form:input path="id" value="${review.id}" type="hidden" />
+									<form:input path="usuario.id" value="${review.usuario.id}"
+										type="hidden" />
+									<form:input path="videojuego.id" value="${review.pelicula.id}"
+										type="hidden" />
+									<form:textarea path="descripcion" value="${review.descripcion}" />
+									<form:button type="submit"
+										class="btn btn-primary button-agregarfavs"
+										style="margin-top: 1em;">Actualizar</form:button>
+								</form:form>
+							</c:if>
 						</div>
 					</div>
 				</c:if>
@@ -64,18 +66,20 @@
 						<div class="descripcion">
 							<h3>${review.videojuego.nombre}</h3>
 							<h4>${review.usuario.nombre}</h4>
-							<form:form action="editar-review" method="POST"
-								modelAttribute="review">
-								<form:input path="id" value="${review.id}" type="hidden" />
-								<form:input path="usuario.id" value="${review.usuario.id}"
-									type="hidden" />
-								<form:input path="videojuego.id" value="${review.videojuego.id}"
-									type="hidden" />
-								<form:textarea path="descripcion" value="${review.descripcion}" />
-								<form:button type="submit"
-									class="btn btn-primary button-agregarfavs"
-									style="margin-top: 1em;">Actualizar</form:button>
-							</form:form>
+							<c:if test="${usuarioActual.id == review.usuario.id}">
+								<form:form action="editar-review" method="POST"
+									modelAttribute="review">
+									<form:input path="id" value="${review.id}" type="hidden" />
+									<form:input path="usuario.id" value="${review.usuario.id}"
+										type="hidden" />
+									<form:input path="videojuego.id"
+										value="${review.videojuego.id}" type="hidden" />
+									<form:textarea path="descripcion" value="${review.descripcion}" />
+									<form:button type="submit"
+										class="btn btn-primary button-agregarfavs"
+										style="margin-top: 1em;">Actualizar</form:button>
+								</form:form>
+							</c:if>
 						</div>
 					</div>
 				</c:if>
@@ -89,18 +93,21 @@
 						<div class="descripcion">
 							<h3>${review.serie.nombre}</h3>
 							<h4>${review.usuario.nombre}</h4>
-							<form:form action="editar-review" method="POST"
-								modelAttribute="review">
-								<form:input path="id" value="${review.id}" type="hidden" />
-								<form:input path="usuario.id" value="${review.usuario.id}"
-									type="hidden" />
-								<form:input path="videojuego.id" value="${review.serie.id}"
-									type="hidden" />
-								<form:textarea path="descripcion" class="edit-desc" value="${review.descripcion}" />
-								<form:button type="submit"
-									class="btn btn-primary button-agregarfavs"
-									style="margin-top: 1em;">Actualizar</form:button>
-							</form:form>
+							<c:if test="${usuarioActual.id == review.usuario.id}">
+								<form:form action="editar-review" method="POST"
+									modelAttribute="review">
+									<form:input path="id" value="${review.id}" type="hidden" />
+									<form:input path="usuario.id" value="${review.usuario.id}"
+										type="hidden" />
+									<form:input path="videojuego.id" value="${review.serie.id}"
+										type="hidden" />
+									<form:textarea path="descripcion" class="edit-desc"
+										value="${review.descripcion}" />
+									<form:button type="submit"
+										class="btn btn-primary button-agregarfavs"
+										style="margin-top: 1em;">Actualizar</form:button>
+								</form:form>
+							</c:if>
 						</div>
 					</div>
 				</c:if>

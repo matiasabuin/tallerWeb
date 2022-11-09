@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,12 +34,27 @@ public class ControladorComentario {
 		this.servicioLogin = servicioLogin;
 		this.servicioReview = servicioReview;
 	}
+	
+	@RequestMapping("/comentarios")
+	public ModelAndView verComentarios(@RequestParam("id") Integer id, HttpServletRequest request) {
+		if (request.getSession().getAttribute("usuarioActual") == null) {
+			return new ModelAndView("redirect:/home");
+		}
+
+		ModelMap modelo = new ModelMap();
+		Usuario usuarioPerfil = servicioLogin.getById(id);
+		List<Comentario> comentariosCache = servicioComentario.getAllByUser(usuarioPerfil.getId());
+
+		modelo.addAttribute("usuario", usuarioPerfil);
+		modelo.addAttribute("listaComentarios",comentariosCache);
+		return new ModelAndView("usuario-comentarios", modelo);
+	}
 
 	@RequestMapping(path = "/registrar-comentario", method = RequestMethod.POST)
 	public ModelAndView registrarComentario(@ModelAttribute("datosComentario") Comentario datosComentario, HttpServletRequest request) {
 		
 		Review reviewEncontrada = servicioReview.getById(datosComentario.getReview().getId());
-		
+	
 		Usuario usuarioReceptor = servicioLogin.getById(reviewEncontrada.getUsuario().getId());
 		Usuario usuarioRemitente = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
@@ -52,14 +67,32 @@ public class ControladorComentario {
 		return new ModelAndView("redirect:/review?id=" + datosComentario.getReview().getId());
 	}
 	
+	@RequestMapping(path = "/eliminar-comentario-review")
+	public ModelAndView eliminarComentarioReview(@RequestParam("id") Integer id) {
+		Comentario comentarioEncontrado = servicioComentario.getById(id);
+		servicioComentario.eliminar(comentarioEncontrado);
+		return new ModelAndView("redirect:/review?id=" + comentarioEncontrado.getReview().getId());
+	}
+	
 	@RequestMapping(path = "/eliminar-comentario")
 	public ModelAndView eliminarComentario(@RequestParam("id") Integer id) {
-		
 		Comentario comentarioEncontrado = servicioComentario.getById(id);
-	
 		servicioComentario.eliminar(comentarioEncontrado);
-		
-		return new ModelAndView("redirect:/review?id=" + comentarioEncontrado.getReview().getId());
+		return new ModelAndView("redirect:/comentarios?id=" + comentarioEncontrado.getUsuario().getId());
+	}
+	
+	@RequestMapping(path = "/editar-comentario", method = RequestMethod.POST)
+	public ModelAndView editarComentario(@ModelAttribute("comentario") Comentario comentario) {
+		servicioComentario.modificar(comentario);
+		return new ModelAndView("redirect:/comentarios?id=" + comentario.getUsuario().getId());
+	}
+	
+	@RequestMapping("/comentario-editar")
+	public ModelAndView irEditarReview(@RequestParam("id") Integer id) {
+		ModelMap modelo = new ModelMap();
+		Comentario comentarioEncontrado = servicioComentario.getById(id);
+		modelo.addAttribute("comentario", comentarioEncontrado);
+		return new ModelAndView("editar-comentario", modelo);
 	}
 	
 }

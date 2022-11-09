@@ -37,18 +37,23 @@
 							<h4 class="my-2" style="margin: auto;">${usuario.nombre}</h4>
 							<p class="my-2 mx-3">${usuario.biografia}</p>
 						</div>
+						<div style="display: flex; justify-content: center;">
 						<c:if test="${usuarioActual.id == usuario.id}">
-							<a href="editar-perfil" class="btn btn-primary my-2 ml-4 button-agregarfavs"> Editar Perfil </a>
-						</c:if> 
-							<a href="reviews?id=${usuario.id}" class="btn btn-primary my-2 mx-2 button-agregarfavs"> Ver reviews </a>
-					
+							<a href="editar-perfil" class="btn btn-primary my-2 mx-2 button-agregarfavs">Editar</a>
+						</c:if>
+						<c:if test="${usuario.planAdquirido.plan.descripcion != 'Free'}">
+							<a href="reviews?id=${usuario.id}"class="btn btn-primary my-2 mx-2 button-agregarfavs">Reviews</a>
+						</c:if>
+						<a href="comentarios?id=${usuario.id}" class="btn btn-primary my-2 mx-2 button-agregarfavs">Comentarios</a>
+						</div>
 					</div>
 					<div class="col-8 favPerfil-container">
 						<c:if test="${listaFavs[0] != null}">
 							<h1>
 								Favoritos
 								<c:if test="${listaFavs[3] != null}">
-									<a href="lista-completa?id=${usuario.id}" class="verMasLista">Ver todos</a>
+									<a href="lista-completa?id=${usuario.id}" class="verMasLista">Ver
+										todos</a>
 								</c:if>
 							</h1>
 						</c:if>
@@ -130,32 +135,33 @@
 		<div class="favPerfil-container">
 
 			<h1>Visto recientemente</h1>
-			<c:if test="${historialPelis[0] == null && historialSeries[0]== 
+			<c:if
+				test="${historialPelis[0] == null && historialSeries[0]== 
 			null && historialVideoJ[0] == null }">
-			<p class="MSGNoHayActividad">NO HAY NADA QUE MOSTRAR POR AHORA</p>
+				<p class="MSGNoHayActividad">NO HAY NADA QUE MOSTRAR POR AHORA</p>
 			</c:if>
-				<table class="table-responsive table-borderless imagen-fav">
+			<table class="table-responsive table-borderless imagen-fav">
 
-					<c:forEach items="${historialPelis}" var="pelicula">
-						<td><a href="perfil-pelicula?id=${pelicula.id}"> <img
-								src="images/${pelicula.poster}">
-								<p class="titulo">${pelicula.nombre}</p>
-						</a></td>
-						</c:forEach>
-					<c:forEach items="${historialSeries}" var="serie">
-						<td><a href="perfil-pelicula?id=${serie.id}"> <img
-								src="images/${serie.poster}">
-								<p class="titulo">${serie.nombre}</p>
-						</a></td>
-					</c:forEach>
-					<c:forEach items="${historialVideoJ}" var="videojuego">
-						<td><a href="perfil-pelicula?id=${videojuego.id}"> <img
-								src="images/${videojuego.poster}">
-								<p class="titulo">${videojuego.nombre}</p>
-						</a></td>
-					</c:forEach>
-				</table>
-			
+				<c:forEach items="${historialPelis}" var="pelicula">
+					<td><a href="perfil-pelicula?id=${pelicula.id}"> <img
+							src="images/${pelicula.poster}">
+							<p class="titulo">${pelicula.nombre}</p>
+					</a></td>
+				</c:forEach>
+				<c:forEach items="${historialSeries}" var="serie">
+					<td><a href="perfil-pelicula?id=${serie.id}"> <img
+							src="images/${serie.poster}">
+							<p class="titulo">${serie.nombre}</p>
+					</a></td>
+				</c:forEach>
+				<c:forEach items="${historialVideoJ}" var="videojuego">
+					<td><a href="perfil-pelicula?id=${videojuego.id}"> <img
+							src="images/${videojuego.poster}">
+							<p class="titulo">${videojuego.nombre}</p>
+					</a></td>
+				</c:forEach>
+			</table>
+
 		</div>
 	</div>
 

@@ -39,11 +39,12 @@
 						<div class="descripcion">
 							<h3>${review.pelicula.nombre}</h3>
 							<div class="flex-review">
-							<a href ="perfil?id=${review.usuario.id}">
-								<img src="images/${review.usuario.foto}"></a>
+								<a href="perfil?id=${review.usuario.id}"> <img
+									src="images/${review.usuario.foto}"></a>
 								<div>
-								<a href ="perfil?id=${review.usuario.id}">
-									<h4>${review.usuario.nombre}</h4></a>
+									<a href="perfil?id=${review.usuario.id}">
+										<h4>${review.usuario.nombre}</h4>
+									</a>
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -63,13 +64,13 @@
 						<div class="descripcion">
 							<h3>${review.videojuego.nombre}</h3>
 							<div class="flex-review">
-							<a href ="perfil?id=${review.usuario.id}">
-								<img src="images/${review.usuario.foto}"></a>
-								<br>
+								<a href="perfil?id=${review.usuario.id}"> <img
+									src="images/${review.usuario.foto}"></a> <br>
 								<div>
-								<a href ="perfil?id=${review.usuario.id}">
-									<h4>${review.usuario.nombre}</h4></a>
-									
+									<a href="perfil?id=${review.usuario.id}">
+										<h4>${review.usuario.nombre}</h4>
+									</a>
+
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -87,11 +88,12 @@
 						<div class="descripcion">
 							<h3>${review.serie.nombre}</h3>
 							<div class="flex-review">
-							<a href ="perfil?id=${review.usuario.id}">
-								<img src="images/${review.usuario.foto}"></a>
+								<a href="perfil?id=${review.usuario.id}"> <img
+									src="images/${review.usuario.foto}"></a>
 								<div>
-								<a href ="perfil?id=${review.usuario.id}">
-									<h4>${review.usuario.nombre}</h4></a>
+									<a href="perfil?id=${review.usuario.id}">
+										<h4>${review.usuario.nombre}</h4>
+									</a>
 									<p>${review.descripcion}</p>
 								</div>
 							</div>
@@ -109,7 +111,7 @@
 								value="${usuarioActual.id}" />
 							<form:input path="review.id" type="hidden" value="${review.id}" />
 							<form:textarea path="descripcion"
-								placeholder="Deja un comentario" />
+								placeholder="Deja un comentario" style="margin: auto;"/>
 							<form:button type="submit"
 								class="btn btn-primary button-agregarfavs"
 								style="margin-top: 1em;">Comentar</form:button>
@@ -123,15 +125,15 @@
 						<div class="comentario-review">
 							<img src="images/${comentario.usuario.foto}">
 							<div class="datosreview">
-								<h4>${comentario.usuario.nombre}</h4>
+								<a href="perfil?id=${comentario.usuario.id}"><h4>${comentario.usuario.nombre}</h4></a>
 								<p>${comentario.descripcion}</p>
+								<c:if test="${usuarioActual.id == comentario.usuario.id}">
+									<div class="botones">
+										<a href="eliminar-comentario-review?id=${comentario.id}"
+											class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+									</div>
+								</c:if>
 							</div>
-							<c:if test="${usuarioActual.id == comentario.usuario.id}">
-								<div class="botones">
-				 				<a href="eliminar-comentario?id=${comentario.id}"
-								class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
-								</div>
-							</c:if>
 						</div>
 					</c:forEach>
 				</c:if>
