@@ -5,12 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -63,7 +66,15 @@ public class Usuario {
 	@JoinColumn(name="planAdquirido_id")
 	private UsuarioPlan planAdquirido;
 	
-	
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<Amigo> amigos = new ArrayList<Amigo>();
+
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "usuario1", fetch = FetchType.EAGER)
+	private List<Solicitud> solicitudes = new ArrayList<Solicitud>();
+
+
 	public Historial getHistorialUsuario() {
 		return historialUsuario;
 	}
@@ -162,6 +173,22 @@ public class Usuario {
 
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
+	}
+	
+	public List<Amigo> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(List<Amigo> amigos) {
+		this.amigos = amigos;
+	}
+
+	public List<Solicitud> getSolicitudes() {
+		return solicitudes;
+	}
+
+	public void setSolicitudes(List<Solicitud> solicitudes) {
+		this.solicitudes = solicitudes;
 	}
 	
 }

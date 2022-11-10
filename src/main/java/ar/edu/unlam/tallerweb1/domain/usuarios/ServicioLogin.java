@@ -12,9 +12,7 @@ public interface ServicioLogin {
 	Usuario consultarUsuario(String email, String password);
 	Usuario registrarUsuario(String email, String password, String nombre) throws ExceptionNombreDeUsuarioRepetido, ExceptionEmailRegistrado, ExceptionRegistroCamposVacios;
 	void editarPerfil(Usuario usuario);
-	
 	List<Usuario> obtenerTodosLosUsarios();
-
 	Usuario getById(Integer id);
 
 }

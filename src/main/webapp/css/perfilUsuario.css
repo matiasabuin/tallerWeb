@@ -97,3 +97,26 @@ h4 {
     bottom: 0;
     right: 0;
 }
+
+.amigos{
+	width: 50%;
+    background-color: #242832 !important;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    color: #badefc;
+    font-weight: bold;
+}
+
+.agregar{
+	margin: 10px 0px 0px 0px;
+}
+
+.solicitud{
+	color: #ea377a; 
+	margin: 10px 0px 0px 0px;
+}
+
+.opciones a{
+	margin: 1em;
+}
