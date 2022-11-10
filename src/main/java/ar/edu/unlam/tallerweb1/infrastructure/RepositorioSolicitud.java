@@ -10,4 +10,6 @@ public interface RepositorioSolicitud {
 
 	Solicitud getByUsers(Integer user1, Integer user2);
 
+	void eliminar(Solicitud solicitudEncontrada);
+
 }

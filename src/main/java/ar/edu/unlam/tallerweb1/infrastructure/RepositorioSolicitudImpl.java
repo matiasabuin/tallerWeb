@@ -37,4 +37,9 @@ public class RepositorioSolicitudImpl implements RepositorioSolicitud{
 				.uniqueResult();
 	}
 
+	@Override
+	public void eliminar(Solicitud solicitud) {
+		sessionFactory.getCurrentSession().remove(solicitud);
+	}
+
 }

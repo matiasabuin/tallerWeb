@@ -42,7 +42,7 @@ public class ServicioSolicitudImpl implements ServicioSolicitud {
 	@Override
 	public void rechazarSolicitud(Solicitud solicitudEncontrada) {
 		solicitudEncontrada.setEstado(Estado.RECHAZADO);
-		repositorioSolicitud.modificar(solicitudEncontrada);
+		repositorioSolicitud.eliminar(solicitudEncontrada);
 	}
 
 }
