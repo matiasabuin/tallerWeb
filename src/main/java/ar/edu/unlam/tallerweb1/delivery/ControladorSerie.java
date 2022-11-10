@@ -31,7 +31,6 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;

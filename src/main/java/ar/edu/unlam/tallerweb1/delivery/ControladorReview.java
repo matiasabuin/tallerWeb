@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,7 +70,6 @@ public class ControladorReview {
 			throws ExceptionVideojuegoNoEncontrado {
 		
 		ModelMap modelo = new ModelMap();
-		
 		Videojuego videojuego = servicioVideojuego.consultarVideojuego(datosReview.getVideojuego().getId());
 		
 	    try {
@@ -82,7 +80,6 @@ public class ControladorReview {
 		}
 		
 		List<Review> reviews = servicioReview.getAllByVideojuegoId(datosReview.getVideojuego().getId());
-		
 	    Double calificacion = 0.0;
 	    
 	    for (Review element : reviews) {
@@ -90,9 +87,7 @@ public class ControladorReview {
 	    }
 
 	    Double calificacionFinal = calificacion / reviews.size();
-	    
 	    videojuego.setCalificacion(calificacionFinal);
-	    
 	    servicioVideojuego.actualizarVideojuego(videojuego);
 		
 		return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
@@ -103,7 +98,6 @@ public class ControladorReview {
 			throws ExceptionPeliculaNoEncontrada {
 		
 		ModelMap modelo = new ModelMap();
-		
 		Pelicula pelicula = servicioPelicula.consultarPelicula(datosReview.getPelicula().getId());
 		
 	    try {
@@ -114,7 +108,6 @@ public class ControladorReview {
 		}
 		
 		List<Review> reviews = servicioReview.getAllByPeliculaId(datosReview.getPelicula().getId());
-		
 	    Double calificacion = 0.0;
 	    
 	    for (Review element : reviews) {
@@ -122,9 +115,7 @@ public class ControladorReview {
 	    }
 
 	    Double calificacionFinal = calificacion / reviews.size();
-	    
 	    pelicula.setCalificacion(calificacionFinal);
-	    
 	    servicioPelicula.modificarPelicula(pelicula);
 		
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
@@ -135,7 +126,6 @@ public class ControladorReview {
 			throws ExceptionSerieNoEncontrada {
 		
 		ModelMap modelo = new ModelMap();
-		
 		Serie serie = servicioSerie.consultarSerie(datosReview.getSerie().getId());
 		
 	    try {
@@ -146,7 +136,6 @@ public class ControladorReview {
 		}
 		
 		List<Review> reviews = servicioReview.getAllBySerieId(datosReview.getSerie().getId());
-		
 	    Double calificacion = 0.0;
 	    
 	    for (Review element : reviews) {
@@ -154,9 +143,7 @@ public class ControladorReview {
 	    }
 
 	    Double calificacionFinal = calificacion / reviews.size();
-	    
 	    serie.setCalificacion(calificacionFinal);
-	    
 	    servicioSerie.modificarSerie(serie);
 		
 		return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
@@ -167,9 +154,7 @@ public class ControladorReview {
 	public ModelAndView eliminarReview(@RequestParam("id") Integer id, HttpServletRequest request) {
 		
 		Review reviewEncontrada = servicioReview.getById(id);
-		
 		servicioReview.eliminar(reviewEncontrada);
-		
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
 		return new ModelAndView("redirect:/reviews?id=" + usuarioEncontrado.getId());
@@ -180,8 +165,8 @@ public class ControladorReview {
 		ModelMap modelo = new ModelMap();
 		
 		Review reviewEncontrada = servicioReview.getById(id);
-		
 		modelo.addAttribute("review", reviewEncontrada);
+		
 		return new ModelAndView("editar-review", modelo);
 	}
 	
