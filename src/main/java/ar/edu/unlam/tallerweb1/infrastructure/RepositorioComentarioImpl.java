@@ -41,5 +41,18 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 	public void elimimar(Comentario comentario) {
 		sessionFactory.getCurrentSession().remove(comentario);
 	}
+
+	@Override
+	public void modificar(Comentario comentario) {
+		sessionFactory.getCurrentSession().update(comentario);
+	}
+
+	@Override
+	public List<Comentario> obtenerComentariosUsuario(Integer id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Comentario.class)
+				.add(Restrictions.eq("usuario.id", id))
+				.list();
+	}
 	
 }

@@ -1,4 +1,9 @@
 @charset "ISO-8859-1";
+
+a:hover{
+	text-decoration: none;
+}
+
 h3 {
 	color: #fff;
 }
@@ -17,7 +22,7 @@ h4 {
 }
 
 .comentario img , .comentario-review img{
-	width: 15%;
+	width: 80%;
 }
 
 .comentario p {
@@ -45,8 +50,9 @@ h4 {
 }
 
 .botones{
-	text-align: right;
-	padding-left: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 img{
@@ -65,7 +71,6 @@ img{
 textarea{
 	display: block;
 	width: 70%;
-	margin: auto;
 	background-color: #30394c;
     border: 1px solid #30394c;
     height: 9em;
@@ -83,9 +88,11 @@ textarea{
 	border-bottom: 1px solid #badefc;
 }
 
-.comentario-review img{
-	margin-right: 1em;
+.comentario-review a{
+	width: 100px;
+	color: #badefc;
 }
+
 
 .flex-review{
 	flex-wrap: nowrap;
@@ -106,3 +113,7 @@ textarea{
 	height: 10em;
 }
 
+.datosreview{
+	width: 100%;
+    position: relative;
+}

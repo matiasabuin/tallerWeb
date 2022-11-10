@@ -124,8 +124,6 @@
 
 			<!-- ESTE DIV ES PARA LOS FULTROS	 -->
 			<div class="col-md-2 my-4">
-				<a href="perfil?id=${usuario.id}"><img class="fotoDeUsuarioDeLista" src="images/${usuario.foto}">
-				<p>${usuario.nombre}</p></a>
 				<a href="perfil?id=${usuario.id}" class="fav-completaVolver">
 			<i class="fa-solid fa-arrow-left-long"></i>	Volver atras
 				</a>

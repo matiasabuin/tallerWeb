@@ -37,7 +37,7 @@ insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('1', 
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('2', '2', '2', '2022-11-15')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('3', '3', '3', '2022-12-05')
 insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('4', '3', '4', '2022-11-15')
-insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('5', '3', '5', '2022-11-15')
+insert into usuarioplan(id, plan_id, usuario_id ,fechaVencimiento) values ('5', '3', '5', '2022-10-15')
 
 update usuario set historial_id = 1 where id = 1
 update usuario set historial_id = 2 where id = 2

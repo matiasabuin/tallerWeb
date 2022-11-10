@@ -1,18 +1,23 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Amigo;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Solicitud;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioAmigos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSolicitud;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,18 +45,20 @@ public class ControladorPerfil {
 	private ServicioNotificacion servicioNotificacion;
 	private ServicioHistorialUsuario servicioHistorial;
 	private ServicioFavoritos servicioListas;
+	private ServicioSolicitud servicioSolicitud;
+	private ServicioAmigos servicioAmigos;
 
 	@Autowired
 	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, 
 			ServicioReview servicioReview, ServicioFavoritos servicioListas, 
-			ServicioNotificacion servicioNotificacion, ServicioHistorialUsuario servicioHistorial) {
+			ServicioNotificacion servicioNotificacion, ServicioHistorialUsuario servicioHistorial, ServicioSolicitud servicioSolicitud) {
 		this.servicioLogin = servicioLogin;
 		this.servicioFiles = servicioFiles;
 		this.servicioReview = servicioReview;
 		this.servicioListas = servicioListas;
 		this.servicioNotificacion = servicioNotificacion;
 		this.servicioHistorial = servicioHistorial;
-
+		this.servicioSolicitud = servicioSolicitud;
 	}
 
 	@RequestMapping("/perfil")
@@ -59,6 +66,8 @@ public class ControladorPerfil {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
+		
+		Usuario usuarioVista = (Usuario)request.getSession().getAttribute("usuarioActual");
 		ModelMap modelo = new ModelMap();
 		
 		Usuario usuarioPerfil = servicioLogin.getById(id);
@@ -80,6 +89,11 @@ public class ControladorPerfil {
 		modelo.addAttribute("historialSeries",historialSeries);
 		modelo.addAttribute("historialVideoJ",historialVideoJ);
 		
+		Solicitud solicitudEncontrada = servicioSolicitud.getByUsers(usuarioVista.getId(), usuarioPerfil.getId());
+		modelo.addAttribute("solicitud", solicitudEncontrada);
+		
+		Integer cantidadAmigos = usuarioPerfil.getAmigos().size();
+		modelo.addAttribute("cantidadAmigos", cantidadAmigos);
 		modelo.addAttribute("listaFavs", listas);
 		
 		return new ModelAndView("perfil-usuario", modelo);
@@ -114,7 +128,6 @@ public class ControladorPerfil {
 	
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-
 		servicioLogin.editarPerfil(usuarioBuscado);
 
 		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
@@ -155,21 +168,30 @@ public class ControladorPerfil {
 		modelo.addAttribute("listaNotificaciones", notificacionesCache);
 		return new ModelAndView("usuario-notificaciones", modelo);
 	}
+	
+	@RequestMapping("/amigos")
+	public ModelAndView verAmigos(@RequestParam("id") Integer id, HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		Usuario usuarioPerfil = servicioLogin.getById(id);
+		List<Amigo> amigos = usuarioPerfil.getAmigos();
+		modelo.addAttribute("listaAmigos", amigos);
+		modelo.addAttribute("usuario", usuarioPerfil);
+		return new ModelAndView("usuario-amigos", modelo);
+	}
 
 	@RequestMapping(path = "/lista-completa")
 	public ModelAndView irAListaFav(@RequestParam("id") Integer id, HttpServletRequest request) {
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
-		ModelMap modelo = new ModelMap();
 		
+		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 		
 		modelo.addAttribute("usuario", usuarioPerfil);
 		modelo.addAttribute("listaFavs", listas);
 		return new ModelAndView("favs-completo", modelo);
-
 	}
 
 }

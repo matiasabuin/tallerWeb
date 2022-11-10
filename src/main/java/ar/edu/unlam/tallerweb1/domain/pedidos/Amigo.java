@@ -1,46 +1,34 @@
 package ar.edu.unlam.tallerweb1.domain.pedidos;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Comentario {
-	
+public class Amigo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 1000)
-	private String descripcion;
-
-	@ManyToOne()
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	
-	@ManyToOne()
-	@JoinColumn(name="review_id")
-	private Review review;
-	
-	
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="usuario2_id")
+	private Usuario amigo;
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public Usuario getUsuario() {
@@ -50,13 +38,12 @@ public class Comentario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public Review getReview() {
-		return review;
-	}
-
-	public void setReview(Review review) {
-		this.review = review;
-	}
 	
+	public Usuario getAmigo() {
+		return amigo;
+	}
+
+	public void setAmigo(Usuario amigo) {
+		this.amigo = amigo;
+	}
 }

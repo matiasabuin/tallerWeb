@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Mis Notificaciones</title>
+<title>Comentario | ${comentario.usuario.nombre}</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/perfilUsuario.css">
+<link rel="stylesheet" href="css/review-usuario.css">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css">
 
@@ -24,41 +24,40 @@
 	<!-- IMPORT HEADER -->
 	<jsp:include page="header.jsp" />
 
-	<div class="container">
-		<div class="usuario-container">
-			<h3 style="text-align: center; margin-bottom: 0em;">Mis Notificaciones</h3>
-			<div>
+	<div class="container top">
+		<div>
+			<h3 style="text-align: center;"></h3>
+			<div style="margin-top: 6em;">
 
-				<c:if test="${listaNotificacionesLeidas.isEmpty() == false}">
-						<h2 class="text-center">
-							<a href="ver-leidos" class="btn btn-primary button-agregarfavs mt-4">Ver leidos</a>
-						</h2>
-				</c:if>
+				<!-- COMENTARIO -->
+				<div class="comentario" style="border-bottom: none;">
+					<a href="perfil?id=${comentario.review.usuario.id}"><img
+						style="width: 150px; height: 150px;"
+						src="images/${comentario.review.usuario.foto}"></a>
 
-				<!-- LISTADO DE NOTIFICACIONES VACIAS-->
-
-				<c:if test="${listaNotificaciones.isEmpty() == true}">
-					<div class="comentario">
-						<h1 class="text-center">Bandeja de notificaciones vacia</h1>
+					<div class="descripcion">
+						<a href="perfil?id=${comentario.review.usuario.id}"><h4>Review de ${comentario.review.usuario.nombre}</h4></a>
+						<h5>Tu comentario:</h5>
+						<c:if test="${usuarioActual.id == comentario.usuario.id}">
+							<form:form action="editar-comentario" method="POST"
+								modelAttribute="comentario">
+								<form:input path="id" value="${comentario.id}" type="hidden" />
+								<form:input path="usuario.id" value="${comentario.usuario.id}"
+									type="hidden" />
+								<form:input path="review.id" value="${comentario.review.id}"
+									type="hidden" />
+								<form:textarea path="descripcion" value="${comentario.descripcion}"/>
+								<form:button type="submit"
+									class="btn btn-primary button-agregarfavs"
+									style="margin-top: 1em;">Actualizar</form:button>
+							</form:form>
+						</c:if>
 					</div>
-				</c:if>
-
-				<!-- LISTADO DE NOTIFICACIONES -->
-				<c:forEach var="notificacion" items="${listaNotificaciones}">
-					<div class="comentario">
-						<div class="descripcion">
-							<p class="opciones">${notificacion.mensaje}</p>
-							<div class="text-right">
-								<a href="leido?id=${notificacion.id}"
-									class="btn btn-primary button-agregarfavs">Marcar como
-									leido</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- IMPORT FOOTER -->
 	<jsp:include page="footer.jsp" />
@@ -74,6 +73,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

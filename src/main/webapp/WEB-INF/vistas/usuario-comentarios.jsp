@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Mis Notificaciones</title>
+<title>Comentarios | ${usuario.nombre}</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -26,35 +26,39 @@
 
 	<div class="container">
 		<div class="usuario-container">
-			<h3 style="text-align: center; margin-bottom: 0em;">Mis Notificaciones</h3>
+			<h3 style="text-align: center;">Comentarios de ${usuario.nombre}</h3>
 			<div>
 
-				<c:if test="${listaNotificacionesLeidas.isEmpty() == false}">
-						<h2 class="text-center">
-							<a href="ver-leidos" class="btn btn-primary button-agregarfavs mt-4">Ver leidos</a>
-						</h2>
-				</c:if>
-
-				<!-- LISTADO DE NOTIFICACIONES VACIAS-->
-
-				<c:if test="${listaNotificaciones.isEmpty() == true}">
+				<!-- LISTADO DE COMENTARIOS VACIA-->
+				<c:if test="${listaComentarios.isEmpty() == true}">
 					<div class="comentario">
-						<h1 class="text-center">Bandeja de notificaciones vacia</h1>
+						<h1 class="text-center">No hay comentarios</h1>
 					</div>
 				</c:if>
 
-				<!-- LISTADO DE NOTIFICACIONES -->
-				<c:forEach var="notificacion" items="${listaNotificaciones}">
-					<div class="comentario">
-						<div class="descripcion">
-							<p class="opciones">${notificacion.mensaje}</p>
-							<div class="text-right">
-								<a href="leido?id=${notificacion.id}"
-									class="btn btn-primary button-agregarfavs">Marcar como
-									leido</a>
+				<!-- LISTADO DE COMENTARIOS -->
+				<c:forEach var="comentario" items="${listaComentarios}">
+
+					<!-- REVIEW VIDEOJUEGO -->
+						<div class="comentario">
+							<a href="perfil?id=${comentario.review.usuario.id}"><img
+								style="width: 100px; height: 100px;" src="images/${comentario.review.usuario.foto}"></a>
+
+							<div class="descripcion">
+								<h4>Review de <a href="perfil?id=${comentario.review.usuario.id}">${comentario.review.usuario.nombre}</a></h4>
+								<p>${comentario.descripcion}</p>
+								<div class="botones">
+									<a href="review?id=${comentario.review.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Ver review</a>
+										<c:if test="${usuarioActual.id == comentario.usuario.id}"> 
+										<a href="comentario-editar?id=${comentario.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Editar</a> <a
+										href="eliminar-comentario?id=${comentario.id}"
+										class="btn btn-primary button-agregarfavs mt-4">Eliminar</a>
+										</c:if>
+								</div>
 							</div>
 						</div>
-					</div>
 				</c:forEach>
 			</div>
 		</div>
