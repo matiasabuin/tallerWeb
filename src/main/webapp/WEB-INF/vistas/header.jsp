@@ -43,7 +43,7 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="registro-pelicula">Pelicula</a>
 								<a class="dropdown-item" href="registro-serie">Serie</a> 
-								<a class="dropdown-item" href="registro-videojuego">VideoJuego</a>
+								<a class="dropdown-item" href="registro-videojuego">Videojuego</a>
 							</div>
 						</li>
 					</c:if>	

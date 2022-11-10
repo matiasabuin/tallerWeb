@@ -115,9 +115,13 @@ public class ControladorPelicula {
 
 	@RequestMapping(path = "/registrar-pelicula", method = RequestMethod.POST)
 	public ModelAndView registrarPelicula(@ModelAttribute("datosPelicula") Pelicula datosPelicula,
-			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request)  {
 
-		servicioFiles.uploadImage(file);
+		try {
+			servicioFiles.uploadImage(file);
+		} catch (IOException e) {
+			return new ModelAndView("registro-pelicula");
+		}
 
 		datosPelicula.setPoster(file.getOriginalFilename());
 

@@ -113,13 +113,18 @@ public class ControladorSerie {
 
 	@RequestMapping(path = "/registrar-serie", method = RequestMethod.POST)
 	public ModelAndView registrarSerie(@ModelAttribute("datosSerie") Serie datosSerie,
-			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 
-		servicioFiles.uploadImage(file);
+		try {
+			servicioFiles.uploadImage(file);
+		} catch (IOException e) {
+			return new ModelAndView("registro-serie");
+		}
+		
 		datosSerie.setPoster(file.getOriginalFilename());
 
 		Serie serie = servicioSerie.registrarSerie(datosSerie);

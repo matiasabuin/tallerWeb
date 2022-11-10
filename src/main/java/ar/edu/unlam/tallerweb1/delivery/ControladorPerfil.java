@@ -102,7 +102,11 @@ public class ControladorPerfil {
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 
         if(foto.getBytes() != null) {
-        	servicioFiles.uploadImage(foto);
+    		try {
+    			servicioFiles.uploadImage(foto);
+    		} catch (IOException e) {
+    			return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
+    		}
         	usuarioBuscado.setFoto(foto.getOriginalFilename());
         } else {
         	usuarioBuscado.setFoto(usuarioBuscado.getFoto());
@@ -113,7 +117,7 @@ public class ControladorPerfil {
 
 		servicioLogin.editarPerfil(usuarioBuscado);
 
-		return new ModelAndView("redirect:/perfil");
+		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
 	}
 
 	@RequestMapping("/reviews")

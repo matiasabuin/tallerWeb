@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="css/styles.css" />
 <link rel="stylesheet" href="css/registro-serie.css" />
 
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet"
@@ -28,7 +27,7 @@
 
 	<jsp:include page="header.jsp" />
 
-	<h2>REGISTRO SERIE</h2>
+	<h2>Registro Serie</h2>
 	<div class="container">
 		<form:form action="registrar-serie" method="POST"
 			class="formulario-registro rounded" modelAttribute="datosSerie"
@@ -76,10 +75,10 @@
 				</div>
 			</div>
 
-			<div class="col text-center mt-2">
-				<form:button type="submit" class="btn btn-primary"
-					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
-			</div>
+				<div class="col text-center mt-2">
+					<form:button type="submit" class="btn btn-primary"
+						id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
+				</div>
 		</form:form>
 
 

@@ -31,7 +31,7 @@
 			</div>
 		</c:if>
 		
-		<h2>REGISTRO VIDEOJUEGO</h2>
+		<h2>Registro Videojuego</h2>
 		<section class="formulario">
 
 			<form:form action="registrar-videojuego" method="POST"

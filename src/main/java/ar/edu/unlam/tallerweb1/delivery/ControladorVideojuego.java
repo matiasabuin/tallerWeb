@@ -163,13 +163,18 @@ public class ControladorVideojuego {
 
 	@RequestMapping(path = "/registrar-videojuego", method = RequestMethod.POST)
 	public ModelAndView registrarVideojuego(@ModelAttribute("datosVideojuego") Videojuego datosVideojuego,
-			@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 
 		if (request.getSession().getAttribute("usuarioActual") == null) {
 			return new ModelAndView("redirect:/home");
 		}
 		
-		servicioFiles.uploadImage(file);
+		try {
+			servicioFiles.uploadImage(file);
+		} catch (IOException e) {
+			return new ModelAndView("registro-videojuego");
+		}
+		
 		datosVideojuego.setPoster(file.getOriginalFilename());
 		Videojuego videojuego = servicioVideojuego.registrarVideojuego(datosVideojuego);
 		return new ModelAndView("redirect:/videojuego?id=" + videojuego.getId());

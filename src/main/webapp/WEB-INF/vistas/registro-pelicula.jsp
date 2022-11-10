@@ -12,7 +12,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/styles.css" />
-<link rel="stylesheet" href="css/registro-pelicula.css" />
+<link rel="stylesheet" href="css/registro-serie.css" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -25,14 +25,13 @@
 
 	<jsp:include page="header.jsp" />
 
-	<h2>REGISTRO PELICULA</h2>
+	<h2>Registro Pelicula</h2>
 	<div class="container">
 		<form:form action="registrar-pelicula" method="POST"
 			class="formulario-registro rounded" modelAttribute="datosPelicula"
 			enctype="multipart/form-data">
-
-			<div class="row">
-				<div class="form-group col-md-6">
+			<div class="form-serie">
+				<div class="form-group col-md-6 ">
 
 					<form:label path="poster">Subir el poster</form:label>
 					<form:input path="" type="file" id="foto" name="file" />
@@ -60,20 +59,18 @@
 					<form:label path="duracion">Duracion</form:label>
 					<form:input path="duracion" type="number" class="form-control"
 						id="duracion" />
+						
+					<label for="exampleFormSinopsis">Sinopsis</label>
+					<form:textarea path="sinopsis" class="form-control"
+					id="exampleFormControlTextarea1" rows="3" />
+					<br>
 				</div>
 			</div>
-			<br>
-			<div class="form-group col-md-10 mx-auto">
-				<label for="exampleFormSinopsis">Sinopsis</label>
-				<form:textarea path="sinopsis" class="form-control"
-					id="exampleFormControlTextarea1" rows="3" />
-				<br>
-
-			</div>
-			<div class="col text-center mt-2">
-				<form:button type="submit" class="btn btn-primary"
-					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
-			</div>
+			
+				<div class="col text-center mt-2">
+					<form:button type="submit" class="btn btn-primary"
+						id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
+				</div>
 		</form:form>
 
 	</div>
