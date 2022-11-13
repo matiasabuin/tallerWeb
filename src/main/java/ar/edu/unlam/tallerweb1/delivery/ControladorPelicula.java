@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -20,17 +21,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Genero;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Historial;
-import ar.edu.unlam.tallerweb1.domain.pedidos.Favorito;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Plataforma;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
+import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioGeneroPlataforma;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioPelicula;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
@@ -63,6 +64,7 @@ public class ControladorPelicula {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
 		if(request.getSession().getAttribute("usuarioActual") != null &&
+				
 				usuario.getPlanAdquirido().getPlan().getDescripcion().equals("Premium")){
 			ModelMap modelo = new ModelMap();
 			Pelicula pelicula = new Pelicula();
@@ -73,10 +75,8 @@ public class ControladorPelicula {
 			modelo.addAttribute("listaGeneros", generos);
 			modelo.addAttribute("listaPlataformas", plataformas);
 			modelo.put("datosPelicula", pelicula);
-
 			return new ModelAndView("registro-pelicula", modelo);
 		}
-
 		return new ModelAndView("redirect:/home");
 	}
 
@@ -120,9 +120,7 @@ public class ControladorPelicula {
 		}
 
 		datosPelicula.setPoster(file.getOriginalFilename());
-
 		Pelicula pelicula = servicioPelicula.registrarPelicula(datosPelicula);
-
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + pelicula.getId());
 
 	}
@@ -170,7 +168,6 @@ public class ControladorPelicula {
 		modelo.addAttribute("listaReviews", reviews);
 		modelo.addAttribute("datosPelicula", pelicula);
 		modelo.addAttribute("datosLista", fav);
-
 		return new ModelAndView("perfil-pelicula", modelo);
 	}
 }

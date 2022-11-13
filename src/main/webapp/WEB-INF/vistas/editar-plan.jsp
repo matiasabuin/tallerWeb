@@ -68,7 +68,10 @@
 
 				<c:if
 					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
-					<div class="text-center"><a href="${preferenceBasico.initPoint}" class="plan">Adquirir basico</a></div>
+					<div class="text-center">
+						<p class="precio"><strong>Precio:</strong> ${precioBasico}</p>
+						<a href="${preferenceBasico.initPoint}" class="plan">Adquirir basico</a>
+					</div>
 				</c:if>
 
 				<c:if
@@ -95,8 +98,20 @@
 					conociendo todo el contenido nuevo que agregaste!</p>
 
 				<c:if
-					test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico' && usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
-					<div class="text-center"><a href="${preferencePremium.initPoint}" class="plan">Adquirir premium</a></div>
+					test="${usuarioActual.planAdquirido.plan.descripcion != 'Premium'}">
+					<div class="text-center">
+						<c:if
+							test="${usuarioActual.planAdquirido.plan.descripcion == 'Basico'}">
+							<p class="precio"><strong>Antes:</strong> <s>${precioPremium}</s></p>
+							<p class="precio"><strong>Ahora:</strong> ${descuento}</p>
+						</c:if>
+						<c:if
+							test="${usuarioActual.planAdquirido.plan.descripcion != 'Basico'}">
+							<p class="precio"><strong>Precio:</strong> ${precioPremium}</p>
+						</c:if>
+						<a href="${preferencePremium.initPoint}" class="plan">Adquirir
+							premium</a>
+					</div>
 				</c:if>
 
 				<c:if

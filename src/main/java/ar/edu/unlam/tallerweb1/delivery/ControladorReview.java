@@ -149,30 +149,24 @@ public class ControladorReview {
 	
 	@RequestMapping(path = "/eliminar-review")
 	public ModelAndView eliminarReview(@RequestParam("id") Integer id, HttpServletRequest request) {
-		
 		Review reviewEncontrada = servicioReview.getById(id);
 		servicioReview.eliminar(reviewEncontrada);
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
 		return new ModelAndView("redirect:/reviews?id=" + usuarioEncontrado.getId());
 	}
 	
 	@RequestMapping("/review-editar")
 	public ModelAndView irEditarReview(@RequestParam("id") Integer id) {
 		ModelMap modelo = new ModelMap();
-		
 		Review reviewEncontrada = servicioReview.getById(id);
 		modelo.addAttribute("review", reviewEncontrada);
-		
 		return new ModelAndView("editar-review", modelo);
 	}
 	
 	
 	@RequestMapping(path = "/editar-review", method = RequestMethod.POST)
 	public ModelAndView editarReview(@ModelAttribute("review") Review reviewActualizada) {
-		
 		servicioReview.modificar(reviewActualizada);
-		
 		return new ModelAndView("redirect:/review?id=" + reviewActualizada.getId());
 	}
 	

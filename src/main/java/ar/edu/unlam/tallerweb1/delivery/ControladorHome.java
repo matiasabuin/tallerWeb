@@ -36,15 +36,10 @@ public class ControladorHome {
 		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
 		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
 		List<Serie> seriesRegistradas = servicioSerie.obtenerTodasLasSeries();
-		
-		request.getSession().setAttribute("series", seriesRegistradas);
-		request.getSession().setAttribute("peliculas", peliculasRegistradas);
-		request.getSession().setAttribute("videojuegos", videojuegosRegistrados);
 
 		model.addAttribute("series", seriesRegistradas);
 		model.addAttribute("peliculas", peliculasRegistradas);
 		model.addAttribute("videojuegos", videojuegosRegistrados);
-		
 		return new ModelAndView("home", model);
 	}
 	

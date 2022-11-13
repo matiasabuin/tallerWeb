@@ -61,11 +61,11 @@ public class ControladorRecomendaciones {
 	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
 			HttpServletRequest request) {
 
-		ModelMap model = new ModelMap();
+		ModelMap modelo = new ModelMap();
 		
 		if(horas != null) {
 		
-		model.addAttribute("horasRecomendacion", horas);
+		modelo.addAttribute("horasRecomendacion", horas);
 		
 		Integer minutos = horas * 60;
 		
@@ -77,7 +77,7 @@ public class ControladorRecomendaciones {
 		request.getSession().setAttribute("videojuegosRecomendados", videojuegosRecomendados);
 		request.getSession().setAttribute("seriesRecomendadas", seriesRecomendadas);
 		
-		return new ModelAndView("recomendaciones", model);
+		return new ModelAndView("recomendaciones", modelo);
 		}
 		
 		return new ModelAndView("redirect:/home");

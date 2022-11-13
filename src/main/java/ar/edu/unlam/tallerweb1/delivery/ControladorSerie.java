@@ -125,7 +125,6 @@ public class ControladorSerie {
 		}
 		
 		datosSerie.setPoster(file.getOriginalFilename());
-
 		Serie serie = servicioSerie.registrarSerie(datosSerie);
 		return new ModelAndView("redirect:/perfil-serie?id=" + serie.getId());
 	}

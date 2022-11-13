@@ -63,13 +63,10 @@ public class ControladorPerfil {
 
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil(@RequestParam("id") Integer id, HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
-			return new ModelAndView("redirect:/home");
-		}
 		
 		Usuario usuarioVista = (Usuario)request.getSession().getAttribute("usuarioActual");
-		ModelMap modelo = new ModelMap();
 		
+		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
 		
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());

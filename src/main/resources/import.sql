@@ -19,7 +19,7 @@ insert into plataforma (id, descripcion) values('8', 'Amazon');
 
 insert into plan (id, descripcion, precio) values ('1', 'Free', '0')
 insert into plan (id, descripcion, precio) values ('2', 'Basico', '500')
-insert into plan (id, descripcion, precio) values ('3', 'Premium', '900')
+insert into plan (id, descripcion, precio) values ('3', 'Premium', '700')
 
 insert into usuario (id, email, password, nombre, biografia, foto) values('1', 'free@gmail.com', '123', 'free', 'hola soy un usuario free', 'perfil.jpg')
 insert into usuario (id, email, password, nombre, biografia, foto) values('2', 'basico@gmail.com', '123', 'basico', 'hola soy un usuario basico', 'perfil2.jpg')
