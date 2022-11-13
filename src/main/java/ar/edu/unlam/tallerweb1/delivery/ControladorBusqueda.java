@@ -33,27 +33,11 @@ public class ControladorBusqueda {
 	
 	@RequestMapping(path = "/busqueda", method = RequestMethod.GET)
 	public ModelAndView irABusqueda(HttpServletRequest request) {
-		
 		ModelMap model = new ModelMap();
-
-		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
-		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-		List<Serie> seriesRegistradas = servicioSerie.obtenerTodasLasSeries();
-		
-		request.getSession().setAttribute("peliculas", peliculasRegistradas);
-		request.getSession().setAttribute("videojuegos", videojuegosRegistrados);
-		request.getSession().setAttribute("series", seriesRegistradas);
-
-		model.addAttribute("peliculas", peliculasRegistradas);
-		model.addAttribute("videojuegos", videojuegosRegistrados);
-		model.addAttribute("series", seriesRegistradas);
-		
 		model.addAttribute("busquedaBuscado", request.getSession().getAttribute("busquedaBuscado"));
-		
 		model.addAttribute("videojuegosEncontrados", request.getSession().getAttribute("videojuegosEncontrados"));
 		model.addAttribute("peliculasEncontradas", request.getSession().getAttribute("peliculasEncontradas"));
 		model.addAttribute("seriesEncontradas", request.getSession().getAttribute("seriesEncontradas"));
-		
 		return new ModelAndView("busqueda", model);
 	}
 
@@ -71,8 +55,6 @@ public class ControladorBusqueda {
 		request.getSession().setAttribute("videojuegosEncontrados", videojuegosRecomendados);
 		request.getSession().setAttribute("seriesEncontradas", seriesRecomendadas);
 		
-		return irABusqueda(request);
-
+		return new ModelAndView("redirect:/busqueda");
 	}
-	
 }

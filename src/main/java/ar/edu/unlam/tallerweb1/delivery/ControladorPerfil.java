@@ -46,7 +46,6 @@ public class ControladorPerfil {
 	private ServicioHistorialUsuario servicioHistorial;
 	private ServicioFavoritos servicioListas;
 	private ServicioSolicitud servicioSolicitud;
-	private ServicioAmigos servicioAmigos;
 
 	@Autowired
 	public ControladorPerfil(ServicioLogin servicioLogin, ServicioFiles servicioFiles, 
@@ -63,15 +62,16 @@ public class ControladorPerfil {
 
 	@RequestMapping("/perfil")
 	public ModelAndView irAPerfil(@RequestParam("id") Integer id, HttpServletRequest request) {
-		
 		Usuario usuarioVista = (Usuario)request.getSession().getAttribute("usuarioActual");
 		
+		if(usuarioVista == null) {
+			usuarioVista = new Usuario();
+		} 
+
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
 		
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
-
-		modelo.addAttribute("usuario", usuarioPerfil);
 		
 		List<Pelicula> cacheHistorialPeli=servicioHistorial.getByUserId(usuarioPerfil.getId()).getPeliculas();
 		List<Pelicula> historialPeli=servicioHistorial.getByUserId(usuarioPerfil.getId()).invertirListaDePeliculas(cacheHistorialPeli);
@@ -82,6 +82,8 @@ public class ControladorPerfil {
 		List<Videojuego> cacheHistorialVideoJ=servicioHistorial.getByUserId(usuarioPerfil.getId()).getVideojuegos();
 		List<Videojuego> historialVideoJ=servicioHistorial.getByUserId(usuarioPerfil.getId()).invertirListaDeVideojuegos(cacheHistorialVideoJ);
 
+		modelo.addAttribute("usuario", usuarioPerfil);
+		modelo.addAttribute("listaFavs", listas);
 		modelo.addAttribute("historialPelis",historialPeli);
 		modelo.addAttribute("historialSeries",historialSeries);
 		modelo.addAttribute("historialVideoJ",historialVideoJ);
@@ -91,7 +93,6 @@ public class ControladorPerfil {
 		
 		Integer cantidadAmigos = usuarioPerfil.getAmigos().size();
 		modelo.addAttribute("cantidadAmigos", cantidadAmigos);
-		modelo.addAttribute("listaFavs", listas);
 		
 		return new ModelAndView("perfil-usuario", modelo);
 	}
@@ -126,21 +127,15 @@ public class ControladorPerfil {
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
 		servicioLogin.editarPerfil(usuarioBuscado);
-
 		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
 	}
 
 	@RequestMapping("/reviews")
 	public ModelAndView verReviews(@RequestParam("id") Integer id, HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
-			return new ModelAndView("redirect:/home");
-		}
-
 		ModelMap modelo = new ModelMap();
-		
 		Usuario usuarioPerfil = servicioLogin.getById(id);
-		List<Review> reviewsCache = servicioReview.getAllByUserId(usuarioPerfil.getId());
 		
+		List<Review> reviewsCache = servicioReview.getAllByUserId(usuarioPerfil.getId());
 		Set<Review> reviewsSinDuplicados = new HashSet<>(reviewsCache);
 		List<Review> reviews = new ArrayList<>(reviewsSinDuplicados);
 
@@ -151,10 +146,6 @@ public class ControladorPerfil {
 	
 	@RequestMapping("/notificaciones")
 	public ModelAndView verNotificaciones(HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
-			return new ModelAndView("redirect:/home");
-		}
-
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioEncontrado = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
@@ -170,7 +161,9 @@ public class ControladorPerfil {
 	public ModelAndView verAmigos(@RequestParam("id") Integer id, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
+		
 		List<Amigo> amigos = usuarioPerfil.getAmigos();
+		
 		modelo.addAttribute("listaAmigos", amigos);
 		modelo.addAttribute("usuario", usuarioPerfil);
 		return new ModelAndView("usuario-amigos", modelo);
@@ -178,12 +171,9 @@ public class ControladorPerfil {
 
 	@RequestMapping(path = "/lista-completa")
 	public ModelAndView irAListaFav(@RequestParam("id") Integer id, HttpServletRequest request) {
-		if (request.getSession().getAttribute("usuarioActual") == null) {
-			return new ModelAndView("redirect:/home");
-		}
-		
 		ModelMap modelo = new ModelMap();
 		Usuario usuarioPerfil = servicioLogin.getById(id);
+		
 		List<Favorito> listas = servicioListas.getAllByUserId(usuarioPerfil.getId());
 		
 		modelo.addAttribute("usuario", usuarioPerfil);

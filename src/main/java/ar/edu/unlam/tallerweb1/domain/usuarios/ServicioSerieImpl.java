@@ -1,13 +1,11 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
-
+import java.util.Set;
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioSerie;
@@ -27,9 +25,20 @@ public class ServicioSerieImpl implements ServicioSerie {
 	@Override
 	public Serie consultarSerie(Integer id) throws ExceptionSerieNoEncontrada {
 		Serie serie = servicioSerieDao.buscar(id);
-		if(serie == null) {
+
+		if (serie == null) {
 			throw new ExceptionSerieNoEncontrada("");
 		}
+
+		Set<Review> reviews = serie.getReviews();
+		Double calificacion = 0.0;
+		for (Review element : reviews) {
+			calificacion += element.getCalificacion();
+		}
+		Double calificacionFinal = calificacion / reviews.size();
+		serie.setCalificacion(calificacionFinal);
+		modificarSerie(serie);
+		
 		return serie;
 	}
 
@@ -46,14 +55,15 @@ public class ServicioSerieImpl implements ServicioSerie {
 
 	@Override
 	public List<Serie> obtenerSeriePorTiempo(Integer horas) {
-		return servicioSerieDao.obtenerLasSeriesPorTiempo(horas);
+		Integer minutos = horas * 60;
+		return servicioSerieDao.obtenerLasSeriesPorTiempo(minutos);
 	}
 
 	@Override
 	public List<Serie> obtenerSeriePorBusqueda(String busqueda) {
 		return servicioSerieDao.obtenerLasSeriesPorBusqueda(busqueda);
 	}
-	
+
 	@Override
 	public void modificarSerie(Serie datosserie) {
 		servicioSerieDao.modificar(datosserie);

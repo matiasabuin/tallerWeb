@@ -155,8 +155,6 @@ public class ControladorLogin {
 			servicioLogin.editarPerfil(usuario);
 			servicioHistorial.registrarHistorial(usuario);
 			usuario.setHistorialUsuario(servicioHistorial.getByUserId(usuario.getId()));
-
-			
 		} catch (ExceptionRegistroCamposVacios e){
 			modelo.put("errorCampos", e.getMessage());
 			modelo.put("usuario", datosRegistro);
@@ -170,8 +168,6 @@ public class ControladorLogin {
 			modelo.put("usuario", datosRegistro);
 			return new ModelAndView("registro-usuario", modelo);
 		}
-		
-
 		return new ModelAndView("redirect:/login");
 	}
 
@@ -183,9 +179,7 @@ public class ControladorLogin {
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuario", new Usuario());
-		
 		return new ModelAndView("registro-usuario", modelo);
-		
 	}
 	
 	

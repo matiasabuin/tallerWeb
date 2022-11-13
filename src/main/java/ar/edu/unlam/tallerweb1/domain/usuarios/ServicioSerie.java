@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
-
-import ar.edu.unlam.tallerweb1.domain.pedidos.Pelicula;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Serie;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 

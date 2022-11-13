@@ -31,24 +31,15 @@ public class ControladorReview {
 	
 	private ServicioReview servicioReview;
 	private ServicioComentario servicioComentario;
-	private ServicioPelicula servicioPelicula;
-	private ServicioSerie servicioSerie;
-	private ServicioVideojuego servicioVideojuego;
 
 	@Autowired
-	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario,
-			ServicioPelicula servicioPelicula, ServicioSerie servicioSerie,
-			ServicioVideojuego servicioVideojuego) {
+	public ControladorReview(ServicioReview servicioReview, ServicioComentario servicioComentario) {
 		this.servicioReview = servicioReview;
 		this.servicioComentario = servicioComentario;
-		this.servicioPelicula = servicioPelicula;
-		this.servicioSerie = servicioSerie;
-		this.servicioVideojuego = servicioVideojuego;
 	}
 	
 	@RequestMapping("/review")
 	public ModelAndView verReview(@RequestParam("id") Integer id) {
-		
 		ModelMap modelo = new ModelMap();
 		Review review = servicioReview.getById(id);
 		Comentario comentario = new Comentario();
@@ -58,16 +49,12 @@ public class ControladorReview {
 		modelo.addAttribute("review", review);
 		modelo.addAttribute("comentario", comentario);
 		modelo.addAttribute("listaComentarios", comentarios);
-	
 		return new ModelAndView("review", modelo);	
 	}
 	
 	@RequestMapping(path = "/registrarReviewVideojuego", method = RequestMethod.POST)
-	public ModelAndView registrarReviewVideojuego(@ModelAttribute("datosReview") Review datosReview) 
-			throws ExceptionVideojuegoNoEncontrado {
-		
+	public ModelAndView registrarReviewVideojuego(@ModelAttribute("datosReview") Review datosReview) throws ExceptionVideojuegoNoEncontrado {
 		ModelMap modelo = new ModelMap();
-		Videojuego videojuego = servicioVideojuego.consultarVideojuego(datosReview.getVideojuego().getId());
 		
 	    try {
 			servicioReview.registrar(datosReview);
@@ -76,26 +63,12 @@ public class ControladorReview {
 			return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
 		}
 		
-		List<Review> reviews = servicioReview.getAllByVideojuegoId(datosReview.getVideojuego().getId());
-	    Double calificacion = 0.0;
-	    
-	    for (Review element : reviews) {
-	    	calificacion += element.getCalificacion();
-	    }
-
-	    Double calificacionFinal = calificacion / reviews.size();
-	    videojuego.setCalificacion(calificacionFinal);
-	    servicioVideojuego.actualizarVideojuego(videojuego);
-		
 		return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
 	}
 
 	@RequestMapping(path = "/registrarReviewPelicula", method = RequestMethod.POST)
-	public ModelAndView registrarReviewPelicula(@ModelAttribute("datosReview") Review datosReview) 
-			throws ExceptionPeliculaNoEncontrada {
-		
+	public ModelAndView registrarReviewPelicula(@ModelAttribute("datosReview") Review datosReview) throws ExceptionPeliculaNoEncontrada {
 		ModelMap modelo = new ModelMap();
-		Pelicula pelicula = servicioPelicula.consultarPelicula(datosReview.getPelicula().getId());
 		
 	    try {
 			servicioReview.registrar(datosReview);
@@ -104,26 +77,12 @@ public class ControladorReview {
 			return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
 		}
 		
-		List<Review> reviews = servicioReview.getAllByPeliculaId(datosReview.getPelicula().getId());
-	    Double calificacion = 0.0;
-	    
-	    for (Review element : reviews) {
-	    	calificacion += element.getCalificacion();
-	    }
-
-	    Double calificacionFinal = calificacion / reviews.size();
-	    pelicula.setCalificacion(calificacionFinal);
-	    servicioPelicula.modificarPelicula(pelicula);
-		
 		return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
 	}
 	
 	@RequestMapping(path = "/registrarReviewSerie", method = RequestMethod.POST)
-	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) 
-			throws ExceptionSerieNoEncontrada {
-		
+	public ModelAndView registrarReviewSerie(@ModelAttribute("datosReview") Review datosReview) throws ExceptionSerieNoEncontrada {
 		ModelMap modelo = new ModelMap();
-		Serie serie = servicioSerie.consultarSerie(datosReview.getSerie().getId());
 		
 	    try {
 			servicioReview.registrar(datosReview);
@@ -131,17 +90,6 @@ public class ControladorReview {
 			modelo.put("errorCalificacion", e.getMessage());
 			return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
 		}
-		
-		List<Review> reviews = servicioReview.getAllBySerieId(datosReview.getSerie().getId());
-	    Double calificacion = 0.0;
-	    
-	    for (Review element : reviews) {
-	    	calificacion += element.getCalificacion();
-	    }
-
-	    Double calificacionFinal = calificacion / reviews.size();
-	    serie.setCalificacion(calificacionFinal);
-	    servicioSerie.modificarSerie(serie);
 		
 		return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
 		

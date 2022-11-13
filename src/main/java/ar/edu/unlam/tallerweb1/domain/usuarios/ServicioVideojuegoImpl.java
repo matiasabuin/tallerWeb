@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.domain.usuarios;
 
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionVideojuegoNoEncontrado;
@@ -22,9 +24,20 @@ public class ServicioVideojuegoImpl implements ServicioVideojuego {
 
 	public Videojuego consultarVideojuego (Integer id) throws ExceptionVideojuegoNoEncontrado {
 		Videojuego videojuego = servicioVideojuegoDao.buscar(id);
+		
 		if(videojuego == null){
 			throw new ExceptionVideojuegoNoEncontrado("");
 		}
+		
+		Set<Review> reviews = videojuego.getReviews();
+	    Double calificacion = 0.0;
+	    for (Review element : reviews) {
+	    	calificacion += element.getCalificacion();
+	    }
+	    Double calificacionFinal = calificacion / reviews.size();
+	    videojuego.setCalificacion(calificacionFinal);
+	    actualizarVideojuego(videojuego);
+	    
 		return videojuego;
 	}
 

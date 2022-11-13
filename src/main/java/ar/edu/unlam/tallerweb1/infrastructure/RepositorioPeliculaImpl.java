@@ -38,10 +38,10 @@ public class RepositorioPeliculaImpl implements RepositorioPelicula {
 	}
 
 	@Override
-	public List<Pelicula> obtenerLasPeliculasPorTiempo(Integer horas) {
+	public List<Pelicula> obtenerLasPeliculasPorTiempo(Integer minutos) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Pelicula.class)
-				.add(Restrictions.eq("duracion", horas))
+				.add(Restrictions.between("duracion", 0, minutos))
 				.list();
 	}
 

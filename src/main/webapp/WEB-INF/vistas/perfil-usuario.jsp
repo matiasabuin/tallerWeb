@@ -37,7 +37,7 @@
 							<h4 class="my-2" style="margin: auto;">${usuario.nombre}</h4>
 							<a href="amigos?id=${usuario.id}"><p style="margin: auto;" class="amigos">Amigos: ${cantidadAmigos}</p></a>
 							<c:if
-								test="${usuarioActual.id != usuario.id && solicitud.estado != 'APROBADO' && solicitud.estado != 'PENDIENTE'}">
+								test="${usuarioActual.id != usuario.id && solicitud.estado != 'APROBADO' && solicitud.estado != 'PENDIENTE' && usuarioActual.nombre != null}">
 								<a href="enviar-solicitud?usuario=${usuario.id}"><p class="agregar">Agregar amigo</p></a>
 							</c:if>
 							<c:if test="${solicitud.estado == 'PENDIENTE'}">

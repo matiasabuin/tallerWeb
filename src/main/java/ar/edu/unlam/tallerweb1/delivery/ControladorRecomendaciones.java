@@ -32,54 +32,30 @@ public class ControladorRecomendaciones {
 	}
 	
 	@RequestMapping(path = "/recomendaciones", method = RequestMethod.GET)
-	public ModelAndView irARecomendaciones(HttpServletRequest request) {
-		
+	public ModelAndView irARecomendaciones(@RequestParam("horas") Integer horas, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
-
-		List<Videojuego> videojuegosRegistrados = servicioVideojuego.obtenerTodosLosVideojuegos();
-		List<Pelicula> peliculasRegistradas = servicioPelicula.obtenerTodasLasPeliculas();
-		List<Serie> seriesRegistradas = servicioSerie.obtenerTodasLasSeries();
-		
-		request.getSession().setAttribute("peliculas", peliculasRegistradas);
-		request.getSession().setAttribute("videojuegos", videojuegosRegistrados);
-		request.getSession().setAttribute("series", seriesRegistradas);
-
-		model.addAttribute("peliculas", peliculasRegistradas);
-		model.addAttribute("videojuegos", videojuegosRegistrados);
-		model.addAttribute("series", seriesRegistradas);
-		
-		model.addAttribute("horasRecomendacion", request.getSession().getAttribute("horasRecomendacion"));
-		
+		model.addAttribute("horasRecomendacion", horas);
 		model.addAttribute("videojuegosRecomendados", request.getSession().getAttribute("videojuegosRecomendados"));
 		model.addAttribute("peliculasRecomendadas", request.getSession().getAttribute("peliculasRecomendadas"));
 		model.addAttribute("seriesRecomendadas", request.getSession().getAttribute("seriesRecomendadas"));
-		
 		return new ModelAndView("recomendaciones", model);
 	}
 
 	@RequestMapping(path = "/buscar-recomendaciones", method = RequestMethod.GET)
 	public ModelAndView buscarRecomendaciones(@RequestParam("horas") Integer horas,
 			HttpServletRequest request) {
-
-		ModelMap modelo = new ModelMap();
 		
 		if(horas != null) {
-		
-		modelo.addAttribute("horasRecomendacion", horas);
-		
-		Integer minutos = horas * 60;
-		
 		List<Videojuego> videojuegosRecomendados = servicioVideojuego.obtenerVideojuegoPorTiempo(horas);
-		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(minutos);
-		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorTiempo(minutos);
+		List<Pelicula> peliculasRecomendadas = servicioPelicula.obtenerPeliculaPorTiempo(horas);
+		List<Serie> seriesRecomendadas = servicioSerie.obtenerSeriePorTiempo(horas);
 		
 		request.getSession().setAttribute("peliculasRecomendadas", peliculasRecomendadas);
 		request.getSession().setAttribute("videojuegosRecomendados", videojuegosRecomendados);
 		request.getSession().setAttribute("seriesRecomendadas", seriesRecomendadas);
 		
-		return new ModelAndView("recomendaciones", modelo);
+		return new ModelAndView("redirect:/recomendaciones?horas=" + horas);
 		}
-		
 		return new ModelAndView("redirect:/home");
 	}
 	
