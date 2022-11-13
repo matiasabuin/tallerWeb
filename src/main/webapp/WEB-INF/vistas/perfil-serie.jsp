@@ -85,7 +85,7 @@
 					
 					<h4 class ="pl-0">★: 
 						<c:choose>
-						    <c:when test="${datosSerie.calificacion == 0.0}">
+						    <c:when test="${datosSerie.calificacion == 'NaN'}">
 						        No hay calificaciones suficientes
 						        <br />
 						    </c:when>    

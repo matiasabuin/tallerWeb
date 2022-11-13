@@ -83,7 +83,7 @@
 							
 					<h4 class ="pl-0">★: 
 						<c:choose>
-						    <c:when test="${datosPelicula.calificacion == 0.0}">
+						    <c:when test="${datosPelicula.calificacion == 'NaN'}">
 						        No hay calificaciones suficientes
 						        <br />
 						    </c:when>    

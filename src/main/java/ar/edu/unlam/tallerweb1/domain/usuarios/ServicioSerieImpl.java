@@ -44,6 +44,8 @@ public class ServicioSerieImpl implements ServicioSerie {
 
 	@Override
 	public Serie registrarSerie(Serie datosSerie) {
+		Integer duracionTotal = (datosSerie.getCantDeCaps()*datosSerie.getDuracionPorCaps())/60;
+		datosSerie.setDuracion(duracionTotal);
 		this.servicioSerieDao.guardar(datosSerie);
 		return datosSerie;
 	}
@@ -55,8 +57,7 @@ public class ServicioSerieImpl implements ServicioSerie {
 
 	@Override
 	public List<Serie> obtenerSeriePorTiempo(Integer horas) {
-		Integer minutos = horas * 60;
-		return servicioSerieDao.obtenerLasSeriesPorTiempo(minutos);
+		return servicioSerieDao.obtenerLasSeriesPorTiempo(horas);
 	}
 
 	@Override

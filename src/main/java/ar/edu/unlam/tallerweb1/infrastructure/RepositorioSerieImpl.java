@@ -41,10 +41,10 @@ public class RepositorioSerieImpl implements RepositorioSerie {
 	}
 
 	@Override
-	public List<Serie> obtenerLasSeriesPorTiempo(Integer minutos) {
+	public List<Serie> obtenerLasSeriesPorTiempo(Integer horas) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Serie.class)
-				.add(Restrictions.between("duracion", 0, minutos))
+				.add(Restrictions.between("duracion", 0, horas))
 				.list();
 	}
 

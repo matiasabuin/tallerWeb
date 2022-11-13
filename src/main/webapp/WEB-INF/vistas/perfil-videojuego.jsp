@@ -84,7 +84,7 @@
 				
 					<h4 class ="pl-0">★: 
 						<c:choose>
-						    <c:when test="${datosVideojuego.calificacion == 0.0}">
+						    <c:when test="${datosVideojuego.calificacion == 'NaN'}">
 						        No hay calificaciones suficientes
 						        <br />
 						    </c:when>    

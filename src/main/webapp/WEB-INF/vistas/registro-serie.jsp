@@ -36,15 +36,19 @@
 				<div class="form-group col-md-6">
 					<form:label path="poster">Subir el poster</form:label>
 					<form:input path="" type="file" id="foto" name="file" />
-					
+
 					<br> <label for="inputNombre">Nombre</label>
 					<form:input path="nombre" type="text" class="form-control"
 						id="inputNombre" />
-						
-					<label for="inputDuracion">Duracion minutos</label>
-					<form:input path="duracion" type="number" class="form-control"
-						id="inputDuracion" />
-						
+
+					<label for="inputDuracion">Cantidad de temporadas</label>
+					<form:input path="cantDeTemps" type="number" class="form-control"
+						min="1" id="inputDuracion" />
+
+					<label for="inputDuracion">Cantidad de capitulos total</label>
+					<form:input path="cantDeCaps" type="number" class="form-control"
+						min="1" id="inputDuracion" />
+
 					<label for="inputDuracion">Duracion por capitulo</label>
 					<form:input path="duracionPorCaps" type="number"
 						class="form-control" id="inputDuracion" />
@@ -56,18 +60,10 @@
 					<form:label path="plataformas">Plataforma</form:label>
 					<form:select path="plataformas" multiple="multiple"
 						items="${listaPlataformas}" itemLabel="descripcion" itemValue="id" />
-						
+
 					<label for="inputDate">Fecha de estreno</label>
 					<form:input path="fechaEstreno" type="date" class="form-control"
 						id="inputPlataforma" />
-						
-					<label for="inputDuracion">Cantidad de temporadas</label>
-					<form:input path="cantDeTemps" type="number" class="form-control"
-						min="1" id="inputDuracion" />
-						
-					<label for="inputDuracion">Cantidad de capitulos</label>
-					<form:input path="cantDeCaps" type="number" class="form-control"
-						min="1" id="inputDuracion" />
 
 					<label for="exampleFormSinopsis">Sinopsis</label>
 					<form:textarea path="sinopsis" class="form-control"
@@ -75,10 +71,10 @@
 				</div>
 			</div>
 
-				<div class="col text-center mt-2">
-					<form:button type="submit" class="btn btn-primary"
-						id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
-				</div>
+			<div class="col text-center mt-2">
+				<form:button type="submit" class="btn btn-primary"
+					id="botonDeregistroPeliSerieVideojuego">Registrar</form:button>
+			</div>
 		</form:form>
 
 
