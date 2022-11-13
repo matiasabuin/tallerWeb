@@ -36,8 +36,7 @@
 					<!-- REDIRIGIR A LOGIN -->
 					<c:if test="${usuarioActual == null}">
 						<div class="sesion">
-							<a href="login">Inicia Sesion</a><span> para dejar una
-								rese&ntilde;a</span>
+							<a href="login">Inicia Sesion</a><span> para interactuar con la comunidad</span>
 						</div>
 					</c:if>
 

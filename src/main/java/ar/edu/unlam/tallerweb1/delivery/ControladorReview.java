@@ -22,6 +22,7 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSerie;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioVideojuego;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionPeliculaNoEncontrada;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionSerieNoEncontrada;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionVideojuegoNoEncontrado;
@@ -60,10 +61,13 @@ public class ControladorReview {
 			servicioReview.registrar(datosReview);
 		} catch (ExceptionCalificacionVacia e) {
 			modelo.put("errorCalificacion", e.getMessage());
-			return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
+			return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId());
+		} catch (ExceptionDescripcionVacia e) {
+			modelo.put("errorDescripcion", e.getMessage());
+			return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId());
 		}
 		
-		return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId(), modelo);
+		return new ModelAndView("redirect:/videojuego?id=" + datosReview.getVideojuego().getId());
 	}
 
 	@RequestMapping(path = "/registrarReviewPelicula", method = RequestMethod.POST)
@@ -74,10 +78,13 @@ public class ControladorReview {
 			servicioReview.registrar(datosReview);
 		} catch (ExceptionCalificacionVacia e) {
 			modelo.put("errorCalificacion", e.getMessage());
-			return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
+			return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId());
+		} catch (ExceptionDescripcionVacia e) {
+			modelo.put("errorDescripcion", e.getMessage());
+			return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId());
 		}
 		
-		return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId(), modelo);
+		return new ModelAndView("redirect:/perfil-pelicula?id=" + datosReview.getPelicula().getId());
 	}
 	
 	@RequestMapping(path = "/registrarReviewSerie", method = RequestMethod.POST)
@@ -88,10 +95,13 @@ public class ControladorReview {
 			servicioReview.registrar(datosReview);
 		} catch (ExceptionCalificacionVacia e) {
 			modelo.put("errorCalificacion", e.getMessage());
-			return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
+			return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId());
+		} catch (ExceptionDescripcionVacia e) {
+			modelo.put("errorDescripcion", e.getMessage());
+			return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId());
 		}
 		
-		return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId(), modelo);
+		return new ModelAndView("redirect:/perfil-serie?id=" + datosReview.getSerie().getId());
 		
 	}
 	

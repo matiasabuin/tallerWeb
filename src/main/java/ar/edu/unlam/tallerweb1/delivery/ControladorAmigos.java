@@ -1,27 +1,19 @@
 package ar.edu.unlam.tallerweb1.delivery;
 
-import java.time.LocalDate;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.domain.pedidos.Amigo;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Estado;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Notificacion;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Solicitud;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioAmigos;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSolicitud;
 
 @Controller

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Review;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 import ar.edu.unlam.tallerweb1.excepciones.ExceptionRegistroCamposVacios;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioReview;
 
@@ -21,11 +22,16 @@ public class ServicioReviewImpl implements ServicioReview {
 	}
 	
 	@Override
-	public void registrar(Review review) throws ExceptionCalificacionVacia {
+	public void registrar(Review review) throws ExceptionCalificacionVacia, ExceptionDescripcionVacia {
 		
 		if(review.getCalificacion() == null) {
 			throw new ExceptionCalificacionVacia("Por favor seleccionar una calificacion");
 		}
+		
+		if(review.getDescripcion().isEmpty()) {
+			throw new ExceptionDescripcionVacia("Debe escribir una review");
+		}
+		
 		servicioReviewDao.guardar(review);
 	}
 

@@ -156,17 +156,11 @@ public class ControladorLogin {
 			servicioHistorial.registrarHistorial(usuario);
 			usuario.setHistorialUsuario(servicioHistorial.getByUserId(usuario.getId()));
 		} catch (ExceptionRegistroCamposVacios e){
-			modelo.put("errorCampos", e.getMessage());
-			modelo.put("usuario", datosRegistro);
-			return new ModelAndView("registro-usuario", modelo);
+			return registroFallidoCampos(datosRegistro, modelo, e);
 		} catch (ExceptionNombreDeUsuarioRepetido e) {
-			modelo.put("errorNombre", e.getMessage());
-			modelo.put("usuario", datosRegistro);
-			return new ModelAndView("registro-usuario", modelo);
+			return registroFallidoNombre(datosRegistro, modelo, e);
 		} catch (ExceptionEmailRegistrado e) {
-			modelo.put("errorEmail", e.getMessage());
-			modelo.put("usuario", datosRegistro);
-			return new ModelAndView("registro-usuario", modelo);
+			return registroFallidoEmail(datosRegistro, modelo, e);
 		}
 		return new ModelAndView("redirect:/login");
 	}
@@ -182,5 +176,25 @@ public class ControladorLogin {
 		return new ModelAndView("registro-usuario", modelo);
 	}
 	
+	private ModelAndView registroFallidoEmail(DatosRegistro datosRegistro, ModelMap modelo,
+			ExceptionEmailRegistrado e) {
+		modelo.put("errorEmail", e.getMessage());
+		modelo.put("usuario", datosRegistro);
+		return new ModelAndView("registro-usuario", modelo);
+	}
+
+	private ModelAndView registroFallidoNombre(DatosRegistro datosRegistro, ModelMap modelo,
+			ExceptionNombreDeUsuarioRepetido e) {
+		modelo.put("errorNombre", e.getMessage());
+		modelo.put("usuario", datosRegistro);
+		return new ModelAndView("registro-usuario", modelo);
+	}
+
+	private ModelAndView registroFallidoCampos(DatosRegistro datosRegistro, ModelMap modelo,
+			ExceptionRegistroCamposVacios e) {
+		modelo.put("errorCampos", e.getMessage());
+		modelo.put("usuario", datosRegistro);
+		return new ModelAndView("registro-usuario", modelo);
+	}
 	
 }

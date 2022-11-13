@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Comentario;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 import ar.edu.unlam.tallerweb1.infrastructure.RepositorioComentario;
 
 @Service("servicioComentario")
@@ -19,7 +20,10 @@ public class ServicioComentarioImpl implements ServicioComentario {
 	}
 	
 	@Override
-	public void registrar(Comentario comentario) {
+	public void registrar(Comentario comentario) throws ExceptionDescripcionVacia {
+		if(comentario.getDescripcion().isEmpty()) {
+			throw new ExceptionDescripcionVacia("Debe escribir un comentario");
+		}
 		servicioComentarioDao.guardar(comentario);
 	}
 

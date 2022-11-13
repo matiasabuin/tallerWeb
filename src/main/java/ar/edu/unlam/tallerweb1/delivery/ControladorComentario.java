@@ -18,6 +18,7 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioComentario;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 
 @Controller
 public class ControladorComentario {
@@ -58,7 +59,12 @@ public class ControladorComentario {
 		notificacion.setMensaje(usuarioRemitente.getNombre() + " Te ha dejado un comentario a una review que hiciste " + "<a href='review?id=" + reviewEncontrada.getId() +"'>Ver review</a>");
 		servicioNotificacion.registrar(notificacion);
 		
-		servicioComentario.registrar(datosComentario);
+		try {
+			servicioComentario.registrar(datosComentario);
+		} catch (ExceptionDescripcionVacia e) {
+			return new ModelAndView("redirect:/review?id=" + datosComentario.getReview().getId());
+		}
+		
 		return new ModelAndView("redirect:/review?id=" + datosComentario.getReview().getId());
 	}
 	
