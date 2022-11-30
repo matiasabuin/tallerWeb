@@ -17,6 +17,8 @@ import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSolicitud;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
+import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -113,17 +115,17 @@ public class ControladorPerfil {
 
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 
-        if(foto.getBytes() != null) {
-    		try {
-    			servicioFiles.uploadImage(foto);
-    		} catch (IOException e) {
-    			return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
-    		}
-        	usuarioBuscado.setFoto(foto.getOriginalFilename());
-        } else {
-        	usuarioBuscado.setFoto(usuarioBuscado.getFoto());
-        }
-	
+	    try {
+	    	servicioFiles.uploadImage(foto);
+		} catch (IOException e) {
+			usuarioBuscado.setFoto(usuarioBuscado.getFoto());
+			usuarioBuscado.setNombre(datosPerfil.getNombre());
+			usuarioBuscado.setBiografia(datosPerfil.getBiografia());
+			servicioLogin.editarPerfil(usuarioBuscado);
+			return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
+		} 
+		
+        usuarioBuscado.setFoto(foto.getOriginalFilename());
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
 		servicioLogin.editarPerfil(usuarioBuscado);
