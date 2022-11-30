@@ -11,14 +11,11 @@ import ar.edu.unlam.tallerweb1.domain.pedidos.Usuario;
 import ar.edu.unlam.tallerweb1.domain.pedidos.Videojuego;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFiles;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioHistorialUsuario;
-import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioAmigos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioFavoritos;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioNotificacion;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioReview;
 import ar.edu.unlam.tallerweb1.domain.usuarios.ServicioSolicitud;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionCalificacionVacia;
-import ar.edu.unlam.tallerweb1.excepciones.ExceptionDescripcionVacia;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -111,10 +108,12 @@ public class ControladorPerfil {
 
 	@RequestMapping(path = "/editar-usuario", method = RequestMethod.POST)
 	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil,
-			@RequestParam("file") MultipartFile foto, HttpServletRequest request) throws IOException {
+			@ModelAttribute("file") MultipartFile foto, HttpServletRequest request) throws IOException {
 
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
 
+		
+		if(foto != null) {
 	    try {
 	    	servicioFiles.uploadImage(foto);
 		} catch (IOException e) {
@@ -126,6 +125,13 @@ public class ControladorPerfil {
 		} 
 		
         usuarioBuscado.setFoto(foto.getOriginalFilename());
+		usuarioBuscado.setNombre(datosPerfil.getNombre());
+		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
+		servicioLogin.editarPerfil(usuarioBuscado);
+		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
+		}
+		
+		usuarioBuscado.setFoto(usuarioBuscado.getFoto());
 		usuarioBuscado.setNombre(datosPerfil.getNombre());
 		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
 		servicioLogin.editarPerfil(usuarioBuscado);
