@@ -108,33 +108,23 @@ public class ControladorPerfil {
 
 	@RequestMapping(path = "/editar-usuario", method = RequestMethod.POST)
 	public ModelAndView editorPerfil(@ModelAttribute("datosPerfil") Usuario datosPerfil,
-			@ModelAttribute("file") MultipartFile foto, HttpServletRequest request) throws IOException {
-
+			@RequestParam("file") MultipartFile foto, HttpServletRequest request) throws IOException {
 		Usuario usuarioBuscado = (Usuario) request.getSession().getAttribute("usuarioActual");
+        if(foto.getBytes() != null) {
+    		try {
+    			servicioFiles.uploadImage(foto);
+    		} catch (IOException e) {
+    			return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
+    		}
+        	usuarioBuscado.setFoto(foto.getOriginalFilename());
+        } else {
+        	usuarioBuscado.setFoto(usuarioBuscado.getFoto());
+        }
+	
+		usuarioBuscado.setNombre(datosPerfil.getNombre());
+		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
+		servicioLogin.editarPerfil(usuarioBuscado);
 
-		
-		if(foto != null) {
-	    try {
-	    	servicioFiles.uploadImage(foto);
-		} catch (IOException e) {
-			usuarioBuscado.setFoto(usuarioBuscado.getFoto());
-			usuarioBuscado.setNombre(datosPerfil.getNombre());
-			usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-			servicioLogin.editarPerfil(usuarioBuscado);
-			return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
-		} 
-		
-        usuarioBuscado.setFoto(foto.getOriginalFilename());
-		usuarioBuscado.setNombre(datosPerfil.getNombre());
-		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-		servicioLogin.editarPerfil(usuarioBuscado);
-		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
-		}
-		
-		usuarioBuscado.setFoto(usuarioBuscado.getFoto());
-		usuarioBuscado.setNombre(datosPerfil.getNombre());
-		usuarioBuscado.setBiografia(datosPerfil.getBiografia());
-		servicioLogin.editarPerfil(usuarioBuscado);
 		return new ModelAndView("redirect:/perfil?id=" + usuarioBuscado.getId());
 	}
 

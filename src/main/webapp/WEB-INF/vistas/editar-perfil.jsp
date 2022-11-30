@@ -40,6 +40,17 @@
 						<form:input path="" type="file" name="file" accept=".jpg, .jpeg" />
 					</div>
 				</c:if>
+				<c:if test="${usuarioActual.planAdquirido.plan.descripcion == 'Free'}">
+					<h3 class="form-signin-heading text-center">Editar Perfil</h3>
+
+					<div class="form-group foto-perfil">
+						<img src="images/${usuarioActual.foto}" style="width: 50%; display:none">
+					</div>
+
+					<div class="form-group" style="width: 50%; display:none">
+						<form:input path="" type="file" name="file" accept=".jpg, .jpeg" />
+					</div>
+				</c:if>
 				<div class="form-group">
 					<form:input path="nombre" id="nombre" class="form-control"
 						placeholder="Nombre de usuario" />
